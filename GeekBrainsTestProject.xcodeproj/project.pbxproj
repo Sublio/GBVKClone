@@ -13,6 +13,8 @@
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47425BDE2E9006D45E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47325BDE2E9006D45E0 /* Assets.xcassets */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
+		4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */; };
+		4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4C17A47325BDE2E9006D45E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
+		4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				4C17A47325BDE2E9006D45E0 /* Assets.xcassets */,
 				4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */,
 				4C17A47825BDE2E9006D45E0 /* Info.plist */,
+				4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */,
+				4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */,
 			);
 			path = GeekBrainsTestProject;
 			sourceTree = "<group>";
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
+				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C17A46B25BDE2E8006D45E0 /* AppDelegate.swift in Sources */,
+				4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
