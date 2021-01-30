@@ -158,11 +158,11 @@
             </objects>
             <point key="canvasLocation" x="3338" y="415"/>
         </scene>
-        <!--Item-->
+        <!--Groups-->
         <scene sceneID="lFW-jI-Exe">
             <objects>
                 <navigationController id="IXu-TZ-NMq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="bua-LE-df0"/>
+                    <tabBarItem key="tabBarItem" title="Groups" image="folder" catalog="system" selectedImage="folder.fill" id="bua-LE-df0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CeP-E8-0DI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -210,11 +210,11 @@
             </objects>
             <point key="canvasLocation" x="3310" y="-257"/>
         </scene>
-        <!--Item-->
+        <!--Friends-->
         <scene sceneID="bhT-pO-YYc">
             <objects>
                 <navigationController modalPresentationStyle="overFullScreen" id="cxV-u2-Tus" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="iLO-l3-D9I"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="list.dash" catalog="system" selectedImage="list.star" id="iLO-l3-D9I"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JCm-n6-ubB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -234,7 +234,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Ik9-1C-u7t">
             <objects>
-                <tabBarController id="j0V-tr-GRH" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="j0V-tr-GRH" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ORq-aQ-3c9"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7SI-AG-HfT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -252,6 +252,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="folder" catalog="system" width="128" height="97"/>
+        <image name="folder.fill" catalog="system" width="128" height="97"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="list.star" catalog="system" width="128" height="94"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
