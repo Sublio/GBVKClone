@@ -21,6 +21,7 @@
 		4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A2B25C65DFC00CC8A4F /* PhotosCollectionViewController.swift */; };
 		4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A2E25C8A85200CC8A4F /* GroupTableViewCell.swift */; };
 		4C542A3125C8A85200CC8A4F /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C542A2F25C8A85200CC8A4F /* GroupTableViewCell.xib */; };
+		4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		4C542A2B25C65DFC00CC8A4F /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		4C542A2E25C8A85200CC8A4F /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		4C542A2F25C8A85200CC8A4F /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */,
 				4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */,
 				4C542A2B25C65DFC00CC8A4F /* PhotosCollectionViewController.swift */,
+				4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */,
 			);
 			path = GeekBrainsTestProject;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
+				4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
