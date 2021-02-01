@@ -12,7 +12,6 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.tintColor = .blue
     }
 
 }
