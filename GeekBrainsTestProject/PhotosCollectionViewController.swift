@@ -41,17 +41,21 @@ class PhotosCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 4
+        return 3
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendPhotoCollectionViewCell
-    
-        cell.photo.image = UIImage(systemName: "pencil")
-    
+
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.black.cgColor
+
+        let resizedImage = UIImage(systemName: "face.smiling")!.resized(to: CGSize(width: 50, height: 50))
+
+        cell.photo.image = resizedImage
+
         return cell
     }
 
@@ -86,4 +90,12 @@ class PhotosCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension UIImage {
+    func resized(to size: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
 }
