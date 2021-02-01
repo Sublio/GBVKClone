@@ -8,6 +8,13 @@
 import UIKit
 
 class GroupsTableViewController: UITableViewController {
+    
+    var currentGroups = [
+        Group(name: "Group1", groupAvatar: UIImage(systemName: "pencil.tip")!),
+        Group(name: "Group2", groupAvatar: UIImage(systemName: "pencil.circle")!),
+        Group(name: "Group3", groupAvatar: UIImage(systemName: "lasso")!),
+        Group(name: "Group4", groupAvatar: UIImage(systemName: "folder")!)
+        ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +29,14 @@ class GroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return currentGroups.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
-        groupCell.groupLabel.text = "Group1"
-        groupCell.groupAvatar.image = UIImage(systemName: "person.3")
+        groupCell.groupLabel.text = currentGroups[indexPath.row].name
+        groupCell.groupAvatar.image = currentGroups[indexPath.row].groupAvatar
 
         return groupCell
     }

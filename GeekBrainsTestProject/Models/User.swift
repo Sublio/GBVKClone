@@ -10,12 +10,12 @@ import UIKit
 
 struct User {
     var name: String
-    var age: Int
-    var avatar: UIImage?
+    var avatar: UIImage
+    var groups: [Group]
     
-    init(name: String, age: Int, avatar: UIImage?) {
+    init(name: String, avatar: UIImage, groups:[Group]) {
         self.name = name
-        self.age = age
         self.avatar = avatar
+        self.groups = groups
     }
 }

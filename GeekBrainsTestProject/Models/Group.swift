@@ -6,15 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 struct  Group {
     var name: String
-    var usersCount: Int
-    var creationDate: String
+    var groupAvatar: UIImage
     
-    init(name: String, usersCount: Int, creationDate: String) {
+    init(name: String, groupAvatar: UIImage) {
         self.name = name
-        self.usersCount = usersCount
-        self.creationDate = creationDate
+        self.groupAvatar = groupAvatar
     }
 }

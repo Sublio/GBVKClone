@@ -8,6 +8,13 @@
 import UIKit
 
 class FriendsTableViewController: UITableViewController {
+    
+    var friends = [
+        User(name: "David", avatar: UIImage(systemName: "face.smiling")!, groups: [Group(name: "Group1", groupAvatar: UIImage(systemName: "person.3")!)]),
+        User(name: "Adam", avatar: UIImage(systemName: "face.smiling.fill")!, groups: [Group(name: "Group2", groupAvatar: UIImage(systemName: "person.3")!)]),
+        User(name: "Mark", avatar: UIImage(systemName: "face.dashed")!, groups: [Group(name: "Group3", groupAvatar: UIImage(systemName: "person.3")!)]),
+        User(name: "Brian", avatar: UIImage(systemName: "face.dashed.fill")!, groups: [Group(name: "Group4", groupAvatar: UIImage(systemName: "person.3")!)]),
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +25,7 @@ class FriendsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return friends.count
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -26,14 +33,14 @@ class FriendsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! FriendTableViewCell
-        cell.friendLabel.text = "User1"
-        cell.avatar.image = UIImage(systemName: "face.smiling")
+        cell.friendLabel.text = friends[indexPath.row].name
+        cell.avatar.image = friends[indexPath.row].avatar
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ToCollectionView", sender: nil)
+        performSegue(withIdentifier: "ToCollectionView", sender: self)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
