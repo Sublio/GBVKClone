@@ -7,19 +7,18 @@
 
 import UIKit
 
-class RoundedView : UIView {
+@IBDesignable class RoundedView : UIView {
+    
+    @IBInspectable var shadowColor:UIColor =  UIColor.darkGray
+    @IBInspectable var shadowRadius: CGFloat = 2
+    @IBInspectable var shadowOpacity: Float = 0.8
+
     
     var imageLayer: CALayer!
        var image: UIImage? {
            didSet { refreshImage() }
        }
        
-       override var intrinsicContentSize:
-           
-           
-           CGSize {
-           return CGSize(width: 200, height: 200)
-       }
        
        func refreshImage() {
            if let imageLayer = imageLayer, let image = image {
@@ -34,11 +33,11 @@ class RoundedView : UIView {
                let radius: CGFloat = 20, offset: CGFloat = 4
                
                let shadowLayer = CALayer()
-               shadowLayer.shadowColor = UIColor.darkGray.cgColor
+               shadowLayer.shadowColor = shadowColor.cgColor
                shadowLayer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
                shadowLayer.shadowOffset = CGSize(width: offset, height: offset)
-               shadowLayer.shadowOpacity = 0.8
-               shadowLayer.shadowRadius = 2
+               shadowLayer.shadowOpacity = shadowOpacity
+               shadowLayer.shadowRadius = shadowRadius
                layer.addSublayer(shadowLayer)
                
                let maskLayer = CAShapeLayer()
@@ -51,8 +50,6 @@ class RoundedView : UIView {
                imageLayer.contentsGravity = CALayerContentsGravity.resizeAspectFill
                layer.addSublayer(imageLayer)
            }
-           
-           
            refreshImage()
        }
 }

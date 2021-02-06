@@ -52,7 +52,7 @@ class PhotosCollectionViewController: UICollectionViewController {
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.black.cgColor
 
-        let resizedImage = UIImage(named: "face")!.resized(to: CGSize(width: 50, height: 50))
+        let resizedImage = UIImage(named: "face\(indexPath.row+1)")!.resized(to: CGSize(width: 50, height: 50))
 
         cell.photo.image = resizedImage
 
