@@ -8,9 +8,19 @@
 import UIKit
 
 class GroupsTableViewController: UITableViewController {
+    
+    var currentGroups = [
+        Group(name: "Group1", groupAvatar: UIImage(systemName: "pencil.tip")!),
+        Group(name: "Group2", groupAvatar: UIImage(systemName: "pencil.circle")!),
+        Group(name: "Group3", groupAvatar: UIImage(systemName: "lasso")!),
+        Group(name: "Group4", groupAvatar: UIImage(systemName: "folder")!)
+        ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAdd))
+        
+        tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
     }
 
     // MARK: - Table view data source
@@ -20,19 +30,40 @@ class GroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return currentGroups.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellId", for: indexPath)
+        let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
+        groupCell.groupLabel.text = currentGroups[indexPath.row].name
+        groupCell.groupAvatar.image = currentGroups[indexPath.row].groupAvatar
 
-        cell.textLabel?.text = "This cell does nothing"
-
-        return cell
+        return groupCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            currentGroups.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    @objc func handleAdd(){
+        let newGroup = Group(name: "Just created Group", groupAvatar: UIImage(systemName: "folder")!)
+        currentGroups.append(newGroup)
+        self.tableView.reloadData()
     }
 }
