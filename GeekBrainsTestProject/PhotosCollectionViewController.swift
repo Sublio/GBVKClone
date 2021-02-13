@@ -14,14 +14,7 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.register(FriendPhotoCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView.register(UINib(nibName: "FriendPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
 
     /*
@@ -52,12 +45,13 @@ class PhotosCollectionViewController: UICollectionViewController {
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.black.cgColor
 
-        let resizedImage = UIImage(systemName: "face.smiling")!.resized(to: CGSize(width: 50, height: 50))
+        let resizedImage = UIImage(named: "face\(indexPath.row+1)")!.resized(to: CGSize(width: 100, height: 100))
 
         cell.photo.image = resizedImage
 
         return cell
     }
+    
 
     // MARK: UICollectionViewDelegate
 
