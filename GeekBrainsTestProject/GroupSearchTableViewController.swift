@@ -13,6 +13,7 @@ class GroupSearchTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
+        setGradientToTableView()
     }
 
     // MARK: - Table view data source
@@ -43,50 +44,23 @@ class GroupSearchTableViewController: UITableViewController {
         return 50
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func setGradientToTableView(){
+        let hexColors: [CGColor] = [
+            UIColor.blueZero.cgColor,
+            UIColor.white.cgColor
+        ]
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = hexColors
+        gradientLayer.locations = [0.0, 0.5]
+        //Vertical mode for gradient
+        gradientLayer.startPoint = .init(x: 1, y: 0)
+        gradientLayer.endPoint   = .init(x: 0, y: 1)
+        gradientLayer.frame = self.tableView.bounds
+        let keeperView = UIView(frame: self.tableView.bounds)
+        keeperView.layer.insertSublayer(gradientLayer, at: 0)
+        self.tableView.backgroundView = keeperView
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

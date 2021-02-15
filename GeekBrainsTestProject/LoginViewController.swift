@@ -29,7 +29,5 @@ class LoginViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
     }
-
-
 }
 

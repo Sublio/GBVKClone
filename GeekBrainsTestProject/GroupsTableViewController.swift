@@ -21,6 +21,7 @@ class GroupsTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAdd))
         
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
+        setGradientToTableView()
     }
 
     // MARK: - Table view data source
@@ -65,5 +66,23 @@ class GroupsTableViewController: UITableViewController {
         let newGroup = Group(name: "Just created Group", groupAvatar: UIImage(systemName: "folder")!)
         currentGroups.append(newGroup)
         self.tableView.reloadData()
+    }
+    
+    func setGradientToTableView(){
+        let hexColors: [CGColor] = [
+            UIColor.blueZero.cgColor,
+            UIColor.white.cgColor
+        ]
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = hexColors
+        gradientLayer.locations = [0.0, 0.5]
+        //Vertical mode for gradient
+        gradientLayer.startPoint = .init(x: 1, y: 0)
+        gradientLayer.endPoint   = .init(x: 0, y: 1)
+        gradientLayer.frame = self.tableView.bounds
+        let keeperView = UIView(frame: self.tableView.bounds)
+        keeperView.layer.insertSublayer(gradientLayer, at: 0)
+        self.tableView.backgroundView = keeperView
     }
 }
