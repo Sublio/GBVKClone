@@ -44,7 +44,7 @@ class FriendsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 30))
-        view.backgroundColor = .gray
+        view.backgroundColor = .clear
         let label = UILabel()
         label.frame = CGRect(x: 5, y: 5, width: Int(view.frame.width)-10, height: Int(view.frame.height) - 10)
         label.text = sortedFriends[section].first?.name[0]
