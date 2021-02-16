@@ -3,6 +3,7 @@
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -130,6 +131,56 @@
             </objects>
             <point key="canvasLocation" x="2564" y="415"/>
         </scene>
+        <!--NewsFeed-->
+        <scene sceneID="gUC-rL-aVT">
+            <objects>
+                <tableViewController id="LBY-no-bA2" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dgO-tN-iG6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="32w-Zg-sLS">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="32w-Zg-sLS" id="onM-mO-mab">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LBY-no-bA2" id="wIN-Xp-YBU"/>
+                            <outlet property="delegate" destination="LBY-no-bA2" id="130-v4-agA"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="EPV-rT-FMv"/>
+                    <navigationItem key="navigationItem" title="NewsFeed" id="Lfu-ai-wND"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZw-Bg-LPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2570" y="1083"/>
+        </scene>
+        <!--NewsFeed-->
+        <scene sceneID="gF3-ez-wt9">
+            <objects>
+                <navigationController id="6tU-D3-teE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="NewsFeed" id="0OZ-hh-Z9E">
+                        <imageReference key="image" image="doc.text.fill" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="n3Z-9b-N09"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hwX-7q-BnL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LBY-no-bA2" kind="relationship" relationship="rootViewController" id="WBZ-Hu-lfj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nuo-9a-DFi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="1083"/>
+        </scene>
         <!--Groups Search-->
         <scene sceneID="dNv-Qf-hfM">
             <objects>
@@ -245,6 +296,7 @@
                     <connections>
                         <segue destination="cxV-u2-Tus" kind="relationship" relationship="viewControllers" id="ntH-Po-Qhs"/>
                         <segue destination="IXu-TZ-NMq" kind="relationship" relationship="viewControllers" id="ltt-f5-CdX"/>
+                        <segue destination="6tU-D3-teE" kind="relationship" relationship="viewControllers" id="hWo-Xt-NpC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EMM-8c-IOa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -253,6 +305,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="doc.text.fill" catalog="system" width="115" height="128"/>
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="folder.fill" catalog="system" width="128" height="97"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
