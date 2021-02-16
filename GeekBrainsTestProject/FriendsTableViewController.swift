@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
+class FriendsTableViewController: UITableViewController {
     
     var notFilteredFriends = UsersData().sortedFriendsByFirstName
     var filteredFriends = [User]()
@@ -111,8 +111,13 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
 }
 
 
-extension FriendsTableViewController {
+extension FriendsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count == 0 {
+            notFilteredFriends = UsersData().sortedFriendsByFirstName
+            tableView.reloadData()
+            self.resignFirstResponder()
+        }
         //Create flat array first
         let friends = Array(notFilteredFriends.joined())
         //Filter
@@ -122,13 +127,5 @@ extension FriendsTableViewController {
         //Reload TV
         tableView.reloadData()
     }
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        notFilteredFriends = UsersData().sortedFriendsByFirstName
-        tableView.reloadData()
-        self.resignFirstResponder()
-    }
-    
 }
 
