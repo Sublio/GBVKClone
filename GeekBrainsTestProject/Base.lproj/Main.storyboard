@@ -153,7 +153,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-dS-qT3">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-dS-qT3">
                                             <rect key="frame" x="57" y="11" width="300" height="300"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="300" id="Ps8-EJ-eVs"/>
@@ -166,7 +166,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GOM-Uf-yw4">
-                                            <rect key="frame" x="344" y="338" width="50" height="50"/>
+                                            <rect key="frame" x="307" y="338" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="N79-RD-Yjl"/>
                                                 <constraint firstAttribute="height" constant="50" id="Oxz-JA-ghJ"/>
@@ -178,13 +178,13 @@
                                         <constraint firstItem="vc3-XG-gC5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x5k-MM-mhh" secondAttribute="leading" id="Bed-VQ-ePp"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="vc3-XG-gC5" secondAttribute="bottom" constant="45" id="D2b-5m-h3D"/>
                                         <constraint firstItem="vc3-XG-gC5" firstAttribute="top" secondItem="x5k-MM-mhh" secondAttribute="bottom" constant="14.666666666666686" id="DQM-9b-5MA"/>
-                                        <constraint firstItem="GOM-Uf-yw4" firstAttribute="leading" secondItem="vc3-XG-gC5" secondAttribute="trailing" constant="206" id="Dtf-tA-M14"/>
+                                        <constraint firstItem="GOM-Uf-yw4" firstAttribute="leading" secondItem="vc3-XG-gC5" secondAttribute="trailing" constant="169" id="Dtf-tA-M14"/>
                                         <constraint firstItem="x5k-MM-mhh" firstAttribute="top" secondItem="7LK-dS-qT3" secondAttribute="bottom" constant="27" id="JaN-fj-BUo"/>
                                         <constraint firstItem="7LK-dS-qT3" firstAttribute="leading" secondItem="onM-mO-mab" secondAttribute="leadingMargin" constant="37" id="NiD-it-G1A"/>
-                                        <constraint firstItem="GOM-Uf-yw4" firstAttribute="trailing" secondItem="onM-mO-mab" secondAttribute="trailingMargin" id="VMd-SB-s82"/>
+                                        <constraint firstItem="GOM-Uf-yw4" firstAttribute="trailing" secondItem="onM-mO-mab" secondAttribute="trailingMargin" constant="-37" id="VMd-SB-s82"/>
                                         <constraint firstItem="7LK-dS-qT3" firstAttribute="centerX" secondItem="onM-mO-mab" secondAttribute="centerX" id="caX-QA-bho"/>
                                         <constraint firstItem="GOM-Uf-yw4" firstAttribute="top" secondItem="7LK-dS-qT3" secondAttribute="bottom" constant="27" id="h8q-Xe-2kX"/>
-                                        <constraint firstItem="GOM-Uf-yw4" firstAttribute="leading" secondItem="x5k-MM-mhh" secondAttribute="trailing" constant="206" id="pcY-Gl-UNo"/>
+                                        <constraint firstItem="GOM-Uf-yw4" firstAttribute="leading" secondItem="x5k-MM-mhh" secondAttribute="trailing" constant="169" id="pcY-Gl-UNo"/>
                                         <constraint firstItem="7LK-dS-qT3" firstAttribute="leading" secondItem="vc3-XG-gC5" secondAttribute="leading" id="vIw-I6-Wy4"/>
                                         <constraint firstItem="7LK-dS-qT3" firstAttribute="top" secondItem="onM-mO-mab" secondAttribute="topMargin" id="wem-Dr-zGA"/>
                                     </constraints>
