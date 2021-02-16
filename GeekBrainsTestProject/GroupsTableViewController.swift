@@ -11,12 +11,9 @@ class GroupsTableViewController: UITableViewController {
     
     let searchBar = DMSearchBar()
     
-    var currentGroups = [
-        Group(name: "Group1", groupAvatar: UIImage(systemName: "pencil.tip")!),
-        Group(name: "Group2", groupAvatar: UIImage(systemName: "pencil.circle")!),
-        Group(name: "Group3", groupAvatar: UIImage(systemName: "lasso")!),
-        Group(name: "Group4", groupAvatar: UIImage(systemName: "folder")!)
-        ]
+    var nonFilteredGroups = GroupFactory().defaultGroups
+    
+    var filteredGroups = [Group]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +33,27 @@ class GroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentGroups.count
+        
+        if filteredGroups.isEmpty {
+            return nonFilteredGroups.count
+        }else {
+            return filteredGroups.count
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
-        groupCell.groupLabel.text = currentGroups[indexPath.row].name
-        groupCell.groupAvatar.image = currentGroups[indexPath.row].groupAvatar
+//        groupCell.groupLabel.text = nonFilteredGroups[indexPath.row].name
+//        groupCell.groupAvatar.image = nonFilteredGroups[indexPath.row].groupAvatar
+        
+        if filteredGroups.isEmpty {
+            groupCell.groupLabel.text = nonFilteredGroups[indexPath.row].name
+            groupCell.groupAvatar.image = nonFilteredGroups[indexPath.row].groupAvatar
+        }else {
+            groupCell.groupLabel.text = filteredGroups[indexPath.row].name
+            groupCell.groupAvatar.image = filteredGroups[indexPath.row].groupAvatar
+        }
 
         return groupCell
     }
@@ -62,14 +72,14 @@ class GroupsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            currentGroups.remove(at: indexPath.row)
+            nonFilteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     @objc func handleAdd(){
         let newGroup = Group(name: "Just created Group", groupAvatar: UIImage(systemName: "folder")!)
-        currentGroups.append(newGroup)
+        nonFilteredGroups.append(newGroup)
         self.tableView.reloadData()
     }
     
@@ -94,5 +104,20 @@ class GroupsTableViewController: UITableViewController {
 
 
 extension GroupsTableViewController: UISearchBarDelegate {
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.count == 0 {
+            nonFilteredGroups = GroupFactory().defaultGroups
+            tableView.reloadData()
+            searchBar.resignFirstResponder()
+        }
+        
+        filteredGroups = nonFilteredGroups.filter{
+            $0.name.contains(searchText)
+        }
+        
+        tableView.reloadData()
+        
+    }
 }
+

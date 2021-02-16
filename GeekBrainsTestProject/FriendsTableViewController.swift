@@ -36,7 +36,6 @@ class FriendsTableViewController: UITableViewController {
         }
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
-        //return notFilteredFriends.count
         
         if filteredFriends.isEmpty {
             return notFilteredFriends.count
