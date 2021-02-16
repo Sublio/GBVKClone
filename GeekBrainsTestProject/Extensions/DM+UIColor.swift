@@ -13,7 +13,7 @@ extension UIColor {
     static var blueOne: UIColor { return UIColor.init(rgb: 0x3A7BD5) }
     static var grayZero: UIColor { return UIColor.init(rgb: 0x9B9B9B) }
     static var grayOne: UIColor { return UIColor.init(rgb: 0x424242) }
-    
+
     convenience init(red: Int, green: Int, blue: Int) {
             assert(red >= 0 && red <= 255, "Invalid red component")
             assert(green >= 0 && green <= 255, "Invalid green component")

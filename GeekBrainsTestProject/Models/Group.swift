@@ -11,7 +11,7 @@ import UIKit
 struct  Group {
     var name: String
     var groupAvatar: UIImage
-    
+
     init(name: String, groupAvatar: UIImage) {
         self.name = name
         self.groupAvatar = groupAvatar

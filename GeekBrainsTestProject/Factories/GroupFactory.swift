@@ -8,7 +8,7 @@
 import UIKit
 
 class GroupFactory {
-    
+
     var defaultGroups = [
         Group(name: "Gaming", groupAvatar: UIImage(systemName: "pencil.tip")!),
         Group(name: "Visibility", groupAvatar: UIImage(systemName: "pencil.circle")!),

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class LikedCustomView: UIView{
-    
+class LikedCustomView: UIView {
+
     var spriteImages = [UIImage]()
     var animatedOnce: Bool = false
-    
+
     let imageView: UIImageView = {
         let iv = UIImageView()
          iv.isUserInteractionEnabled = true
@@ -19,21 +19,20 @@ class LikedCustomView: UIView{
          iv.translatesAutoresizingMaskIntoConstraints = false
          return iv
     }()
-    
+
     let likeCounter: UILabel = {
         let label = UILabel()
         label.text = "0"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
+
     override func layoutSubviews() {
-        
+
         addSubview(imageView)
         addSubview(likeCounter)
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.animate)))
-        
+
         imageView.heightAnchor.constraint(equalToConstant: 75).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -42,16 +41,16 @@ class LikedCustomView: UIView{
         likeCounter.widthAnchor.constraint(equalToConstant: 75).isActive = true
         likeCounter.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         likeCounter.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
-        
+
         for i in 0 ..< 29 {
             spriteImages.append(UIImage(named: "tile0\(i)")!)
         }
     }
-    
-    @objc func animate(){
+
+    @objc func animate() {
         if animatedOnce {
             imageView.animationImages = spriteImages.reversed()
-        }else {
+        } else {
             imageView.animationImages = spriteImages
         }
         imageView.animationDuration = 0.6
@@ -62,7 +61,7 @@ class LikedCustomView: UIView{
             likeCounter.text = "1"
             imageView.image = UIImage(named: "tile028")
             animatedOnce = true
-        }else {
+        } else {
             likeCounter.textColor = .darkGray
             imageView.image = UIImage(named: "tile00")
             likeCounter.text = "0"
@@ -70,5 +69,3 @@ class LikedCustomView: UIView{
         }
     }
 }
-
-

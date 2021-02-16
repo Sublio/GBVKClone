@@ -8,7 +8,7 @@
 import UIKit
 
 class FriendPhotoCollectionViewCell: UICollectionViewCell {
-    
+
     let likedView: LikedCustomView = {
        let view = LikedCustomView(frame: CGRect(x: 70, y: 75, width: 20, height: 20))
        return view

@@ -12,8 +12,8 @@ struct User {
     var name: String
     var avatar: UIImage
     var groups: [Group]
-    
-    init(name: String, avatar: UIImage, groups:[Group]) {
+
+    init(name: String, avatar: UIImage, groups: [Group]) {
         self.name = name
         self.avatar = avatar
         self.groups = groups

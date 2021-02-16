@@ -8,7 +8,7 @@
 import UIKit
 
 class DMSearchBar: UISearchBar {
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         barTintColor = .clear
