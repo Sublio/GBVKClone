@@ -14,6 +14,7 @@ class NewsFeedTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
+        setGradientToTableView()
     }
 
     // MARK: - Table view data source
@@ -42,6 +43,24 @@ class NewsFeedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func setGradientToTableView(){
+        let hexColors: [CGColor] = [
+            UIColor.blueZero.cgColor,
+            UIColor.white.cgColor
+        ]
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = hexColors
+        gradientLayer.locations = [0.0, 0.5]
+        //Vertical mode for gradient
+        gradientLayer.startPoint = .init(x: 1, y: 0)
+        gradientLayer.endPoint   = .init(x: 0, y: 1)
+        gradientLayer.frame = self.tableView.bounds
+        let keeperView = UIView(frame: self.tableView.bounds)
+        keeperView.layer.insertSublayer(gradientLayer, at: 0)
+        self.tableView.backgroundView = keeperView
     }
 
 }
