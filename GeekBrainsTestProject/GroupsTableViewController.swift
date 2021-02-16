@@ -44,8 +44,7 @@ class GroupsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
-//        groupCell.groupLabel.text = nonFilteredGroups[indexPath.row].name
-//        groupCell.groupAvatar.image = nonFilteredGroups[indexPath.row].groupAvatar
+
         
         if filteredGroups.isEmpty {
             groupCell.groupLabel.text = nonFilteredGroups[indexPath.row].name
