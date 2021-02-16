@@ -14,7 +14,7 @@ class FriendTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        self.backgroundColor = .clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,5 +22,5 @@ class FriendTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }
