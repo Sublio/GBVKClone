@@ -9,6 +9,8 @@ import UIKit
 
 class GroupsTableViewController: UITableViewController {
     
+    let searchBar = DMSearchBar()
+    
     var currentGroups = [
         Group(name: "Group1", groupAvatar: UIImage(systemName: "pencil.tip")!),
         Group(name: "Group2", groupAvatar: UIImage(systemName: "pencil.circle")!),
@@ -22,6 +24,9 @@ class GroupsTableViewController: UITableViewController {
         
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
         setGradientToTableView()
+        searchBar.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 50)
+        self.tableView.tableHeaderView = searchBar
+        searchBar.delegate = self
     }
 
     // MARK: - Table view data source
@@ -85,4 +90,9 @@ class GroupsTableViewController: UITableViewController {
         keeperView.layer.insertSublayer(gradientLayer, at: 0)
         self.tableView.backgroundView = keeperView
     }
+}
+
+
+extension GroupsTableViewController: UISearchBarDelegate {
+    
 }

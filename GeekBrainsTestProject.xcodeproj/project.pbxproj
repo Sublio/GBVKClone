@@ -27,6 +27,7 @@
 		4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B417F25DAB78800894D81 /* DM+UIColor.swift */; };
 		4C7B418525DAC5C900894D81 /* UserFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418425DAC5C900894D81 /* UserFactory.swift */; };
 		4C7B418925DAD01300894D81 /* DM+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418825DAD01300894D81 /* DM+String.swift */; };
+		4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418B25DAE1D600894D81 /* DMSearchBar.swift */; };
 		4C936DB525CE107B0035DA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C936DB425CE107B0035DA46 /* Assets.xcassets */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
@@ -55,6 +56,7 @@
 		4C7B417F25DAB78800894D81 /* DM+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+UIColor.swift"; sourceTree = "<group>"; };
 		4C7B418425DAC5C900894D81 /* UserFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFactory.swift; sourceTree = "<group>"; };
 		4C7B418825DAD01300894D81 /* DM+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+String.swift"; sourceTree = "<group>"; };
+		4C7B418B25DAE1D600894D81 /* DMSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSearchBar.swift; sourceTree = "<group>"; };
 		4C936DB425CE107B0035DA46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Projects/Tipsy/Tipsy-iOS13/Tipsy/Assets.xcassets"; sourceTree = "<group>"; };
 		4C936DB925CE15C30035DA46 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		4C936DBE25CE37080035DA46 /* LikeCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				4C936DB925CE15C30035DA46 /* RoundedView.swift */,
 				4C936DBE25CE37080035DA46 /* LikeCustomView.swift */,
+				4C7B418B25DAE1D600894D81 /* DMSearchBar.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */,
 				4C7B418925DAD01300894D81 /* DM+String.swift in Sources */,
 				4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */,
+				4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
 				4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */,
