@@ -55,7 +55,7 @@ class FriendsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "ToCollectionView", sender: self)
+        performSegue(withIdentifier: "ToCollectionView", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
