@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         animateTextFields()
         animateSubmitButton()
-        showLoadingIndicator(withInterval: 10)
+        showLoadingIndicator(withInterval: 3)
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {
@@ -102,8 +102,8 @@ class LoginViewController: UIViewController {
             self.hideLoadingIndicator()
             }
         }
-    
-    func hideLoadingIndicator(){
+
+    func hideLoadingIndicator() {
         if let sublayers = view.layer.sublayers {
             for layer in sublayers {
                 if layer.name == "loading animation"{

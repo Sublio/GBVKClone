@@ -57,15 +57,25 @@ class LikedCustomView: UIView {
         imageView.animationRepeatCount = 1
         imageView.startAnimating()
         if likeCounter.text == "0"{
-            likeCounter.textColor = .red
-            likeCounter.text = "1"
+            fadeLabelTransition(duration: 0.3)
+            self.likeCounter.text = "1"
+            self.likeCounter.textColor = .red
             imageView.image = UIImage(named: "tile028")
             animatedOnce = true
         } else {
-            likeCounter.textColor = .darkGray
+            fadeLabelTransition(duration: 0.3)
+            self.likeCounter.text = "0"
+            self.likeCounter.textColor = .darkGray
             imageView.image = UIImage(named: "tile00")
-            likeCounter.text = "0"
             animatedOnce = false
         }
+    }
+
+    func fadeLabelTransition(duration: CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        animation.type = .push
+        animation.duration = duration
+        self.likeCounter.layer.add(animation, forKey: CATransitionType.fade.rawValue)
     }
 }
