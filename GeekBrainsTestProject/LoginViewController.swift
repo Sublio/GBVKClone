@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setGradientToView()
@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         animateTextFields()
         animateSubmitButton()
+        showLoadingIndicator()
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {
@@ -60,7 +61,7 @@ class LoginViewController: UIViewController {
         animation.fillMode = .backwards
         self.loginButton.layer.add(animation, forKey: nil)
     }
-    
+
     func setGradientToView() {
         let hexColors: [CGColor] = [
             UIColor.blueZero.cgColor,
@@ -75,5 +76,40 @@ class LoginViewController: UIViewController {
         gradientLayer.endPoint   = .init(x: 0, y: 1)
         gradientLayer.frame = self.view.bounds
         self.view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+
+    func showLoadingIndicator() {
+
+            let layout = CAReplicatorLayer()
+            layout.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: 25, height: 11)
+            let circle = CALayer()
+            circle.frame = CGRect(x: 0, y: 0, width: 7, height: 7)
+            circle.cornerRadius = circle.frame.width / 2
+            circle.backgroundColor = UIColor(red: 110/255.0, green: 110/255.0, blue: 110/255.0, alpha: 1).cgColor
+            layout.addSublayer(circle)
+            layout.instanceCount = 3
+            layout.instanceTransform = CATransform3DMakeTranslation(10, 0, 0)
+            let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+            animation.fromValue = 1.0
+            animation.toValue = 0.2
+            animation.duration = 1
+            animation.repeatCount = 20
+            circle.add(animation, forKey: nil)
+            layout.instanceDelay = animation.duration / Double(layout.instanceCount)
+            layout.name = "loading animation"
+            self.view.layer.addSublayer(layout)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
+            self.hideLoadingIndicator()
+            }
+        }
+    
+    func hideLoadingIndicator(){
+        if let sublayers = view.layer.sublayers {
+            for layer in sublayers {
+                if layer.name == "loading animation"{
+                    layer.removeFromSuperlayer()
+                }
+            }
+        }
     }
 }
