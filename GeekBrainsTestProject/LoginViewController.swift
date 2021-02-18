@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         animateTextFields()
         animateSubmitButton()
-        showLoadingIndicator()
+        showLoadingIndicator(withInterval: 10)
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {
@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
 
-    func showLoadingIndicator() {
+    func showLoadingIndicator(withInterval interval: Double) {
 
             let layout = CAReplicatorLayer()
             layout.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: 25, height: 11)
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
             layout.instanceDelay = animation.duration / Double(layout.instanceCount)
             layout.name = "loading animation"
             self.view.layer.addSublayer(layout)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [self] in
             self.hideLoadingIndicator()
             }
         }
