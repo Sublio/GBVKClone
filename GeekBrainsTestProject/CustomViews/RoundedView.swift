@@ -12,9 +12,11 @@ import UIKit
     @IBInspectable var shadowColor: UIColor =  UIColor.darkGray
     @IBInspectable var shadowRadius: CGFloat = 2
     @IBInspectable var shadowOpacity: Float = 0.8
-
+    
+    
     var imageLayer: CALayer!
-       var image: UIImage? {
+    var shadowLayer: CALayer!
+    var image: UIImage? {
            didSet { refreshImage() }
        }
 
@@ -36,6 +38,7 @@ import UIKit
                shadowLayer.shadowOffset = CGSize(width: offset, height: offset)
                shadowLayer.shadowOpacity = shadowOpacity
                shadowLayer.shadowRadius = shadowRadius
+               self.shadowLayer = shadowLayer
                layer.addSublayer(shadowLayer)
 
                let maskLayer = CAShapeLayer()
@@ -44,10 +47,24 @@ import UIKit
                imageLayer = CALayer()
                imageLayer.mask = maskLayer
                imageLayer.frame = bounds
-               imageLayer.backgroundColor = UIColor.red.cgColor
                imageLayer.contentsGravity = CALayerContentsGravity.resizeAspectFill
                layer.addSublayer(imageLayer)
            }
            refreshImage()
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(startAvatarAnimation))
+        self.addGestureRecognizer(gestureRecognizer)
        }
+    
+    @objc func startAvatarAnimation(){
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 0.75
+        animation.toValue = 1
+        animation.stiffness = 300
+        animation.mass = 0.5
+        animation.duration = 4
+        animation.speed = 0.3
+        imageLayer.add(animation, forKey: nil)
+        shadowLayer.add(animation, forKey: nil)
+    }
 }
