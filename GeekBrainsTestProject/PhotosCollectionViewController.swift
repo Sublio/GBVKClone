@@ -38,6 +38,13 @@ class PhotosCollectionViewController: UICollectionViewController {
         // #warning Incomplete implementation, return the number of items
         return 3
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedImageView = UIImageView(image: UIImage(named: "face\(indexPath.row+1)")!)
+        let fullScreenImageVC = FullScreenPhotoViewController()
+        fullScreenImageVC.imageView = selectedImageView
+        show(fullScreenImageVC, sender: nil)
+    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendPhotoCollectionViewCell
