@@ -9,8 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    private var testLogin = "Test"
-    private var testPassword = "Test"
+    private var testLogin = ""
+    private var testPassword = ""
 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
