@@ -33,6 +33,7 @@
 		4C7B419C25DC070100894D81 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B419B25DC070100894D81 /* NewsFeedTableViewController.swift */; };
 		4C7B41A525DC43E600894D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7B41A425DC43E600894D81 /* Assets.xcassets */; };
 		4C7C086125E1CD6300FEAFAA /* FullScreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C086025E1CD6300FEAFAA /* FullScreenPhotoViewController.swift */; };
+		4C7C088825E1E82900FEAFAA /* DM+Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C088725E1E82900FEAFAA /* DM+Arrays.swift */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		4C7B419B25DC070100894D81 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
 		4C7B41A425DC43E600894D81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C7C086025E1CD6300FEAFAA /* FullScreenPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoViewController.swift; sourceTree = "<group>"; };
+		4C7C088725E1E82900FEAFAA /* DM+Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+Arrays.swift"; sourceTree = "<group>"; };
 		4C936DB925CE15C30035DA46 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		4C936DBE25CE37080035DA46 /* LikeCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 			children = (
 				4C7B417F25DAB78800894D81 /* DM+UIColor.swift */,
 				4C7B418825DAD01300894D81 /* DM+String.swift */,
+				4C7C088725E1E82900FEAFAA /* DM+Arrays.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */,
 				4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */,
 				4C7B419925DC06C600894D81 /* NewsFeedTableViewCell.swift in Sources */,
+				4C7C088825E1E82900FEAFAA /* DM+Arrays.swift in Sources */,
 				4C542A3A25C8B5B400CC8A4F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
