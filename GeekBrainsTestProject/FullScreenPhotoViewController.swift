@@ -9,6 +9,13 @@ import UIKit
 
 class FullScreenPhotoViewController: UIViewController {
     
+    let photos = [
+                  UIImage(named: "face1"),
+                  UIImage(named: "face2"),
+                  UIImage(named: "face3"),
+                  UIImage(named: "face4")
+                ]
+    
     var imageView: UIImageView?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -16,27 +23,24 @@ class FullScreenPhotoViewController: UIViewController {
         if let image = imageView {
             image.frame = UIScreen.main.bounds
             image.backgroundColor = .black
-            image.contentMode = .scaleAspectFill
+            image.contentMode = .scaleAspectFit
             image.isUserInteractionEnabled = true
             self.view.addSubview(image)
         }
+        let swipeGestureRecognizerLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeGestureRecognizerLeft.direction = .left
+        let swipeGestureRecognizerRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeGestureRecognizerRight.direction = .right
+        self.imageView?.addGestureRecognizer(swipeGestureRecognizerRight)
+        self.imageView?.addGestureRecognizer(swipeGestureRecognizerLeft)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
+        let randomInt = Int.random(in: 0...3)
+        self.imageView?.image = photos[randomInt]
     }
-    */
-
 }
