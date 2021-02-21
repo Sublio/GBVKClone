@@ -9,12 +9,13 @@ import UIKit
 
 class FullScreenPhotoViewController: UIViewController, UIScrollViewDelegate {
     
-    let photos = [
+    var photos = [
                   UIImage(named: "face1")!,
                   UIImage(named: "face2")!,
                   UIImage(named: "face3")!
                 ]
     
+    var selectedImageIndex: Int!
     
     let scrollView: UIScrollView = {
        let scroll = UIScrollView()
@@ -42,6 +43,17 @@ class FullScreenPhotoViewController: UIViewController, UIScrollViewDelegate {
             scrollView.contentSize.width = scrollView.frame.width * CGFloat(i+1)
             scrollView.addSubview(imageView)
             scrollView.delegate = self
+            // TODO: Refactor this shit with contentOffset somehow after
+            switch selectedImageIndex {
+            case 0:
+                scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            case 1:
+                scrollView.contentOffset = CGPoint(x: 375, y: 0)
+            case 2:
+                scrollView.contentOffset = CGPoint(x: 750, y: 0)
+            default:
+                scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            }
         }
     }
     
