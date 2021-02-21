@@ -43,7 +43,7 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedImageView = UIImageView(image: UIImage(named: "face\(indexPath.row+1)")!)
         let fullScreenImageVC = FullScreenPhotoViewController()
-        fullScreenImageVC.imageView = selectedImageView
+        fullScreenImageVC.currentImage = selectedImageView
         show(fullScreenImageVC, sender: nil)
     }
     
