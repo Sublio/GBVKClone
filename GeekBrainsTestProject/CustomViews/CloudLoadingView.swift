@@ -11,23 +11,17 @@ class CloudLoadingView: UIView {
 
  
     override func draw(_ rect: CGRect) {
-        //// General Declarations
-        //// General Declarations
+        //General Declarations
         let context = UIGraphicsGetCurrentContext()!
 
-        //// Color Declarations
+        //Color Declarations
         let fillColor = UIColor.blueZero
 
-        //// cloud-computing.svg Group
         context.saveGState()
         context.translateBy(x: 0, y: 0.44)
-        context.scaleBy(x: 0.7, y: 0.7)
+        context.scaleBy(x: 0.1, y: 0.1)
 
-
-
-        //// Group 2
-        //// Group 3
-        //// Bezier Drawing
+        //Bezier Drawing
         let bezierPath = UIBezierPath()
         bezierPath.move(to: CGPoint(x: 406.41, y: 136.15))
         bezierPath.addCurve(to: CGPoint(x: 358.4, y: 104.32), controlPoint1: CGPoint(x: 394.01, y: 120.89), controlPoint2: CGPoint(x: 377.13, y: 109.74))
@@ -68,21 +62,31 @@ class CloudLoadingView: UIView {
         let shapeLayer = CAShapeLayer()
         shapeLayer.fillColor = UIColor.blueZero.cgColor
         shapeLayer.strokeColor = UIColor.blueOne.cgColor
-        shapeLayer.lineWidth = 6
+        shapeLayer.lineWidth = 2
         shapeLayer.lineCap = .round
-        bezierPath.apply(CGAffineTransform(scaleX: 0.7, y: 0.7))
+        bezierPath.apply(CGAffineTransform(scaleX: 0.1, y: 0.1))
         shapeLayer.path = bezierPath.cgPath
         
         //animation for shapeLayer
+        // 0.515 - полный круг анимации
         
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.toValue = 0.5
-        animation.byValue = 0.00001
-        animation.speed = 0.1
-        animation.repeatCount = Float.infinity
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        shapeLayer.add(animation, forKey: nil)
+        let strokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        strokeEndAnimation.fromValue = 0
+        strokeEndAnimation.toValue = 0.515 // увеличивать на динамическиую константу
+        strokeEndAnimation.speed = 0.2
+        strokeEndAnimation.repeatCount = Float.infinity
+        strokeEndAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        
+        let strokeStartAnimation = CABasicAnimation(keyPath: "strokeStart")
+        strokeStartAnimation.fromValue = 0.0 // уменьшать на динамическую константу
+        strokeStartAnimation.toValue = 0.400
+        strokeStartAnimation.speed = 0.2
+        strokeStartAnimation.repeatCount = Float.infinity
+        strokeStartAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        
+        
+        shapeLayer.add(strokeStartAnimation, forKey: nil)
+        shapeLayer.add(strokeEndAnimation, forKey: nil)
         
         layer.addSublayer(shapeLayer)
         
