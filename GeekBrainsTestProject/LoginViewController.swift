@@ -24,7 +24,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         animateTextFields()
         animateSubmitButton()
-        showLoadingIndicator(withInterval: 3)
+        //showLoadingIndicator(withInterval: 3)
+        showCloudAnimation(withInterval: 10.0)
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {
@@ -110,6 +111,15 @@ class LoginViewController: UIViewController {
                     layer.removeFromSuperlayer()
                 }
             }
+        }
+    }
+    
+    func showCloudAnimation(withInterval interval: Double){
+        let cloud = CloudLoadingView(frame: CGRect(origin: CGPoint(x: self.view.frame.size.width/2-20, y: self.view.frame.size.height/2-20), size: CGSize(width: 50, height: 50)))
+        self.view.addSubview(cloud)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [self] in
+            cloud.removeFromSuperview()
         }
     }
 }
