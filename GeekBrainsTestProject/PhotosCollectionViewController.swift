@@ -10,7 +10,6 @@ import UIKit
 private let reuseIdentifier = "CollectionCell"
 
 class PhotosCollectionViewController: UICollectionViewController {
-        
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +26,12 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fullScreenImageVC = FullScreenPhotoViewController()
         fullScreenImageVC.selectedImageIndex = indexPath.row
         show(fullScreenImageVC, sender: nil)
     }
-    
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendPhotoCollectionViewCell

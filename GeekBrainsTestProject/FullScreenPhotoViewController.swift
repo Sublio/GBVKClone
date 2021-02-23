@@ -8,15 +8,15 @@
 import UIKit
 
 class FullScreenPhotoViewController: UIViewController, UIScrollViewDelegate {
-    
+
     var photos = [
                   UIImage(named: "face1")!,
                   UIImage(named: "face2")!,
                   UIImage(named: "face3")!
                 ]
-    
+
     var selectedImageIndex: Int!
-    
+
     let scrollView: UIScrollView = {
        let scroll = UIScrollView()
         scroll.isPagingEnabled = true
@@ -46,9 +46,9 @@ class FullScreenPhotoViewController: UIViewController, UIScrollViewDelegate {
             scrollView.contentOffset = CGPoint(x: selectedImageIndex*375, y: 0)
         }
     }
-    
-    //ScrollView Delegate
-    
+
+    // ScrollView Delegate
+
      func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 0.75

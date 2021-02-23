@@ -85,7 +85,7 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
     }
-    
+
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         let nonFilteredFriends = notFilteredFriends.joined()
         var firstNames = [String]()
