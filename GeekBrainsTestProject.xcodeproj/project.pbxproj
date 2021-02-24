@@ -37,6 +37,13 @@
 		4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
+		4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */; };
+		4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */; };
+		4CC84D3E25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */; };
+		4CC84D4225E6F92800FD7949 /* MyCustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4125E6F92800FD7949 /* MyCustomSegue.swift */; };
+		4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4625E6FF8300FD7949 /* NavigationTransitionPush.swift */; };
+		4CC84D4A25E6FF9700FD7949 /* NavigationTransitionPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */; };
+		4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +79,13 @@
 		4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLoadingView.swift; sourceTree = "<group>"; };
 		4C936DB925CE15C30035DA46 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		4C936DBE25CE37080035DA46 /* LikeCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomView.swift; sourceTree = "<group>"; };
+		4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionPresent.swift; sourceTree = "<group>"; };
+		4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDelegate.swift; sourceTree = "<group>"; };
+		4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDIsmiss.swift; sourceTree = "<group>"; };
+		4CC84D4125E6F92800FD7949 /* MyCustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomSegue.swift; sourceTree = "<group>"; };
+		4CC84D4625E6FF8300FD7949 /* NavigationTransitionPush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionPush.swift; sourceTree = "<group>"; };
+		4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionPop.swift; sourceTree = "<group>"; };
+		4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +118,10 @@
 		4C17A46925BDE2E8006D45E0 /* GeekBrainsTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				4CC84D4425E6FDB600FD7949 /* NavigationTransitions */,
+				4CC84D4025E6F91700FD7949 /* CustomSegues */,
+				4CC84D3825E6DA9400FD7949 /* TransitionDelegates */,
+				4CC84D3325E6CB4400FD7949 /* CustomTransitions */,
 				4C7B41A425DC43E600894D81 /* Assets.xcassets */,
 				4C7B418325DAC5BD00894D81 /* Factories */,
 				4C7B417E25DAB77800894D81 /* Extensions */,
@@ -177,6 +195,41 @@
 				4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		4CC84D3325E6CB4400FD7949 /* CustomTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */,
+				4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */,
+			);
+			path = CustomTransitions;
+			sourceTree = "<group>";
+		};
+		4CC84D3825E6DA9400FD7949 /* TransitionDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */,
+			);
+			path = TransitionDelegates;
+			sourceTree = "<group>";
+		};
+		4CC84D4025E6F91700FD7949 /* CustomSegues */ = {
+			isa = PBXGroup;
+			children = (
+				4CC84D4125E6F92800FD7949 /* MyCustomSegue.swift */,
+			);
+			path = CustomSegues;
+			sourceTree = "<group>";
+		};
+		4CC84D4425E6FDB600FD7949 /* NavigationTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				4CC84D4625E6FF8300FD7949 /* NavigationTransitionPush.swift */,
+				4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */,
+				4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */,
+			);
+			path = NavigationTransitions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,25 +310,32 @@
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserFactory.swift in Sources */,
+				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
+				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */,
 				4C17A46B25BDE2E8006D45E0 /* AppDelegate.swift in Sources */,
 				4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */,
 				4C7B418925DAD01300894D81 /* DM+String.swift in Sources */,
 				4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */,
 				4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */,
+				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
 				4C7C086125E1CD6300FEAFAA /* FullScreenPhotoViewController.swift in Sources */,
 				4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */,
+				4CC84D4225E6F92800FD7949 /* MyCustomSegue.swift in Sources */,
 				4C7B419C25DC070100894D81 /* NewsFeedTableViewController.swift in Sources */,
 				4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */,
+				4CC84D4A25E6FF9700FD7949 /* NavigationTransitionPop.swift in Sources */,
 				4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */,
+				4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */,
 				4C7B419925DC06C600894D81 /* NewsFeedTableViewCell.swift in Sources */,
 				4C7C088825E1E82900FEAFAA /* DM+Arrays.swift in Sources */,
 				4C542A3A25C8B5B400CC8A4F /* User.swift in Sources */,
+				4CC84D3E25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

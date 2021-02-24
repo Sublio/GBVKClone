@@ -15,6 +15,7 @@ class PhotosCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         self.collectionView.register(UINib(nibName: "FriendPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+
     }
 
     // MARK: UICollectionViewDataSource
@@ -30,7 +31,8 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fullScreenImageVC = FullScreenPhotoViewController()
         fullScreenImageVC.selectedImageIndex = indexPath.row
-        show(fullScreenImageVC, sender: nil)
+        // show(fullScreenImageVC, sender: nil)
+        self.present(fullScreenImageVC, animated: true, completion: nil)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
