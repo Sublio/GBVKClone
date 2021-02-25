@@ -34,7 +34,7 @@ class NavigationTransitionPush: NSObject, UIViewControllerAnimatedTransitioning 
                                             }
                                             
 
-                                            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.90) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
                                                 destination.view.transform = .identity
 
                                             }

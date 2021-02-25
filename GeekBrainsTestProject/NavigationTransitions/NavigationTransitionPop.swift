@@ -29,11 +29,9 @@ class NavigationTransitionPop: NSObject, UIViewControllerAnimatedTransitioning {
                                     options: .calculationModePaced,
                                     animations: {
                                         UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
-                                            let sourceBounds = source.view.bounds
-                                            let rotationPoint = CGPoint(x: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height)
-                                            source.view.layer.anchorPoint = CGPoint(x: -rotationPoint.x/sourceBounds.width, y: -rotationPoint.y/sourceBounds.height)
-                                            let translation = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/2))
-                                            source.view.transform = translation
+                                            let translation = CGAffineTransform(translationX: source.view.frame.width, y: -source.view.frame.height)
+                                            
+                                            source.view.transform = translation.rotated(by: -90)
                                         }
                                         
 
