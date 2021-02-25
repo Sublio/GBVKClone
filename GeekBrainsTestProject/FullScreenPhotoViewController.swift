@@ -43,7 +43,7 @@ class FullScreenPhotoViewController: UIViewController, UIScrollViewDelegate {
             scrollView.contentSize.width = scrollView.frame.width * CGFloat(i+1)
             scrollView.addSubview(imageView)
             scrollView.delegate = self
-            scrollView.contentOffset = CGPoint(x: selectedImageIndex*375, y: 0)
+            scrollView.contentOffset = CGPoint(x: (CGFloat(selectedImageIndex!)*imageView.frame.width), y: 0)
         }
     }
 
