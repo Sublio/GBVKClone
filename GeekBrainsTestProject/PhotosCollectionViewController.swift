@@ -15,7 +15,7 @@ class PhotosCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         self.collectionView.register(UINib(nibName: "FriendPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-
+        setGradientToCollectionViewView()
     }
 
     // MARK: UICollectionViewDataSource
@@ -46,6 +46,24 @@ class PhotosCollectionViewController: UICollectionViewController {
         cell.photo.image = resizedImage
 
         return cell
+    }
+    
+    func setGradientToCollectionViewView() {
+        let hexColors: [CGColor] = [
+            UIColor.blueZero.cgColor,
+            UIColor.white.cgColor
+        ]
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = hexColors
+        gradientLayer.locations = [0.0, 0.5]
+        // Vertical mode for gradient
+        gradientLayer.startPoint = .init(x: 1, y: 0)
+        gradientLayer.endPoint   = .init(x: 0, y: 1)
+        gradientLayer.frame = self.collectionView.bounds
+        let keeperView = UIView(frame: self.collectionView.bounds)
+        keeperView.layer.insertSublayer(gradientLayer, at: 0)
+        self.collectionView.backgroundView = keeperView
     }
 
 }

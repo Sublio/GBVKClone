@@ -9,7 +9,7 @@ import UIKit
 
 class NavigationTransitionPush: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
+        return 1
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -18,22 +18,23 @@ class NavigationTransitionPush: NSObject, UIViewControllerAnimatedTransitioning 
 
         transitionContext.containerView.addSubview(destination.view)
         destination.view.frame = source.view.frame
-        destination.view.transform = CGAffineTransform(translationX: source.view.frame.width, y: 0)
+        let translation2 = CGAffineTransform(translationX: destination.view.frame.width, y: -destination.view.frame.height)
+        
+        //destination.view.transform = translation1.concatenating(translation2)
+        destination.view.transform = translation2.rotated(by: -90)
+        
 
         UIView.animateKeyframes(withDuration: self.transitionDuration(using: transitionContext), delay: 0, options: .calculationModePaced) {
                                             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
-                                                let translation = CGAffineTransform(translationX: -200, y: 0)
-                                                let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                                                source.view.transform = translation.concatenating(scale)
+                                                let sourceBounds = source.view.bounds
+                                                let rotationPoint = CGPoint(x: 0, y: 0)
+                                                source.view.layer.anchorPoint = CGPoint(x: rotationPoint.x/sourceBounds.width, y: rotationPoint.y/sourceBounds.height)
+                                                let translation = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
+                                                source.view.transform = translation
                                             }
+                                            
 
-                                            UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.4) {
-                                                let translation = CGAffineTransform(translationX: source.view.frame.width/2, y: 0)
-                                                let scale = CGAffineTransform(scaleX: 1.2, y: 1.2)
-                                                destination.view.transform = translation.concatenating(scale)
-                                            }
-
-                                            UIView.addKeyframe(withRelativeStartTime: 0.6, relativeDuration: 0.4) {
+                                            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.90) {
                                                 destination.view.transform = .identity
 
                                             }

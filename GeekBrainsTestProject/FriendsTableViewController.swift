@@ -14,6 +14,7 @@ class FriendsTableViewController: UITableViewController {
 
     let searcBar = DMSearchBar()
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searcBar.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 50)
