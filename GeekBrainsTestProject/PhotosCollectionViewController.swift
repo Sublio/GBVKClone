@@ -16,6 +16,8 @@ class PhotosCollectionViewController: UICollectionViewController {
 
         self.collectionView.register(UINib(nibName: "FriendPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         setGradientToCollectionViewView()
+        self.view.isUserInteractionEnabled = true
+        self.title = "Photos"
     }
 
     // MARK: UICollectionViewDataSource
@@ -68,10 +70,3 @@ class PhotosCollectionViewController: UICollectionViewController {
 
 }
 
-extension UIImage {
-    func resized(to size: CGSize) -> UIImage {
-        return UIGraphicsImageRenderer(size: size).image { _ in
-            draw(in: CGRect(origin: .zero, size: size))
-        }
-    }
-}

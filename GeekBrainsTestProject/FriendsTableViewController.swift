@@ -55,8 +55,13 @@ class FriendsTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ToCollectionView", sender: self)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        collectionViewFlowLayout.itemSize = CGSize(width: 100, height: 100)
+        collectionViewFlowLayout.scrollDirection = .vertical
+        let collectionView = PhotosCollectionViewController(collectionViewLayout: collectionViewFlowLayout)
+        //navigationController?.pushViewController(collectionView, animated: true)
+        show(collectionView, sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

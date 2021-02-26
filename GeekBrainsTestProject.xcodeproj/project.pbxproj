@@ -37,6 +37,8 @@
 		4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
+		4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */; };
+		4CB0AE7725E9C19C00B5E144 /* DM+UIIMage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7625E9C19C00B5E144 /* DM+UIIMage.swift */; };
 		4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */; };
 		4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */; };
 		4CC84D3E25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */; };
@@ -79,6 +81,8 @@
 		4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLoadingView.swift; sourceTree = "<group>"; };
 		4C936DB925CE15C30035DA46 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		4C936DBE25CE37080035DA46 /* LikeCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomView.swift; sourceTree = "<group>"; };
+		4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
+		4CB0AE7625E9C19C00B5E144 /* DM+UIIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+UIIMage.swift"; sourceTree = "<group>"; };
 		4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionPresent.swift; sourceTree = "<group>"; };
 		4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDelegate.swift; sourceTree = "<group>"; };
 		4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDIsmiss.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				4C7B417F25DAB78800894D81 /* DM+UIColor.swift */,
 				4C7B418825DAD01300894D81 /* DM+String.swift */,
 				4C7C088725E1E82900FEAFAA /* DM+Arrays.swift */,
+				4CB0AE7625E9C19C00B5E144 /* DM+UIIMage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 			children = (
 				4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */,
 				4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */,
+				4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */,
 			);
 			path = CustomTransitions;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */,
 				4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */,
 				4C7B419625DC015200894D81 /* GroupFactory.swift in Sources */,
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
@@ -317,6 +324,7 @@
 				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */,
 				4C17A46B25BDE2E8006D45E0 /* AppDelegate.swift in Sources */,
+				4CB0AE7725E9C19C00B5E144 /* DM+UIIMage.swift in Sources */,
 				4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */,
 				4C7B418925DAD01300894D81 /* DM+String.swift in Sources */,
 				4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */,
