@@ -17,6 +17,7 @@ class NavigationTransitionPush: NSObject, UIViewControllerAnimatedTransitioning 
         guard let destination = transitionContext.viewController(forKey: .to) else { return }
 
         transitionContext.containerView.addSubview(destination.view)
+        transitionContext.containerView.backgroundColor = .white
         destination.view.frame = source.view.frame
         let translation2 = CGAffineTransform(translationX: destination.view.frame.width, y: -destination.view.frame.height)
         
