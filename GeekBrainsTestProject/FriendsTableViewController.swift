@@ -86,6 +86,15 @@ class FriendsTableViewController: UITableViewController {
         cell.backgroundColor = .clear
     }
 
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        let nonFilteredFriends = notFilteredFriends.joined()
+        var firstNames = [String]()
+        for friend in nonFilteredFriends {
+            firstNames.append(String(friend.name.characterAtIndex(index: 0)!))
+        }
+        return firstNames.uniqueElementsFrom(array: firstNames)
+    }
+
     func setGradientToTableView() {
         let hexColors: [CGColor] = [
             UIColor.blueZero.cgColor,
