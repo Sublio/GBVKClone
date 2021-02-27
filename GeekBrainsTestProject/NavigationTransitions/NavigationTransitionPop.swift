@@ -31,7 +31,7 @@ class NavigationTransitionPop: NSObject, UIViewControllerAnimatedTransitioning {
                                         UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
                                             let translation = CGAffineTransform(translationX: source.view.frame.width, y: -source.view.frame.height)
                                             
-                                            source.view.transform = translation.rotated(by: -90)
+                                            source.view.transform = translation.rotated(by: -180)
                                         }
                                         
 

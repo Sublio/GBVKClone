@@ -17,19 +17,18 @@ class NavigationTransitionPush: NSObject, UIViewControllerAnimatedTransitioning 
         guard let destination = transitionContext.viewController(forKey: .to) else { return }
 
         transitionContext.containerView.addSubview(destination.view)
-        transitionContext.containerView.backgroundColor = .white
+        transitionContext.containerView.backgroundColor = .black
         destination.view.frame = source.view.frame
         let translation2 = CGAffineTransform(translationX: destination.view.frame.width, y: -destination.view.frame.height)
         
-        //destination.view.transform = translation1.concatenating(translation2)
-        destination.view.transform = translation2.rotated(by: -90)
+        destination.view.transform = translation2.rotated(by: -180)
         
 
         UIView.animateKeyframes(withDuration: self.transitionDuration(using: transitionContext), delay: 0, options: .calculationModePaced) {
-                                            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
-                                                let sourceBounds = source.view.bounds
+            UIView.addKeyframe(withRelativeStartTime: 0.01, relativeDuration: 0.75) {
+                                                
                                                 let rotationPoint = CGPoint(x: 0, y: 0)
-                                                source.view.layer.anchorPoint = CGPoint(x: rotationPoint.x/sourceBounds.width, y: rotationPoint.y/sourceBounds.height)
+                                                source.view.layer.anchorPoint = rotationPoint
                                                 let translation = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
                                                 source.view.transform = translation
                                             }
