@@ -24,13 +24,12 @@ class CustomInteractiveTransition: UIPercentDrivenInteractiveTransition{
         switch recognizer.state {
         case .began:
             self.hasStarted = true
-            let navigationController = self.viewController?.navigationController as! CustomNavigationController
-            navigationController.popViewController(animated: true)
+            self.viewController?.navigationController?.popViewController(animated: true)
         case .changed:
             let translation = recognizer.translation(in: recognizer.view)
             let relativeTranslation = translation.x / (recognizer.view?.bounds.width ?? 1)
-            let progress = max(0, min(1, relativeTranslation))
-            self.shouldFinish = progress > 0.33
+            let progress = min(0, min(1, relativeTranslation))
+            self.shouldFinish = progress < 0.33
             self.update(progress)
         case .ended:
             self.hasStarted = false

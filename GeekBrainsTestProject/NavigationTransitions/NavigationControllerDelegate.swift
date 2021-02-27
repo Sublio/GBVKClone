@@ -36,6 +36,4 @@ class CustomNavigationController: UINavigationController, UINavigationController
                               -> UIViewControllerInteractiveTransitioning? {
         return interActiveTransition.hasStarted ? interActiveTransition : nil
     }
-    
-    
 }
