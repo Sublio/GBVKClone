@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,33 +17,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYo-tt-FSp">
-                        <rect key="frame" x="59" y="11.5" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYo-tt-FSp">
+                        <rect key="frame" x="59" y="12" width="245" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-ie-6cj">
-                        <rect key="frame" x="16" y="5" width="35" height="34"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="FwO-Gt-YO3"/>
-                        </constraints>
-                    </imageView>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gth-X4-lXB" customClass="RoundedView" customModule="GeekBrainsTestProject" customModuleProvider="target">
+                        <rect key="frame" x="16" y="7" width="30" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="E4d-ie-6cj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="DKV-Rc-LMh"/>
-                    <constraint firstItem="E4d-ie-6cj" firstAttribute="centerY" secondItem="jYo-tt-FSp" secondAttribute="centerY" id="JHb-86-xlu"/>
-                    <constraint firstItem="E4d-ie-6cj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="POt-Bn-VVF"/>
-                    <constraint firstItem="jYo-tt-FSp" firstAttribute="leading" secondItem="E4d-ie-6cj" secondAttribute="trailing" constant="8" id="qGX-0h-Dj5"/>
-                    <constraint firstItem="E4d-ie-6cj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="rtj-Eb-q7Y"/>
-                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="groupAvatar" destination="E4d-ie-6cj" id="b7g-2H-zx1"/>
+                <outlet property="groupAvatar" destination="gth-X4-lXB" id="Dy4-4V-Hjl"/>
                 <outlet property="groupLabel" destination="jYo-tt-FSp" id="anY-kF-yao"/>
             </connections>
-            <point key="canvasLocation" x="70" y="109"/>
+            <point key="canvasLocation" x="69.565217391304358" y="108.48214285714285"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

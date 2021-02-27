@@ -30,6 +30,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g5j-Uk-KbM">
                                 <rect key="frame" x="94" y="109" width="227" height="34"/>
                                 <accessibility key="accessibilityConfiguration" label="Login"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -53,6 +54,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="Rfj-8G-i9a" id="8SO-6U-Wk6"/>
                         <outlet property="loginTextField" destination="g5j-Uk-KbM" id="yWa-Xf-GC5"/>
                         <outlet property="passwordTextField" destination="9LH-nM-ddQ" id="ojd-lq-s15"/>
                     </connections>
@@ -358,6 +360,9 @@
         <image name="folder.fill" catalog="system" width="128" height="97"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="list.star" catalog="system" width="128" height="94"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
