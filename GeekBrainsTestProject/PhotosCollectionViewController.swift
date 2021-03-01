@@ -15,6 +15,9 @@ class PhotosCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         self.collectionView.register(UINib(nibName: "FriendPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        setGradientToCollectionViewView()
+        self.view.isUserInteractionEnabled = true
+        self.title = "Photos"
     }
 
     // MARK: UICollectionViewDataSource
@@ -30,7 +33,8 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fullScreenImageVC = FullScreenPhotoViewController()
         fullScreenImageVC.selectedImageIndex = indexPath.row
-        show(fullScreenImageVC, sender: nil)
+        // show(fullScreenImageVC, sender: nil)
+        self.present(fullScreenImageVC, animated: true, completion: nil)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -45,13 +49,24 @@ class PhotosCollectionViewController: UICollectionViewController {
 
         return cell
     }
+    
+    func setGradientToCollectionViewView() {
+        let hexColors: [CGColor] = [
+            UIColor.blueZero.cgColor,
+            UIColor.white.cgColor
+        ]
 
-}
-
-extension UIImage {
-    func resized(to size: CGSize) -> UIImage {
-        return UIGraphicsImageRenderer(size: size).image { _ in
-            draw(in: CGRect(origin: .zero, size: size))
-        }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = hexColors
+        gradientLayer.locations = [0.0, 0.5]
+        // Vertical mode for gradient
+        gradientLayer.startPoint = .init(x: 1, y: 0)
+        gradientLayer.endPoint   = .init(x: 0, y: 1)
+        gradientLayer.frame = self.collectionView.bounds
+        let keeperView = UIView(frame: self.collectionView.bounds)
+        keeperView.layer.insertSublayer(gradientLayer, at: 0)
+        self.collectionView.backgroundView = keeperView
     }
+
 }
+

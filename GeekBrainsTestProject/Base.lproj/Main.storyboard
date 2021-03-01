@@ -214,7 +214,7 @@
         <!--NewsFeed-->
         <scene sceneID="gF3-ez-wt9">
             <objects>
-                <navigationController id="6tU-D3-teE" sceneMemberID="viewController">
+                <navigationController id="6tU-D3-teE" customClass="CustomNavigationController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NewsFeed" id="0OZ-hh-Z9E">
                         <imageReference key="image" image="doc.text.fill" catalog="system" symbolScale="default"/>
                     </tabBarItem>
@@ -234,7 +234,7 @@
         <!--Groups Search-->
         <scene sceneID="dNv-Qf-hfM">
             <objects>
-                <tableViewController id="Xx7-sS-3nm" customClass="GroupSearchTableViewController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="Xx7-sS-3nm" customClass="GroupSearchTableViewController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5fg-OI-MVv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +263,7 @@
         <!--Groups-->
         <scene sceneID="lFW-jI-Exe">
             <objects>
-                <navigationController id="IXu-TZ-NMq" sceneMemberID="viewController">
+                <navigationController id="IXu-TZ-NMq" customClass="CustomNavigationController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Groups" image="folder" catalog="system" selectedImage="folder.fill" id="bua-LE-df0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CeP-E8-0DI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -315,7 +315,7 @@
         <!--Friends-->
         <scene sceneID="bhT-pO-YYc">
             <objects>
-                <navigationController modalPresentationStyle="overFullScreen" id="cxV-u2-Tus" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="overFullScreen" id="cxV-u2-Tus" customClass="CustomNavigationController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="list.dash" catalog="system" selectedImage="list.star" id="iLO-l3-D9I"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JCm-n6-ubB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
