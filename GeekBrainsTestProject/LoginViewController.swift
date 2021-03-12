@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
         animateTextFields()
         animateSubmitButton()
         // showLoadingIndicator(withInterval: 3)
-        //showCloudAnimation(withInterval: 10.0)
+        // showCloudAnimation(withInterval: 10.0)
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {

@@ -49,7 +49,7 @@ class PhotosCollectionViewController: UICollectionViewController {
 
         return cell
     }
-    
+
     func setGradientToCollectionViewView() {
         let hexColors: [CGColor] = [
             UIColor.blueZero.cgColor,
@@ -69,4 +69,3 @@ class PhotosCollectionViewController: UICollectionViewController {
     }
 
 }
-

@@ -14,7 +14,6 @@ class FriendsTableViewController: UITableViewController {
 
     let searcBar = DMSearchBar()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         searcBar.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 50)
@@ -55,7 +54,7 @@ class FriendsTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.itemSize = CGSize(width: 100, height: 100)
         collectionViewFlowLayout.scrollDirection = .vertical

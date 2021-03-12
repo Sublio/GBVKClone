@@ -22,7 +22,7 @@ class NavigationTransitionPop: NSObject, UIViewControllerAnimatedTransitioning {
         destination.view.frame = source.view.frame
 
         let translation2 = CGAffineTransform(translationX: -destination.view.frame.width, y: destination.view.frame.height)
-        
+
         destination.view.transform = translation2.rotated(by: 90)
         UIView.animateKeyframes(withDuration: self.transitionDuration(using: transitionContext),
                                     delay: 0,
@@ -30,10 +30,9 @@ class NavigationTransitionPop: NSObject, UIViewControllerAnimatedTransitioning {
                                     animations: {
                                         UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
                                             let translation = CGAffineTransform(translationX: source.view.frame.width, y: -source.view.frame.height)
-                                            
+
                                             source.view.transform = translation.rotated(by: -180)
                                         }
-                                        
 
                                         UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
                                             destination.view.transform = .identity
