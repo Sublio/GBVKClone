@@ -17,7 +17,7 @@
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-8G-i9a">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-8G-i9a">
                                 <rect key="frame" x="188" y="656" width="38" height="30"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.48471480610000001" green="0.086774565279999993" blue="0.098017759620000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -50,7 +50,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9LH-nM-ddQ" secondAttribute="trailing" constant="93" id="elY-uD-VfJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g5j-Uk-KbM" secondAttribute="trailing" constant="93" id="mS5-HP-ISI"/>
                             <constraint firstItem="Rfj-8G-i9a" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="su0-QE-Zht"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Rfj-8G-i9a" secondAttribute="bottom" constant="50" id="uji-K3-COz"/>
                         </constraints>
                     </view>
                     <connections>

@@ -7,10 +7,11 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    private var testLogin = ""
-    private var testPassword = ""
+    private var testLogin = "Test"
+    private var testPassword = "Test"
+    private var bottomButtonConstains = NSLayoutConstraint()
 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -20,11 +21,18 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         let gradientView = GradientView(frame: self.view.bounds)
         self.view.insertSubview(gradientView, at: 0)
+        bottomButtonConstains = loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+        bottomButtonConstains.isActive = true
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginTextField.delegate = self
+        passwordTextField.delegate = self
         animateTextFields()
         animateSubmitButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // showLoadingIndicator(withInterval: 3)
         // showCloudAnimation(withInterval: 10.0)
     }
@@ -107,4 +115,28 @@ class LoginViewController: UIViewController {
             cloud.removeFromSuperview()
         }
     }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+
+            UIView.animate(withDuration: 0.3) {
+                self.bottomButtonConstains.constant -= keyboardSize.height + 20
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3) {
+            self.bottomButtonConstains.constant = -70
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    // Login and Password TextField Delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+        }
 }
+
