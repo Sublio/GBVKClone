@@ -13,7 +13,8 @@ class GroupSearchTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
-        setGradientToTableView()
+        let gradientView = GradientView()
+        self.tableView.backgroundView = gradientView
     }
 
     // MARK: - Table view data source
@@ -42,23 +43,4 @@ class GroupSearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-
-    func setGradientToTableView() {
-        let hexColors: [CGColor] = [
-            UIColor.blueZero.cgColor,
-            UIColor.white.cgColor
-        ]
-
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = hexColors
-        gradientLayer.locations = [0.0, 0.5]
-        // Vertical mode for gradient
-        gradientLayer.startPoint = .init(x: 1, y: 0)
-        gradientLayer.endPoint   = .init(x: 0, y: 1)
-        gradientLayer.frame = self.tableView.bounds
-        let keeperView = UIView(frame: self.tableView.bounds)
-        keeperView.layer.insertSublayer(gradientLayer, at: 0)
-        self.tableView.backgroundView = keeperView
-    }
-
 }

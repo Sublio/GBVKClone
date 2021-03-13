@@ -20,7 +20,8 @@ class FriendsTableViewController: UITableViewController {
         self.tableView.tableHeaderView = searcBar
         searcBar.delegate = self
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
-        setGradientToTableView()
+        let gradientView = GradientView()
+        self.tableView.backgroundView = gradientView
     }
 
     // MARK: - Table view data source
@@ -97,24 +98,6 @@ class FriendsTableViewController: UITableViewController {
             firstNames.append(String(friend.name.characterAtIndex(index: 0)!))
         }
         return firstNames.uniqueElementsFrom(array: firstNames)
-    }
-
-    func setGradientToTableView() {
-        let hexColors: [CGColor] = [
-            UIColor.blueZero.cgColor,
-            UIColor.white.cgColor
-        ]
-
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = hexColors
-        gradientLayer.locations = [0.0, 0.5]
-        // Vertical mode for gradient
-        gradientLayer.startPoint = .init(x: 1, y: 0)
-        gradientLayer.endPoint   = .init(x: 0, y: 1)
-        gradientLayer.frame = self.tableView.bounds
-        let keeperView = UIView(frame: self.tableView.bounds)
-        keeperView.layer.insertSublayer(gradientLayer, at: 0)
-        self.tableView.backgroundView = keeperView
     }
 }
 

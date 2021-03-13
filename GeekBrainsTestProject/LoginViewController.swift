@@ -18,7 +18,8 @@ class LoginViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setGradientToView()
+        let gradientView = GradientView(frame: self.view.bounds)
+        self.view.insertSubview(gradientView, at: 0)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,22 +62,6 @@ class LoginViewController: UIViewController {
         animation.beginTime = CACurrentMediaTime() + 1
         animation.fillMode = .backwards
         self.loginButton.layer.add(animation, forKey: nil)
-    }
-
-    func setGradientToView() {
-        let hexColors: [CGColor] = [
-            UIColor.blueZero.cgColor,
-            UIColor.white.cgColor
-        ]
-
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = hexColors
-        gradientLayer.locations = [0.0, 0.5]
-        // Vertical mode for gradient
-        gradientLayer.startPoint = .init(x: 1, y: 0)
-        gradientLayer.endPoint   = .init(x: 0, y: 1)
-        gradientLayer.frame = self.view.bounds
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
 
     func showLoadingIndicator(withInterval interval: Double) {
