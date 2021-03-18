@@ -1,4 +1,4 @@
 language: objective-c
 xcode_project: GeekBrainsTestProject.xcodeproj # path to your xcodeproj folder
 xcode_scheme: GeekBrainsTestProject
-xcode_destination: platform=iOS Simulator,OS=14.4
+xcode_destination: platform=iOS Simulator,OS=14.4,name=iPhone X
