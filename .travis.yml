@@ -1,5 +1,6 @@
-language: objective-c
+os:
+  - osx
+
 osx_image: xcode12.2
-xcode_project: GeekBrainsTestProject.xcodeproj # path to your xcodeproj folder
-xcode_scheme: GeekBrainsTestProject
-xcode_destination: platform=iOS Simulator,OS=14.2,name=iPhone 8 Plus
+script:
+ - xcodebuild -project GeekBrainsTestProject.xcodeproj -scheme GeekBrainsTestProject -sdk iphonesimulator build | xcpretty
