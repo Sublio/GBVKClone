@@ -38,7 +38,7 @@
 		4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
-		4CAB7705260402F500092073 /* GeekBrainsTestProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB7704260402F500092073 /* GeekBrainsTestProjectUITests.swift */; };
+		4CAB76FB2603FE0000092073 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB76FA2603FE0000092073 /* Session.swift */; };
 		4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */; };
 		4CB0AE7725E9C19C00B5E144 /* DM+UIIMage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7625E9C19C00B5E144 /* DM+UIIMage.swift */; };
 		4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */; };
@@ -49,16 +49,6 @@
 		4CC84D4A25E6FF9700FD7949 /* NavigationTransitionPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */; };
 		4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4CAB7707260402F500092073 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4C17A45F25BDE2E8006D45E0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C17A46625BDE2E8006D45E0;
-			remoteInfo = GeekBrainsTestProject;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeekBrainsTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,9 +84,7 @@
 		4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLoadingView.swift; sourceTree = "<group>"; };
 		4C936DB925CE15C30035DA46 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		4C936DBE25CE37080035DA46 /* LikeCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomView.swift; sourceTree = "<group>"; };
-		4CAB7702260402F500092073 /* GeekBrainsTestProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeekBrainsTestProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CAB7704260402F500092073 /* GeekBrainsTestProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeekBrainsTestProjectUITests.swift; sourceTree = "<group>"; };
-		4CAB7706260402F500092073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CAB76FA2603FE0000092073 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		4CB0AE7625E9C19C00B5E144 /* DM+UIIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+UIIMage.swift"; sourceTree = "<group>"; };
 		4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionPresent.swift; sourceTree = "<group>"; };
@@ -116,13 +104,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4CAB76FF260402F500092073 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -130,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				4C17A46925BDE2E8006D45E0 /* GeekBrainsTestProject */,
-				4CAB7703260402F500092073 /* GeekBrainsTestProjectUITests */,
 				4C17A46825BDE2E8006D45E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */,
-				4CAB7702260402F500092073 /* GeekBrainsTestProjectUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +148,7 @@
 				4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */,
 				4C7B419B25DC070100894D81 /* NewsFeedTableViewController.swift */,
 				4C7C086025E1CD6300FEAFAA /* FullScreenPhotoViewController.swift */,
+				4CAB76FA2603FE0000092073 /* Session.swift */,
 			);
 			path = GeekBrainsTestProject;
 			sourceTree = "<group>";
@@ -228,15 +208,6 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		4CAB7703260402F500092073 /* GeekBrainsTestProjectUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4CAB7704260402F500092073 /* GeekBrainsTestProjectUITests.swift */,
-				4CAB7706260402F500092073 /* Info.plist */,
-			);
-			path = GeekBrainsTestProjectUITests;
-			sourceTree = "<group>";
-		};
 		4CC84D3325E6CB4400FD7949 /* CustomTransitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,39 +264,17 @@
 			productReference = 4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4CAB7701260402F500092073 /* GeekBrainsTestProjectUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4CAB770B260402F500092073 /* Build configuration list for PBXNativeTarget "GeekBrainsTestProjectUITests" */;
-			buildPhases = (
-				4CAB76FE260402F500092073 /* Sources */,
-				4CAB76FF260402F500092073 /* Frameworks */,
-				4CAB7700260402F500092073 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4CAB7708260402F500092073 /* PBXTargetDependency */,
-			);
-			name = GeekBrainsTestProjectUITests;
-			productName = GeekBrainsTestProjectUITests;
-			productReference = 4CAB7702260402F500092073 /* GeekBrainsTestProjectUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4C17A45F25BDE2E8006D45E0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					4C17A46625BDE2E8006D45E0 = {
 						CreatedOnToolsVersion = 12.3;
-					};
-					4CAB7701260402F500092073 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = 4C17A46625BDE2E8006D45E0;
 					};
 				};
 			};
@@ -343,7 +292,6 @@
 			projectRoot = "";
 			targets = (
 				4C17A46625BDE2E8006D45E0 /* GeekBrainsTestProject */,
-				4CAB7701260402F500092073 /* GeekBrainsTestProjectUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -362,13 +310,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4CAB7700260402F500092073 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -376,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CAB76FB2603FE0000092073 /* Session.swift in Sources */,
 				4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */,
 				4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */,
 				4C7B419625DC015200894D81 /* GroupFactory.swift in Sources */,
@@ -413,23 +355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4CAB76FE260402F500092073 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4CAB7705260402F500092073 /* GeekBrainsTestProjectUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4CAB7708260402F500092073 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4C17A46625BDE2E8006D45E0 /* GeekBrainsTestProject */;
-			targetProxy = 4CAB7707260402F500092073 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C17A47025BDE2E8006D45E0 /* Main.storyboard */ = {
@@ -603,46 +529,6 @@
 			};
 			name = Release;
 		};
-		4CAB7709260402F500092073 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L9HFNV2AWC;
-				INFOPLIST_FILE = GeekBrainsTestProjectUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.denismordvinov.geekBrainsTest.GeekBrainsTestProjectUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GeekBrainsTestProject;
-			};
-			name = Debug;
-		};
-		4CAB770A260402F500092073 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L9HFNV2AWC;
-				INFOPLIST_FILE = GeekBrainsTestProjectUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.denismordvinov.geekBrainsTest.GeekBrainsTestProjectUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = GeekBrainsTestProject;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -660,15 +546,6 @@
 			buildConfigurations = (
 				4C17A47C25BDE2E9006D45E0 /* Debug */,
 				4C17A47D25BDE2E9006D45E0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4CAB770B260402F500092073 /* Build configuration list for PBXNativeTarget "GeekBrainsTestProjectUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4CAB7709260402F500092073 /* Debug */,
-				4CAB770A260402F500092073 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
