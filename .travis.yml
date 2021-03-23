@@ -1,0 +1,12 @@
+os:
+  - osx
+
+osx_image: xcode12.2
+<<<<<<< HEAD
+script:
+ - xcodebuild -project GeekBrainsTestProject.xcodeproj -scheme GeekBrainsTestProject -sdk iphonesimulator build | xcpretty
+=======
+xcode_project: GeekBrainsTestProject.xcodeproj # path to your xcodeproj folder
+xcode_scheme: GeekBrainsTestProject
+xcode_destination: platform=iOS Simulator,OS=14.2,name=iPhone 8
+>>>>>>> 27395b70243240423312d15b704a76a0015897f2
