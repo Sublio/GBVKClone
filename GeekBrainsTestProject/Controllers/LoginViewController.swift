@@ -9,8 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    private var testLogin = "Test"
-    private var testPassword = "Test"
+    private var testLogin = ""
+    private var testPassword = ""
     private var bottomButtonConstains = NSLayoutConstraint()
 
     @IBOutlet weak var loginTextField: UITextField!
