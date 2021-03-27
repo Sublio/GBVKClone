@@ -13,6 +13,7 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
     let vkApiVersion = "5.130"
     let clientId = "7800566"
     let scope = "262150"
+    let segueName = "fromWebViewToFriends"
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
@@ -62,6 +63,7 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
         getPhotosForCurrentUser()
         getGroupsForCurrentUser()
         getGroupBySearchString(searchString: "Lepra")
+        performSegue(withIdentifier: segueName, sender: nil)
     }
 
     // End of the WebViewDelegate

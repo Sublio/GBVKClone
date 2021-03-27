@@ -90,11 +90,12 @@
                     </view>
                     <connections>
                         <outlet property="webView" destination="8jt-vf-xth" id="ht4-XL-A0d"/>
+                        <segue destination="j0V-tr-GRH" kind="show" identifier="fromWebViewToFriends" id="OtH-Qz-aIe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbB-SH-WEl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-59.420289855072468" y="802.17391304347836"/>
+            <point key="canvasLocation" x="377" y="827"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Qmh-0p-1dD">
@@ -387,6 +388,9 @@
             <point key="canvasLocation" x="780" y="109"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="OtH-Qz-aIe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="doc.text.fill" catalog="system" width="115" height="128"/>
         <image name="folder" catalog="system" width="128" height="97"/>
