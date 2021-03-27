@@ -45,13 +45,13 @@ class FriendsTableViewController: UITableViewController {
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-//        if isFiltering {
-//            return filteredFriends.count
-//        }else {
-//            return notFilteredFriends.count
-//        }
-
-        return 1
+////        if isFiltering {
+////            return filteredFriends.count
+////        }else {
+////            return notFilteredFriends.count
+////        }
+//
+       return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
