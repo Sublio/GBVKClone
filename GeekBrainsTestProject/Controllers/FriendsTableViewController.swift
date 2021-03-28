@@ -7,10 +7,19 @@
 
 import UIKit
 
+struct Section {
+    let letter: String
+    let names: [String]
+}
+
 class FriendsTableViewController: UITableViewController {
 
     var notFilteredFriends: [User] = []
     var filteredFriends: [User] = []
+    var userNames: [String] {
+        UsersData().friends.map {$0.name}
+    }
+    var sections = [Section]()
 
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -25,6 +34,9 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.notFilteredFriends = UsersData().friends
+        let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
+        let keys = groupedDictionary.keys.sorted()
+        sections = keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
@@ -33,6 +45,7 @@ class FriendsTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search Friend"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -41,31 +54,29 @@ class FriendsTableViewController: UITableViewController {
         if isFiltering {
             return filteredFriends.count
         }
-        return notFilteredFriends.count
+        return sections[section].names.count
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-////        if isFiltering {
-////            return filteredFriends.count
-////        }else {
-////            return notFilteredFriends.count
-////        }
-//
-       return 1
+        if isFiltering {
+            return 1
+        } else {
+            return sections.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! FriendTableViewCell
-
-        let friend: User
         if isFiltering {
-            friend = filteredFriends[indexPath.row]
+            let friend = filteredFriends[indexPath.row]
+            cell.friendLabel.text = friend.name
+            cell.roundedView.image = friend.avatar
         } else {
-            friend = notFilteredFriends[indexPath.row]
+            let section = sections[indexPath.section]
+            let userName = section.names[indexPath.row]
+            cell.friendLabel.text = userName
+            cell.roundedView.image = notFilteredFriends.filter {$0.name == userName}.first?.avatar
         }
-
-        cell.friendLabel.text = friend.name
-        cell.roundedView.image = friend.avatar
         return cell
     }
 
@@ -89,9 +100,9 @@ class FriendsTableViewController: UITableViewController {
         let label = UILabel()
         label.frame = CGRect(x: 5, y: 5, width: Int(view.frame.width)-10, height: Int(view.frame.height) - 10)
         if isFiltering {
-            label.text = filteredFriends.first?.name[0]
+            label.text = ""
         } else {
-            label.text = notFilteredFriends.first?.name[0]
+            label.text = sections[section].letter
         }
         view.addSubview(label)
         return view
@@ -106,12 +117,7 @@ class FriendsTableViewController: UITableViewController {
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        let nonFilteredFriends = notFilteredFriends
-        var firstNames = [String]()
-        for friend in nonFilteredFriends {
-            firstNames.append(String(friend.name.characterAtIndex(index: 0)!))
-        }
-        return firstNames.uniqueElementsFrom(array: firstNames)
+        return sections.map {$0.letter}
     }
 
     func filterContentForSearchText(_ searchText: String) {
