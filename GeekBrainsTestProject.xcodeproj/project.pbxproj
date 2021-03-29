@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,8 @@
 		4C7C086125E1CD6300FEAFAA /* FullScreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C086025E1CD6300FEAFAA /* FullScreenPhotoViewController.swift */; };
 		4C7C088825E1E82900FEAFAA /* DM+Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C088725E1E82900FEAFAA /* DM+Arrays.swift */; };
 		4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */; };
+		4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8D4C292611752A00497914 /* SwiftyJSON */; };
+		4C8D4C2F261175D000497914 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8D4C2E261175D000497914 /* Kingfisher */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
 		4C98550B260F15AC00087056 /* GeekBrainsTestProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98550A260F15AC00087056 /* GeekBrainsTestProjectUITests.swift */; };
@@ -117,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8D4C2F261175D000497914 /* Kingfisher in Frameworks */,
+				4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +307,10 @@
 			dependencies = (
 			);
 			name = GeekBrainsTestProject;
+			packageProductDependencies = (
+				4C8D4C292611752A00497914 /* SwiftyJSON */,
+				4C8D4C2E261175D000497914 /* Kingfisher */,
+			);
 			productName = GeekBrainsTestProject;
 			productReference = 4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */;
 			productType = "com.apple.product-type.application";
@@ -352,6 +360,10 @@
 				Base,
 			);
 			mainGroup = 4C17A45E25BDE2E8006D45E0;
+			packageReferences = (
+				4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				4C8D4C2D261175D000497914 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -690,6 +702,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		4C8D4C2D261175D000497914 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4C8D4C292611752A00497914 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		4C8D4C2E261175D000497914 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C8D4C2D261175D000497914 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C17A45F25BDE2E8006D45E0 /* Project object */;
 }
