@@ -40,6 +40,7 @@
 		4C8D4C2F261175D000497914 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8D4C2E261175D000497914 /* Kingfisher */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
+		4C94332A261289310015C6A3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C943329261289310015C6A3 /* NetworkManager.swift */; };
 		4C98550B260F15AC00087056 /* GeekBrainsTestProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98550A260F15AC00087056 /* GeekBrainsTestProjectUITests.swift */; };
 		4CAB76FB2603FE0000092073 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB76FA2603FE0000092073 /* Session.swift */; };
 		4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */; };
@@ -98,6 +99,7 @@
 		4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLoadingView.swift; sourceTree = "<group>"; };
 		4C936DB925CE15C30035DA46 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		4C936DBE25CE37080035DA46 /* LikeCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCustomView.swift; sourceTree = "<group>"; };
+		4C943329261289310015C6A3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4C985508260F15AC00087056 /* GeekBrainsTestProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeekBrainsTestProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C98550A260F15AC00087056 /* GeekBrainsTestProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeekBrainsTestProjectUITests.swift; sourceTree = "<group>"; };
 		4C98550C260F15AC00087056 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */,
 				4C17A47825BDE2E9006D45E0 /* Info.plist */,
 				4CAB76FA2603FE0000092073 /* Session.swift */,
+				4C943329261289310015C6A3 /* NetworkManager.swift */,
 			);
 			path = GeekBrainsTestProject;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */,
 				4C7B418925DAD01300894D81 /* DM+String.swift in Sources */,
 				4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */,
+				4C94332A261289310015C6A3 /* NetworkManager.swift in Sources */,
 				4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */,
 				4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */,
 				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
