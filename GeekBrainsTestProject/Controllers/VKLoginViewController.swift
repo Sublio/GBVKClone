@@ -10,7 +10,8 @@ import WebKit
 
 class VKLoginViewController: UIViewController, WKNavigationDelegate {
 
-    let segueName = "fromWebViewToFriends"
+    let segueToFriendsTableView = "fromWebViewToFriends"
+    let networkManager = NetworkManager()
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
@@ -18,15 +19,9 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
         }
     }
 
-    let networkManager = NetworkManager()
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         webView.load(networkManager.formAutoriseVKRequest())
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
     // WebView Delegate
@@ -51,6 +46,6 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
         Session.shared.token = token
         Session.shared.userId = Int(userId) ?? 0
         decisionHandler(.cancel)
-        performSegue(withIdentifier: segueName, sender: nil)
+        performSegue(withIdentifier: segueToFriendsTableView, sender: nil)
     }
 }
