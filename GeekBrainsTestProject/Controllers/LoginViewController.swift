@@ -111,7 +111,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let cloud = CloudLoadingView(frame: CGRect(origin: CGPoint(x: self.view.frame.size.width/2-20, y: self.view.frame.size.height/2-20), size: CGSize(width: 50, height: 50)))
         self.view.addSubview(cloud)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [] in
             cloud.removeFromSuperview()
         }
     }

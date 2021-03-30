@@ -19,7 +19,7 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
     }
 
     let networkManager = NetworkManager()
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         webView.load(networkManager.formAutoriseVKRequest())
@@ -47,7 +47,9 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
                        return dict
                }
         guard let token = params["access_token"] else { return }
+        guard let userId = params["user_id"] else { return }
         Session.shared.token = token
+        Session.shared.userId = Int(userId) ?? 0
         decisionHandler(.cancel)
         performSegue(withIdentifier: segueName, sender: nil)
     }

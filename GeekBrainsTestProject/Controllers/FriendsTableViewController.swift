@@ -14,14 +14,17 @@ struct Section {
 
 class FriendsTableViewController: UITableViewController {
 
-    var notFilteredFriends: [User] = []
-    var filteredFriends: [User] = []
+    var notFilteredFriends: [Friend] = []
+    var filteredFriends: [Friend] = []
     var userNames: [String] {
-        UsersData().friends.map {$0.name}
+        notFilteredFriends.map {($0.name ?? "")}
+
     }
     var sections = [Section]()
 
     let searchController = UISearchController(searchResultsController: nil)
+
+    let networkManager = NetworkManager()
 
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -31,9 +34,24 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkManager.getFriendsList(completion: { [weak self] result in
+            switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(friends):
+                    self?.notFilteredFriends = friends
+
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                }
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.notFilteredFriends = UsersData().friends
         let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
         let keys = groupedDictionary.keys.sorted()
         sections = keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
@@ -121,8 +139,8 @@ class FriendsTableViewController: UITableViewController {
     }
 
     func filterContentForSearchText(_ searchText: String) {
-        filteredFriends =  notFilteredFriends.filter {(friend: User) -> Bool in
-            return friend.name.lowercased().contains(searchText.lowercased())
+        filteredFriends =  notFilteredFriends.filter {(friend: Friend) -> Bool in
+            return (friend.name?.lowercased().contains(searchText.lowercased()) ?? false)
         }
         tableView.reloadData()
     }

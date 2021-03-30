@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class NetworkManager {
 
@@ -75,34 +76,42 @@ class NetworkManager {
         makeUrlRequestWithData(with: urlComponents)
     }
 
-    func getFriendsList() {
+    func getFriendsList(completion: @escaping (Result<[Friend], Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host = apiHost
         urlComponents.path = "/method/friends.get"
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: Session.shared.token),
-            URLQueryItem(name: "count", value: "10"),
-            URLQueryItem(name: "fields", value: "name"),
+            // URLQueryItem(name: "count", value: "5"),
+            URLQueryItem(name: "fields", value: "name, photo_50"),
             URLQueryItem(name: "v", value: vkApiVersion)
         ]
 
-        makeUrlRequestWithData(with: urlComponents)
-    }
+        let request = URLRequest(url: urlComponents.url!)
+        let task = URLSession.shared.dataTask(with: request) {(data, _, error) in
+            if let error = error {
+                completion(.failure(error))
+            }
+            guard let data = data,
+                  let json = try? JSON(data: data) else { return }
 
-//    getFriendsList()
-//    getPhotosForCurrentUser()
-//    getGroupsForCurrentUser()
-//    getGroupBySearchString(searchString: "Lepra")
+            let friendsJSON = json["response"]["items"].arrayValue
+            let friends = friendsJSON.map {Friend(json: $0)}
+            completion(.success(friends))
+        }
+        task .resume()
+    }
 
     private func makeUrlRequestWithData(with urlComponents: URLComponents) {
         let request = URLRequest(url: urlComponents.url!)
-        let task = URLSession.shared.dataTask(with: request) {(data, responce, error) in
+        let task = URLSession.shared.dataTask(with: request) {(data, _, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
-            guard let data = data else { return }
-            print(String(data: data, encoding: .utf8)!)
+            guard let data = data,
+                  let _ = try? JSON(data: data) else { return }
+
         }
         task .resume()
     }
