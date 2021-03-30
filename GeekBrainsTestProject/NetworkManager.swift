@@ -97,7 +97,7 @@ class NetworkManager {
                   let json = try? JSON(data: data) else { return }
 
             let friendsJSON = json["response"]["items"].arrayValue
-            let friends = friendsJSON.map {Friend(json: $0)}
+            let friends = friendsJSON.map { Friend(json: $0) }
             completion(.success(friends))
         }
         task .resume()
