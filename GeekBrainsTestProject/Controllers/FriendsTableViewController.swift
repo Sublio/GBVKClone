@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 struct Section {
     let letter: String

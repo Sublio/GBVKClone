@@ -49,20 +49,6 @@ class NetworkManager {
         makeUrlRequestWithData(with: urlComponents)
     }
 
-    func getGroupsForCurrentUser() {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = scheme
-        urlComponents.host = apiHost
-        urlComponents.path = "/method/groups.get"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "access_token", value: Session.shared.token),
-            URLQueryItem(name: "count", value: "3"),
-            URLQueryItem(name: "extended", value: "true"),
-            URLQueryItem(name: "v", value: vkApiVersion)
-        ]
-        makeUrlRequestWithData(with: urlComponents)
-    }
-
     func getPhotosForCurrentUser() {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
@@ -75,6 +61,33 @@ class NetworkManager {
             URLQueryItem(name: "v", value: vkApiVersion)
         ]
         makeUrlRequestWithData(with: urlComponents)
+    }
+
+    func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Result<[Group], Error>) -> Void) {
+
+        let scheme = "https://"
+        let host = "api.vk.com"
+        let path = "/method/groups.get"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "extended": "true",
+            "fields": "name, photo_50",
+            "v": vkApiVersion
+        ]
+
+        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+            switch response.result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let data):
+                guard let data = data,
+                      let json = try? JSON(data: data) else { return }
+                let groupJSON = json["response"]["items"].arrayValue
+                let groups = groupJSON.map { Group(json: $0) }
+
+                completion(.success(groups))
+            }
+        }
     }
 
     func getFriendsListViaAlamoFire(completion: @escaping (Result<[Friend], Error>) -> Void) {

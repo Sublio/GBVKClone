@@ -11,15 +11,13 @@ import UIKit
 struct Friend {
     var name: String?
     var avatar: UIImage?
-    var groups: [Group]?
     let photoString: String
 
-    init(name: String, avatar: UIImage, groups: [Group]) {
+    init(name: String, avatar: UIImage) {
         self.name = name
         self.avatar = avatar
-        self.groups = groups
         self.photoString = ""
-    } // this init is for object stubs only.It is overriden by default with init via json
+    } // this init is for object stubs only.It is used by default with init via json
 
     init(json: SwiftyJSON.JSON) {
         let firstName = json["first_name"].string ?? ""

@@ -159,6 +159,7 @@
 		4C17A46925BDE2E8006D45E0 /* GeekBrainsTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				4C3043C626141A0300B8BB27 /* Services */,
 				4CCAD5F4260AB2D100F589E1 /* Controllers */,
 				4CC84D4425E6FDB600FD7949 /* NavigationTransitions */,
 				4CC84D4025E6F91700FD7949 /* CustomSegues */,
@@ -175,7 +176,6 @@
 				4C17A47025BDE2E8006D45E0 /* Main.storyboard */,
 				4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */,
 				4C17A47825BDE2E9006D45E0 /* Info.plist */,
-				4C3043C626141A0300B8BB27 /* Services */,
 			);
 			path = GeekBrainsTestProject;
 			sourceTree = "<group>";
