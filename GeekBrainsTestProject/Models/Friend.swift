@@ -12,7 +12,7 @@ struct Friend {
     var name: String?
     var avatar: UIImage?
     var groups: [Group]?
-    private let photoString: String
+    let photoString: String
 
     init(name: String, avatar: UIImage, groups: [Group]) {
         self.name = name

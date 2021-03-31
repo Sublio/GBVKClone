@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 struct Section {
     let letter: String
@@ -27,8 +28,8 @@ class FriendsTableViewController: UITableViewController {
     }
 
     let searchController = UISearchController(searchResultsController: nil)
-
     let networkManager = NetworkManager()
+    let imageDownloader = ImageDownloaderService()
 
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -81,12 +82,18 @@ class FriendsTableViewController: UITableViewController {
         if isFiltering {
             let friend = filteredFriends[indexPath.row]
             cell.friendLabel.text = friend.name
-            cell.roundedView.image = friend.avatar
+            cell.roundedView?.image = friend.avatar
         } else {
             let section = sections[indexPath.section]
             let userName = section.names[indexPath.row]
             cell.friendLabel.text = userName
-            cell.roundedView.image = notFilteredFriends.filter {$0.name == userName}.first?.avatar
+            let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.photoString ?? ""
+            imageDownloader.getData(from: avatarUrl) {data, _, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async { [weak self] in
+                    cell.roundedView.image = UIImage(data: data)
+                }
+            }
         }
         return cell
     }

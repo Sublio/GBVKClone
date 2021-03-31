@@ -32,7 +32,7 @@ class GroupSearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
         groupCell.groupLabel.text = "Group1"
-        groupCell.groupAvatar.image = UIImage(systemName: "person.3.fill")
+        groupCell.groupAvatar?.image = UIImage(systemName: "person.3.fill")
         return groupCell
     }
 

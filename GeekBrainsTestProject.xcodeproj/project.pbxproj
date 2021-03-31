@@ -12,6 +12,7 @@
 		4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46E25BDE2E8006D45E0 /* LoginViewController.swift */; };
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
+		4C3043CA26141A5100B8BB27 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3043C926141A5100B8BB27 /* ImageDownloader.swift */; };
 		4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */; };
 		4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */; };
 		4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A2125C64C6E00CC8A4F /* FriendTableViewCell.swift */; };
@@ -37,7 +38,6 @@
 		4C7C088825E1E82900FEAFAA /* DM+Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C088725E1E82900FEAFAA /* DM+Arrays.swift */; };
 		4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */; };
 		4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8D4C292611752A00497914 /* SwiftyJSON */; };
-		4C8D4C2F261175D000497914 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C8D4C2E261175D000497914 /* Kingfisher */; };
 		4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DB925CE15C30035DA46 /* RoundedView.swift */; };
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
 		4C94332A261289310015C6A3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C943329261289310015C6A3 /* NetworkManager.swift */; };
@@ -74,6 +74,7 @@
 		4C17A47125BDE2E8006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C3043C926141A5100B8BB27 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		4C542A2125C64C6E00CC8A4F /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB1F4482613E293001CA49A /* Alamofire in Frameworks */,
-				4C8D4C2F261175D000497914 /* Kingfisher in Frameworks */,
 				4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,10 +175,19 @@
 				4C17A47025BDE2E8006D45E0 /* Main.storyboard */,
 				4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */,
 				4C17A47825BDE2E9006D45E0 /* Info.plist */,
-				4CAB76FA2603FE0000092073 /* Session.swift */,
-				4C943329261289310015C6A3 /* NetworkManager.swift */,
+				4C3043C626141A0300B8BB27 /* Services */,
 			);
 			path = GeekBrainsTestProject;
+			sourceTree = "<group>";
+		};
+		4C3043C626141A0300B8BB27 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4CAB76FA2603FE0000092073 /* Session.swift */,
+				4C943329261289310015C6A3 /* NetworkManager.swift */,
+				4C3043C926141A5100B8BB27 /* ImageDownloader.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		4C542A1A25C63C6E00CC8A4F /* Cells */ = {
@@ -314,7 +323,6 @@
 			name = GeekBrainsTestProject;
 			packageProductDependencies = (
 				4C8D4C292611752A00497914 /* SwiftyJSON */,
-				4C8D4C2E261175D000497914 /* Kingfisher */,
 				4CB1F4472613E293001CA49A /* Alamofire */,
 			);
 			productName = GeekBrainsTestProject;
@@ -368,7 +376,6 @@
 			mainGroup = 4C17A45E25BDE2E8006D45E0;
 			packageReferences = (
 				4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				4C8D4C2D261175D000497914 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4CB1F4462613E293001CA49A /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
@@ -417,6 +424,7 @@
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
 				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
+				4C3043CA26141A5100B8BB27 /* ImageDownloader.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
@@ -720,14 +728,6 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		4C8D4C2D261175D000497914 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.1;
-			};
-		};
 		4CB1F4462613E293001CA49A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -743,11 +743,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
-		};
-		4C8D4C2E261175D000497914 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C8D4C2D261175D000497914 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 		4CB1F4472613E293001CA49A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

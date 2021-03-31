@@ -47,10 +47,10 @@ class GroupsTableViewController: UITableViewController {
 
         if filteredGroups.isEmpty {
             groupCell.groupLabel.text = nonFilteredGroups[indexPath.row].name
-            groupCell.groupAvatar.image = nonFilteredGroups[indexPath.row].groupAvatar
+            groupCell.groupAvatar?.image = nonFilteredGroups[indexPath.row].groupAvatar
         } else {
             groupCell.groupLabel.text = filteredGroups[indexPath.row].name
-            groupCell.groupAvatar.image = filteredGroups[indexPath.row].groupAvatar
+            groupCell.groupAvatar?.image = filteredGroups[indexPath.row].groupAvatar
         }
 
         return groupCell

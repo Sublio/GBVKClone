@@ -77,7 +77,6 @@ class NetworkManager {
         makeUrlRequestWithData(with: urlComponents)
     }
 
-
     func getFriendsListViaAlamoFire(completion: @escaping (Result<[Friend], Error>) -> Void) {
 
         let scheme = "https://"
