@@ -20,7 +20,11 @@ class FriendsTableViewController: UITableViewController {
         notFilteredFriends.map {($0.name ?? "")}
 
     }
-    var sections = [Section]()
+    var sections: [Section] {
+        let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
+        let keys = groupedDictionary.keys.sorted()
+        return keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
+    }
 
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -34,27 +38,17 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        networkManager.getFriendsList(completion: { [weak self] result in
-            switch result {
-                case let .failure(error):
-                    print(error)
-                case let .success(friends):
-                    self?.notFilteredFriends = friends
-
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                }
-        })
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
-        let keys = groupedDictionary.keys.sorted()
-        sections = keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
+        networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(friends):
+                self?.notFilteredFriends = friends
+                self?.tableView.reloadData()
+            }
+        })
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
@@ -63,7 +57,6 @@ class FriendsTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search Friend"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class NetworkManager {
 
@@ -76,31 +77,31 @@ class NetworkManager {
         makeUrlRequestWithData(with: urlComponents)
     }
 
-    func getFriendsList(completion: @escaping (Result<[Friend], Error>) -> Void) {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = scheme
-        urlComponents.host = apiHost
-        urlComponents.path = "/method/friends.get"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "access_token", value: Session.shared.token),
-            // URLQueryItem(name: "count", value: "5"),
-            URLQueryItem(name: "fields", value: "name, photo_50"),
-            URLQueryItem(name: "v", value: vkApiVersion)
+
+    func getFriendsListViaAlamoFire(completion: @escaping (Result<[Friend], Error>) -> Void) {
+
+        let scheme = "https://"
+        let host = "api.vk.com"
+        let path = "/method/friends.get"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "fields": "name, photo_50",
+            "v": vkApiVersion
         ]
 
-        let request = URLRequest(url: urlComponents.url!)
-        let task = URLSession.shared.dataTask(with: request) {(data, _, error) in
-            if let error = error {
+        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+            switch response.result {
+            case .failure(let error):
                 completion(.failure(error))
-            }
-            guard let data = data,
-                  let json = try? JSON(data: data) else { return }
+            case .success(let data):
+                guard let data = data,
+                      let json = try? JSON(data: data) else { return }
+                let friendsJSON = json["response"]["items"].arrayValue
+                let friends = friendsJSON.map { Friend(json: $0) }
 
-            let friendsJSON = json["response"]["items"].arrayValue
-            let friends = friendsJSON.map { Friend(json: $0) }
-            completion(.success(friends))
+                completion(.success(friends))
+            }
         }
-        task .resume()
     }
 
     private func makeUrlRequestWithData(with urlComponents: URLComponents) {
