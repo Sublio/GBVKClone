@@ -17,6 +17,7 @@ class NetworkManager {
     let scope = "262150"
     let oauthHost = "oauth.vk.com"
     let apiHost = "api.vk.com"
+    let display = "mobile"
 
     func formAutoriseVKRequest() -> URLRequest {
         var urlComponents = URLComponents()
@@ -25,7 +26,7 @@ class NetworkManager {
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: clientId),
-            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "display", value: display),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "scope", value: scope),
             URLQueryItem(name: "response_type", value: "token"),
@@ -33,20 +34,6 @@ class NetworkManager {
         ]
         let request = URLRequest(url: urlComponents.url!)
         return request
-    }
-
-    func getGroupBySearchString(searchString: String) {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = scheme
-        urlComponents.host = apiHost
-        urlComponents.path = "/method/groups.search"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "access_token", value: Session.shared.token),
-            URLQueryItem(name: "count", value: "3"),
-            URLQueryItem(name: "q", value: searchString),
-            URLQueryItem(name: "v", value: vkApiVersion)
-        ]
-        makeUrlRequestWithData(with: urlComponents)
     }
 
     func getPhotosForCurrentUser() {
@@ -61,6 +48,33 @@ class NetworkManager {
             URLQueryItem(name: "v", value: vkApiVersion)
         ]
         makeUrlRequestWithData(with: urlComponents)
+    }
+
+    func getGroupsBySearchString(searchString: String, completion: @escaping (Result<[Group], Error>) -> Void) {
+
+        let scheme = "https://"
+        let host = "api.vk.com"
+        let path = "/method/groups.search"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "q": searchString,
+            "v": vkApiVersion
+        ]
+
+        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+            switch response.result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let data):
+                guard let data = data,
+                      let json = try? JSON(data: data) else { return }
+                let groupJSON = json["response"]["items"].arrayValue
+                let groups = groupJSON.map { Group(json: $0) }
+
+                completion(.success(groups))
+            }
+        }
+
     }
 
     func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Result<[Group], Error>) -> Void) {
