@@ -38,7 +38,7 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
-    weak var delegate: PhotosTableViewDelegateProtocol?
+    var delegate: PhotosTableViewDelegateProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,7 +113,8 @@ class FriendsTableViewController: UITableViewController {
             let friend = filteredFriends[indexPath.row]
             self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
         } else {
-            let friend = notFilteredFriends[indexPath.row]
+            let sortedFilteredFriends = notFilteredFriends.sorted { $0.name! < $1.name! }
+            let friend = sortedFilteredFriends[indexPath.row]
             self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
         }
     }
