@@ -10,6 +10,10 @@ import SwiftyJSON
 import Alamofire
 
 class NetworkManager {
+    
+    static let shared = NetworkManager()
+    
+    private init () {}
 
     let vkApiVersion = "5.130"
     let scheme = "https"
@@ -145,6 +149,11 @@ class NetworkManager {
                 completion(.success(friends))
             }
         }
+    }
+    
+    func getData(from urlString: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
 
     private func makeUrlRequestWithData(with urlComponents: URLComponents) {

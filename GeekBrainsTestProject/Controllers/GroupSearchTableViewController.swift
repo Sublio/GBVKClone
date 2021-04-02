@@ -11,8 +11,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
 
     var foundGroups: [Group] = []
     let searchController = UISearchController(searchResultsController: nil)
-    let networkManager = NetworkManager()
-    let imageDownloader = ImageDownloaderService()
+    let networkManager = NetworkManager.shared
 
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -50,7 +49,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         let group = foundGroups[indexPath.row]
         groupCell.groupLabel.text = group.name
         let groupAvatarUrl = group.photoStringUrl
-        imageDownloader.getData(from: groupAvatarUrl) {data, _, error in
+        networkManager.getData(from: groupAvatarUrl) {data, _, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async { [weak self] in
                 groupCell.groupAvatar.image = UIImage(data: data)

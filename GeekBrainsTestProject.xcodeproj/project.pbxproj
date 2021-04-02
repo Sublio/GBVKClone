@@ -12,7 +12,6 @@
 		4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46E25BDE2E8006D45E0 /* LoginViewController.swift */; };
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
-		4C3043CA26141A5100B8BB27 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3043C926141A5100B8BB27 /* ImageDownloader.swift */; };
 		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
 		4C4AA785261586C5005EFA89 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C4AA784261586C5005EFA89 /* Kingfisher */; };
 		4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AA78A261589C3005EFA89 /* Photo.swift */; };
@@ -77,7 +76,6 @@
 		4C17A47125BDE2E8006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C3043C926141A5100B8BB27 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewProtocol.swift; sourceTree = "<group>"; };
 		4C4AA78A261589C3005EFA89 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			children = (
 				4CAB76FA2603FE0000092073 /* Session.swift */,
 				4C943329261289310015C6A3 /* NetworkManager.swift */,
-				4C3043C926141A5100B8BB27 /* ImageDownloader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -444,7 +441,6 @@
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
 				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
-				4C3043CA26141A5100B8BB27 /* ImageDownloader.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
 				4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */,

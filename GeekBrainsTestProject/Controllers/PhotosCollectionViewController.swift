@@ -9,8 +9,7 @@ import UIKit
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
 
-    let networkManager = NetworkManager()
-    let imageDownloader = ImageDownloaderService()
+    let networkManager = NetworkManager.shared
     var photos: [Photo] = []
 
     private let itemsPerRow: CGFloat = 3
@@ -71,7 +70,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.black.cgColor
         let photo = photos[indexPath.row]
-        imageDownloader.getData(from: photo.photoStringUrlMedium) {data, _, error in
+        networkManager.getData(from: photo.photoStringUrlMedium) {data, _, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async { [weak self] in
                 cell.photo.image = UIImage(data: data)

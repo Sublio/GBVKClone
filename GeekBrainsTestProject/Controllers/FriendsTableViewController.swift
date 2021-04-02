@@ -30,8 +30,7 @@ class FriendsTableViewController: UITableViewController {
     }
 
     let searchController = UISearchController(searchResultsController: nil)
-    let networkManager = NetworkManager()
-    let imageDownloader = ImageDownloaderService()
+    let networkManager = NetworkManager.shared
 
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -41,7 +40,7 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
-    weak var delegate: PhotosTableViewDelegateProtocol?
+    var delegate: PhotosTableViewDelegateProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +91,7 @@ class FriendsTableViewController: UITableViewController {
             let userName = section.names[indexPath.row]
             cell.friendLabel.text = userName
             let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.photoString ?? ""
-            imageDownloader.getData(from: avatarUrl) {data, _, error in
+            networkManager.getData(from: avatarUrl) {data, _, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async { [weak self] in
                     cell.roundedView.image = UIImage(data: data)

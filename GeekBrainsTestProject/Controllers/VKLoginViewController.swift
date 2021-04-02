@@ -11,7 +11,7 @@ import WebKit
 class VKLoginViewController: UIViewController, WKNavigationDelegate {
 
     let segueToFriendsTableView = "fromWebViewToFriends"
-    let networkManager = NetworkManager()
+    let networkManager = NetworkManager.shared
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
