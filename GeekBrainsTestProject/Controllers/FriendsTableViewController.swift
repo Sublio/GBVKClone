@@ -18,7 +18,10 @@ class FriendsTableViewController: UITableViewController {
     var filteredFriends: [Friend] = []
     var userNames: [String] {
         notFilteredFriends.map {($0.name ?? "")}
+    }
 
+    var userIds: [Int] {
+        notFilteredFriends.map {($0.id ?? 0)}
     }
     var sections: [Section] {
         let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
@@ -38,7 +41,7 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
-    var delegate: PhotosTableViewDelegateProtocol?
+    weak var delegate: PhotosTableViewDelegateProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,9 +116,10 @@ class FriendsTableViewController: UITableViewController {
             let friend = filteredFriends[indexPath.row]
             self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
         } else {
-            let sortedFilteredFriends = notFilteredFriends.sorted { $0.name! < $1.name! }
-            let friend = sortedFilteredFriends[indexPath.row]
-            self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
+            let section = sections[indexPath.section]
+            let userName = section.names[indexPath.row]
+            let clickedID = self.getUserIdByName(userName: userName)
+            self.delegate?.didPickUserFromTableWithId(userId: clickedID ?? 0)
         }
     }
 
@@ -148,6 +152,15 @@ class FriendsTableViewController: UITableViewController {
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return sections.map {$0.letter}
+    }
+
+    func getUserIdByName(userName: String) -> Int? {
+        var dict = [String: Int]()
+
+        for (name, id) in zip(self.userNames, self.userIds) {
+            dict[name] = id
+        }
+        return dict[userName]
     }
 
     func filterContentForSearchText(_ searchText: String) {

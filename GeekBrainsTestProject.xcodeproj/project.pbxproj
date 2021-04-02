@@ -121,6 +121,7 @@
 		4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionPop.swift; sourceTree = "<group>"; };
 		4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		4CDB818B2616EA6A006DF760 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +148,7 @@
 		4C17A45E25BDE2E8006D45E0 = {
 			isa = PBXGroup;
 			children = (
+				4CDB818B2616EA6A006DF760 /* TODO.md */,
 				4C17A46925BDE2E8006D45E0 /* GeekBrainsTestProject */,
 				4C985509260F15AC00087056 /* GeekBrainsTestProjectUITests */,
 				4C17A46825BDE2E8006D45E0 /* Products */,

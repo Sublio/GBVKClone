@@ -30,6 +30,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Friend"
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -79,5 +80,12 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
                 }
             })
         }
+    }
+}
+
+extension GroupSearchTableViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.foundGroups = []
+        self.tableView.reloadData()
     }
 }
