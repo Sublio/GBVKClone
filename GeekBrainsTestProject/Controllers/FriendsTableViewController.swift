@@ -38,6 +38,8 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
+    weak var delegate: PhotosTableViewDelegateProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
@@ -101,9 +103,19 @@ class FriendsTableViewController: UITableViewController {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.itemSize = CGSize(width: 100, height: 100)
         collectionViewFlowLayout.scrollDirection = .vertical
+        collectionViewFlowLayout.minimumLineSpacing = 2
+        collectionViewFlowLayout.minimumInteritemSpacing = 2
         let collectionView = PhotosCollectionViewController(collectionViewLayout: collectionViewFlowLayout)
+        self.delegate = collectionView
         navigationController?.pushViewController(collectionView, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        if isFiltering {
+            let friend = filteredFriends[indexPath.row]
+            self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
+        } else {
+            let friend = notFilteredFriends[indexPath.row]
+            self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

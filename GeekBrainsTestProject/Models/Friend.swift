@@ -11,6 +11,7 @@ import UIKit
 struct Friend {
     var name: String?
     var avatar: UIImage?
+    var id: Int?
     let photoString: String
 
     init(name: String, avatar: UIImage) {
@@ -24,5 +25,6 @@ struct Friend {
         let lastName = json["last_name"].string ?? ""
         self.name = firstName + " " + lastName
         self.photoString = json["photo_50"].string ?? ""
+        self.id = json["id"].int ?? 0
     }
 }

@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C02458A26151D230064D38D /* LoremSwiftum in Frameworks */ = {isa = PBXBuildFile; productRef = 4C02458926151D230064D38D /* LoremSwiftum */; };
 		4C17A46B25BDE2E8006D45E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46A25BDE2E8006D45E0 /* AppDelegate.swift */; };
 		4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46C25BDE2E8006D45E0 /* SceneDelegate.swift */; };
 		4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46E25BDE2E8006D45E0 /* LoginViewController.swift */; };
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
 		4C3043CA26141A5100B8BB27 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3043C926141A5100B8BB27 /* ImageDownloader.swift */; };
+		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
+		4C4AA785261586C5005EFA89 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C4AA784261586C5005EFA89 /* Kingfisher */; };
+		4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AA78A261589C3005EFA89 /* Photo.swift */; };
 		4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */; };
 		4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */; };
 		4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A2125C64C6E00CC8A4F /* FriendTableViewCell.swift */; };
@@ -76,6 +78,8 @@
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3043C926141A5100B8BB27 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewProtocol.swift; sourceTree = "<group>"; };
+		4C4AA78A261589C3005EFA89 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		4C542A2125C64C6E00CC8A4F /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -124,9 +128,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C4AA785261586C5005EFA89 /* Kingfisher in Frameworks */,
 				4CB1F4482613E293001CA49A /* Alamofire in Frameworks */,
 				4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */,
-				4C02458A26151D230064D38D /* LoremSwiftum in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +165,7 @@
 		4C17A46925BDE2E8006D45E0 /* GeekBrainsTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				4C41C23526156CA70020FEE4 /* Protocols */,
 				4C3043C626141A0300B8BB27 /* Services */,
 				4CCAD5F4260AB2D100F589E1 /* Controllers */,
 				4CC84D4425E6FDB600FD7949 /* NavigationTransitions */,
@@ -192,6 +197,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		4C41C23526156CA70020FEE4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4C542A1A25C63C6E00CC8A4F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +224,7 @@
 			children = (
 				4C542A3925C8B5B400CC8A4F /* Friend.swift */,
 				4C542A3D25C8B5BE00CC8A4F /* Group.swift */,
+				4C4AA78A261589C3005EFA89 /* Photo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,7 +340,7 @@
 			packageProductDependencies = (
 				4C8D4C292611752A00497914 /* SwiftyJSON */,
 				4CB1F4472613E293001CA49A /* Alamofire */,
-				4C02458926151D230064D38D /* LoremSwiftum */,
+				4C4AA784261586C5005EFA89 /* Kingfisher */,
 			);
 			productName = GeekBrainsTestProject;
 			productReference = 4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */;
@@ -380,7 +394,7 @@
 			packageReferences = (
 				4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4CB1F4462613E293001CA49A /* XCRemoteSwiftPackageReference "Alamofire" */,
-				4C02458826151D230064D38D /* XCRemoteSwiftPackageReference "LoremSwiftum" */,
+				4C4AA783261586C5005EFA89 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
 			projectDirPath = "";
@@ -431,6 +445,7 @@
 				4C3043CA26141A5100B8BB27 /* ImageDownloader.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
+				4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */,
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
 				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */,
@@ -443,6 +458,7 @@
 				4C94332A261289310015C6A3 /* NetworkManager.swift in Sources */,
 				4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */,
 				4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */,
+				4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */,
 				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
@@ -724,12 +740,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C02458826151D230064D38D /* XCRemoteSwiftPackageReference "LoremSwiftum" */ = {
+		4C4AA783261586C5005EFA89 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lukaskubanek/LoremSwiftum.git";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.1;
+				minimumVersion = 6.2.1;
 			};
 		};
 		4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
@@ -751,10 +767,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C02458926151D230064D38D /* LoremSwiftum */ = {
+		4C4AA784261586C5005EFA89 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C02458826151D230064D38D /* XCRemoteSwiftPackageReference "LoremSwiftum" */;
-			productName = LoremSwiftum;
+			package = 4C4AA783261586C5005EFA89 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		4C8D4C292611752A00497914 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;

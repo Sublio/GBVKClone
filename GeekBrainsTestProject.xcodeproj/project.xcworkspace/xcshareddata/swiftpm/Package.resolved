@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "LoremSwiftum",
-        "repositoryURL": "https://github.com/lukaskubanek/LoremSwiftum.git",
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "eef89bf8b9937462f9c493789609897763b383e2",
-          "version": "2.2.1"
+          "revision": "bbc4bc4def7eb05a7ba8e1219f80ee9be327334e",
+          "version": "6.2.1"
         }
       },
       {

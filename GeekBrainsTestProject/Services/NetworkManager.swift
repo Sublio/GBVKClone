@@ -35,19 +35,36 @@ class NetworkManager {
         let request = URLRequest(url: urlComponents.url!)
         return request
     }
-
-    func getPhotosForCurrentUser() {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = scheme
-        urlComponents.host = apiHost
-        urlComponents.path = "/method/photos.get"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "access_token", value: Session.shared.token),
-            URLQueryItem(name: "count", value: "3"),
-            URLQueryItem(name: "album_id", value: "wall"),
-            URLQueryItem(name: "v", value: vkApiVersion)
+    func getPhotosForUserId(user_id: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
+        let scheme = "https://"
+        let host = "api.vk.com"
+        let path = "/method/photos.get"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "owner_id": user_id,
+            "album_id": "wall",
+            "count": 20,
+            "v": vkApiVersion
         ]
-        makeUrlRequestWithData(with: urlComponents)
+
+        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+            var results: [Photo] = []
+            switch response.result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let data):
+                guard let data = data,
+                      let json = try? JSON(data: data) else { return }
+                let itemsJSON = json["response"]["items"].arrayValue
+                for item in itemsJSON {
+                    let pictureSizesArray = item["sizes"].arrayValue
+                    let mediumPictureSize = pictureSizesArray[2] // large size
+                    let photo = Photo(json: mediumPictureSize)
+                    results.append(photo)
+                }
+                completion(.success(results))
+            }
+        }
     }
 
     func getGroupsBySearchString(searchString: String, completion: @escaping (Result<[Group], Error>) -> Void) {
@@ -138,7 +155,6 @@ class NetworkManager {
             }
             guard let data = data,
                   let _ = try? JSON(data: data) else { return }
-
         }
         task .resume()
     }

@@ -19,5 +19,4 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         addSubview(likedView)
     }
-
 }
