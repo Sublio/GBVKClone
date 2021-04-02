@@ -13,13 +13,13 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     let imageDownloader = ImageDownloaderService()
     var photos: [Photo] = []
 
-    private let itemsPerRow = 4
+    private let itemsPerRow: CGFloat = 3
     private let reuseIdentifier = "CollectionCell"
 
     private let sectionInsets = UIEdgeInsets(
-      top: 40.0,
+      top: 50.0,
       left: 20.0,
-      bottom: 20.0,
+      bottom: 50.0,
       right: 20.0)
 
     private var selectedUserId: Int?
@@ -90,9 +90,9 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layoutcollectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath
       ) -> CGSize {
-        let paddingSpace = Int(sectionInsets.left) * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - CGFloat(paddingSpace)
-        let widthPerItem = availableWidth / CGFloat(itemsPerRow)
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
 
         return CGSize(width: widthPerItem, height: widthPerItem)
       }
