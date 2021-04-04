@@ -155,16 +155,4 @@ class NetworkManager {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
-
-    private func makeUrlRequestWithData(with urlComponents: URLComponents) {
-        let request = URLRequest(url: urlComponents.url!)
-        let task = URLSession.shared.dataTask(with: request) {(data, _, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            guard let data = data,
-                  let _ = try? JSON(data: data) else { return }
-        }
-        task .resume()
-    }
 }

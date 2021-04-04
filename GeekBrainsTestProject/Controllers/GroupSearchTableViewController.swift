@@ -13,14 +13,6 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
     let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
 
-    var isSearchBarEmpty: Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-
-    var isFiltering: Bool {
-        return  searchController.isActive && !isSearchBarEmpty
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
@@ -30,6 +22,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Friend"
         searchController.searchBar.delegate = self
+        searchController.isActive = true
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }

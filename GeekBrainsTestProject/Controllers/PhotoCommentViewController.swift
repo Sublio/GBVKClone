@@ -15,7 +15,6 @@ class PhotoCommentViewController: UIViewController {
      @IBOutlet weak var nameTextField: UITextField!
 
     var photo: UIImage?
-    var picture: UIImage?
     var photoIndex: Int!
 
     override func viewDidLoad() {

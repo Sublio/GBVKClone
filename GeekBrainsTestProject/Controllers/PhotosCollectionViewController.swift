@@ -12,7 +12,6 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     let networkManager = NetworkManager.shared
     var photos: [Photo] = []
     var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
-    private let photosForZoom = ["face1", "face2", "face3", "face4"]
 
     private let itemsPerRow: CGFloat = 3
     private let reuseIdentifier = "CollectionCell"

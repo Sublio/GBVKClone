@@ -42,9 +42,7 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
                        return dict
                }
         guard let token = params["access_token"] else { return }
-        guard let userId = params["user_id"] else { return }
         Session.shared.token = token
-        Session.shared.userId = Int(userId) ?? 0
         decisionHandler(.cancel)
         performSegue(withIdentifier: segueToFriendsTableView, sender: nil)
     }
