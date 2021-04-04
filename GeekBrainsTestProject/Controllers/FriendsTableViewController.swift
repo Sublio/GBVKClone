@@ -40,7 +40,7 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
-    var delegate: PhotosTableViewDelegateProtocol?
+    weak var delegate: PhotosTableViewDelegateProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +93,7 @@ class FriendsTableViewController: UITableViewController {
             let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.photoString ?? ""
             networkManager.getData(from: avatarUrl) {data, _, error in
                 guard let data = data, error == nil else { return }
-                DispatchQueue.main.async { [weak self] in
+                DispatchQueue.main.async { [] in
                     cell.roundedView.image = UIImage(data: data)
                 }
             }

@@ -1,6 +1,6 @@
 # TODO
 
-3. Make NetworkManager shared
-4. Bring back old LoginViewController - add login via VK button
-5. Fix FullScreenPhotoController
-
+1. Fix FullScreenPhotoController
+2. General refactoring in huge Controllers 
+3. Fix bug with wrong photo passed through controllers
+4. Fix keyboard behaviour on PhotoCommentController

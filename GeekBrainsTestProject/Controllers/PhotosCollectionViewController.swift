@@ -11,6 +11,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     let networkManager = NetworkManager.shared
     var photos: [Photo] = []
+    var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
+    private let photosForZoom = ["face1", "face2", "face3", "face4"]
 
     private let itemsPerRow: CGFloat = 3
     private let reuseIdentifier = "CollectionCell"
@@ -46,6 +48,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         self.title = "Photos"
         let gradientView = GradientView()
         self.collectionView.backgroundView = gradientView
+        self.edgesForExtendedLayout = []
     }
 
     // MARK: UICollectionViewDataSource
@@ -59,9 +62,13 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let fullScreenImageVC = FullScreenPhotoViewController()
-        fullScreenImageVC.selectedImageIndex = indexPath.row
-        self.present(fullScreenImageVC, animated: true, completion: nil)
+        let photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ManagePageViewController") as! ManagePageViewController
+        vc.photos = photos
+        vc.currentIndex = indexPath.row
+        navigationController?.pushViewController(vc, animated: true)
+
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,8 +79,10 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let photo = photos[indexPath.row]
         networkManager.getData(from: photo.photoStringUrlMedium) {data, _, error in
             guard let data = data, error == nil else { return }
-            DispatchQueue.main.async { [weak self] in
-                cell.photo.image = UIImage(data: data)
+            DispatchQueue.main.async { [] in
+                guard let photoImage = UIImage(data: data) else { return }
+                cell.photo.image = photoImage
+                self.realPhotos.append(photoImage)
             }
         }
 

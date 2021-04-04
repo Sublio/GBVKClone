@@ -51,7 +51,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         let groupAvatarUrl = group.photoStringUrl
         networkManager.getData(from: groupAvatarUrl) {data, _, error in
             guard let data = data, error == nil else { return }
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async { [] in
                 groupCell.groupAvatar.image = UIImage(data: data)
             }
         }
