@@ -33,7 +33,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         animateSubmitButton()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        // showLoadingIndicator(withInterval: 3)
         // showCloudAnimation(withInterval: 10.0)
     }
 
@@ -138,4 +137,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             return true
         }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != nil{
+            showLoadingIndicator(withInterval: 3)
+        }
+    }
 }

@@ -37,7 +37,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XCU-RS-Alo"/>
-                                    <segue destination="fel-6e-F0H" kind="show" id="c1k-ix-i1Q"/>
+                                    <segue destination="fel-6e-F0H" kind="show" identifier="toWebView" id="c1k-ix-i1Q"/>
                                 </connections>
                             </button>
                         </subviews>
