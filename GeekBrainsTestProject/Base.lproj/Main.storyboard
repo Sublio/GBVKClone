@@ -37,7 +37,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XCU-RS-Alo"/>
-                                    <segue destination="fel-6e-F0H" kind="show" identifier="toWebView" id="c1k-ix-i1Q"/>
+                                    <segue destination="fel-6e-F0H" kind="show" id="c1k-ix-i1Q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -363,15 +363,15 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPg-vh-NTJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="ELh-po-z6H">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="ELh-po-z6H">
+                                        <rect key="frame" x="171" y="8" width="1024" height="768"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ELh-po-z6H" secondAttribute="trailing" id="EOh-EN-x8C"/>
-                                    <constraint firstAttribute="bottom" secondItem="ELh-po-z6H" secondAttribute="bottom" id="Kgm-rH-5Vy"/>
+                                    <constraint firstAttribute="trailing" secondItem="ELh-po-z6H" secondAttribute="trailing" constant="-610" id="EOh-EN-x8C"/>
+                                    <constraint firstAttribute="bottom" secondItem="ELh-po-z6H" secondAttribute="bottom" constant="-60" id="Kgm-rH-5Vy"/>
                                     <constraint firstItem="ELh-po-z6H" firstAttribute="leading" secondItem="gPg-vh-NTJ" secondAttribute="leading" id="Udw-DV-M9E"/>
-                                    <constraint firstItem="ELh-po-z6H" firstAttribute="top" secondItem="gPg-vh-NTJ" secondAttribute="top" id="dz2-cc-HEV"/>
+                                    <constraint firstItem="ELh-po-z6H" firstAttribute="top" secondItem="gPg-vh-NTJ" secondAttribute="top" constant="8" id="dz2-cc-HEV"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="BpG-sa-X7Q"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="wnl-Mt-BeM"/>
@@ -430,6 +430,10 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="CPP-Xp-zhN"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="zra-bm-7Mq"/>
+                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="D1M-E9-BiT"/>
+                                                </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What name fits me best?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYN-Fa-Win">
                                                 <rect key="frame" x="75.666666666666686" y="300" width="189" height="21"/>
@@ -488,6 +492,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqn-pP-nie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="n8E-jF-2w7"/>
             </objects>
             <point key="canvasLocation" x="4964" y="-232"/>
         </scene>

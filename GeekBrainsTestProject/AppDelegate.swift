@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = .blueZero
         let pageControl = UIPageControl.appearance()
-          pageControl.pageIndicatorTintColor = UIColor.systemGray
-          pageControl.currentPageIndicatorTintColor = UIColor.systemPurple
+        pageControl.pageIndicatorTintColor = UIColor.systemGray
+        pageControl.currentPageIndicatorTintColor = UIColor.systemPurple
         return true
     }
 

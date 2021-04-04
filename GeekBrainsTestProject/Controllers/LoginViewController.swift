@@ -21,9 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         let gradientView = GradientView(frame: self.view.bounds)
         self.view.insertSubview(gradientView, at: 0)
-        bottomButtonConstains = loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
-        bottomButtonConstains.isActive = true
-
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,9 +134,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             return true
         }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != nil{
+        if segue.identifier != nil {
             showLoadingIndicator(withInterval: 3)
         }
     }

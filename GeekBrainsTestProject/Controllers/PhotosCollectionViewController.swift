@@ -62,10 +62,9 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ManagePageViewController") as! ManagePageViewController
-        vc.photos = photos
+        vc.photos = self.realPhotos
         vc.currentIndex = indexPath.row
         navigationController?.pushViewController(vc, animated: true)
 

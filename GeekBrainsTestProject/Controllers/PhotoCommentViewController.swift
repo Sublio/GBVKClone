@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class PhotoCommentViewController: UIViewController {
 
@@ -13,14 +14,14 @@ class PhotoCommentViewController: UIViewController {
      @IBOutlet weak var scrollView: UIScrollView!
      @IBOutlet weak var nameTextField: UITextField!
 
-    var photoName: String?
+    var photo: UIImage?
     var picture: UIImage?
     var photoIndex: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let photoName = photoName {
-          self.imageView.image = UIImage(named: photoName)
+        if let photo = self.photo {
+          self.imageView.image = photo
         }
         let tapGestureRecongniser = UITapGestureRecognizer(target: self, action: #selector(openZoomController))
         self.imageView.addGestureRecognizer(tapGestureRecongniser)
@@ -65,13 +66,14 @@ class PhotoCommentViewController: UIViewController {
     @IBAction func openZoomController(_ sender: Any) {
         self.performSegue(withIdentifier: "zooming", sender: nil)
     }
-    // 2
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       if let id = segue.identifier,
         let viewController = segue.destination as? ZoomFullScreenPhotoViewController,
         id == "zooming" {
-        viewController.photoName = photoName
+        let size = CGSize(width: 1024, height: 768)
+        let aspectScaledToFitImage = self.photo!.af.imageAspectScaled(toFit: size, scale: 0)
+        viewController.photo = aspectScaledToFitImage
       }
     }
-
 }

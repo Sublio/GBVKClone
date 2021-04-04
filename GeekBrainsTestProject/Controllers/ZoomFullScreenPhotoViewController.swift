@@ -16,14 +16,13 @@ class ZoomFullScreenPhotoViewController: UIViewController {
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var imageView: UIImageView!
-    var selectedPhoto: UIImage? = UIImage(named: "photo1")
-    var photoName: String?
+    var photo: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.backgroundColor = .black
         self.scrollView.delegate = self
-        if let photo = selectedPhoto {
+        if let photo = self.photo {
             self.imageView.image = photo
         }
     }
@@ -58,7 +57,7 @@ extension ZoomFullScreenPhotoViewController: UIScrollViewDelegate {
       imageViewTopConstraint.constant = yOffset
       imageViewBottomConstraint.constant = yOffset
 
-      let xOffset = max(0, (size.width - imageView.frame.width) / 3)
+      let xOffset = max(0, (size.width - imageView.frame.width) / 2)
       imageViewLeadingConstraint.constant = xOffset
       imageViewTrailingConstraint.constant = xOffset
 

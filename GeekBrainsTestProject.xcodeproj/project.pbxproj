@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0D3E2F2619808800621B81 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D3E2E2619808800621B81 /* AlamofireImage */; };
 		4C17A46B25BDE2E8006D45E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46A25BDE2E8006D45E0 /* AppDelegate.swift */; };
 		4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46C25BDE2E8006D45E0 /* SceneDelegate.swift */; };
 		4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46E25BDE2E8006D45E0 /* LoginViewController.swift */; };
@@ -14,7 +15,6 @@
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
 		4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */; };
 		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
-		4C4AA785261586C5005EFA89 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C4AA784261586C5005EFA89 /* Kingfisher */; };
 		4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AA78A261589C3005EFA89 /* Photo.swift */; };
 		4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */; };
 		4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */; };
@@ -133,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C4AA785261586C5005EFA89 /* Kingfisher in Frameworks */,
+				4C0D3E2F2619808800621B81 /* AlamofireImage in Frameworks */,
 				4CB1F4482613E293001CA49A /* Alamofire in Frameworks */,
 				4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */,
 			);
@@ -348,7 +348,7 @@
 			packageProductDependencies = (
 				4C8D4C292611752A00497914 /* SwiftyJSON */,
 				4CB1F4472613E293001CA49A /* Alamofire */,
-				4C4AA784261586C5005EFA89 /* Kingfisher */,
+				4C0D3E2E2619808800621B81 /* AlamofireImage */,
 			);
 			productName = GeekBrainsTestProject;
 			productReference = 4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */;
@@ -402,7 +402,7 @@
 			packageReferences = (
 				4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4CB1F4462613E293001CA49A /* XCRemoteSwiftPackageReference "Alamofire" */,
-				4C4AA783261586C5005EFA89 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				4C0D3E2D2619808800621B81 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
 			projectDirPath = "";
@@ -645,10 +645,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9HFNV2AWC;
 				INFOPLIST_FILE = GeekBrainsTestProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -664,10 +665,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L9HFNV2AWC;
 				INFOPLIST_FILE = GeekBrainsTestProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -752,12 +754,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C4AA783261586C5005EFA89 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		4C0D3E2D2619808800621B81 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.1;
+				minimumVersion = 4.2.0;
 			};
 		};
 		4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
@@ -779,10 +781,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C4AA784261586C5005EFA89 /* Kingfisher */ = {
+		4C0D3E2E2619808800621B81 /* AlamofireImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C4AA783261586C5005EFA89 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = 4C0D3E2D2619808800621B81 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
 		};
 		4C8D4C292611752A00497914 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;

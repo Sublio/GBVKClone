@@ -9,8 +9,8 @@ import UIKit
 
 class ManagePageViewController: UIPageViewController {
 
-    var photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]
-      var currentIndex: Int!
+    var photos: [UIImage]?
+    var currentIndex: Int!
 
       override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class ManagePageViewController: UIPageViewController {
           else {
             return nil
         }
-        page.photoName = photos[index]
+        page.photo = photos![index]
         page.photoIndex = index
         return page
       }
@@ -61,7 +61,7 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
       -> UIViewController? {
     if let viewController = viewController as? PhotoCommentViewController,
       let index = viewController.photoIndex,
-      (index + 1) < photos.count {
+      (index + 1) < photos!.count {
         return viewPhotoCommentController(index + 1)
     }
 
@@ -69,7 +69,7 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
   }
 
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-      return photos.count
+      return photos!.count
     }
 
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
