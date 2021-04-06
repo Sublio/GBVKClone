@@ -7,13 +7,17 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-struct Photo {
-    // let photoStringUrlSmall: String
-    // let photoStringUrlX: String
-    let photoStringUrlMedium: String
+class Photo: RealmSwift.Object {
+    @objc dynamic var photoStringUrlMedium: String = ""
 
-    init(json: SwiftyJSON.JSON) {
+//    init(json: SwiftyJSON.JSON) {
+//        self.photoStringUrlMedium = json["url"].string ?? ""
+//    }
+
+    convenience init(json: SwiftyJSON.JSON) {
+        self.init()
         self.photoStringUrlMedium = json["url"].string ?? ""
     }
 }

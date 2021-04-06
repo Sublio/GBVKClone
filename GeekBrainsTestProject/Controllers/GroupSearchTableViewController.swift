@@ -20,10 +20,11 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         self.tableView.backgroundView = gradientView
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Friend"
+        searchController.searchBar.placeholder = "Search Group"
         searchController.searchBar.delegate = self
         searchController.isActive = true
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
     }
 

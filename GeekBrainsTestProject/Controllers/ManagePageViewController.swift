@@ -14,6 +14,7 @@ class ManagePageViewController: UIPageViewController {
 
       override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
 
         if let viewController = viewPhotoCommentController(currentIndex ?? 0) {
           let viewControllers = [viewController]

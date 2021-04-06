@@ -17,11 +17,11 @@ class FriendsTableViewController: UITableViewController {
     var notFilteredFriends: [Friend] = []
     var filteredFriends: [Friend] = []
     var userNames: [String] {
-        notFilteredFriends.map {($0.name ?? "")}
+        notFilteredFriends.map {($0.name )}
     }
 
     var userIds: [Int] {
-        notFilteredFriends.map {($0.id ?? 0)}
+        notFilteredFriends.map {($0.id )}
     }
     var sections: [Section] {
         let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
@@ -40,7 +40,7 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
-    var delegate: PhotosTableViewDelegateProtocol?
+    weak var delegate: PhotosTableViewDelegateProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +60,7 @@ class FriendsTableViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Friend"
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
         definesPresentationContext = true
     }
 
@@ -85,7 +86,13 @@ class FriendsTableViewController: UITableViewController {
         if isFiltering {
             let friend = filteredFriends[indexPath.row]
             cell.friendLabel.text = friend.name
-            cell.roundedView?.image = friend.avatar
+            let avatarUrl = filteredFriends.filter {$0.name == friend.name}.first?.photoString ?? ""
+            networkManager.getData(from: avatarUrl) {data, _, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async { [] in
+                    cell.roundedView.image = UIImage(data: data)
+                }
+            }
         } else {
             let section = sections[indexPath.section]
             let userName = section.names[indexPath.row]
@@ -113,7 +120,7 @@ class FriendsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if isFiltering {
             let friend = filteredFriends[indexPath.row]
-            self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
+            self.delegate?.didPickUserFromTableWithId(userId: friend.id )
         } else {
             let section = sections[indexPath.section]
             let userName = section.names[indexPath.row]
@@ -164,7 +171,7 @@ class FriendsTableViewController: UITableViewController {
 
     func filterContentForSearchText(_ searchText: String) {
         filteredFriends =  notFilteredFriends.filter {(friend: Friend) -> Bool in
-            return (friend.name?.lowercased().contains(searchText.lowercased()) ?? false)
+            return (friend.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
     }
