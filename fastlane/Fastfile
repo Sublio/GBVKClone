@@ -12,6 +12,7 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
+setup_travis
 
 default_platform(:ios)
 
@@ -19,13 +20,15 @@ platform :ios do
   desc "Build main target"
   lane :build do
     # add actions here: https://docs.fastlane.tools/actions
-    fastlane run xcodebuild
     xcodebuild(
       project: "GeekBrainsTestProject.xcodeproj",
-      archive: false,
-      archive_path: "./build-dir/MyApp.xcarchive",
       scheme: "GeekBrainsTestProject",
       xcodeproj: "GeekBrainsTestProject.xcodeproj"
     )
+  end
+
+  desc "Test main target"
+  lane :tests do
+    run_tests(scheme: "GeekBrainsTestProject")
   end
 end

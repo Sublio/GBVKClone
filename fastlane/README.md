@@ -21,6 +21,11 @@ or alternatively using `brew install fastlane`
 fastlane ios build
 ```
 Build main target
+### ios tests
+```
+fastlane ios tests
+```
+Test main target
 
 ----
 
