@@ -21,9 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         let gradientView = GradientView(frame: self.view.bounds)
         self.view.insertSubview(gradientView, at: 0)
-        bottomButtonConstains = loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
-        bottomButtonConstains.isActive = true
-
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +30,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         animateSubmitButton()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        // showLoadingIndicator(withInterval: 3)
         // showCloudAnimation(withInterval: 10.0)
     }
 
@@ -111,7 +107,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let cloud = CloudLoadingView(frame: CGRect(origin: CGPoint(x: self.view.frame.size.width/2-20, y: self.view.frame.size.height/2-20), size: CGSize(width: 50, height: 50)))
         self.view.addSubview(cloud)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [] in
             cloud.removeFromSuperview()
         }
     }
@@ -138,4 +134,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             return true
         }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != nil {
+            showLoadingIndicator(withInterval: 3)
+        }
+    }
 }

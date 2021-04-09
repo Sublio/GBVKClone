@@ -9,22 +9,40 @@ import UIKit
 
 class GroupsTableViewController: UITableViewController {
 
-    let searchBar = DMSearchBar()
+    var nonFilteredGroups: [Group] = []
 
-    var nonFilteredGroups = GroupFactory().defaultGroups
+    var filteredGroups: [Group] = []
 
-    var filteredGroups = [Group]()
+    let searchController = UISearchController(searchResultsController: nil)
+    let networkManager = NetworkManager.shared
+
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
+    var isFiltering: Bool {
+        return  searchController.isActive && !isSearchBarEmpty
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAdd))
-
+        networkManager.getGroupsForCurrentUserViaAlamofire(completion: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(groups):
+                self?.nonFilteredGroups = groups
+                self?.tableView.reloadData()
+            }
+        })
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
-        searchBar.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 50)
-        self.tableView.tableHeaderView = searchBar
-        searchBar.delegate = self
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Friend"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     // MARK: - Table view data source
@@ -35,22 +53,29 @@ class GroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if filteredGroups.isEmpty {
-            return nonFilteredGroups.count
-        } else {
+        if isFiltering {
             return filteredGroups.count
         }
+        return nonFilteredGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
 
-        if filteredGroups.isEmpty {
-            groupCell.groupLabel.text = nonFilteredGroups[indexPath.row].name
-            groupCell.groupAvatar.image = nonFilteredGroups[indexPath.row].groupAvatar
+        if isFiltering {
+            let group = filteredGroups[indexPath.row]
+            groupCell.groupLabel.text = group.name
+            groupCell.groupAvatar?.image = group.groupAvatar
         } else {
-            groupCell.groupLabel.text = filteredGroups[indexPath.row].name
-            groupCell.groupAvatar.image = filteredGroups[indexPath.row].groupAvatar
+            let group = nonFilteredGroups[indexPath.row]
+            groupCell.groupLabel.text = group.name
+            let groupAvatarUrl = group.photoStringUrl
+            networkManager.getData(from: groupAvatarUrl) {data, _, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async { [] in
+                    groupCell.groupAvatar.image = UIImage(data: data)
+                }
+            }
         }
 
         return groupCell
@@ -75,27 +100,17 @@ class GroupsTableViewController: UITableViewController {
         }
     }
 
-    @objc func handleAdd() {
-        let newGroup = Group(name: "Just created Group", groupAvatar: UIImage(systemName: "folder")!)
-        nonFilteredGroups.append(newGroup)
-        self.tableView.reloadData()
+    func filterContentForSearchText(_ searchText: String) {
+        filteredGroups =  nonFilteredGroups.filter {(group: Group) -> Bool in
+            return (group.name?.lowercased().contains(searchText.lowercased()) ?? false)
+        }
+        tableView.reloadData()
     }
 }
 
-extension GroupsTableViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-        if searchText.count == 0 {
-            nonFilteredGroups = GroupFactory().defaultGroups
-            tableView.reloadData()
-            searchBar.resignFirstResponder()
-        }
-
-        filteredGroups = nonFilteredGroups.filter {
-            $0.name.contains(searchText)
-        }
-
-        tableView.reloadData()
-
+extension GroupsTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
     }
 }

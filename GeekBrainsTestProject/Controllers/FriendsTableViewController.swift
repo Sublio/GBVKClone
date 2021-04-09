@@ -14,14 +14,23 @@ struct Section {
 
 class FriendsTableViewController: UITableViewController {
 
-    var notFilteredFriends: [User] = []
-    var filteredFriends: [User] = []
+    var notFilteredFriends: [Friend] = []
+    var filteredFriends: [Friend] = []
     var userNames: [String] {
-        UsersData().friends.map {$0.name}
+        notFilteredFriends.map {($0.name ?? "")}
     }
-    var sections = [Section]()
+
+    var userIds: [Int] {
+        notFilteredFriends.map {($0.id ?? 0)}
+    }
+    var sections: [Section] {
+        let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
+        let keys = groupedDictionary.keys.sorted()
+        return keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
+    }
 
     let searchController = UISearchController(searchResultsController: nil)
+    let networkManager = NetworkManager.shared
 
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -31,12 +40,19 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
+    var delegate: PhotosTableViewDelegateProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.notFilteredFriends = UsersData().friends
-        let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
-        let keys = groupedDictionary.keys.sorted()
-        sections = keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
+        networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(friends):
+                self?.notFilteredFriends = friends
+                self?.tableView.reloadData()
+            }
+        })
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
@@ -45,7 +61,6 @@ class FriendsTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search Friend"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -70,12 +85,18 @@ class FriendsTableViewController: UITableViewController {
         if isFiltering {
             let friend = filteredFriends[indexPath.row]
             cell.friendLabel.text = friend.name
-            cell.roundedView.image = friend.avatar
+            cell.roundedView?.image = friend.avatar
         } else {
             let section = sections[indexPath.section]
             let userName = section.names[indexPath.row]
             cell.friendLabel.text = userName
-            cell.roundedView.image = notFilteredFriends.filter {$0.name == userName}.first?.avatar
+            let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.photoString ?? ""
+            networkManager.getData(from: avatarUrl) {data, _, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async { [] in
+                    cell.roundedView.image = UIImage(data: data)
+                }
+            }
         }
         return cell
     }
@@ -84,9 +105,21 @@ class FriendsTableViewController: UITableViewController {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.itemSize = CGSize(width: 100, height: 100)
         collectionViewFlowLayout.scrollDirection = .vertical
+        collectionViewFlowLayout.minimumLineSpacing = 2
+        collectionViewFlowLayout.minimumInteritemSpacing = 2
         let collectionView = PhotosCollectionViewController(collectionViewLayout: collectionViewFlowLayout)
+        self.delegate = collectionView
         navigationController?.pushViewController(collectionView, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        if isFiltering {
+            let friend = filteredFriends[indexPath.row]
+            self.delegate?.didPickUserFromTableWithId(userId: friend.id ?? 0)
+        } else {
+            let section = sections[indexPath.section]
+            let userName = section.names[indexPath.row]
+            let clickedID = self.getUserIdByName(userName: userName)
+            self.delegate?.didPickUserFromTableWithId(userId: clickedID ?? 0)
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -120,9 +153,18 @@ class FriendsTableViewController: UITableViewController {
         return sections.map {$0.letter}
     }
 
+    func getUserIdByName(userName: String) -> Int? {
+        var dict = [String: Int]()
+
+        for (name, id) in zip(self.userNames, self.userIds) {
+            dict[name] = id
+        }
+        return dict[userName]
+    }
+
     func filterContentForSearchText(_ searchText: String) {
-        filteredFriends =  notFilteredFriends.filter {(friend: User) -> Bool in
-            return friend.name.lowercased().contains(searchText.lowercased())
+        filteredFriends =  notFilteredFriends.filter {(friend: Friend) -> Bool in
+            return (friend.name?.lowercased().contains(searchText.lowercased()) ?? false)
         }
         tableView.reloadData()
     }

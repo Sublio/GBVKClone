@@ -7,32 +7,47 @@
 
 import UIKit
 
-class GroupSearchTableViewController: UITableViewController {
+class GroupSearchTableViewController: UITableViewController, UISearchResultsUpdating {
+
+    var foundGroups: [Group] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    let networkManager = NetworkManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Friend"
+        searchController.searchBar.delegate = self
+        searchController.isActive = true
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return foundGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
-        groupCell.groupLabel.text = "Group1"
-        groupCell.groupAvatar.image = UIImage(systemName: "person.3.fill")
+        let group = foundGroups[indexPath.row]
+        groupCell.groupLabel.text = group.name
+        let groupAvatarUrl = group.photoStringUrl
+        networkManager.getData(from: groupAvatarUrl) {data, _, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async { [] in
+                groupCell.groupAvatar.image = UIImage(data: data)
+            }
+        }
         return groupCell
     }
 
@@ -42,5 +57,27 @@ class GroupSearchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchQuery = searchController.searchBar.text else { return }
+        if !searchQuery.isEmpty {
+            networkManager.getGroupsBySearchString(searchString: searchQuery, completion: { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(groups):
+                    self?.foundGroups = groups
+                    self?.tableView.reloadData()
+                }
+            })
+        }
+    }
+}
+
+extension GroupSearchTableViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.foundGroups = []
+        self.tableView.reloadData()
     }
 }

@@ -17,17 +17,17 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gep-My-TPR">
-                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="gep-My-TPR" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Lf4-Xu-MnB"/>
+                <constraint firstItem="gep-My-TPR" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="5" id="Lf4-Xu-MnB"/>
                 <constraint firstItem="gep-My-TPR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hQj-gP-y26"/>
                 <constraint firstItem="gep-My-TPR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rZX-hH-T4x"/>
-                <constraint firstItem="gep-My-TPR" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="zlx-Mx-Cr0"/>
+                <constraint firstItem="gep-My-TPR" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="5" id="zlx-Mx-Cr0"/>
             </constraints>
             <size key="customSize" width="209" height="177"/>
             <connections>
