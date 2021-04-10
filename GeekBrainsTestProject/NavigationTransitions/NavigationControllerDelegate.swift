@@ -13,7 +13,9 @@ class CustomNavigationController: UINavigationController, UINavigationController
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delegate = self
+        // delegate = self
+        // turn this delegate on if you wanna get your own custom navigation transitions
+        // Now it is default transitions everywhere
     }
 
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {

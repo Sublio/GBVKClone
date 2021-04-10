@@ -17,7 +17,7 @@ class NetworkManager {
 
     let vkApiVersion = "5.130"
     let scheme = "https"
-    let clientId = "7812924"
+    let clientId = "6704883"
     let scope = "65536"
     let oauthHost = "oauth.vk.com"
     let apiHost = "api.vk.com"

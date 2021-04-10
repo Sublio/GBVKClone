@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PhotosTableViewDelegateProtocol {
+protocol PhotosTableViewDelegateProtocol: class {
      func didPickUserFromTableWithId(userId: Int)
 }

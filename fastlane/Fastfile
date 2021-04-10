@@ -16,8 +16,18 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
+  desc "Build main target"
+  lane :build do
     # add actions here: https://docs.fastlane.tools/actions
+    xcodebuild(
+      project: "GeekBrainsTestProject.xcodeproj",
+      scheme: "GeekBrainsTestProject",
+      xcodeproj: "GeekBrainsTestProject.xcodeproj"
+    )
+  end
+
+  desc "Test main target"
+  lane :tests do
+    run_tests(scheme: "GeekBrainsTestProject")
   end
 end

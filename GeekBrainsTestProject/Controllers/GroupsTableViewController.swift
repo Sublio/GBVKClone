@@ -43,6 +43,7 @@ class GroupsTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search Friend"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
 
     // MARK: - Table view data source
@@ -65,7 +66,13 @@ class GroupsTableViewController: UITableViewController {
         if isFiltering {
             let group = filteredGroups[indexPath.row]
             groupCell.groupLabel.text = group.name
-            groupCell.groupAvatar?.image = group.groupAvatar
+            let groupAvatarUrl = group.photoStringUrl
+            networkManager.getData(from: groupAvatarUrl) {data, _, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async { [] in
+                    groupCell.groupAvatar.image = UIImage(data: data)
+                }
+            }
         } else {
             let group = nonFilteredGroups[indexPath.row]
             groupCell.groupLabel.text = group.name
@@ -102,7 +109,7 @@ class GroupsTableViewController: UITableViewController {
 
     func filterContentForSearchText(_ searchText: String) {
         filteredGroups =  nonFilteredGroups.filter {(group: Group) -> Bool in
-            return (group.name?.lowercased().contains(searchText.lowercased()) ?? false)
+            return (group.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
     }
