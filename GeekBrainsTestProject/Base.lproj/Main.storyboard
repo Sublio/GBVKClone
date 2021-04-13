@@ -492,7 +492,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqn-pP-nie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="n8E-jF-2w7"/>
+                <tapGestureRecognizer id="n8E-jF-2w7">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="7Bh-mC-Q9c" id="zcT-v0-dSk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4964" y="-232"/>
         </scene>

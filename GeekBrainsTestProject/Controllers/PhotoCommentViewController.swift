@@ -8,7 +8,7 @@
 import UIKit
 import AlamofireImage
 
-class PhotoCommentViewController: UIViewController {
+class PhotoCommentViewController: UIViewController, UITextFieldDelegate {
 
      @IBOutlet weak var imageView: UIImageView!
      @IBOutlet weak var scrollView: UIScrollView!
@@ -19,6 +19,7 @@ class PhotoCommentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.nameTextField.delegate = self
         if let photo = self.photo {
           self.imageView.image = photo
         }
@@ -35,6 +36,11 @@ class PhotoCommentViewController: UIViewController {
           selector: #selector(keyboardWillHide(_:)),
           name: UIResponder.keyboardWillHideNotification,
           object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func adjustInsetForKeyboardShow(_ show: Bool, notification: Notification) {

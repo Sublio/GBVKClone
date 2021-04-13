@@ -23,7 +23,7 @@ class NetworkManager {
     let apiHost = "api.vk.com"
     let display = "mobile"
 
-    func formAutoriseVKRequest() -> URLRequest {
+    func formAutoriseVKRequest() -> URLRequest? {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host = oauthHost
@@ -36,8 +36,12 @@ class NetworkManager {
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: vkApiVersion)
         ]
-        let request = URLRequest(url: urlComponents.url!)
-        return request
+        if let url = urlComponents.url {
+            let request = URLRequest(url: url)
+            return request
+        }
+        return nil
+
     }
     func getPhotosForUserId(user_id: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
         let scheme = "https://"

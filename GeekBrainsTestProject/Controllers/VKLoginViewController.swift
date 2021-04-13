@@ -21,7 +21,9 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        webView.load(networkManager.formAutoriseVKRequest())
+        if let vkRequest = networkManager.formAutoriseVKRequest() {
+            webView.load(vkRequest)
+        }
     }
 
     // WebView Delegate

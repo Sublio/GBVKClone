@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name='GeekBrainsTestProjectUITests.xctest' tests='2' failures='0'>
   <testsuite name='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' tests='2' failures='0'>
-    <testcase classname='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' name='testExample' time='8.268'/>
-    <testcase classname='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' name='testLaunchPerformance' time='46.614'/>
+    <testcase classname='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' name='testExample' time='8.910'/>
+    <testcase classname='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' name='testLaunchPerformance' time='43.493'/>
   </testsuite>
 </testsuites>
