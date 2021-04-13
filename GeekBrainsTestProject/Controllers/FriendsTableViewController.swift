@@ -40,15 +40,21 @@ class FriendsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
+    let loadingView = DMLoadingView()
+
     weak var delegate: PhotosTableViewDelegateProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
+        self.tableView.addSubview(calculatedLoadingView)
+
         networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(friends):
+                self?.loadingView.removeLoadingView()
                 self?.notFilteredFriends = friends
                 self?.tableView.reloadData()
             }

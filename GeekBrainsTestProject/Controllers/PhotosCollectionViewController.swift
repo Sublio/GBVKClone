@@ -72,7 +72,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendPhotoCollectionViewCell
 
-        cell.layer.borderWidth = 1
+        cell.layer.borderWidth = 0.5
+        cell.spinner.startAnimating()
         cell.layer.borderColor = UIColor.black.cgColor
         let photo = photos[indexPath.row]
         networkManager.getData(from: photo.photoStringUrlMedium) {data, _, error in
@@ -80,6 +81,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
             DispatchQueue.main.async { [] in
                 guard let photoImage = UIImage(data: data) else { return }
                 cell.photo.image = photoImage
+                cell.spinner.stopAnimating()
                 self.realPhotos.append(photoImage)
             }
         }

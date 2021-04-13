@@ -45,7 +45,7 @@ class NetworkManager {
     }
     func getPhotosForUserId(user_id: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
         let scheme = "https://"
-        let host = "api.vk.com"
+        let host = self.apiHost
         let path = "/method/photos.get"
         let parameters: Parameters = [
             "access_token": Session.shared.token,
@@ -78,7 +78,7 @@ class NetworkManager {
     func getGroupsBySearchString(searchString: String, completion: @escaping (Result<[Group], Error>) -> Void) {
 
         let scheme = "https://"
-        let host = "api.vk.com"
+        let host = self.apiHost
         let path = "/method/groups.search"
         let parameters: Parameters = [
             "access_token": Session.shared.token,
@@ -105,7 +105,7 @@ class NetworkManager {
     func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Result<[Group], Error>) -> Void) {
 
         let scheme = "https://"
-        let host = "api.vk.com"
+        let host = self.apiHost
         let path = "/method/groups.get"
         let parameters: Parameters = [
             "access_token": Session.shared.token,
@@ -132,7 +132,7 @@ class NetworkManager {
     func getFriendsListViaAlamoFire(completion: @escaping (Result<[Friend], Error>) -> Void) {
 
         let scheme = "https://"
-        let host = "api.vk.com"
+        let host = self.apiHost
         let path = "/method/friends.get"
         let parameters: Parameters = [
             "access_token": Session.shared.token,
