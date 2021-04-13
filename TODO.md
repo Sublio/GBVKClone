@@ -7,3 +7,4 @@
 5. Migrate  to KingFisher
 6. Pass VK Login/Pass to WebView
 7. Store objects in RealmDB
+8. Show tableView after data been loaded - while loading - show loading activity

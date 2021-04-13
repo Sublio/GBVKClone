@@ -24,13 +24,18 @@ class GroupsTableViewController: UITableViewController {
         return  searchController.isActive && !isSearchBarEmpty
     }
 
+    let loadingView = DMLoadingView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
+        self.tableView.addSubview(calculatedLoadingView)
         networkManager.getGroupsForCurrentUserViaAlamofire(completion: { [weak self] result in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(groups):
+                self?.loadingView.removeLoadingView()
                 self?.nonFilteredGroups = groups
                 self?.tableView.reloadData()
             }

@@ -12,6 +12,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
     var foundGroups: [Group] = []
     let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
+    let loadingView = DMLoadingView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +41,15 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
+        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
+        self.tableView.addSubview(calculatedLoadingView)
         let group = foundGroups[indexPath.row]
         groupCell.groupLabel.text = group.name
         let groupAvatarUrl = group.photoStringUrl
         networkManager.getData(from: groupAvatarUrl) {data, _, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async { [] in
+                self.loadingView.removeLoadingView()
                 groupCell.groupAvatar.image = UIImage(data: data)
             }
         }
