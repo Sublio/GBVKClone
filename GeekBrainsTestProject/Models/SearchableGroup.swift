@@ -1,8 +1,8 @@
 //
-//  Group.swift
+//  SearchableGroup.swift
 //  GeekBrainsTestProject
 //
-//  Created by Denis Mordvinov on 01.02.2021.
+//  Created by Denis Mordvinov on 16.04.2021.
 //
 
 import SwiftyJSON
@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 @objcMembers
-class  Group: RealmSwift.Object {
+class  SearchableGroup: RealmSwift.Object {
     dynamic var name: String = ""
     dynamic var photoStringUrl: String = ""
     dynamic var id: Int = 0

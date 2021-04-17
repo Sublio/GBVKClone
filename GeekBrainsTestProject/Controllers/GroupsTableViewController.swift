@@ -10,6 +10,7 @@ import UIKit
 class GroupsTableViewController: UITableViewController {
 
     var nonFilteredGroups: [Group] = []
+    let realmManager = RealmManager.shared
 
     var filteredGroups: [Group] = []
 
@@ -30,22 +31,33 @@ class GroupsTableViewController: UITableViewController {
         super.viewDidLoad()
         let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
         self.tableView.addSubview(calculatedLoadingView)
-        networkManager.getGroupsForCurrentUserViaAlamofire(completion: { [weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(groups):
-                self?.loadingView.removeLoadingView()
-                self?.nonFilteredGroups = groups
-                self?.tableView.reloadData()
-            }
-        })
+        self.title = "My Groups"
+
+        if !groupDBIsEmpty() {
+            self.nonFilteredGroups = self.realmManager.getArray(selectedType: Group.self)
+            self.tableView.reloadData()
+            self.loadingView.removeLoadingView()
+        } else {
+            // обновим базу групп при первой загрузке контроллера но покажем данные уже из базы
+            networkManager.getGroupsForCurrentUserViaAlamofire(completion: { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(groups):
+                    self?.loadingView.removeLoadingView()
+                    self?.realmManager.createGroupsDB(groups: groups)
+                    self?.nonFilteredGroups = self!.realmManager.getArray(selectedType: Group.self).sorted { $0.name < $1.name }
+                    self?.tableView.reloadData()
+                    self?.loadingView.removeLoadingView()
+                }
+            })
+        }
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Friend"
+        searchController.searchBar.placeholder = "Search Groups"
         navigationItem.searchController = searchController
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -117,6 +129,13 @@ class GroupsTableViewController: UITableViewController {
             return (group.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
+    }
+
+    func groupDBIsEmpty() -> Bool {
+        if realmManager.getResult(selectedType: Group.self) != nil {
+            return false
+        }
+        return true
     }
 }
 

@@ -46,6 +46,8 @@
 		4C9CC6D4261805F70089B832 /* ZoomFullScreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CC6D3261805F70089B832 /* ZoomFullScreenPhotoViewController.swift */; };
 		4C9CC6DC26191B620089B832 /* PhotoCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CC6DB26191B620089B832 /* PhotoCommentViewController.swift */; };
 		4CA577A12626388D00446F39 /* DMLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A02626388D00446F39 /* DMLoadingView.swift */; };
+		4CA577A726287D2B00446F39 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A626287D2B00446F39 /* RealmManager.swift */; };
+		4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577AA262973C500446F39 /* SearchableGroup.swift */; };
 		4CAB76FB2603FE0000092073 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB76FA2603FE0000092073 /* Session.swift */; };
 		4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */; };
 		4CB1F4482613E293001CA49A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB1F4472613E293001CA49A /* Alamofire */; };
@@ -110,6 +112,8 @@
 		4C9CC6D3261805F70089B832 /* ZoomFullScreenPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomFullScreenPhotoViewController.swift; sourceTree = "<group>"; };
 		4C9CC6DB26191B620089B832 /* PhotoCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCommentViewController.swift; sourceTree = "<group>"; };
 		4CA577A02626388D00446F39 /* DMLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMLoadingView.swift; sourceTree = "<group>"; };
+		4CA577A626287D2B00446F39 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		4CA577AA262973C500446F39 /* SearchableGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableGroup.swift; sourceTree = "<group>"; };
 		4CAB76FA2603FE0000092073 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionPresent.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 			children = (
 				4CAB76FA2603FE0000092073 /* Session.swift */,
 				4C943329261289310015C6A3 /* NetworkManager.swift */,
+				4CA577A626287D2B00446F39 /* RealmManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				4C542A3925C8B5B400CC8A4F /* Friend.swift */,
 				4C542A3D25C8B5BE00CC8A4F /* Group.swift */,
 				4C4AA78A261589C3005EFA89 /* Photo.swift */,
+				4CA577AA262973C500446F39 /* SearchableGroup.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */,
 				4C7B419625DC015200894D81 /* GroupStubFactory.swift in Sources */,
 				4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */,
+				4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */,
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
@@ -454,6 +461,7 @@
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
 				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */,
+				4CA577A726287D2B00446F39 /* RealmManager.swift in Sources */,
 				4C17A46B25BDE2E8006D45E0 /* AppDelegate.swift in Sources */,
 				4C6F450E25FBF05E009CD6B0 /* GradientVIew.swift in Sources */,
 				4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */,

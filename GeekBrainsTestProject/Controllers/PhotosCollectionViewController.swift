@@ -9,6 +9,7 @@ import UIKit
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
 
+    let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
     var photos: [Photo] = []
     var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
@@ -24,18 +25,41 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     private var selectedUserId: Int?
 
+    let activityView = UIActivityIndicatorView(style: .large)
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let fadeView: UIView = UIView()
+        fadeView.frame = self.collectionView.frame
+        fadeView.backgroundColor = .white
+        fadeView.alpha = 0.4
+        self.view.addSubview(fadeView)
+        self.view.addSubview(activityView)
+        activityView.hidesWhenStopped = true
+        activityView.center = self.view.center
+        activityView.startAnimating()
+
         guard let selectedUser = selectedUserId else { return }
+        realmManager.delete(selectedType: Photo.self) // Удаляем предыдущие фотки от предыдущего пользователя
         networkManager.getPhotosForUserId(user_id: selectedUser, completion: {[weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(photos):
-                self?.photos = photos
-                self?.collectionView.reloadData()
-            }
-        })
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(photos):
+                    // self?.photos = photos
+                    photos.forEach {
+                        if let pictureData = self?.networkManager.getDataFrom(photoURl: $0.photoStringUrlMedium) {
+                            $0.picture = pictureData
+                        }
+                    }
+                    self?.realmManager.createPhotosDB(photos: photos)
+                    self?.photos = (self?.realmManager.getArray(selectedType: Photo.self))!
+                    self?.collectionView.reloadData()
+                    self?.collectionView.alpha = 1
+                    fadeView.removeFromSuperview()
+                    self?.activityView.stopAnimating()
+                }
+            })
     }
 
     override func viewDidLoad() {
@@ -48,6 +72,10 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let gradientView = GradientView()
         self.collectionView.backgroundView = gradientView
         self.edgesForExtendedLayout = []
+    }
+
+    deinit {
+        realmManager.delete(selectedType: Photo.self) // Clean DB on every deinit
     }
 
     // MARK: UICollectionViewDataSource
@@ -73,19 +101,13 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendPhotoCollectionViewCell
 
         cell.layer.borderWidth = 0.5
-        cell.spinner.startAnimating()
         cell.layer.borderColor = UIColor.black.cgColor
         let photo = photos[indexPath.row]
-        networkManager.getData(from: photo.photoStringUrlMedium) {data, _, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async { [] in
-                guard let photoImage = UIImage(data: data) else { return }
-                cell.photo.image = photoImage
-                cell.spinner.stopAnimating()
-                self.realPhotos.append(photoImage)
-            }
+        if let photo = UIImage(data: photo.picture) {
+            cell.photo.image = photo
+            self.realPhotos.append(photo)
         }
-
+        cell.spinner.stopAnimating()
         return cell
     }
 
