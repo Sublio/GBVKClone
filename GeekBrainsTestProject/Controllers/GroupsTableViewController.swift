@@ -29,7 +29,8 @@ class GroupsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
+        guard let navigationController = self.navigationController else { return }
+        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
         self.tableView.addSubview(calculatedLoadingView)
         self.title = "My Groups"
 
@@ -44,9 +45,10 @@ class GroupsTableViewController: UITableViewController {
                 case let .failure(error):
                     print(error)
                 case let .success(groups):
+                    guard let realmManager = self?.realmManager else { return }
                     self?.loadingView.removeLoadingView()
                     self?.realmManager.createGroupsDB(groups: groups)
-                    self?.nonFilteredGroups = self!.realmManager.getArray(selectedType: Group.self).sorted { $0.name < $1.name }
+                    self?.nonFilteredGroups = realmManager.getArray(selectedType: Group.self).sorted { $0.name < $1.name }
                     self?.tableView.reloadData()
                     self?.loadingView.removeLoadingView()
                 }
