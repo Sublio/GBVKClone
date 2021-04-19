@@ -74,9 +74,9 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         self.edgesForExtendedLayout = []
     }
 
-    deinit {
-        realmManager.delete(selectedType: Photo.self) // Clean DB on every deinit
-    }
+//    deinit {
+//        realmManager.delete(selectedType: Photo.self) // Clean DB on every deinit
+//    }
 
     // MARK: UICollectionViewDataSource
 

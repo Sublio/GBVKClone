@@ -49,7 +49,8 @@ class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
+        guard let navigationController = self.navigationController else { return }
+        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
         self.tableView.addSubview(calculatedLoadingView)
 
         // обновим базу групп при первой загрузке контроллера но покажем данные уже из базы
@@ -66,7 +67,8 @@ class FriendsTableViewController: UITableViewController {
                     case let .success(friends):
                         self?.loadingView.removeLoadingView()
                         self?.realmManager.createFriendsDB(friends: friends) // создаем базу из того что прилетело от api
-                        self?.notFilteredFriends = self!.realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
+                        guard let realmManager = self?.realmManager else { return }
+                        self?.notFilteredFriends = realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
                         self?.tableView.reloadData()
                         self?.loadingView.removeLoadingView()
                     }
