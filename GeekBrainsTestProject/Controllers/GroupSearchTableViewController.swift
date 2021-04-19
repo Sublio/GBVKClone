@@ -14,7 +14,6 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
     var foundGroups: [SearchableGroup] = []
     let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
-    let loadingView = DMLoadingView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +47,12 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
-        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
-        self.tableView.addSubview(calculatedLoadingView)
         let group = foundGroups[indexPath.row]
         groupCell.groupLabel.text = group.name
         let groupAvatarUrl = group.photoStringUrl
         networkManager.getData(from: groupAvatarUrl) {data, _, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async { [] in
-                self.loadingView.removeLoadingView()
                 groupCell.groupAvatar.image = UIImage(data: data)
             }
         }
@@ -72,8 +68,6 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
     }
 
     func updateSearchResults(for searchController: UISearchController) {
-        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
-        self.tableView.addSubview(calculatedLoadingView)
         guard let searchQuery = searchController.searchBar.text else { return }
         if !searchQuery.isEmpty {
 
@@ -88,14 +82,12 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
                     self?.realmManager.createSearchableGroupsDB(groups: groups) // ставим вновь найденные данные из базы
                     self?.foundGroups = self!.realmManager.getArray(selectedType: SearchableGroup.self)
                     self?.tableView.reloadData()
-                    self?.loadingView.removeLoadingView()
                 }
             })
         } else {
             self.realmManager.delete(selectedType: SearchableGroup.self)
             self.foundGroups = []
             self.tableView.reloadData()
-            self.loadingView.removeLoadingView()
         }
     }
 }

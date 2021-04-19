@@ -79,7 +79,7 @@ class FriendsTableViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Friend"
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         self.tableView.reloadData()
     }

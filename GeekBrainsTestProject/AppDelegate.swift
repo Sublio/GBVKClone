@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.systemGray
         pageControl.currentPageIndicatorTintColor = UIColor.systemPurple
+        print (Realm.Configuration.defaultConfiguration.fileURL)
         return true
     }
 

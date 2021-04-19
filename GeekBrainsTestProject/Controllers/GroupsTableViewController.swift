@@ -60,7 +60,7 @@ class GroupsTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search Groups"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     // MARK: - Table view data source
