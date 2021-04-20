@@ -34,7 +34,7 @@ class GroupsTableViewController: UITableViewController {
         self.tableView.addSubview(calculatedLoadingView)
         self.title = "My Groups"
 
-        if !groupDBIsEmpty() {
+        if (realmManager.getResult(selectedType: Group.self) != nil){
             self.nonFilteredGroups = self.realmManager.getArray(selectedType: Group.self)
             self.tableView.reloadData()
             self.loadingView.removeLoadingView()
