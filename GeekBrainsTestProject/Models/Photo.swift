@@ -15,6 +15,8 @@ class Photo: RealmSwift.Object {
     dynamic var photoId: String = UUID().uuidString
     dynamic var picture: Data = Data()
 
+    let friends = LinkingObjects(fromType: Friend.self, property: "friendPhotos")
+
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.photoStringUrlMedium = json["url"].string ?? ""

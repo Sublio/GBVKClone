@@ -15,7 +15,7 @@ class Friend: RealmSwift.Object {
     dynamic var id: Int = 0
     dynamic var friendAvatar: String = ""
 
-    // let friendPhotos = LinkingObjects(fromType: Photo.self, property:"photoStringUrlMedium")
+    var friendPhotos = List<Photo>()
 
     convenience init (json: SwiftyJSON.JSON) {
         self.init()

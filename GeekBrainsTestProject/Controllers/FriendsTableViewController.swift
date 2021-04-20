@@ -16,6 +16,7 @@ struct Section {
 class FriendsTableViewController: UITableViewController {
 
     let realmManager = RealmManager.shared
+    let networkManager = NetworkManager.shared
 
     var notFilteredFriends: [Friend] = []
     var filteredFriends: [Friend] = []
@@ -33,7 +34,6 @@ class FriendsTableViewController: UITableViewController {
     }
 
     let searchController = UISearchController(searchResultsController: nil)
-    let networkManager = NetworkManager.shared
 
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -65,9 +65,9 @@ class FriendsTableViewController: UITableViewController {
                     case let .failure(error):
                         print(error)
                     case let .success(friends):
+                        guard let realmManager = self?.realmManager else { return }
                         self?.loadingView.removeLoadingView()
                         self?.realmManager.createFriendsDB(friends: friends) // создаем базу из того что прилетело от api
-                        guard let realmManager = self?.realmManager else { return }
                         self?.notFilteredFriends = realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
                         self?.tableView.reloadData()
                         self?.loadingView.removeLoadingView()

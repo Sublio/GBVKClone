@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
 
@@ -29,6 +30,23 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        guard let selectedUser = selectedUserId else { return }
+        if iSMeededToUpdatePhotos() {
+            retrievePhotosForUserId(userId: selectedUser)
+        } else {
+            let user = self.realmManager.getFriendInfoById(id: selectedUserId!)
+            self.photos = Array(user!.friendPhotos)
+        }
+    }
+
+    func iSMeededToUpdatePhotos() -> Bool {
+        guard let selectedUserId = self.selectedUserId else { fatalError("User id must not be nil or empty") }
+        let selectedUser = realmManager.getFriendInfoById(id: selectedUserId)
+        return  (selectedUser?.friendPhotos.isEmpty)! ? true : false
+    }
+
+    func retrievePhotosForUserId(userId: Int) {
         let fadeView: UIView = UIView()
         fadeView.frame = self.collectionView.frame
         fadeView.backgroundColor = .white
@@ -38,21 +56,19 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         activityView.hidesWhenStopped = true
         activityView.center = self.view.center
         activityView.startAnimating()
-
-        guard let selectedUser = selectedUserId else { return }
-        realmManager.delete(selectedType: Photo.self) // Удаляем предыдущие фотки от предыдущего пользователя
-        networkManager.getPhotosForUserId(user_id: selectedUser, completion: {[weak self] result in
+        networkManager.getPhotosForUserId(user_id: userId, completion: {[weak self] result in
                 switch result {
                 case let .failure(error):
                     print(error)
                 case let .success(photos):
-                    // self?.photos = photos
                     photos.forEach {
                         if let pictureData = self?.networkManager.getDataFrom(photoURl: $0.photoStringUrlMedium) {
                             $0.picture = pictureData
                         }
+                        guard let selectedUserId = self?.selectedUserId else { fatalError("User id must not be nil or empty") }
+                        self?.realmManager.updatePhotosStorageForFriend(friendId: selectedUserId, photo: $0)
                     }
-                    self?.realmManager.createPhotosDB(photos: photos)
+
                     self?.photos = (self?.realmManager.getArray(selectedType: Photo.self))!
                     self?.collectionView.reloadData()
                     self?.collectionView.alpha = 1
@@ -73,10 +89,6 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         self.collectionView.backgroundView = gradientView
         self.edgesForExtendedLayout = []
     }
-
-//    deinit {
-//        realmManager.delete(selectedType: Photo.self) // Clean DB on every deinit
-//    }
 
     // MARK: UICollectionViewDataSource
 

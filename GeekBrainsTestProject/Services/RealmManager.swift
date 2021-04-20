@@ -59,20 +59,6 @@ class RealmManager {
         }
     }
 
-    func createPhotosDB(photos: [Photo]) {
-        for photo in photos {
-            do {
-                let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-                let realm = try Realm(configuration: configuration)
-                try realm.write({
-                    realm.add(photo, update: .all)
-                })
-            } catch {
-                print(error)
-            }
-        }
-    }
-
     func deleteDatabase() {
         let realm = try! Realm(configuration: configuration)
         try! realm.write {
@@ -126,6 +112,19 @@ class RealmManager {
          }
          return array[index]
      }
+
+    func getFriendInfoById(id: Int) -> Friend? {
+        let realm = try! Realm()
+        return realm.object(ofType: Friend.self, forPrimaryKey: id)
+    }
+
+    func updatePhotosStorageForFriend(friendId: Int, photo: Photo) {
+        let realm = try! Realm()
+        let user = realm.object(ofType: Friend.self, forPrimaryKey: friendId)
+        try! realm.write({
+            user?.friendPhotos.append(photo)
+        })
+    }
 
      // return Result tyle
      func getResults<T: Object>(selectedType: T.Type) -> Results<T> {
