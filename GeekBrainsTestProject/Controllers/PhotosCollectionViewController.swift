@@ -68,8 +68,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
                         guard let selectedUserId = self?.selectedUserId else { fatalError("User id must not be nil or empty") }
                         self?.realmManager.updatePhotosStorageForFriend(friendId: selectedUserId, photo: $0)
                     }
-
-                    self?.photos = (self?.realmManager.getArray(selectedType: Photo.self))!
+                    let friend = self?.realmManager.getFriendInfoById(id: self?.selectedUserId ?? 0)
+                    self?.photos = Array(friend!.friendPhotos)
                     self?.collectionView.reloadData()
                     self?.collectionView.alpha = 1
                     fadeView.removeFromSuperview()
