@@ -84,7 +84,7 @@ class GroupsTableViewController: UITableViewController {
     }
 
     deinit {
-        self.notificationToken = nil
+        notificationToken?.invalidate()
     }
 
     // MARK: - Table view data source

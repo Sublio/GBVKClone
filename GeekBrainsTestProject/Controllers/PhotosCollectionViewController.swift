@@ -110,7 +110,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     }
 
     deinit {
-        self.notificationToken = nil
+        notificationToken?.invalidate()
     }
 
     // MARK: UICollectionViewDataSource
