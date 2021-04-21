@@ -4,6 +4,6 @@
 2. Fix keyboard behaviour on PhotoCommentController
 3. Finish Feed controller.
 4. Migrate  to KingFisher
-5. Pass VK Login/Pass to WebView
-6.  Form Realm DB in background queue
+5. Form Realm DB in background queue not in Main Thread(remove loading indicator)
+6. Request max res image for Friend if it is exists
 

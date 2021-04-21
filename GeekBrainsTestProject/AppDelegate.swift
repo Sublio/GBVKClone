@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.systemGray
         pageControl.currentPageIndicatorTintColor = UIColor.systemPurple
-        //let realm = RealmManager.shared
-        //realm.deleteDatabase()
+        // let realm = RealmManager.shared
+        // realm.deleteDatabase()
         return true
     }
 

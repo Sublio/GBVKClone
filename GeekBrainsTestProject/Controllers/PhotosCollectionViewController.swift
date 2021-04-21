@@ -10,6 +10,8 @@ import RealmSwift
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
 
+    private var notificationToken: NotificationToken?
+
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
     var photos: [Photo] = []
@@ -88,6 +90,27 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let gradientView = GradientView()
         self.collectionView.backgroundView = gradientView
         self.edgesForExtendedLayout = []
+
+        // observe photos for particular users
+        guard let currentUserObject = self.realmManager.getObjects(selectedType: Friend.self)?.filter("id == %@", selectedUserId ?? 0).first else { return }
+        let photosOfCurrentFriend = currentUserObject.friendPhotos
+        self.notificationToken = photosOfCurrentFriend.observe({ (changes: RealmCollectionChange) in
+            switch changes {
+                case .initial:
+                    self.collectionView.reloadData()
+            case  .update:
+                    let friend = self.realmManager.getFriendInfoById(id: self.selectedUserId ?? 0)
+                    self.photos = Array(friend!.friendPhotos)
+                    self.collectionView.reloadData()
+                case .error(let error):
+                    print(error)
+                }
+        })
+
+    }
+
+    deinit {
+        self.notificationToken = nil
     }
 
     // MARK: UICollectionViewDataSource
