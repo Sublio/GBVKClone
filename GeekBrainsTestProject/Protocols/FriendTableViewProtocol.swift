@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PhotosTableViewDelegateProtocol: class {
-     func didPickUserFromTableWithId(userId: Int)
+    // func didPickUserFromTableWithId(userId: Int,with photos: [UIImage])
+    func didPickUserFromTableWithId(userId: Int)
 }

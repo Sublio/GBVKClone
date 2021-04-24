@@ -9,15 +9,20 @@ import Foundation
 import SwiftyJSON
 import RealmSwift
 
+@objcMembers
 class Photo: RealmSwift.Object {
-    @objc dynamic var photoStringUrlMedium: String = ""
+    dynamic var photoStringUrlMedium: String = ""
+    dynamic var photoId: String = UUID().uuidString
+    dynamic var picture: Data = Data()
 
-//    init(json: SwiftyJSON.JSON) {
-//        self.photoStringUrlMedium = json["url"].string ?? ""
-//    }
+    let friends = LinkingObjects(fromType: Friend.self, property: "friendPhotos")
 
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.photoStringUrlMedium = json["url"].string ?? ""
+    }
+
+    override static func primaryKey() -> String? {
+        "photoId"
     }
 }

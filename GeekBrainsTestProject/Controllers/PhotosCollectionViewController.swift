@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
 
+    let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
     var photos: [Photo] = []
     var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
@@ -24,18 +26,56 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     private var selectedUserId: Int?
 
+    let activityView = UIActivityIndicatorView(style: .large)
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         guard let selectedUser = selectedUserId else { return }
-        networkManager.getPhotosForUserId(user_id: selectedUser, completion: {[weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(photos):
-                self?.photos = photos
-                self?.collectionView.reloadData()
-            }
-        })
+        if iSMeededToUpdatePhotos() {
+            retrievePhotosForUserId(userId: selectedUser)
+        } else {
+            let user = self.realmManager.getFriendInfoById(id: selectedUserId!)
+            self.photos = Array(user!.friendPhotos)
+        }
+    }
+
+    func iSMeededToUpdatePhotos() -> Bool {
+        guard let selectedUserId = self.selectedUserId else { fatalError("User id must not be nil or empty") }
+        let selectedUser = realmManager.getFriendInfoById(id: selectedUserId)
+        return  (selectedUser?.friendPhotos.isEmpty)! ? true : false
+    }
+
+    func retrievePhotosForUserId(userId: Int) {
+        let fadeView: UIView = UIView()
+        fadeView.frame = self.collectionView.frame
+        fadeView.backgroundColor = .white
+        fadeView.alpha = 0.4
+        self.view.addSubview(fadeView)
+        self.view.addSubview(activityView)
+        activityView.hidesWhenStopped = true
+        activityView.center = self.view.center
+        activityView.startAnimating()
+        networkManager.getPhotosForUserId(user_id: userId, completion: {[weak self] result in
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(photos):
+                    photos.forEach {
+                        if let pictureData = self?.networkManager.getDataFrom(photoURl: $0.photoStringUrlMedium) {
+                            $0.picture = pictureData
+                        }
+                        guard let selectedUserId = self?.selectedUserId else { fatalError("User id must not be nil or empty") }
+                        self?.realmManager.updatePhotosStorageForFriend(friendId: selectedUserId, photo: $0)
+                    }
+                    let friend = self?.realmManager.getFriendInfoById(id: self?.selectedUserId ?? 0)
+                    self?.photos = Array(friend!.friendPhotos)
+                    self?.collectionView.reloadData()
+                    self?.collectionView.alpha = 1
+                    fadeView.removeFromSuperview()
+                    self?.activityView.stopAnimating()
+                }
+            })
     }
 
     override func viewDidLoad() {
@@ -73,19 +113,13 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FriendPhotoCollectionViewCell
 
         cell.layer.borderWidth = 0.5
-        cell.spinner.startAnimating()
         cell.layer.borderColor = UIColor.black.cgColor
         let photo = photos[indexPath.row]
-        networkManager.getData(from: photo.photoStringUrlMedium) {data, _, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async { [] in
-                guard let photoImage = UIImage(data: data) else { return }
-                cell.photo.image = photoImage
-                cell.spinner.stopAnimating()
-                self.realPhotos.append(photoImage)
-            }
+        if let photo = UIImage(data: photo.picture) {
+            cell.photo.image = photo
+            self.realPhotos.append(photo)
         }
-
+        cell.spinner.stopAnimating()
         return cell
     }
 

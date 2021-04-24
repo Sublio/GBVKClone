@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct Section {
     let letter: String
@@ -13,6 +14,9 @@ struct Section {
 }
 
 class FriendsTableViewController: UITableViewController {
+
+    let realmManager = RealmManager.shared
+    let networkManager = NetworkManager.shared
 
     var notFilteredFriends: [Friend] = []
     var filteredFriends: [Friend] = []
@@ -30,7 +34,6 @@ class FriendsTableViewController: UITableViewController {
     }
 
     let searchController = UISearchController(searchResultsController: nil)
-    let networkManager = NetworkManager.shared
 
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -46,19 +49,31 @@ class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
+        guard let navigationController = self.navigationController else { return }
+        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
         self.tableView.addSubview(calculatedLoadingView)
 
-        networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(friends):
-                self?.loadingView.removeLoadingView()
-                self?.notFilteredFriends = friends
-                self?.tableView.reloadData()
-            }
-        })
+        // обновим базу групп при первой загрузке контроллера но покажем данные уже из базы
+
+        if !friendsDBIsEmpty() {
+            self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
+            self.tableView.reloadData()
+            self.loadingView.removeLoadingView()
+        } else {
+            networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
+                    switch result {
+                    case let .failure(error):
+                        print(error)
+                    case let .success(friends):
+                        guard let realmManager = self?.realmManager else { return }
+                        self?.loadingView.removeLoadingView()
+                        self?.realmManager.createFriendsDB(friends: friends) // создаем базу из того что прилетело от api
+                        self?.notFilteredFriends = realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
+                        self?.tableView.reloadData()
+                        self?.loadingView.removeLoadingView()
+                    }
+            })
+        }
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
@@ -66,8 +81,9 @@ class FriendsTableViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Friend"
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -80,11 +96,7 @@ class FriendsTableViewController: UITableViewController {
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-        if isFiltering {
-            return 1
-        } else {
-            return sections.count
-        }
+        isFiltering ? 1 : sections.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,18 +104,19 @@ class FriendsTableViewController: UITableViewController {
         if isFiltering {
             let friend = filteredFriends[indexPath.row]
             cell.friendLabel.text = friend.name
-            let avatarUrl = filteredFriends.filter {$0.name == friend.name}.first?.photoString ?? ""
+            let avatarUrl = filteredFriends.filter {$0.name == friend.name}.first?.friendAvatar ?? ""
             networkManager.getData(from: avatarUrl) {data, _, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async { [] in
                     cell.roundedView.image = UIImage(data: data)
+                    self.loadingView.removeLoadingView()
                 }
             }
         } else {
             let section = sections[indexPath.section]
             let userName = section.names[indexPath.row]
             cell.friendLabel.text = userName
-            let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.photoString ?? ""
+            let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.friendAvatar ?? ""
             networkManager.getData(from: avatarUrl) {data, _, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async { [] in
@@ -180,6 +193,13 @@ class FriendsTableViewController: UITableViewController {
             return (friend.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
+    }
+
+    func friendsDBIsEmpty() -> Bool {
+        if realmManager.getResult(selectedType: Friend.self) != nil {
+            return false
+        }
+        return true
     }
 }
 

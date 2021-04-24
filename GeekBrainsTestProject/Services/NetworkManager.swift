@@ -8,6 +8,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import UIKit
 
 class NetworkManager {
 
@@ -75,7 +76,7 @@ class NetworkManager {
         }
     }
 
-    func getGroupsBySearchString(searchString: String, completion: @escaping (Result<[Group], Error>) -> Void) {
+    func getGroupsBySearchString(searchString: String, completion: @escaping (Result<[SearchableGroup], Error>) -> Void) {
 
         let scheme = "https://"
         let host = self.apiHost
@@ -83,7 +84,8 @@ class NetworkManager {
         let parameters: Parameters = [
             "access_token": Session.shared.token,
             "q": searchString,
-            "v": vkApiVersion
+            "v": vkApiVersion,
+            "count": 30
         ]
 
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
@@ -94,7 +96,7 @@ class NetworkManager {
                 guard let data = data,
                       let json = try? JSON(data: data) else { return }
                 let groupJSON = json["response"]["items"].arrayValue
-                let groups = groupJSON.map { Group(json: $0) }
+                let groups = groupJSON.map { SearchableGroup(json: $0) }
 
                 completion(.success(groups))
             }
@@ -158,5 +160,16 @@ class NetworkManager {
     func getData(from urlString: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+
+    func getDataFrom(photoURl: String) -> Data? {
+        do {
+            let url = URL(string: photoURl)
+            let imageData = try Data(contentsOf: url! as URL)
+            return imageData
+        } catch {
+            print("Unable to load data: \(error)")
+            return nil
+        }
     }
 }

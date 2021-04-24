@@ -3,16 +3,17 @@
 //  GeekBrainsTestProject
 //
 //  Created by Denis Mordvinov on 01.02.2021.
-//
+// realmManager.getArray(selectedType: SearchableGroup.self).sorted { $0.name < $1.name }
 
 import UIKit
 
 class GroupSearchTableViewController: UITableViewController, UISearchResultsUpdating {
 
-    var foundGroups: [Group] = []
+    let realmManager = RealmManager.shared
+
+    var foundGroups: [SearchableGroup] = []
     let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
-    let loadingView = DMLoadingView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,11 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
+        self.tableView.reloadData()
+    }
+
+    deinit {
+        realmManager.delete(selectedType: SearchableGroup.self) // clean up previous search
     }
 
     // MARK: - Table view data source
@@ -41,15 +47,12 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
-        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: self.navigationController!)
-        self.tableView.addSubview(calculatedLoadingView)
         let group = foundGroups[indexPath.row]
         groupCell.groupLabel.text = group.name
         let groupAvatarUrl = group.photoStringUrl
         networkManager.getData(from: groupAvatarUrl) {data, _, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async { [] in
-                self.loadingView.removeLoadingView()
                 groupCell.groupAvatar.image = UIImage(data: data)
             }
         }
@@ -67,15 +70,24 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchQuery = searchController.searchBar.text else { return }
         if !searchQuery.isEmpty {
+
+            // Мы сперва делаем запрос в VK api - затем сохраним в Realm - а потом уже покажем данные из Realm
             networkManager.getGroupsBySearchString(searchString: searchQuery, completion: { [weak self] result in
                 switch result {
                 case let .failure(error):
                     print(error)
                 case let .success(groups):
-                    self?.foundGroups = groups
+                    self?.realmManager.delete(selectedType: SearchableGroup.self) // очищаем все перед новым поиском
+                    self?.tableView.reloadData()
+                    self?.realmManager.createSearchableGroupsDB(groups: groups) // ставим вновь найденные данные из базы
+                    self?.foundGroups = self!.realmManager.getArray(selectedType: SearchableGroup.self)
                     self?.tableView.reloadData()
                 }
             })
+        } else {
+            self.realmManager.delete(selectedType: SearchableGroup.self)
+            self.foundGroups = []
+            self.tableView.reloadData()
         }
     }
 }
@@ -83,6 +95,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
 extension GroupSearchTableViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.foundGroups = []
+        self.realmManager.delete(selectedType: SearchableGroup.self)
         self.tableView.reloadData()
     }
 }

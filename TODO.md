@@ -6,5 +6,5 @@
 4. Finish Feed controller.
 5. Migrate  to KingFisher
 6. Pass VK Login/Pass to WebView
-7. Store objects in RealmDB
-8. Show tableView after data been loaded - while loading - show loading activity
+7. Make groupDBIsEmpty and friendsDBIsEmpty generic method inside Realm Manager
+8. Fix activity indicator on GroupSearchController
