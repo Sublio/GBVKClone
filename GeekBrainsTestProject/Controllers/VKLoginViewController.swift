@@ -12,6 +12,7 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
 
     let segueToFriendsTableView = "fromWebViewToFriends"
     let networkManager = NetworkManager.shared
+    let fireStoreManager = FireStorageManager.shared
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
@@ -44,6 +45,8 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
                        return dict
                }
         guard let token = params["access_token"] else { return }
+        guard let current_user_id = params["user_id"] else { return }
+        fireStoreManager.writeUserIdToFireStore(userId: current_user_id)
         Session.shared.token = token
         decisionHandler(.cancel)
         performSegue(withIdentifier: segueToFriendsTableView, sender: nil)

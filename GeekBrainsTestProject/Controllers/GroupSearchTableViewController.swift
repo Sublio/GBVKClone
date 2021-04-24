@@ -10,6 +10,7 @@ import UIKit
 class GroupSearchTableViewController: UITableViewController, UISearchResultsUpdating {
 
     let realmManager = RealmManager.shared
+    let fireStoreManager = FireStorageManager.shared
 
     var foundGroups: [SearchableGroup] = []
     let searchController = UISearchController(searchResultsController: nil)
@@ -82,6 +83,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
                     self?.realmManager.createSearchableGroupsDB(groups: groups) // ставим вновь найденные данные из базы
                     self?.foundGroups = self!.realmManager.getArray(selectedType: SearchableGroup.self)
                     self?.tableView.reloadData()
+                    self?.fireStoreManager.writeSearchedGroupsForCurrentUser(groups: self!.foundGroups)
                 }
             })
         } else {

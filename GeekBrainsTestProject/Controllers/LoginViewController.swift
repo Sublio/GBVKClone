@@ -31,6 +31,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // showCloudAnimation(withInterval: 10.0)
+        let fireStoreManager = FireStorageManager.shared
+        fireStoreManager.writeUserIdToFireStore(userId: "1")
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {
