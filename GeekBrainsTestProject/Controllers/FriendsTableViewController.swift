@@ -15,6 +15,8 @@ struct Section {
 
 class FriendsTableViewController: UITableViewController {
 
+    private var notificationToken: NotificationToken?
+
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
 
@@ -55,7 +57,7 @@ class FriendsTableViewController: UITableViewController {
 
         // обновим базу групп при первой загрузке контроллера но покажем данные уже из базы
 
-        if !friendsDBIsEmpty() {
+        if realmManager.getResult(selectedType: Friend.self) != nil {
             self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
             self.tableView.reloadData()
             self.loadingView.removeLoadingView()
@@ -84,6 +86,25 @@ class FriendsTableViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         self.tableView.reloadData()
+
+        guard let currentFriendsArray = self.realmManager.getObjects(selectedType: Friend.self) else { return }
+        self.notificationToken = currentFriendsArray.observe({ (changes: RealmCollectionChange) in
+            switch changes {
+                case .initial:
+                    self.tableView.reloadData()
+            case  .update:
+                    self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
+                    self.tableView.reloadData()
+                    self.loadingView.removeLoadingView()
+
+                case .error(let error):
+                    print(error)
+                }
+        })
+    }
+
+    deinit {
+        notificationToken?.invalidate()
     }
 
     // MARK: - Table view data source
@@ -193,13 +214,6 @@ class FriendsTableViewController: UITableViewController {
             return (friend.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
-    }
-
-    func friendsDBIsEmpty() -> Bool {
-        if realmManager.getResult(selectedType: Friend.self) != nil {
-            return false
-        }
-        return true
     }
 }
 

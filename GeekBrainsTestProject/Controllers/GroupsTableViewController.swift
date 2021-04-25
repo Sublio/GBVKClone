@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupsTableViewController: UITableViewController {
+
+    private var notificationToken: NotificationToken?
 
     var nonFilteredGroups: [Group] = []
     let realmManager = RealmManager.shared
@@ -34,7 +37,7 @@ class GroupsTableViewController: UITableViewController {
         self.tableView.addSubview(calculatedLoadingView)
         self.title = "My Groups"
 
-        if !groupDBIsEmpty() {
+        if realmManager.getResult(selectedType: Group.self) != nil {
             self.nonFilteredGroups = self.realmManager.getArray(selectedType: Group.self)
             self.tableView.reloadData()
             self.loadingView.removeLoadingView()
@@ -63,6 +66,25 @@ class GroupsTableViewController: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
+
+        guard let currentGroupsArray = self.realmManager.getObjects(selectedType: Group.self) else { return }
+        self.notificationToken = currentGroupsArray.observe({ (changes: RealmCollectionChange) in
+            switch changes {
+                case .initial:
+                    self.tableView.reloadData()
+            case  .update:
+                    self.nonFilteredGroups = self.realmManager.getArray(selectedType: Group.self)
+                    self.tableView.reloadData()
+                    self.loadingView.removeLoadingView()
+
+                case .error(let error):
+                    print(error)
+                }
+        })
+    }
+
+    deinit {
+        notificationToken?.invalidate()
     }
 
     // MARK: - Table view data source
@@ -131,13 +153,6 @@ class GroupsTableViewController: UITableViewController {
             return (group.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
-    }
-
-    func groupDBIsEmpty() -> Bool {
-        if realmManager.getResult(selectedType: Group.self) != nil {
-            return false
-        }
-        return true
     }
 }
 

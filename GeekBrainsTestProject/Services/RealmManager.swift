@@ -113,6 +113,12 @@ class RealmManager {
          return array[index]
      }
 
+    func getObjects<T: Object>(selectedType: T.Type) ->Results<T>? {
+        let realm = try! Realm(configuration: configuration)
+        let objects = realm.objects(selectedType)
+        return objects
+    }
+
     func getFriendInfoById(id: Int) -> Friend? {
         let realm = try! Realm()
         return realm.object(ofType: Friend.self, forPrimaryKey: id)
