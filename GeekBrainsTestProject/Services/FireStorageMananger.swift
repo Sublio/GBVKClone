@@ -36,7 +36,6 @@ class FireStorageManager {
 
     func writeUserIdToFireStore(userId: String) {
         guard let dbRef = self.ref?.child("Users") else { return }
-        // dbRef.child(userId).setValue(["Group1", "Group2", "Group 3"])
         self.currentUserId = userId
         dbRef.setValue(userId)
     }
