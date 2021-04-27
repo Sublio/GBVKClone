@@ -17,14 +17,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     var photos: [Photo] = []
     var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
 
-    private let itemsPerRow: CGFloat = 3
     private let reuseIdentifier = "CollectionCell"
-
-    private let sectionInsets = UIEdgeInsets(
-      top: 50.0,
-      left: 20.0,
-      bottom: 50.0,
-      right: 20.0)
 
     private var selectedUserId: Int?
 
@@ -72,7 +65,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
                     }
                     let friend = self?.realmManager.getFriendInfoById(id: self?.selectedUserId ?? 0)
                     self?.photos = Array(friend!.friendPhotos)
-                    self?.collectionView.reloadData()
+                    //self?.collectionView.reloadData()
                     self?.collectionView.alpha = 1
                     fadeView.removeFromSuperview()
                     self?.activityView.stopAnimating()
@@ -129,7 +122,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         vc.photos = self.realPhotos
         vc.currentIndex = indexPath.row
         navigationController?.pushViewController(vc, animated: true)
-
+        print (indexPath.row)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -143,6 +136,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
             self.realPhotos.append(photo)
         }
         cell.spinner.stopAnimating()
+        print (indexPath.row)
         return cell
     }
 
@@ -150,23 +144,4 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     func didPickUserFromTableWithId(userId: Int) {
         self.selectedUserId = userId
     }
-}
-
-extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layoutcollectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath
-      ) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-
-        return CGSize(width: widthPerItem, height: widthPerItem)
-      }
-
-    func collectionView(_ collectionView: UICollectionView, layoutcollectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-      }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
-      }
 }
