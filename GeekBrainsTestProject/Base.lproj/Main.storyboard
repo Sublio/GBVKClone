@@ -318,7 +318,7 @@
         <scene sceneID="bdh-BY-WNG">
             <objects>
                 <collectionViewController modalTransitionStyle="crossDissolve" id="xTG-B4-qya" customClass="PhotosCollectionViewController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" dataMode="prototypes" prefetchingEnabled="NO" id="Mrj-e0-Wtv">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" id="Mrj-e0-Wtv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -431,8 +431,9 @@
                                                     <constraint firstAttribute="height" constant="300" id="CPP-Xp-zhN"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="zra-bm-7Mq"/>
                                                     <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="D1M-E9-BiT"/>
+                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="zra-bm-7Mq"/>
+                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="s6S-p4-h8B"/>
                                                 </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What name fits me best?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYN-Fa-Win">
