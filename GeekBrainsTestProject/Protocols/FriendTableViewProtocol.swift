@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-protocol PhotosTableViewDelegateProtocol: class {
-    // func didPickUserFromTableWithId(userId: Int,with photos: [UIImage])
+protocol PhotosTableViewDelegateProtocol: AnyObject {
     func didPickUserFromTableWithId(userId: Int)
 }
