@@ -430,11 +430,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="CPP-Xp-zhN"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="D1M-E9-BiT"/>
-                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="zra-bm-7Mq"/>
-                                                    <outletCollection property="gestureRecognizers" destination="n8E-jF-2w7" appends="YES" id="s6S-p4-h8B"/>
-                                                </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What name fits me best?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYN-Fa-Win">
                                                 <rect key="frame" x="75.666666666666686" y="300" width="189" height="21"/>
@@ -493,11 +488,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqn-pP-nie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="n8E-jF-2w7">
-                    <connections>
-                        <action selector="hideKeyboard:" destination="7Bh-mC-Q9c" id="zcT-v0-dSk"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4964" y="-232"/>
         </scene>
