@@ -11,6 +11,7 @@ import RealmSwift
 
 @objcMembers
 class Photo: RealmSwift.Object {
+
     dynamic var photoStringUrlMedium: String = ""
     dynamic var photoId: String = UUID().uuidString
     dynamic var picture: Data = Data()

@@ -14,7 +14,15 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
-    var photos: [Photo] = []
+    var photos: [Photo] = [] {
+        didSet {
+            self.photos.forEach { photo in
+                if let realPhoto = UIImage(data: photo.picture) {
+                    self.realPhotos.append(realPhoto)
+                }
+            }
+        }
+    }// This array is for populating PhotosCollectionViewController
     var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
 
     private let reuseIdentifier = "CollectionCell"
@@ -65,7 +73,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
                     }
                     let friend = self?.realmManager.getFriendInfoById(id: self?.selectedUserId ?? 0)
                     self?.photos = Array(friend!.friendPhotos)
-                    //self?.collectionView.reloadData()
+                    // self?.collectionView.reloadData()
                     self?.collectionView.alpha = 1
                     fadeView.removeFromSuperview()
                     self?.activityView.stopAnimating()
@@ -99,7 +107,6 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
                     print(error)
                 }
         })
-
     }
 
     deinit {
@@ -122,7 +129,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         vc.photos = self.realPhotos
         vc.currentIndex = indexPath.row
         navigationController?.pushViewController(vc, animated: true)
-        print (indexPath.row)
+        self.realPhotos = []
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -133,10 +140,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let photo = photos[indexPath.row]
         if let photo = UIImage(data: photo.picture) {
             cell.photo.image = photo
-            self.realPhotos.append(photo)
         }
         cell.spinner.stopAnimating()
-        print (indexPath.row)
         return cell
     }
 
