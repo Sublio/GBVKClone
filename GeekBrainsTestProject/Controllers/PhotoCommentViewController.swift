@@ -19,12 +19,13 @@ class PhotoCommentViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nameTextField.delegate = self
         if let photo = self.photo {
           self.imageView.image = photo
         }
         let tapGestureRecongniser = UITapGestureRecognizer(target: self, action: #selector(openZoomController))
         self.imageView.addGestureRecognizer(tapGestureRecongniser)
+        let tapGestureRecongniser2 = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGestureRecongniser2)
         NotificationCenter.default.addObserver(
           self,
           selector: #selector(keyboardWillShow(_:)),
@@ -64,7 +65,7 @@ class PhotoCommentViewController: UIViewController, UITextFieldDelegate {
       adjustInsetForKeyboardShow(false, notification: notification)
     }
 
-    @IBAction func hideKeyboard(_ sender: AnyObject) {
+    @IBAction func hideKeyboard(_ sender: Any) {
       nameTextField.endEditing(true)
     }
 
