@@ -178,7 +178,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoPostCell" rowHeight="450" id="32w-Zg-sLS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoPostCell" rowHeight="450" id="32w-Zg-sLS" customClass="PhotoPostTableViewCell" customModule="GeekBrainsTestProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="450"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="32w-Zg-sLS" id="onM-mO-mab">
@@ -211,7 +211,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xR-lf-6jw">
-                                            <rect key="frame" x="79" y="422" width="70" height="17"/>
+                                            <rect key="frame" x="72.666666666666671" y="422" width="70.000000000000014" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -222,8 +222,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repots" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLX-M9-YjW">
-                                            <rect key="frame" x="175" y="422" width="46" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reposts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLX-M9-YjW">
+                                            <rect key="frame" x="168.66666666666666" y="422" width="52.333333333333343" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -233,7 +233,7 @@
                                         <constraint firstItem="SLX-M9-YjW" firstAttribute="leading" secondItem="2xR-lf-6jw" secondAttribute="trailing" constant="26" id="0bN-Af-qdH"/>
                                         <constraint firstItem="Hhb-x9-Ptz" firstAttribute="centerY" secondItem="uXd-1c-eZa" secondAttribute="centerY" id="1N8-ye-C8s"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="iCA-uW-egA" secondAttribute="trailing" constant="-3" id="3L7-h0-w9A"/>
-                                        <constraint firstItem="SLX-M9-YjW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="onM-mO-mab" secondAttribute="leading" symbolic="YES" id="Y38-YT-MOI"/>
+                                        <constraint firstItem="SLX-M9-YjW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="onM-mO-mab" secondAttribute="leading" constant="20" symbolic="YES" id="Y38-YT-MOI"/>
                                         <constraint firstItem="Hhb-x9-Ptz" firstAttribute="leading" secondItem="onM-mO-mab" secondAttribute="leadingMargin" id="Y8e-Iw-aBT"/>
                                         <constraint firstItem="SLX-M9-YjW" firstAttribute="bottom" secondItem="onM-mO-mab" secondAttribute="bottomMargin" id="YLu-CC-Apq"/>
                                         <constraint firstItem="2xR-lf-6jw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sKO-db-tOl" secondAttribute="trailing" constant="8" symbolic="YES" id="bbl-4F-SMU"/>
@@ -250,6 +250,15 @@
                                         <constraint firstAttribute="trailing" secondItem="uXd-1c-eZa" secondAttribute="trailing" constant="210" id="yGN-cZ-bZM"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="authorImage" destination="Hhb-x9-Ptz" id="rtW-hK-jMG"/>
+                                    <outlet property="authorName" destination="uXd-1c-eZa" id="OIj-jO-yzg"/>
+                                    <outlet property="comments" destination="2xR-lf-6jw" id="b2r-1z-yEm"/>
+                                    <outlet property="likes" destination="sKO-db-tOl" id="7b4-v3-uTv"/>
+                                    <outlet property="postImage" destination="QSV-gY-f5C" id="khg-1X-6GI"/>
+                                    <outlet property="reposts" destination="SLX-M9-YjW" id="Ry6-YW-vVv"/>
+                                    <outlet property="views" destination="iCA-uW-egA" id="ygD-gs-hAW"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="textPostCell" rowHeight="450" id="xil-a5-54M" customClass="TextNewsFeedTableViewCell" customModule="GeekBrainsTestProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="474.33333396911621" width="414" height="450"/>
