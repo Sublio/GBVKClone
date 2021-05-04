@@ -73,7 +73,6 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
                     }
                     let friend = self?.realmManager.getFriendInfoById(id: self?.selectedUserId ?? 0)
                     self?.photos = Array(friend!.friendPhotos)
-                    // self?.collectionView.reloadData()
                     self?.collectionView.alpha = 1
                     fadeView.removeFromSuperview()
                     self?.activityView.stopAnimating()
@@ -91,6 +90,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let gradientView = GradientView()
         self.collectionView.backgroundView = gradientView
         self.edgesForExtendedLayout = []
+        self.collectionView.delegate = self
 
         // observe photos for particular users
         guard let currentUserObject = self.realmManager.getObjects(selectedType: Friend.self)?.filter("id == %@", selectedUserId ?? 0).first else { return }
@@ -148,5 +148,14 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     // Delegate function from FriendsController
     func didPickUserFromTableWithId(userId: Int) {
         self.selectedUserId = userId
+    }
+}
+
+
+extension PhotosCollectionViewController: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.frame.width / 2
+        return CGSize(width: cellWidth, height: cellWidth)
+        
     }
 }

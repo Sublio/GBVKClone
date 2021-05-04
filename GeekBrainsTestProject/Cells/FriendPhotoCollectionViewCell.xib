@@ -16,14 +16,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gep-My-TPR">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gep-My-TPR">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="gep-My-TPR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6aA-1F-9ii"/>
+                <constraint firstItem="gep-My-TPR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="S6T-fZ-ctO"/>
+                <constraint firstAttribute="trailing" secondItem="gep-My-TPR" secondAttribute="trailing" id="VDN-MB-dm5"/>
+                <constraint firstAttribute="bottom" secondItem="gep-My-TPR" secondAttribute="bottom" id="hdc-OQ-exQ"/>
+            </constraints>
             <size key="customSize" width="209" height="177"/>
             <connections>
                 <outlet property="photo" destination="gep-My-TPR" id="FSH-H4-8QB"/>

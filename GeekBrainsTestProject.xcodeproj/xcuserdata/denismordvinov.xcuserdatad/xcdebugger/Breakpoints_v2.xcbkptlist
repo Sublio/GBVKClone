@@ -7,97 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D4BCB0D8-62C2-453F-979E-A4A3C64D7280"
+            uuid = "AB3E398A-031F-4A35-A09A-E29AF99D29E2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GeekBrainsTestProject/Controllers/PhotosCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "508A696F-37A6-488C-B4F3-4F99FC665A47"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeekBrainsTestProject/Controllers/PhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "photos"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "508A696F-37A6-488C-B4F3-4F99FC665A47 - e30792c2eb822663"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GeekBrainsTestProject.PhotosCollectionViewController.photos.didset : Swift.Array&lt;GeekBrainsTestProject.Photo&gt;"
-                  moduleName = "GeekBrainsTestProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/denismordvinov/Desktop/Geekbrains/GeekBrainsiOSCourse/GBHomeWork2/GeekBrainsTestProject/Controllers/PhotosCollectionViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "31">
-               </Location>
-               <Location
-                  uuid = "508A696F-37A6-488C-B4F3-4F99FC665A47 - 33e3c46d0947f947"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (GeekBrainsTestProject.Photo) -&gt; () in GeekBrainsTestProject.PhotosCollectionViewController.photos.didset : Swift.Array&lt;GeekBrainsTestProject.Photo&gt;"
-                  moduleName = "GeekBrainsTestProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/denismordvinov/Desktop/Geekbrains/GeekBrainsiOSCourse/GBHomeWork2/GeekBrainsTestProject/Controllers/PhotosCollectionViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "115">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "610C4E95-0109-4ABA-9B55-A895100F510F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeekBrainsTestProject/Controllers/PhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "photos"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3C91FC00-0AE5-4391-89B9-CBB7DB1FCE98"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeekBrainsTestProject/Controllers/PhotosCollectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "photos"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
