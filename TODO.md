@@ -7,4 +7,4 @@
 5. Request max res image for Friend if it is exist
 6. Pass over Login/Pass from LoginVC to VKLoginVC
 7. Tile style in PhotosCollection
-
+8. Add blurView as a background for LikedYou view
