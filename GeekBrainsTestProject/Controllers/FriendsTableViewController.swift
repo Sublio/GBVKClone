@@ -69,7 +69,10 @@ class FriendsTableViewController: UITableViewController {
                     case let .success(friends):
                         guard let realmManager = self?.realmManager else { return }
                         self?.loadingView.removeLoadingView()
-                        self?.realmManager.createFriendsDB(friends: friends) // создаем базу из того что прилетело от api
+                        let friendsWithoutDeleted = friends.filter{
+                            !$0.name.isEmpty
+                        }
+                        self?.realmManager.createFriendsDB(friends: friendsWithoutDeleted) // создаем базу из того что прилетело от api
                         self?.notFilteredFriends = realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
                         self?.tableView.reloadData()
                         self?.loadingView.removeLoadingView()
