@@ -6,3 +6,5 @@
 4. Form Realm DB in background queue not in Main Thread(remove loading indicator)
 5. Pass over Login/Pass from LoginVC to VKLoginVC
 6. Add blurView as a background for LikedYou view
+7. Finish sign out from button logic
+8. Store token in Keychains

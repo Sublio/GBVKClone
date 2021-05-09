@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginvc" id="BYZ-38-t0r" customClass="LoginViewController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <subviews>
@@ -595,7 +595,7 @@
         <!--Friends-->
         <scene sceneID="bhT-pO-YYc">
             <objects>
-                <navigationController modalPresentationStyle="overFullScreen" id="cxV-u2-Tus" customClass="CustomNavigationController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="friendsVC" modalPresentationStyle="overFullScreen" id="cxV-u2-Tus" customClass="CustomNavigationController" customModule="GeekBrainsTestProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="list.dash" catalog="system" selectedImage="list.star" id="iLO-l3-D9I"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JCm-n6-ubB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -616,7 +616,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Ik9-1C-u7t">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="j0V-tr-GRH" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarVC" modalPresentationStyle="fullScreen" id="j0V-tr-GRH" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ORq-aQ-3c9"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7SI-AG-HfT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>

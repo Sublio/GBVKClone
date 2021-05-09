@@ -8,8 +8,7 @@
 import UIKit
 
 class PhotoPostTableViewCell: UITableViewCell {
-    
-    
+
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var postImage: UIImageView!
@@ -17,7 +16,7 @@ class PhotoPostTableViewCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var reposts: UILabel!
     @IBOutlet weak var views: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

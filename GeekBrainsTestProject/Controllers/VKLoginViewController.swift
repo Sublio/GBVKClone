@@ -12,7 +12,7 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
 
     let segueToFriendsTableView = "fromWebViewToFriends"
     let networkManager = NetworkManager.shared
-    
+
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -59,11 +59,11 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
         decisionHandler(.cancel)
         performSegue(withIdentifier: segueToFriendsTableView, sender: nil)
     }
-    
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.activityIndicator.stopAnimating()
     }
-    
+
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.activityIndicator.stopAnimating()
     }

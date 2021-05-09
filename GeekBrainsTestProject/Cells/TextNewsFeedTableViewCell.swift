@@ -16,5 +16,5 @@ class TextNewsFeedTableViewCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var reposts: UILabel!
     @IBOutlet weak var views: UILabel!
-    
+
 }

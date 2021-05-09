@@ -39,7 +39,7 @@ class NewsFeedTableViewController: UITableViewController {
         cell.likes.text = "20"
         cell.postAvatarImage.image = UIImage(named: "face1")
         cell.reposts.text = "20"
-        
+
         return cell
     }
 

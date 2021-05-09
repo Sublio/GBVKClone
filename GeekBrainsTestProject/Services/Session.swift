@@ -13,4 +13,10 @@ class Session {
     private init () {}
 
     var token: String = ""
+
+    func setTokenSessionFromDefaults() {
+        if let token = UserDefaults.standard.string(forKey: "token") {
+            self.token = token
+        }
+    }
 }
