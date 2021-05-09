@@ -232,11 +232,13 @@ class FriendsTableViewController: UITableViewController {
     }
 
     @objc func signOut() {
-        // TODO
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let vc = storyboard.instantiateInitialViewController() else { return }
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() else { return }
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+        UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
+        UserDefaults.standard.setValue("", forKey: "token")
+        
     }
 }
 
