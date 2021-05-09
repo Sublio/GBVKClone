@@ -19,7 +19,9 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        likedView.frame = CGRect(x: self.frame.maxX + 40, y: self.frame.maxY + 40, width: 20, height: 20)
+        likedView.frame = CGRect(x: contentView.bounds.maxX, y: contentView.bounds.maxY, width: 40, height: 10)
+        likedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(likedView)
         commonInit()
     }
     
@@ -27,7 +29,6 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.backgroundColor = .white
         self.photo.contentMode = .scaleAspectFill
-        addSubview(likedView)
     }
     
     private func commonInit() {
