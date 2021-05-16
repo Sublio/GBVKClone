@@ -238,7 +238,7 @@ class FriendsTableViewController: UITableViewController {
         self.present(vc, animated: true)
         UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
         UserDefaults.standard.setValue("", forKey: "token")
-        
+        view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
 
