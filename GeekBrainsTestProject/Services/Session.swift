@@ -14,8 +14,8 @@ class Session {
 
     var token: String = ""
 
-    func setTokenSessionFromDefaults() {
-        if let token = UserDefaults.standard.string(forKey: "token") {
+    func setTokenSessionFromKeychains() {
+        if let token = KeychainService.loadToken(service: "tokenStorage") {
             self.token = token
         }
     }

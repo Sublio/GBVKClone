@@ -55,8 +55,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
 
         if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
-            let loginVC: UIViewController = storyboard.instantiateViewController(withIdentifier: "loginvc") as! LoginViewController
-            self.window?.rootViewController = loginVC
+            if let loginVC: UIViewController = storyboard.instantiateViewController(withIdentifier: "loginvc") as? LoginViewController {
+                self.window?.rootViewController = loginVC
+            }
         } else {
             let homeVC: UITabBarController = storyboard.instantiateViewController(identifier: "TabBarVC")
             self.window?.rootViewController = homeVC

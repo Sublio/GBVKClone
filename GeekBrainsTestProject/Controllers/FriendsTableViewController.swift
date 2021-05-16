@@ -57,7 +57,8 @@ class FriendsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UserDefaults.standard.setValue(true, forKey: "isLoggedIn")
-        UserDefaults.standard.setValue(Session.shared.token, forKey: "token")
+//        UserDefaults.standard.setValue(Session.shared.token, forKey: "token")
+        KeychainService.saveToken(service: "tokenStorage", data: Session.shared.token)
     }
 
     override func viewDidLoad() {
@@ -238,7 +239,7 @@ class FriendsTableViewController: UITableViewController {
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
         UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
-        UserDefaults.standard.setValue("", forKey: "token")
+        KeychainService.removeToken(service: "tokenStorage")
         view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }

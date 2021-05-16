@@ -14,6 +14,7 @@
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
 		4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */; };
+		4C39507C2650E887005CC644 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39507B2650E887005CC644 /* KeychainService.swift */; };
 		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
 		4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AA78A261589C3005EFA89 /* Photo.swift */; };
 		4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */; };
@@ -81,6 +82,7 @@
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePageViewController.swift; sourceTree = "<group>"; };
+		4C39507B2650E887005CC644 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewProtocol.swift; sourceTree = "<group>"; };
 		4C4AA78A261589C3005EFA89 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				4CAB76FA2603FE0000092073 /* Session.swift */,
 				4C943329261289310015C6A3 /* NetworkManager.swift */,
 				4CA577A626287D2B00446F39 /* RealmManager.swift */,
+				4C39507B2650E887005CC644 /* KeychainService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */,
 				4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */,
 				4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */,
+				4C39507C2650E887005CC644 /* KeychainService.swift in Sources */,
 				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
