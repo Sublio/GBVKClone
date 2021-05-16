@@ -10,7 +10,6 @@ import Security
 
 // Arguments for the keychain queries
 let kSecClassValue = NSString(format: kSecClass)
-let kSecAttrAccountValue = NSString(format: kSecAttrAccount)
 let kSecValueDataValue = NSString(format: kSecValueData)
 let kSecClassGenericPasswordValue = NSString(format: kSecClassGenericPassword)
 let kSecAttrServiceValue = NSString(format: kSecAttrService)
@@ -19,22 +18,6 @@ let kSecReturnDataValue = NSString(format: kSecReturnData)
 let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
 
 class KeychainService: NSObject {
-
-    class func updateToken(service: String, account: String, data: String) {
-           if let dataFromString: Data = data.data(using: String.Encoding.utf8, allowLossyConversion: false) {
-
-               // Instantiate a new default keychain query
-               let keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPasswordValue, service, account], forKeys: [kSecClassValue, kSecAttrServiceValue, kSecAttrAccountValue])
-
-               let status = SecItemUpdate(keychainQuery as CFDictionary, [kSecValueDataValue: dataFromString] as CFDictionary)
-
-               if status != errSecSuccess {
-                   if let err = SecCopyErrorMessageString(status, nil) {
-                       print("Read failed: \(err)")
-                   }
-               }
-           }
-       }
 
     class func removeToken(service: String) {
 
