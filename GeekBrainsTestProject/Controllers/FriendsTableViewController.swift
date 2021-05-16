@@ -234,6 +234,7 @@ class FriendsTableViewController: UITableViewController {
     @objc func signOut() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() else { return }
+        view.window?.rootViewController = vc
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
         UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
