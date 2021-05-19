@@ -13,6 +13,12 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
     let segueToFriendsTableView = "fromWebViewToFriends"
     let networkManager = NetworkManager.shared
 
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+
     @IBOutlet weak var webView: WKWebView! {
         didSet {
             webView.navigationDelegate = self
@@ -23,6 +29,11 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
         super.viewWillAppear(animated)
         if let vkRequest = networkManager.formAutoriseVKRequest() {
             webView.load(vkRequest)
+            self.webView.addSubview(self.activityIndicator)
+            activityIndicator.centerXAnchor.constraint(equalTo: webView.centerXAnchor).isActive = true
+            activityIndicator.centerYAnchor.constraint(equalTo: webView.centerYAnchor).isActive = true
+            self.activityIndicator.startAnimating()
+            self.activityIndicator.hidesWhenStopped = true
         }
     }
 
@@ -47,5 +58,13 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
         Session.shared.token = token
         decisionHandler(.cancel)
         performSegue(withIdentifier: segueToFriendsTableView, sender: nil)
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.activityIndicator.stopAnimating()
+    }
+
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.activityIndicator.stopAnimating()
     }
 }

@@ -29,16 +29,16 @@ class LikedCustomView: UIView {
 
     override func layoutSubviews() {
 
-        addSubview(imageView)
         addSubview(likeCounter)
+        addSubview(imageView)
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.animate)))
 
-        imageView.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 90).isActive = true
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        likeCounter.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        likeCounter.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        likeCounter.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        likeCounter.widthAnchor.constraint(equalToConstant: 90).isActive = true
         likeCounter.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         likeCounter.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 

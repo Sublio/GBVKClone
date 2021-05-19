@@ -14,6 +14,7 @@
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
 		4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */; };
+		4C39507C2650E887005CC644 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39507B2650E887005CC644 /* KeychainService.swift */; };
 		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
 		4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AA78A261589C3005EFA89 /* Photo.swift */; };
 		4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */; };
@@ -34,7 +35,7 @@
 		4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418425DAC5C900894D81 /* UserStubFactory.swift */; };
 		4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418B25DAE1D600894D81 /* DMSearchBar.swift */; };
 		4C7B419625DC015200894D81 /* GroupStubFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B419525DC015200894D81 /* GroupStubFactory.swift */; };
-		4C7B419925DC06C600894D81 /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B419825DC06C600894D81 /* NewsFeedTableViewCell.swift */; };
+		4C7B419925DC06C600894D81 /* TextNewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B419825DC06C600894D81 /* TextNewsFeedTableViewCell.swift */; };
 		4C7B419C25DC070100894D81 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B419B25DC070100894D81 /* NewsFeedTableViewController.swift */; };
 		4C7B41A525DC43E600894D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C7B41A425DC43E600894D81 /* Assets.xcassets */; };
 		4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */; };
@@ -59,6 +60,7 @@
 		4CC84D4A25E6FF9700FD7949 /* NavigationTransitionPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */; };
 		4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */; };
 		4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */; };
+		4CD75CC526420EB700A3F49D /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD75CC426420EB700A3F49D /* PhotoPostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePageViewController.swift; sourceTree = "<group>"; };
+		4C39507B2650E887005CC644 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewProtocol.swift; sourceTree = "<group>"; };
 		4C4AA78A261589C3005EFA89 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +102,7 @@
 		4C7B418425DAC5C900894D81 /* UserStubFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStubFactory.swift; sourceTree = "<group>"; };
 		4C7B418B25DAE1D600894D81 /* DMSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSearchBar.swift; sourceTree = "<group>"; };
 		4C7B419525DC015200894D81 /* GroupStubFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupStubFactory.swift; sourceTree = "<group>"; };
-		4C7B419825DC06C600894D81 /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
+		4C7B419825DC06C600894D81 /* TextNewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		4C7B419B25DC070100894D81 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
 		4C7B41A425DC43E600894D81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLoadingView.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionPop.swift; sourceTree = "<group>"; };
 		4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		4CD75CC426420EB700A3F49D /* PhotoPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPostTableViewCell.swift; sourceTree = "<group>"; };
 		4CDB818B2616EA6A006DF760 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +203,7 @@
 				4CAB76FA2603FE0000092073 /* Session.swift */,
 				4C943329261289310015C6A3 /* NetworkManager.swift */,
 				4CA577A626287D2B00446F39 /* RealmManager.swift */,
+				4C39507B2650E887005CC644 /* KeychainService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -220,7 +225,8 @@
 				4C542A2725C65C9200CC8A4F /* FriendPhotoCollectionViewCell.xib */,
 				4C542A2E25C8A85200CC8A4F /* GroupTableViewCell.swift */,
 				4C542A2F25C8A85200CC8A4F /* GroupTableViewCell.xib */,
-				4C7B419825DC06C600894D81 /* NewsFeedTableViewCell.swift */,
+				4C7B419825DC06C600894D81 /* TextNewsFeedTableViewCell.swift */,
+				4CD75CC426420EB700A3F49D /* PhotoPostTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */,
 				4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */,
 				4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */,
+				4C39507C2650E887005CC644 /* KeychainService.swift in Sources */,
 				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
@@ -477,11 +484,12 @@
 				4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */,
 				4CC84D4225E6F92800FD7949 /* MyCustomSegue.swift in Sources */,
 				4C7B419C25DC070100894D81 /* NewsFeedTableViewController.swift in Sources */,
+				4CD75CC526420EB700A3F49D /* PhotoPostTableViewCell.swift in Sources */,
 				4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */,
 				4CC84D4A25E6FF9700FD7949 /* NavigationTransitionPop.swift in Sources */,
 				4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */,
 				4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */,
-				4C7B419925DC06C600894D81 /* NewsFeedTableViewCell.swift in Sources */,
+				4C7B419925DC06C600894D81 /* TextNewsFeedTableViewCell.swift in Sources */,
 				4C542A3A25C8B5B400CC8A4F /* Friend.swift in Sources */,
 				4CC84D3E25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift in Sources */,
 			);
@@ -647,6 +655,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L9HFNV2AWC;
 				INFOPLIST_FILE = GeekBrainsTestProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -654,6 +663,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.denismordvinov.geekBrainsTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -667,6 +677,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L9HFNV2AWC;
 				INFOPLIST_FILE = GeekBrainsTestProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -674,6 +685,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.denismordvinov.geekBrainsTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -767,7 +779,7 @@
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.7.2;
+				minimumVersion = 10.7.6;
 			};
 		};
 		4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {

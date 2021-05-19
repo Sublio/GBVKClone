@@ -26,6 +26,11 @@ class FriendsTableViewController: UITableViewController {
         notFilteredFriends.map {($0.name )}
     }
 
+    var signOutButton: UIBarButtonItem {
+        let button = UIBarButtonItem(title: "SignOut", style: .plain, target: self, action: #selector(signOut))
+        return button
+    }
+
     var userIds: [Int] {
         notFilteredFriends.map {($0.id )}
     }
@@ -49,9 +54,17 @@ class FriendsTableViewController: UITableViewController {
 
     weak var delegate: PhotosTableViewDelegateProtocol?
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserDefaults.standard.setValue(true, forKey: "isLoggedIn")
+//        UserDefaults.standard.setValue(Session.shared.token, forKey: "token")
+        KeychainService.saveToken(service: "tokenStorage", data: Session.shared.token)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let navigationController = self.navigationController else { return }
+        navigationItem.leftBarButtonItem = signOutButton
         let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
         self.tableView.addSubview(calculatedLoadingView)
 
@@ -69,7 +82,7 @@ class FriendsTableViewController: UITableViewController {
                     case let .success(friends):
                         guard let realmManager = self?.realmManager else { return }
                         self?.loadingView.removeLoadingView()
-                        let friendsWithoutDeleted = friends.filter{
+                        let friendsWithoutDeleted = friends.filter {
                             !$0.name.isEmpty
                         }
                         self?.realmManager.createFriendsDB(friends: friendsWithoutDeleted) // создаем базу из того что прилетело от api
@@ -217,6 +230,17 @@ class FriendsTableViewController: UITableViewController {
             return (friend.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
+    }
+
+    @objc func signOut() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() else { return }
+        view.window?.rootViewController = vc
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+        UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
+        KeychainService.removeToken(service: "tokenStorage")
+        view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
 

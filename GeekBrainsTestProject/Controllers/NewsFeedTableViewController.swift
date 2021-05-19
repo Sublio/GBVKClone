@@ -32,11 +32,14 @@ class NewsFeedTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NewsFeedTableViewCell
-        cell.userName.text = "David"
-        cell.picture.image = ((indexPath.row % 2) != 0) ? UIImage(named: "france") : UIImage(named: "winders")
-        cell.date.text = "14/11/2009"
-        cell.avatar.image = UIImage(named: "face1")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "textPostCell", for: indexPath) as! TextNewsFeedTableViewCell
+        cell.postAuthor.text = "David"
+        cell.views.text = "22"
+        cell.comments.text = "109"
+        cell.likes.text = "20"
+        cell.postAvatarImage.image = UIImage(named: "face1")
+        cell.reposts.text = "20"
+
         return cell
     }
 

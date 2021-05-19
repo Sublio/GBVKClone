@@ -67,7 +67,7 @@ class NetworkManager {
                 let itemsJSON = json["response"]["items"].arrayValue
                 for item in itemsJSON {
                     let pictureSizesArray = item["sizes"].arrayValue
-                    let mediumPictureSize = pictureSizesArray[2] // large size
+                    guard let mediumPictureSize = pictureSizesArray.last else { return }// largest size from array of sizes
                     let photo = Photo(json: mediumPictureSize)
                     results.append(photo)
                 }

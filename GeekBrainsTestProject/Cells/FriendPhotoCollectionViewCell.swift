@@ -8,28 +8,29 @@
 import UIKit
 
 class FriendPhotoCollectionViewCell: UICollectionViewCell {
-    
+
     lazy var spinner = UIActivityIndicatorView(style: .medium)
     @IBOutlet weak var photo: UIImageView!
-    
+
     let likedView: LikedCustomView = {
         let view = LikedCustomView()
         return view
     }()
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        likedView.frame = CGRect(x: self.frame.maxX + 40, y: self.frame.maxY + 40, width: 20, height: 20)
+        likedView.frame = CGRect(x: contentView.bounds.maxX, y: contentView.bounds.maxY, width: 40, height: 10)
+        likedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(likedView)
         commonInit()
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .white
         self.photo.contentMode = .scaleAspectFill
-        addSubview(likedView)
     }
-    
+
     private func commonInit() {
         spinner.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(spinner)
