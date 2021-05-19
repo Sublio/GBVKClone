@@ -8,6 +8,8 @@
 import UIKit
 
 class NewsFeedTableViewController: UITableViewController {
+    
+    let vkService = VKService.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +17,9 @@ class NewsFeedTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 600
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
+        vkService.getNewsFeedTextPosts()
+        //vkService.getNewsFeedPhotoPosts()
+        
     }
 
     // MARK: - Table view data source

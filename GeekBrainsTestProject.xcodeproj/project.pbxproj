@@ -29,6 +29,9 @@
 		4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */; };
 		4C542A3A25C8B5B400CC8A4F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A3925C8B5B400CC8A4F /* Friend.swift */; };
 		4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A3D25C8B5BE00CC8A4F /* Group.swift */; };
+		4C6D36FE2654CB88003499E1 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D36FD2654CB88003499E1 /* VKService.swift */; };
+		4C6D37002654CD11003499E1 /* NewsFeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D36FF2654CD11003499E1 /* NewsFeedPost.swift */; };
+		4C6D370226554EE7003499E1 /* NewsFeedPhotoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D370126554EE7003499E1 /* NewsFeedPhotoPost.swift */; };
 		4C6F450E25FBF05E009CD6B0 /* GradientVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F450D25FBF05E009CD6B0 /* GradientVIew.swift */; };
 		4C708553261BCB1300BB17A5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C708552261BCB1300BB17A5 /* RealmSwift */; };
 		4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B417F25DAB78800894D81 /* DM+UIColor.swift */; };
@@ -97,6 +100,9 @@
 		4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchTableViewController.swift; sourceTree = "<group>"; };
 		4C542A3925C8B5B400CC8A4F /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		4C542A3D25C8B5BE00CC8A4F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		4C6D36FD2654CB88003499E1 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
+		4C6D36FF2654CD11003499E1 /* NewsFeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedPost.swift; sourceTree = "<group>"; };
+		4C6D370126554EE7003499E1 /* NewsFeedPhotoPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedPhotoPost.swift; sourceTree = "<group>"; };
 		4C6F450D25FBF05E009CD6B0 /* GradientVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientVIew.swift; sourceTree = "<group>"; };
 		4C7B417F25DAB78800894D81 /* DM+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+UIColor.swift"; sourceTree = "<group>"; };
 		4C7B418425DAC5C900894D81 /* UserStubFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStubFactory.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 				4C943329261289310015C6A3 /* NetworkManager.swift */,
 				4CA577A626287D2B00446F39 /* RealmManager.swift */,
 				4C39507B2650E887005CC644 /* KeychainService.swift */,
+				4C6D36FD2654CB88003499E1 /* VKService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -238,6 +245,8 @@
 				4C542A3D25C8B5BE00CC8A4F /* Group.swift */,
 				4C4AA78A261589C3005EFA89 /* Photo.swift */,
 				4CA577AA262973C500446F39 /* SearchableGroup.swift */,
+				4C6D36FF2654CD11003499E1 /* NewsFeedPost.swift */,
+				4C6D370126554EE7003499E1 /* NewsFeedPhotoPost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -450,9 +459,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CAB76FB2603FE0000092073 /* Session.swift in Sources */,
+				4C6D370226554EE7003499E1 /* NewsFeedPhotoPost.swift in Sources */,
 				4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */,
 				4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */,
 				4C7B419625DC015200894D81 /* GroupStubFactory.swift in Sources */,
+				4C6D36FE2654CB88003499E1 /* VKService.swift in Sources */,
 				4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */,
 				4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */,
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
@@ -479,6 +490,7 @@
 				4C39507C2650E887005CC644 /* KeychainService.swift in Sources */,
 				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
+				4C6D37002654CD11003499E1 /* NewsFeedPost.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
 				4C9CC6D4261805F70089B832 /* ZoomFullScreenPhotoViewController.swift in Sources */,
 				4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */,
