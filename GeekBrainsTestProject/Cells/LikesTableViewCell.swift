@@ -13,7 +13,7 @@ class LikesTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsCount: UILabel!
     @IBOutlet weak var reportsCount: UILabel!
     @IBOutlet weak var viewsCount: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

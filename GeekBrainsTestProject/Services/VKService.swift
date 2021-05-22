@@ -9,20 +9,20 @@ import Foundation
 import SwiftyJSON
 
 class VKService {
-    
+
     static let shared = VKService()
     let networkManager = NetworkManager.shared
 
     private init () {}
-    
-    func getNewsFeedTextPosts(returnCompletion:@escaping ((NewsFeedPostObject))->()){
+
+    func getNewsFeedTextPosts(returnCompletion:@escaping ((NewsFeedPostObject))->Void) {
         let dispatchGroup = DispatchGroup()
-        
-        DispatchQueue.global().async(group: dispatchGroup){
-            self.networkManager.getNewsFeedPostViaAlamofire(count: 1,completion: { result in
+
+        DispatchQueue.global().async(group: dispatchGroup) {
+            self.networkManager.getNewsFeedPostViaAlamofire(count: 1, completion: { result in
                 switch result {
                 case let .failure(error):
-                    print (error)
+                    print(error)
                 case let .success(data):
                     guard let json = try? JSON(data: data) else { return }
                     let newsFeedJsonItems = json["response"]["items"].arrayValue
@@ -37,12 +37,12 @@ class VKService {
             })
         }
     }
-            
-    func getNewsFeedPhotoPosts(){
-        networkManager.getNewsFeedPhotoPostViaAlamofire(count: 1,completion: { result in
+
+    func getNewsFeedPhotoPosts() {
+        networkManager.getNewsFeedPhotoPostViaAlamofire(count: 1, completion: { result in
             switch result {
             case let .failure(error):
-                print (error)
+                print(error)
             case let .success(posts):
                 print(posts)
             }

@@ -158,8 +158,8 @@ class NetworkManager {
             }
         }
     }
-    
-    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Result<Data, Error>)->Void){
+
+    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Result<Data, Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/newsfeed.get"
@@ -169,7 +169,7 @@ class NetworkManager {
             "count": count,
             "v": vkApiVersion
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
@@ -180,8 +180,8 @@ class NetworkManager {
             }
         }
     }
-    
-    func getNewsFeedPhotoPostViaAlamofire(count: Int, completion: @escaping(Result<[NewsFeedPhotoPost], Error>)->Void){
+
+    func getNewsFeedPhotoPostViaAlamofire(count: Int, completion: @escaping(Result<[NewsFeedPhotoPost], Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/newsfeed.get"
@@ -191,7 +191,7 @@ class NetworkManager {
             "count": count,
             "v": vkApiVersion
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
@@ -200,7 +200,7 @@ class NetworkManager {
                 guard let data = data,
                       let json = try? JSON(data: data) else { return }
                 let newsFeedJSONresponse = json["response"]["items"].arrayValue
-                //TODO: There is still a problem with getting avatar and author for particular posts
+                // TODO: There is still a problem with getting avatar and author for particular posts
                 let posts = newsFeedJSONresponse.map { NewsFeedPhotoPost(json: $0) }
                 completion(.success(posts))
             }
