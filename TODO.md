@@ -6,6 +6,4 @@
 4. Form Realm DB in background queue not in Main Thread(remove loading indicator)
 5. Pass over Login/Pass from LoginVC to VKLoginVC
 6. Add blurView as a background for LikedYou view
-7. Find a way how to pull header and avatar in NewsFeedPost
-8. Finish PhotoPost JSON parcing.
-8. Find a way how to pull header and avatar in NewsFeedPhotoPost
+
