@@ -6,7 +6,6 @@
 //
 
 import SwiftyJSON
-import UIKit
 
 class NewsFeedPost {
     var postId: Int = 0
@@ -15,8 +14,6 @@ class NewsFeedPost {
     var reposts: Int = 0
     var views: Int = 0
     var text: String = ""
-    var avatarUrl: String = ""
-    var profileName: String = ""
 
     convenience init (json: SwiftyJSON.JSON) {
         self.init()

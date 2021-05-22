@@ -17,9 +17,18 @@ class NewsFeedTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 600
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
-        //vkService.getNewsFeedTextPosts()
-        //vkService.getNewsFeedPhotoPosts()
+        updateUI()
+    }
+    
+    private func updateUI(){
         
+        vkService.getNewsFeedTextPosts(returnCompletion:  { results in
+            DispatchQueue.main.async {
+                for result in results{
+                    print (result.likes)
+                }
+            }
+        })
     }
 
     // MARK: - Table view data source

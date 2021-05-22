@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class VKService {
     
@@ -14,20 +15,30 @@ class VKService {
 
     private init () {}
     
-    func getNewsFeedTextPosts(){
-
-        networkManager.getNewsFeedPostViaAlamofire(count: 2,completion: { result in
-            switch result {
-            case let .failure(error):
-                print (error)
-            case let .success(posts):
-                print(posts)
-            }
-        })
+    func getNewsFeedTextPosts(returnCompletion:@escaping ([NewsFeedPost])->()){
+        let dispatchGroup = DispatchGroup()
+        
+        DispatchQueue.global().async(group: dispatchGroup){
+            self.networkManager.getNewsFeedPostViaAlamofire(count: 4,completion: { result in
+                switch result {
+                case let .failure(error):
+                    print (error)
+                case let .success(data):
+                    guard let json = try? JSON(data: data) else { return }
+                    let newsFeedJsonItems = json["response"]["items"].arrayValue
+                    let parsedPosts = newsFeedJsonItems.map { NewsFeedPost(json: $0) }
+                    returnCompletion(parsedPosts as [NewsFeedPost])
+                    
+                }
+            })
+        }
     }
+            
+    
+
     
     func getNewsFeedPhotoPosts(){
-        networkManager.getNewsFeedPhotoPostViaAlamofire(count: 2,completion: { result in
+        networkManager.getNewsFeedPhotoPostViaAlamofire(count: 1,completion: { result in
             switch result {
             case let .failure(error):
                 print (error)
@@ -35,6 +46,5 @@ class VKService {
                 print(posts)
             }
         })
-
     }
 }

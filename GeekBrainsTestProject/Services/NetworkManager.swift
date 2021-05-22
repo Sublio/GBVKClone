@@ -18,7 +18,7 @@ class NetworkManager {
 
     let vkApiVersion = "5.130"
     let scheme = "https"
-    let clientId = "6704883"
+    let clientId = "7800566"
     // Wall + Friends + Offline Access
     // Ref - https://vk.com/dev/permissions
     let scope = "73730"
@@ -159,7 +159,7 @@ class NetworkManager {
         }
     }
     
-    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Result<[NewsFeedPost], Error>)->Void){
+    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Result<Data, Error>)->Void){
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/newsfeed.get"
@@ -175,14 +175,8 @@ class NetworkManager {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let data):
-                    guard let data = data,
-                          let json = try? JSON(data: data) else { return }
-                    let newsFeedJSONresponse = json["response"]["items"].arrayValue
-                    let newsFeedJsonProfiles = json["response"]["profiles"].arrayValue
-                    let newsFeedJsonGroups = json["response"]["groups"].arrayValue
-                    let posts = newsFeedJSONresponse.map { NewsFeedPost(json: $0) }
-                    completion(.success(posts))
-                
+                guard let data = data else { return }
+                    completion(.success(data))
             }
         }
     }
