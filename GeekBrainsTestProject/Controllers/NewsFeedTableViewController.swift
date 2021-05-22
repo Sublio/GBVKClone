@@ -22,11 +22,9 @@ class NewsFeedTableViewController: UITableViewController {
     
     private func updateUI(){
         
-        vkService.getNewsFeedTextPosts(returnCompletion:  { results in
+        vkService.getNewsFeedTextPosts(returnCompletion:  { result in
             DispatchQueue.main.async {
-                for result in results{
-                    print (result.likes)
-                }
+                print (result)
             }
         })
     }
