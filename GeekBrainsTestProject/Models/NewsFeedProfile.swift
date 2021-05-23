@@ -22,7 +22,7 @@ class NewsFeedProfile: RealmSwift.Object {
         self.lastName = json["last_name"].string ?? ""
         self.photoUrl = json["photo_100"].string ?? ""
     }
-    
+
     override static func primaryKey() -> String? {
         "profileId"
     }

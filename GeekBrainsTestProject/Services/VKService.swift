@@ -15,7 +15,7 @@ class VKService {
 
     private init () {}
 
-    func getNewsFeedTextPosts(returnCompletion:@escaping ((NewsFeedPostObject))->Void) {
+    func getNewsFeedTextPosts(returnCompletion:@escaping ((NewsFeedPostObject)) -> Void) {
         let dispatchGroup = DispatchGroup()
 
         DispatchQueue.global().async(group: dispatchGroup) {
