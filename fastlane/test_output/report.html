@@ -112,6 +112,8 @@
         <section id="counters">
           <h2 id="test-count"><span class="number">2</span> tests</h2>
           
+            <h2 id="fail-count"><span class="number">1</span> failures</h2>
+          
         </section>
         <section id="segment-bar">
           <a id="all-segment" onclick="selectSegment(this);" class="selected">All</a><a id="failing-segment" onclick="selectSegment(this);">Failing</a><a id="passing-segment" onclick="selectSegment(this);">Passing</a>
@@ -121,7 +123,7 @@
     <section id="test-suites">
       
         
-        <section class="test-suite passing" id="GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests">
+        <section class="test-suite failing" id="GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests">
           <section class="heading" onclick="toggleTests(this);">
             <h3 class="title">GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests</h3>
           </section>
@@ -132,7 +134,7 @@
               <tr class="test passing "  onclick="toggleDetails('testExample');">
                 <td>
                   
-                    <h3 class="time">13.459s</h3>
+                    <h3 class="time">7.887s</h3>
                   
                 </td>
                 <td><h3 class="title">testExample</h3></td>
@@ -140,14 +142,29 @@
               
             
               
-              <tr class="test passing odd"  onclick="toggleDetails('testVkButtonIsPresent');">
+              <tr class="test failing odd"  onclick="toggleDetails('testVkButtonIsPresent');">
                 <td>
-                  
-                    <h3 class="time">7.495s</h3>
                   
                 </td>
                 <td><h3 class="title">testVkButtonIsPresent</h3></td>
               </tr>
+              
+                <tr class="details failing testVkButtonIsPresent">
+                  <td></td>
+                  <td>
+                    
+                      <section class="test-detail reason">XCTAssertTrue failed</section>
+                    
+                    
+                      <section class="test-detail snippet">        <span class="k">let</span> <span class="nv">app</span> <span class="o">=</span> <span class="kt">XCUIApplication</span><span class="p">()</span>
+        <span class="kt">XCTAssertTrue</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">"vk logo icon"</span><span class="p">]</span><span class="o">.</span><span class="n">exists</span><span class="p">)</span>
+        <span class="kt">XCTAssertTrue</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">buttons</span><span class="p">[</span><span class="s">"vk logo icon"</span><span class="p">]</span><span class="o">.</span><span class="n">isHittable</span><span class="p">)</span>
+</section>
+                      <section class="test-detail">/Users/denismordvinov/Desktop/Geekbrains/GeekBrainsiOSCourse/GBHomeWork2/GeekBrainsTestProjectUITests/GeekBrainsTestProjectUITests.swift:37</section>
+                    
+                    
+                  </td>
+                </tr>
               
             
             </table>
