@@ -55,7 +55,7 @@ class RealmSavingOperation<T: ObjectProvider & Decodable>: Operation {
             if let parsedData = dependentLoadingOperation.parsedData {
                 let realm = try? Realm(configuration: Realm.Configuration(deleteRealmIfMigrationNeeded: true))
                 try? realm?.write {
-                    realm?.add(parsedData.getRealmObjects())
+                    realm?.add(parsedData.getRealmObjects(), update: .all)
                 }
             } else {
                 print("No parsed data available")

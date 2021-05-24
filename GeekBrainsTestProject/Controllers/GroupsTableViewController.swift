@@ -69,8 +69,6 @@ class GroupsTableViewController: UITableViewController {
         notificationToken = groups?.observe { [weak self] _ in
             self?.tableView.reloadData()
         }
-
-        // self.loadingView.removeLoadingView()
     }
 
     deinit {
