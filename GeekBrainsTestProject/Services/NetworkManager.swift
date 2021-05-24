@@ -126,7 +126,7 @@ class NetworkManager {
                 guard let data = data,
                       let json = try? JSON(data: data) else { return }
                 let groupJSON = json["response"]["items"].arrayValue
-                let groups = groupJSON.map { Group(json: $0) }
+                let groups = groupJSON.map { Group(value: $0) }
 
                 completion(.success(groups))
             }

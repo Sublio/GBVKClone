@@ -66,10 +66,10 @@ class NewsFeedTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let indexPathRange = 1...2
-        
-        if indexPathRange.contains(indexPath.row){
+
+        if indexPathRange.contains(indexPath.row) {
             return 180
-        }else {
+        } else {
             return 40
         }
     }

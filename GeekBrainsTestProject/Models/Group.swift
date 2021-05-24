@@ -9,20 +9,41 @@ import SwiftyJSON
 import UIKit
 import RealmSwift
 
-@objcMembers
-class  Group: RealmSwift.Object {
-    dynamic var name: String = ""
-    dynamic var photoStringUrl: String = ""
-    dynamic var id: Int = 0
+struct GroupResponse: Codable, ObjectProvider {
+    let response: GroupContainer
 
-    convenience init (json: SwiftyJSON.JSON) {
+    func getRealmObjects() -> [Object] {
+        return response.items
+    }
+}
+
+struct GroupContainer: Codable {
+    let items: [Group]
+}
+
+class Group: Object, Codable {
+    @objc dynamic var groupId: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var pictureUrlString: String = ""
+
+    required convenience init(from decoder: Decoder) throws {
         self.init()
-        self.name = json["name"].string ?? ""
-        self.photoStringUrl = json["photo_50"].string ?? ""
-        self.id = json["id"].int ?? 0
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        groupId = try container.decode(Int.self, forKey: .groupId)
+        name = try container.decode(String.self, forKey: .name)
+        pictureUrlString = try container.decode(String.self, forKey: .pictureUrlString)
     }
 
-    override static func primaryKey() -> String? {
-        "id"
+    var pictureUrl: URL? { URL(string: pictureUrlString) }
+
+    enum CodingKeys: String, CodingKey {
+        case groupId = "id"
+        case name
+        case pictureUrlString = "photo_200"
+    }
+
+    override class func primaryKey() -> String? {
+        return "groupId"
     }
 }

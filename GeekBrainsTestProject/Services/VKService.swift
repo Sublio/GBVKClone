@@ -27,11 +27,11 @@ class VKService {
                     guard let json = try? JSON(data: data) else { return }
                     let newsFeedJsonItems = json["response"]["items"].arrayValue
                     let newsFeedJsonProfiles = json["response"]["profiles"].arrayValue
-                    let newsFeedJsonGroups = json["response"]["groups"].arrayValue
+                    //let newsFeedJsonGroups = json["response"]["groups"].arrayValue
                     let parsedProfiles = newsFeedJsonProfiles.map { NewsFeedProfile(json: $0)}
-                    let parsedGroups = newsFeedJsonGroups.map {Group(json: $0)}
+                    //let parsedGroups = newsFeedJsonGroups.map {Group(value: $0)}
                     let parsedPosts = newsFeedJsonItems.map { NewsFeedPost(json: $0) }
-                    let obj = NewsFeedPostObject(posts: parsedPosts, groups: parsedGroups, profiles: parsedProfiles)
+                    let obj = NewsFeedPostObject(posts: parsedPosts, profiles: parsedProfiles)
                     returnCompletion(obj)
                 }
             })
