@@ -10,19 +10,19 @@ import RealmSwift
 import Alamofire
 
 class LoadDataOperation: AsyncOperation {
-
+    
     let url: URL
     let method: HTTPMethod
     let params: Parameters
     private(set) var downloadedData: Data?
     private var dataTask: URLSessionDataTask?
-
+    
     init(url: URL, method: HTTPMethod = .get, params: Parameters = [:]) {
         self.url = url
         self.method = method
         self.params = params
     }
-
+    
     override func main() {
         AF.request(url, method: method, parameters: params).responseData { result in
             guard !self.isCancelled else { return }
@@ -34,9 +34,9 @@ class LoadDataOperation: AsyncOperation {
 class ParsingOperation<T: Decodable>: Operation {
     private(set) var data: Data?
     private(set) var parsedData: T?
-
+    
     public override func main() {
-
+        
         if let dependentLoadingOperation = dependencies.compactMap({ $0 as? LoadDataOperation }).first {
             if let data = dependentLoadingOperation.downloadedData {
                 self.data = data
@@ -49,7 +49,7 @@ class ParsingOperation<T: Decodable>: Operation {
 }
 
 class RealmSavingOperation<T: ObjectProvider & Decodable>: Operation {
-
+    
     public override func main() {
         if let dependentLoadingOperation = dependencies.compactMap({ $0 as? ParsingOperation<T> }).first {
             if let parsedData = dependentLoadingOperation.parsedData {

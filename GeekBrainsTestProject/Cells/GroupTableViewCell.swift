@@ -8,7 +8,7 @@
 import UIKit
 
 class GroupTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var groupAvatar: RoundedView!
     @IBOutlet weak var groupLabel: UILabel!
     override func awakeFromNib() {
@@ -16,11 +16,11 @@ class GroupTableViewCell: UITableViewCell {
         // Initialization code
         self.backgroundColor = .clear
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

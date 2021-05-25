@@ -8,7 +8,7 @@
 import UIKit
 
 class FriendTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var roundedView: RoundedView!
     @IBOutlet weak var friendLabel: UILabel!
     override func awakeFromNib() {
@@ -16,10 +16,10 @@ class FriendTableViewCell: UITableViewCell {
         // Initialization code
         self.backgroundColor = .clear
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 }

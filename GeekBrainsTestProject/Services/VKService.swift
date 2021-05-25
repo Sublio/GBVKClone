@@ -9,15 +9,15 @@ import Foundation
 import SwiftyJSON
 
 class VKService {
-
+    
     static let shared = VKService()
     let networkManager = NetworkManager.shared
-
+    
     private init () {}
-
+    
     func getNewsFeedTextPosts(returnCompletion:@escaping ((NewsFeedPostObject)) -> Void) {
         let dispatchGroup = DispatchGroup()
-
+        
         DispatchQueue.global().async(group: dispatchGroup) {
             self.networkManager.getNewsFeedPostViaAlamofire(count: 1, completion: { result in
                 switch result {
@@ -37,7 +37,7 @@ class VKService {
             })
         }
     }
-
+    
     func getNewsFeedPhotoPosts() {
         networkManager.getNewsFeedPhotoPostViaAlamofire(count: 1, completion: { result in
             switch result {

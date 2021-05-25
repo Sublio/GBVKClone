@@ -9,11 +9,11 @@ import Foundation
 
 class Session {
     static let shared = Session()
-
+    
     private init () {}
-
+    
     var token: String = ""
-
+    
     func setTokenSessionFromKeychains() {
         if let token = KeychainService.loadToken(service: "tokenStorage") {
             self.token = token
