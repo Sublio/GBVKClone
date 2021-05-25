@@ -9,15 +9,15 @@ import Foundation
 import SwiftyJSON
 
 class VKService {
-    
+
     static let shared = VKService()
     let networkManager = NetworkManager.shared
-    
+
     private init () {}
-    
+
     func getNewsFeedTextPosts(returnCompletion:@escaping ((NewsFeedPostObject)) -> Void) {
         let dispatchGroup = DispatchGroup()
-        
+
         DispatchQueue.global().async(group: dispatchGroup) {
             self.networkManager.getNewsFeedPostViaAlamofire(count: 1, completion: { result in
                 switch result {
@@ -27,9 +27,9 @@ class VKService {
                     guard let json = try? JSON(data: data) else { return }
                     let newsFeedJsonItems = json["response"]["items"].arrayValue
                     let newsFeedJsonProfiles = json["response"]["profiles"].arrayValue
-                    //let newsFeedJsonGroups = json["response"]["groups"].arrayValue
+                    // let newsFeedJsonGroups = json["response"]["groups"].arrayValue
                     let parsedProfiles = newsFeedJsonProfiles.map { NewsFeedProfile(json: $0)}
-                    //let parsedGroups = newsFeedJsonGroups.map {Group(value: $0)}
+                    // let parsedGroups = newsFeedJsonGroups.map {Group(value: $0)}
                     let parsedPosts = newsFeedJsonItems.map { NewsFeedPost(json: $0) }
                     let obj = NewsFeedPostObject(posts: parsedPosts, profiles: parsedProfiles)
                     returnCompletion(obj)
@@ -37,7 +37,7 @@ class VKService {
             })
         }
     }
-    
+
     func getNewsFeedPhotoPosts() {
         networkManager.getNewsFeedPhotoPostViaAlamofire(count: 1, completion: { result in
             switch result {

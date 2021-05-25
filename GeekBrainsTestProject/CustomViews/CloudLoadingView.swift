@@ -8,18 +8,18 @@
 import UIKit
 
 class CloudLoadingView: UIView {
-    
+
     override func draw(_ rect: CGRect) {
         // General Declarations
         let context = UIGraphicsGetCurrentContext()!
-        
+
         // Color Declarations
         let fillColor = UIColor.blueZero
-        
+
         context.saveGState()
         context.translateBy(x: 0, y: 0.44)
         context.scaleBy(x: 0.1, y: 0.1)
-        
+
         // Bezier Drawing
         let bezierPath = UIBezierPath()
         bezierPath.move(to: CGPoint(x: 406.41, y: 136.15))
@@ -57,7 +57,7 @@ class CloudLoadingView: UIView {
         bezierPath.close()
         fillColor.setFill()
         bezierPath.fill()
-        
+
         let shapeLayer = CAShapeLayer()
         shapeLayer.fillColor = UIColor.blueZero.cgColor
         shapeLayer.strokeColor = UIColor.blueOne.cgColor
@@ -65,32 +65,32 @@ class CloudLoadingView: UIView {
         shapeLayer.lineCap = .round
         bezierPath.apply(CGAffineTransform(scaleX: 0.1, y: 0.1))
         shapeLayer.path = bezierPath.cgPath
-        
+
         // animation for shapeLayer
         // 0.515 - полный круг анимации
-        
+
         let strokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
         strokeEndAnimation.fromValue = 0
         strokeEndAnimation.toValue = 0.515 // увеличивать на динамическиую константу
         strokeEndAnimation.speed = 0.2
         strokeEndAnimation.repeatCount = Float.infinity
         strokeEndAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        
+
         let strokeStartAnimation = CABasicAnimation(keyPath: "strokeStart")
         strokeStartAnimation.fromValue = 0.0 // уменьшать на динамическую константу
         strokeStartAnimation.toValue = 0.400
         strokeStartAnimation.speed = 0.2
         strokeStartAnimation.repeatCount = Float.infinity
         strokeStartAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        
+
         shapeLayer.add(strokeStartAnimation, forKey: nil)
         shapeLayer.add(strokeEndAnimation, forKey: nil)
-        
+
         layer.addSublayer(shapeLayer)
-        
+
         context.restoreGState()
     }
-    
+
     override func layoutSubviews() {
         backgroundColor = .clear
     }

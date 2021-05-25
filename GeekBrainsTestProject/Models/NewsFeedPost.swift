@@ -16,7 +16,7 @@ class NewsFeedPost: RealmSwift.Object {
     dynamic var reposts: Int = 0
     dynamic var views: Int = 0
     dynamic var text: String = ""
-    
+
     convenience init (json: SwiftyJSON.JSON) {
         self.init()
         self.postId = json["post_id"].int ?? 0
@@ -26,7 +26,7 @@ class NewsFeedPost: RealmSwift.Object {
         self.views = json["views"]["count"].int ?? 0
         self.text = json["text"].string ?? ""
     }
-    
+
     override static func primaryKey() -> String? {
         "postId"
     }

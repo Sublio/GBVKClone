@@ -11,17 +11,17 @@ class MyTransitionDismiss: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1.5
     }
-    
+
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let source = transitionContext.viewController(forKey: .from) else { return }
         guard let destination = transitionContext.viewController(forKey: .to) else { return }
-        
+
         let containerViewFrame = transitionContext.containerView.frame
         let sourceViewTargetFrame = CGRect(x: 0, y: -containerViewFrame.height, width: source.view.frame.width, height: source.view.frame.height)
         let destinationViewTargetFrame = source.view.frame
         transitionContext.containerView.addSubview(source.view)
         destination.view.frame = CGRect(x: 0, y: containerViewFrame.height, width: source.view.frame.width, height: source.view.frame.height)
-        
+
         UIView.animate(withDuration: self.transitionDuration(using: transitionContext)) {
             source.view.frame = sourceViewTargetFrame
             destination.view.frame = destinationViewTargetFrame
@@ -29,9 +29,9 @@ class MyTransitionDismiss: NSObject, UIViewControllerAnimatedTransitioning {
             source.removeFromParent()
             transitionContext.completeTransition(transitionContext.transitionWasCancelled)
         }
-        
+
     }
-    
+
     func animationEnded(_ transitionCompleted: Bool) {
         print("Transition has ended in dismiss")
     }

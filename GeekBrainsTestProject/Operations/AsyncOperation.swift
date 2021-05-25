@@ -14,7 +14,7 @@ class AsyncOperation: Operation {
             return "is" + rawValue.capitalized
         }
     }
-    
+
     var state = State.ready {
         willSet {
             willChangeValue(forKey: state.keyPath)
@@ -25,15 +25,15 @@ class AsyncOperation: Operation {
             didChangeValue(forKey: oldValue.keyPath)
         }
     }
-    
+
     override var isAsynchronous: Bool {
         return true
     }
-    
+
     override var isReady: Bool {
         return super.isReady && state == .ready
     }
-    
+
     override var isExecuting: Bool {
         return state == .executing
     }

@@ -8,13 +8,13 @@
 import UIKit
 
 class GroupSearchTableViewController: UITableViewController, UISearchResultsUpdating {
-    
+
     let realmManager = RealmManager.shared
-    
+
     var foundGroups: [SearchableGroup] = []
     let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
@@ -30,21 +30,21 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         definesPresentationContext = true
         self.tableView.reloadData()
     }
-    
+
     deinit {
         realmManager.delete(selectedType: SearchableGroup.self) // clean up previous search
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foundGroups.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
         let group = foundGroups[indexPath.row]
@@ -58,19 +58,19 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         }
         return groupCell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-    
+
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchQuery = searchController.searchBar.text else { return }
         if !searchQuery.isEmpty {
-            
+
             // Мы сперва делаем запрос в VK api - затем сохраним в Realm - а потом уже покажем данные из Realm
             networkManager.getGroupsBySearchString(searchString: searchQuery, completion: { [weak self] result in
                 switch result {

@@ -11,19 +11,19 @@ import Foundation
 import Kingfisher
 
 class GroupsTableViewController: UITableViewController {
-    
+
     private lazy var groups: Results<Group>? = {
         try? Realm().objects(Group.self)
     }()
-    
+
     private var notificationToken: NotificationToken?
-    
+
     let realmManager = RealmManager.shared
-    
+
     let networkManager = NetworkManager.shared
-    
+
     let loadingView = DMLoadingView()
-    
+
     let operationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 4
@@ -31,10 +31,10 @@ class GroupsTableViewController: UITableViewController {
         queue.qualityOfService = .userInitiated
         return queue
     }()
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         let parameters = [
             "access_token": Session.shared.token,
             "extended": "true",
@@ -54,40 +54,40 @@ class GroupsTableViewController: UITableViewController {
             }
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let navigationController = self.navigationController else { return }
         let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
         self.tableView.addSubview(calculatedLoadingView)
         self.title = "My Groups"
-        
+
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
-        
+
         notificationToken = groups?.observe { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
-    
+
     deinit {
         notificationToken?.invalidate()
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groups?.count ?? 0
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
-        
+
         let group = groups?[indexPath.row]
         groupCell.groupLabel.text = group?.name
         if let url = group?.pictureUrlString {
@@ -98,11 +98,11 @@ class GroupsTableViewController: UITableViewController {
         groupCell.selectionStyle = .none
         return groupCell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }

@@ -15,7 +15,7 @@ extension UIViewController {
             return  imageCompletionHandler(nil)
         }
         let resource = ImageResource(downloadURL: url)
-        
+
         KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
             switch result {
             case .success(let value):

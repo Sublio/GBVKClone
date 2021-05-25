@@ -9,13 +9,14 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 import UIKit
+import PromiseKit
 
 class NetworkManager {
-    
+
     static let shared = NetworkManager()
-    
+
     private init () {}
-    
+
     let vkApiVersion = "5.130"
     let scheme = "https"
     let clientId = "7800566"
@@ -25,7 +26,7 @@ class NetworkManager {
     let oauthHost = "oauth.vk.com"
     let apiHost = "api.vk.com"
     let display = "mobile"
-    
+
     func formAutoriseVKRequest() -> URLRequest? {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
@@ -44,9 +45,9 @@ class NetworkManager {
             return request
         }
         return nil
-        
+
     }
-    func getPhotosForUserId(user_id: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
+    func getPhotosForUserId(user_id: Int, completion: @escaping (Swift.Result<[Photo], Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/photos.get"
@@ -57,7 +58,7 @@ class NetworkManager {
             "count": 20,
             "v": vkApiVersion
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             var results: [Photo] = []
             switch response.result {
@@ -77,9 +78,9 @@ class NetworkManager {
             }
         }
     }
-    
-    func getGroupsBySearchString(searchString: String, completion: @escaping (Result<[SearchableGroup], Error>) -> Void) {
-        
+
+    func getGroupsBySearchString(searchString: String, completion: @escaping (Swift.Result<[SearchableGroup], Error>) -> Void) {
+
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/groups.search"
@@ -89,7 +90,7 @@ class NetworkManager {
             "v": vkApiVersion,
             "count": 30
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
@@ -99,15 +100,15 @@ class NetworkManager {
                       let json = try? JSON(data: data) else { return }
                 let groupJSON = json["response"]["items"].arrayValue
                 let groups = groupJSON.map { SearchableGroup(json: $0) }
-                
+
                 completion(.success(groups))
             }
         }
-        
+
     }
-    
-    func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Result<[Group], Error>) -> Void) {
-        
+
+    func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Swift.Result<[Group], Error>) -> Void) {
+
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/groups.get"
@@ -117,7 +118,7 @@ class NetworkManager {
             "fields": "name, photo_50",
             "v": vkApiVersion
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
@@ -127,14 +128,14 @@ class NetworkManager {
                       let json = try? JSON(data: data) else { return }
                 let groupJSON = json["response"]["items"].arrayValue
                 let groups = groupJSON.map { Group(value: $0) }
-                
+
                 completion(.success(groups))
             }
         }
     }
-    
-    func getFriendsListViaAlamoFire(completion: @escaping (Result<[Friend], Error>) -> Void) {
-        
+
+    func getFriendsListViaAlamoFire(completion: @escaping (Swift.Result<[Friend], Error>) -> Void) {
+
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/friends.get"
@@ -143,7 +144,7 @@ class NetworkManager {
             "fields": "name, photo_50",
             "v": vkApiVersion
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
@@ -153,13 +154,43 @@ class NetworkManager {
                       let json = try? JSON(data: data) else { return }
                 let friendsJSON = json["response"]["items"].arrayValue
                 let friends = friendsJSON.map { Friend(json: $0) }
-                
+
                 completion(.success(friends))
             }
         }
     }
-    
-    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Result<Data, Error>) -> Void) {
+
+    func getFriendListViaPromises() -> Promise<[Friend]> {
+        let scheme = "https://"
+        let host = self.apiHost
+        let path = "/method/friends.get"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "fields": "name, photo_50",
+            "v": vkApiVersion
+        ]
+
+        return Promise.init { resolver in
+            AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+                switch response.result {
+                case .failure(let error):
+                    resolver.reject(error)
+                case .success(let data):
+                    guard let data = data else { return }
+                    do {
+                        let json = try JSON(data: data)
+                        let friendsJSON = json["response"]["items"].arrayValue
+                        let friends = friendsJSON.map { Friend(json: $0) }
+                        resolver.fulfill(friends)
+                    } catch {
+                        resolver.reject(error)
+                    }
+                }
+            }
+        }
+    }
+
+    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Swift.Result<Data, Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/newsfeed.get"
@@ -169,7 +200,7 @@ class NetworkManager {
             "count": count,
             "v": vkApiVersion
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
@@ -180,8 +211,8 @@ class NetworkManager {
             }
         }
     }
-    
-    func getNewsFeedPhotoPostViaAlamofire(count: Int, completion: @escaping(Result<[NewsFeedPhotoPost], Error>) -> Void) {
+
+    func getNewsFeedPhotoPostViaAlamofire(count: Int, completion: @escaping(Swift.Result<[NewsFeedPhotoPost], Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/newsfeed.get"
@@ -191,7 +222,7 @@ class NetworkManager {
             "count": count,
             "v": vkApiVersion
         ]
-        
+
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
@@ -206,12 +237,12 @@ class NetworkManager {
             }
         }
     }
-    
+
     func getData(from urlString: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
-    
+
     func getDataFrom(photoURl: String) -> Data? {
         do {
             guard let url = URL(string: photoURl) else { return nil}

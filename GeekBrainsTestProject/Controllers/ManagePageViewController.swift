@@ -8,17 +8,17 @@
 import UIKit
 
 class ManagePageViewController: UIPageViewController {
-    
+
     var photos: [UIImage]?
     var currentIndex: Int!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        
+
         if let viewController = viewPhotoCommentController(currentIndex ?? 0) {
             let viewControllers = [viewController]
-            
+
             setViewControllers(viewControllers,
                                direction: .forward,
                                animated: false,
@@ -26,7 +26,7 @@ class ManagePageViewController: UIPageViewController {
         }
         dataSource = self
     }
-    
+
     func viewPhotoCommentController(_ index: Int) -> PhotoCommentViewController? {
         guard
             let storyboard = storyboard,
@@ -52,10 +52,10 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
            index > 0 {
             return viewPhotoCommentController(index - 1)
         }
-        
+
         return nil
     }
-    
+
     func pageViewController(
         _ pageViewController: UIPageViewController,
         viewControllerAfter viewController: UIViewController)
@@ -65,14 +65,14 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
            (index + 1) < photos!.count {
             return viewPhotoCommentController(index + 1)
         }
-        
+
         return nil
     }
-    
+
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return photos!.count
     }
-    
+
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return currentIndex ?? 0
     }

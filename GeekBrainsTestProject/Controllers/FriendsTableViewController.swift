@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import PromiseKit
 
 struct Section {
     let letter: String
@@ -14,23 +15,23 @@ struct Section {
 }
 
 class FriendsTableViewController: UITableViewController {
-    
+
     private var notificationToken: NotificationToken?
-    
+
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
-    
+
     var notFilteredFriends: [Friend] = []
     var filteredFriends: [Friend] = []
     var userNames: [String] {
         notFilteredFriends.map {($0.name )}
     }
-    
+
     var signOutButton: UIBarButtonItem {
         let button = UIBarButtonItem(title: "SignOut", style: .plain, target: self, action: #selector(signOut))
         return button
     }
-    
+
     var userIds: [Int] {
         notFilteredFriends.map {($0.id )}
     }
@@ -39,50 +40,46 @@ class FriendsTableViewController: UITableViewController {
         let keys = groupedDictionary.keys.sorted()
         return keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
     }
-    
+
     let searchController = UISearchController(searchResultsController: nil)
-    
+
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
+
     var isFiltering: Bool {
         return  searchController.isActive && !isSearchBarEmpty
     }
-    
+
     let loadingView = DMLoadingView()
-    
+
     weak var delegate: PhotosTableViewDelegateProtocol?
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UserDefaults.standard.setValue(true, forKey: "isLoggedIn")
         KeychainService.saveToken(service: "tokenStorage", data: Session.shared.token)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let navigationController = self.navigationController else { return }
         navigationItem.leftBarButtonItem = signOutButton
         let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
         self.tableView.addSubview(calculatedLoadingView)
-        
-        networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(friends):
-                guard let realmManager = self?.realmManager else { return }
-                self?.loadingView.removeLoadingView()
+        networkManager.getFriendListViaPromises()
+            .done(on: .main) { friends in
+                self.loadingView.removeLoadingView()
                 let friendsWithoutDeleted = friends.filter {
                     !$0.name.isEmpty
                 }
-                self?.realmManager.createFriendsDB(friends: friendsWithoutDeleted) // создаем базу из того что прилетело от api
-                self?.notFilteredFriends = realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
-                self?.tableView.reloadData()
-                self?.loadingView.removeLoadingView()
+                self.realmManager.createFriendsDB(friends: friendsWithoutDeleted) // создаем базу из того что прилетело от api
+                self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
+                self.tableView.reloadData()
+                self.loadingView.removeLoadingView()
+            }.catch { error in
+                print(error)
             }
-        })
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
@@ -93,7 +90,7 @@ class FriendsTableViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         self.tableView.reloadData()
-        
+
         guard let currentFriendsArray = self.realmManager.getObjects(selectedType: Friend.self) else { return }
         self.notificationToken = currentFriendsArray.observe({ (changes: RealmCollectionChange) in
             switch changes {
@@ -103,19 +100,19 @@ class FriendsTableViewController: UITableViewController {
                 self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
                 self.tableView.reloadData()
                 self.loadingView.removeLoadingView()
-                
+
             case .error(let error):
                 print(error)
             }
         })
     }
-    
+
     deinit {
         notificationToken?.invalidate()
     }
-    
+
     // MARK: - Table view data source
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredFriends.count
@@ -123,10 +120,10 @@ class FriendsTableViewController: UITableViewController {
         return sections[section].names.count
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
+
         isFiltering ? 1 : sections.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! FriendTableViewCell
         if isFiltering {
@@ -154,7 +151,7 @@ class FriendsTableViewController: UITableViewController {
         }
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.itemSize = CGSize(width: 100, height: 100)
@@ -175,13 +172,13 @@ class FriendsTableViewController: UITableViewController {
             self.delegate?.didPickUserFromTableWithId(userId: clickedID ?? 0)
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
+
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 30))
         view.backgroundColor = UIColor.blueZero.withAlphaComponent(0.5)
         let label = UILabel()
@@ -194,35 +191,35 @@ class FriendsTableViewController: UITableViewController {
         view.addSubview(label)
         return view
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
+
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
     }
-    
+
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return sections.map {$0.letter}
     }
-    
+
     func getUserIdByName(userName: String) -> Int? {
         var dict = [String: Int]()
-        
+
         for (name, id) in zip(self.userNames, self.userIds) {
             dict[name] = id
         }
         return dict[userName]
     }
-    
+
     func filterContentForSearchText(_ searchText: String) {
         filteredFriends =  notFilteredFriends.filter {(friend: Friend) -> Bool in
             return (friend.name.lowercased().contains(searchText.lowercased()) )
         }
         tableView.reloadData()
     }
-    
+
     @objc func signOut() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() else { return }

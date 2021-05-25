@@ -16,7 +16,7 @@ class NewsFeedPhotoPost {
     var reposts: Int = 0
     var comments: Int = 0
     var photoUrls: [String] = []
-    
+
     convenience init (json: SwiftyJSON.JSON) {
         // TODO: доделать
         self.init()
