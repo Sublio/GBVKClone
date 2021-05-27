@@ -16,6 +16,7 @@
 		4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */; };
 		4C39507C2650E887005CC644 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39507B2650E887005CC644 /* KeychainService.swift */; };
 		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
+		4C462039266036E200FC031E /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C462038266036E200FC031E /* CacheManager.swift */; };
 		4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AA78A261589C3005EFA89 /* Photo.swift */; };
 		4C4DC69726586C42000C57F3 /* NewsFeedPhotoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69626586C42000C57F3 /* NewsFeedPhotoPost.swift */; };
 		4C4DC69926597B99000C57F3 /* NewsFeedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */; };
@@ -97,6 +98,7 @@
 		4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePageViewController.swift; sourceTree = "<group>"; };
 		4C39507B2650E887005CC644 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewProtocol.swift; sourceTree = "<group>"; };
+		4C462038266036E200FC031E /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		4C4AA78A261589C3005EFA89 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4C4DC69626586C42000C57F3 /* NewsFeedPhotoPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedPhotoPost.swift; sourceTree = "<group>"; };
 		4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedProfile.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				4CA577A626287D2B00446F39 /* RealmManager.swift */,
 				4C39507B2650E887005CC644 /* KeychainService.swift */,
 				4C6D36FD2654CB88003499E1 /* VKService.swift */,
+				4C462038266036E200FC031E /* CacheManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				4C7B419625DC015200894D81 /* GroupStubFactory.swift in Sources */,
 				4C6D36FE2654CB88003499E1 /* VKService.swift in Sources */,
 				4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */,
+				4C462039266036E200FC031E /* CacheManager.swift in Sources */,
 				4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */,
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
