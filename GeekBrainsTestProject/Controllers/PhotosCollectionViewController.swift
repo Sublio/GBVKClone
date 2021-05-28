@@ -14,6 +14,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
+    var cacheManager: CacheManager?
     var photos: [Photo] = [] {
         didSet {
             self.photos.forEach { photo in
@@ -23,6 +24,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
             }
         }
     }// This array is for populating PhotosCollectionViewController
+    
     var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
 
     private let reuseIdentifier = "CollectionCell"
@@ -33,7 +35,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        let cacheManager = CacheManager(container: self.collectionView)
+        self.cacheManager = cacheManager
         guard let selectedUser = selectedUserId else { return }
         if iSMeededToUpdatePhotos() {
             retrievePhotosForUserId(userId: selectedUser)

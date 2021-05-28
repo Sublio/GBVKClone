@@ -14,6 +14,14 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
     var foundGroups: [SearchableGroup] = []
     let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
+    var cacheManager : CacheManager?
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let cacheManager = CacheManager(container: self.tableView)
+        self.cacheManager = cacheManager
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +58,7 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
         let group = foundGroups[indexPath.row]
         groupCell.groupLabel.text = group.name
         let groupAvatarUrl = group.photoStringUrl
-        networkManager.getData(from: groupAvatarUrl) {data, _, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async { [] in
-                groupCell.groupAvatar.image = UIImage(data: data)
-            }
-        }
+        groupCell.groupAvatar.image = cacheManager?.photo(at: indexPath, byUrl: groupAvatarUrl)
         return groupCell
     }
 
