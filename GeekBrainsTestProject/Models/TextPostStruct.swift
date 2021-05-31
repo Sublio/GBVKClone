@@ -9,6 +9,6 @@ import Foundation
 
 struct NewsFeedPostObject {
     let posts: [NewsFeedPost]
-    //let groups: [Group]
+    // let groups: [Group]
     let profiles: [NewsFeedProfile]
 }

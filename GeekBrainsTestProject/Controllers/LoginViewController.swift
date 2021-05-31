@@ -70,28 +70,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     func showLoadingIndicator(withInterval interval: Double) {
 
-            let layout = CAReplicatorLayer()
-            layout.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: 25, height: 11)
-            let circle = CALayer()
-            circle.frame = CGRect(x: 0, y: 0, width: 7, height: 7)
-            circle.cornerRadius = circle.frame.width / 2
-            circle.backgroundColor = UIColor(red: 110/255.0, green: 110/255.0, blue: 110/255.0, alpha: 1).cgColor
-            layout.addSublayer(circle)
-            layout.instanceCount = 3
-            layout.instanceTransform = CATransform3DMakeTranslation(10, 0, 0)
-            let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
-            animation.fromValue = 1.0
-            animation.toValue = 0.2
-            animation.duration = 1
-            animation.repeatCount = 20
-            circle.add(animation, forKey: nil)
-            layout.instanceDelay = animation.duration / Double(layout.instanceCount)
-            layout.name = "loading animation"
-            self.view.layer.addSublayer(layout)
+        let layout = CAReplicatorLayer()
+        layout.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: 25, height: 11)
+        let circle = CALayer()
+        circle.frame = CGRect(x: 0, y: 0, width: 7, height: 7)
+        circle.cornerRadius = circle.frame.width / 2
+        circle.backgroundColor = UIColor(red: 110/255.0, green: 110/255.0, blue: 110/255.0, alpha: 1).cgColor
+        layout.addSublayer(circle)
+        layout.instanceCount = 3
+        layout.instanceTransform = CATransform3DMakeTranslation(10, 0, 0)
+        let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        animation.fromValue = 1.0
+        animation.toValue = 0.2
+        animation.duration = 1
+        animation.repeatCount = 20
+        circle.add(animation, forKey: nil)
+        layout.instanceDelay = animation.duration / Double(layout.instanceCount)
+        layout.name = "loading animation"
+        self.view.layer.addSublayer(layout)
         DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [self] in
             self.hideLoadingIndicator()
-            }
         }
+    }
 
     func hideLoadingIndicator() {
         if let sublayers = view.layer.sublayers {
@@ -131,9 +131,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     // Login and Password TextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return true
-        }
+        textField.resignFirstResponder()
+        return true
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier != nil {

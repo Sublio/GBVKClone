@@ -73,6 +73,7 @@
 		4CC84D4A25E6FF9700FD7949 /* NavigationTransitionPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4925E6FF9700FD7949 /* NavigationTransitionPop.swift */; };
 		4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */; };
 		4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */; };
+		4CD6DD3E265DA7FD00137F25 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4CD6DD3D265DA7FD00137F25 /* PromiseKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C708553261BCB1300BB17A5 /* RealmSwift in Frameworks */,
+				4CD6DD3E265DA7FD00137F25 /* PromiseKit in Frameworks */,
 				4C0D3E2F2619808800621B81 /* AlamofireImage in Frameworks */,
 				4CB1F4482613E293001CA49A /* Alamofire in Frameworks */,
 				4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */,
@@ -399,6 +401,7 @@
 				4C0D3E2E2619808800621B81 /* AlamofireImage */,
 				4C708552261BCB1300BB17A5 /* RealmSwift */,
 				4C724543265B159700C47EFD /* Kingfisher */,
+				4CD6DD3D265DA7FD00137F25 /* PromiseKit */,
 			);
 			productName = GeekBrainsTestProject;
 			productReference = 4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */;
@@ -455,6 +458,7 @@
 				4C0D3E2D2619808800621B81 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				4C708551261BCB1300BB17A5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				4C724542265B159700C47EFD /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				4CD6DD3C265DA7FD00137F25 /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
 			projectDirPath = "";
@@ -862,6 +866,14 @@
 				minimumVersion = 5.4.1;
 			};
 		};
+		4CD6DD3C265DA7FD00137F25 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.15.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -889,6 +901,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CB1F4462613E293001CA49A /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		4CD6DD3D265DA7FD00137F25 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CD6DD3C265DA7FD00137F25 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

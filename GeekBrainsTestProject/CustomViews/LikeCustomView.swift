@@ -14,10 +14,10 @@ class LikedCustomView: UIView {
 
     let imageView: UIImageView = {
         let iv = UIImageView()
-         iv.isUserInteractionEnabled = true
-         iv.image = UIImage(named: "tile00")
-         iv.translatesAutoresizingMaskIntoConstraints = false
-         return iv
+        iv.isUserInteractionEnabled = true
+        iv.image = UIImage(named: "tile00")
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
     }()
 
     let likeCounter: UILabel = {

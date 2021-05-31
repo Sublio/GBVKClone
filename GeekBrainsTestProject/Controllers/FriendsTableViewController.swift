@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import PromiseKit
 
 struct Section {
     let letter: String
@@ -57,7 +58,6 @@ class FriendsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UserDefaults.standard.setValue(true, forKey: "isLoggedIn")
-//        UserDefaults.standard.setValue(Session.shared.token, forKey: "token")
         KeychainService.saveToken(service: "tokenStorage", data: Session.shared.token)
     }
 
@@ -67,31 +67,19 @@ class FriendsTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = signOutButton
         let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
         self.tableView.addSubview(calculatedLoadingView)
-
-        // обновим базу групп при первой загрузке контроллера но покажем данные уже из базы
-
-        if realmManager.getResult(selectedType: Friend.self) != nil {
-            self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
-            self.tableView.reloadData()
-            self.loadingView.removeLoadingView()
-        } else {
-            networkManager.getFriendsListViaAlamoFire(completion: { [weak self] result in
-                    switch result {
-                    case let .failure(error):
-                        print(error)
-                    case let .success(friends):
-                        guard let realmManager = self?.realmManager else { return }
-                        self?.loadingView.removeLoadingView()
-                        let friendsWithoutDeleted = friends.filter {
-                            !$0.name.isEmpty
-                        }
-                        self?.realmManager.createFriendsDB(friends: friendsWithoutDeleted) // создаем базу из того что прилетело от api
-                        self?.notFilteredFriends = realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
-                        self?.tableView.reloadData()
-                        self?.loadingView.removeLoadingView()
-                    }
-            })
-        }
+        networkManager.getFriendListViaPromises()
+            .done(on: .main) { friends in
+                self.loadingView.removeLoadingView()
+                let friendsWithoutDeleted = friends.filter {
+                    !$0.name.isEmpty
+                }
+                self.realmManager.createFriendsDB(friends: friendsWithoutDeleted) // создаем базу из того что прилетело от api
+                self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
+                self.tableView.reloadData()
+                self.loadingView.removeLoadingView()
+            }.catch { error in
+                print(error)
+            }
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
@@ -106,16 +94,16 @@ class FriendsTableViewController: UITableViewController {
         guard let currentFriendsArray = self.realmManager.getObjects(selectedType: Friend.self) else { return }
         self.notificationToken = currentFriendsArray.observe({ (changes: RealmCollectionChange) in
             switch changes {
-                case .initial:
-                    self.tableView.reloadData()
+            case .initial:
+                self.tableView.reloadData()
             case  .update:
-                    self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
-                    self.tableView.reloadData()
-                    self.loadingView.removeLoadingView()
+                self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
+                self.tableView.reloadData()
+                self.loadingView.removeLoadingView()
 
-                case .error(let error):
-                    print(error)
-                }
+            case .error(let error):
+                print(error)
+            }
         })
     }
 

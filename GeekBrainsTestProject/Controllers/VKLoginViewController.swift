@@ -45,15 +45,15 @@ class VKLoginViewController: UIViewController, WKNavigationDelegate {
         }
 
         let params = fragment
-                   .components(separatedBy: "&")
-                   .map { $0.components(separatedBy: "=") }
-                   .reduce([String: String]()) { result, param in
-                       var dict = result
-                       let key = param[0]
-                       let value = param[1]
-                       dict[key] = value
-                       return dict
-               }
+            .components(separatedBy: "&")
+            .map { $0.components(separatedBy: "=") }
+            .reduce([String: String]()) { result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+            }
         guard let token = params["access_token"] else { return }
         Session.shared.token = token
         decisionHandler(.cancel)

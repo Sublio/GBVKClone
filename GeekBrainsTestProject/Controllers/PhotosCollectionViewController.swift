@@ -60,24 +60,24 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         activityView.center = self.view.center
         activityView.startAnimating()
         networkManager.getPhotosForUserId(user_id: userId, completion: {[weak self] result in
-                switch result {
-                case let .failure(error):
-                    print(error)
-                case let .success(photos):
-                    photos.forEach {
-                        if let pictureData = self?.networkManager.getDataFrom(photoURl: $0.photoStringUrlMedium) {
-                            $0.picture = pictureData
-                        }
-                        guard let selectedUserId = self?.selectedUserId else { fatalError("User id must not be nil or empty") }
-                        self?.realmManager.updatePhotosStorageForFriend(friendId: selectedUserId, photo: $0)
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(photos):
+                photos.forEach {
+                    if let pictureData = self?.networkManager.getDataFrom(photoURl: $0.photoStringUrlMedium) {
+                        $0.picture = pictureData
                     }
-                    let friend = self?.realmManager.getFriendInfoById(id: self?.selectedUserId ?? 0)
-                    self?.photos = Array(friend!.friendPhotos)
-                    self?.collectionView.alpha = 1
-                    fadeView.removeFromSuperview()
-                    self?.activityView.stopAnimating()
+                    guard let selectedUserId = self?.selectedUserId else { fatalError("User id must not be nil or empty") }
+                    self?.realmManager.updatePhotosStorageForFriend(friendId: selectedUserId, photo: $0)
                 }
-            })
+                let friend = self?.realmManager.getFriendInfoById(id: self?.selectedUserId ?? 0)
+                self?.photos = Array(friend!.friendPhotos)
+                self?.collectionView.alpha = 1
+                fadeView.removeFromSuperview()
+                self?.activityView.stopAnimating()
+            }
+        })
     }
 
     override func viewDidLoad() {
@@ -97,15 +97,15 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         let photosOfCurrentFriend = currentUserObject.friendPhotos
         self.notificationToken = photosOfCurrentFriend.observe({ (changes: RealmCollectionChange) in
             switch changes {
-                case .initial:
-                    self.collectionView.reloadData()
+            case .initial:
+                self.collectionView.reloadData()
             case  .update:
-                    let friend = self.realmManager.getFriendInfoById(id: self.selectedUserId ?? 0)
-                    self.photos = Array(friend!.friendPhotos)
-                    self.collectionView.reloadData()
-                case .error(let error):
-                    print(error)
-                }
+                let friend = self.realmManager.getFriendInfoById(id: self.selectedUserId ?? 0)
+                self.photos = Array(friend!.friendPhotos)
+                self.collectionView.reloadData()
+            case .error(let error):
+                print(error)
+            }
         })
     }
 

@@ -26,16 +26,16 @@ class NavigationTransitionPush: NSObject, UIViewControllerAnimatedTransitioning 
         UIView.animateKeyframes(withDuration: self.transitionDuration(using: transitionContext), delay: 0, options: .calculationModePaced) {
             UIView.addKeyframe(withRelativeStartTime: 0.01, relativeDuration: 0.75) {
 
-                                                let rotationPoint = CGPoint(x: 0, y: 0)
-                                                source.view.layer.anchorPoint = rotationPoint
-                                                let translation = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
-                                                source.view.transform = translation
-                                            }
+                let rotationPoint = CGPoint(x: 0, y: 0)
+                source.view.layer.anchorPoint = rotationPoint
+                let translation = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
+                source.view.transform = translation
+            }
 
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.75) {
-                                                destination.view.transform = .identity
+                destination.view.transform = .identity
 
-                                            }
+            }
         } completion: { (finished) in
             if finished && !transitionContext.transitionWasCancelled {
                 source.view.transform = .identity

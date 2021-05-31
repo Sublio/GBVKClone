@@ -25,7 +25,7 @@ class GroupsTableViewController: UITableViewController {
     let loadingView = DMLoadingView()
 
     let operationQueue: OperationQueue = {
-       let queue = OperationQueue()
+        let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 4
         queue.name = "com.groups.parsing"
         queue.qualityOfService = .userInitiated

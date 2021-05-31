@@ -41,7 +41,7 @@ class DMLoadingView: UIView {
         return loadingView
     }
 
-     func removeLoadingView() {
+    func removeLoadingView() {
         self.spinningView.stopAnimating()
         self.spinningView.isHidden = true
         self.loadingLabel.isHidden = true

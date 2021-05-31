@@ -23,8 +23,8 @@ class GradientView: UIView {
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         guard let theLayer = self.layer as? CAGradientLayer else {
-               return
-    }
+            return
+        }
 
         theLayer.colors = [UIColor.blueZero.cgColor, UIColor.white.cgColor]
         theLayer.locations = [0.0, 0.5]
@@ -34,6 +34,6 @@ class GradientView: UIView {
     }
 
     override class var layerClass: AnyClass {
-            return CAGradientLayer.self
+        return CAGradientLayer.self
     }
 }

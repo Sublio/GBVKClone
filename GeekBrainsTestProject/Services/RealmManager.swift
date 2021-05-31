@@ -62,7 +62,7 @@ class RealmManager {
     func deleteDatabase() {
         let realm = try! Realm(configuration: configuration)
         try! realm.write {
-             realm.deleteAll()
+            realm.deleteAll()
         }
     }
 
@@ -76,42 +76,42 @@ class RealmManager {
 
     func delete<T: Object>(selectedType: T.Type, index: Int) {
         let realm = try! Realm(configuration: configuration)
-         try! realm.write {
-             let object = realm.objects(selectedType)
-             realm.delete(object[index])
-         }
-     }
+        try! realm.write {
+            let object = realm.objects(selectedType)
+            realm.delete(object[index])
+        }
+    }
 
-     func add<T: Object>(_ selectedObject: T) {
+    func add<T: Object>(_ selectedObject: T) {
         let realm = try! Realm(configuration: configuration)
-         do {
-             try realm.write {
-                 realm.add(selectedObject)
-             }
-         } catch let error as NSError {
-             print(error.localizedDescription)
-         }
-     }
+        do {
+            try realm.write {
+                realm.add(selectedObject)
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
 
     func getArray<T: Object>(selectedType: T.Type) -> [T] {
-           let realm = try! Realm(configuration: configuration)
-           let object = realm.objects(selectedType)
-           var array = [T]()
-           for data in object {
-               array.append(data)
-           }
-           return array
-       }
+        let realm = try! Realm(configuration: configuration)
+        let object = realm.objects(selectedType)
+        var array = [T]()
+        for data in object {
+            array.append(data)
+        }
+        return array
+    }
 
     func getObject<T: Object>(selectedType: T.Type, index: Int) -> T {
-         let realm = try! Realm(configuration: configuration)
-         let object = realm.objects(selectedType)
-         var array = [T]()
-         for data in object {
-             array.append(data)
-         }
-         return array[index]
-     }
+        let realm = try! Realm(configuration: configuration)
+        let object = realm.objects(selectedType)
+        var array = [T]()
+        for data in object {
+            array.append(data)
+        }
+        return array[index]
+    }
 
     func getObjects<T: Object>(selectedType: T.Type) ->Results<T>? {
         let realm = try! Realm(configuration: configuration)
@@ -132,14 +132,14 @@ class RealmManager {
         })
     }
 
-     // return Result tyle
-     func getResults<T: Object>(selectedType: T.Type) -> Results<T> {
+    // return Result tyle
+    func getResults<T: Object>(selectedType: T.Type) -> Results<T> {
         let realm = try! Realm(configuration: configuration)
-         return realm.objects(selectedType)
-     }
+        return realm.objects(selectedType)
+    }
 
-     func getResult<T: Object>(selectedType: T.Type) -> T? {
+    func getResult<T: Object>(selectedType: T.Type) -> T? {
         let realm = try! Realm(configuration: configuration)
-         return realm.objects(selectedType).first
-     }
+        return realm.objects(selectedType).first
+    }
 }

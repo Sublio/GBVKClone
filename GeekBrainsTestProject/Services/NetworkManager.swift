@@ -9,6 +9,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 import UIKit
+import PromiseKit
 
 class NetworkManager {
 
@@ -46,7 +47,7 @@ class NetworkManager {
         return nil
 
     }
-    func getPhotosForUserId(user_id: Int, completion: @escaping (Result<[Photo], Error>) -> Void) {
+    func getPhotosForUserId(user_id: Int, completion: @escaping (Swift.Result<[Photo], Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/photos.get"
@@ -78,7 +79,7 @@ class NetworkManager {
         }
     }
 
-    func getGroupsBySearchString(searchString: String, completion: @escaping (Result<[SearchableGroup], Error>) -> Void) {
+    func getGroupsBySearchString(searchString: String, completion: @escaping (Swift.Result<[SearchableGroup], Error>) -> Void) {
 
         let scheme = "https://"
         let host = self.apiHost
@@ -106,7 +107,7 @@ class NetworkManager {
 
     }
 
-    func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Result<[Group], Error>) -> Void) {
+    func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Swift.Result<[Group], Error>) -> Void) {
 
         let scheme = "https://"
         let host = self.apiHost
@@ -133,7 +134,7 @@ class NetworkManager {
         }
     }
 
-    func getFriendsListViaAlamoFire(completion: @escaping (Result<[Friend], Error>) -> Void) {
+    func getFriendsListViaAlamoFire(completion: @escaping (Swift.Result<[Friend], Error>) -> Void) {
 
         let scheme = "https://"
         let host = self.apiHost
@@ -159,7 +160,37 @@ class NetworkManager {
         }
     }
 
-    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Result<Data, Error>) -> Void) {
+    func getFriendListViaPromises() -> Promise<[Friend]> {
+        let scheme = "https://"
+        let host = self.apiHost
+        let path = "/method/friends.get"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "fields": "name, photo_50",
+            "v": vkApiVersion
+        ]
+
+        return Promise.init { resolver in
+            AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+                switch response.result {
+                case .failure(let error):
+                    resolver.reject(error)
+                case .success(let data):
+                    guard let data = data else { return }
+                    do {
+                        let json = try JSON(data: data)
+                        let friendsJSON = json["response"]["items"].arrayValue
+                        let friends = friendsJSON.map { Friend(json: $0) }
+                        resolver.fulfill(friends)
+                    } catch {
+                        resolver.reject(error)
+                    }
+                }
+            }
+        }
+    }
+
+    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Swift.Result<Data, Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/newsfeed.get"
@@ -176,12 +207,12 @@ class NetworkManager {
                 completion(.failure(error))
             case .success(let data):
                 guard let data = data else { return }
-                    completion(.success(data))
+                completion(.success(data))
             }
         }
     }
 
-    func getNewsFeedPhotoPostViaAlamofire(count: Int, completion: @escaping(Result<[NewsFeedPhotoPost], Error>) -> Void) {
+    func getNewsFeedPhotoPostViaAlamofire(count: Int, completion: @escaping(Swift.Result<[NewsFeedPhotoPost], Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
         let path = "/method/newsfeed.get"

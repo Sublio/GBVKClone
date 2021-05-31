@@ -33,7 +33,7 @@ class CustomNavigationController: UINavigationController, UINavigationController
 
     func navigationController(_ navigationController: UINavigationController,
                               interactionControllerFor animationController: UIViewControllerAnimatedTransitioning)
-                              -> UIViewControllerInteractiveTransitioning? {
+    -> UIViewControllerInteractiveTransitioning? {
         return interActiveTransition.hasStarted ? interActiveTransition : nil
     }
 }
