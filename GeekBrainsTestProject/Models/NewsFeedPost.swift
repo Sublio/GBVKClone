@@ -26,7 +26,7 @@ class NewsFeedPost: RealmSwift.Object {
         self.views = json["views"]["count"].int ?? 0
         self.text = json["text"].string ?? ""
     }
-    
+
     override static func primaryKey() -> String? {
         "postId"
     }

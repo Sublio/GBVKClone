@@ -20,6 +20,7 @@
 		4C4DC69726586C42000C57F3 /* NewsFeedPhotoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69626586C42000C57F3 /* NewsFeedPhotoPost.swift */; };
 		4C4DC69926597B99000C57F3 /* NewsFeedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */; };
 		4C4DC69B265980F1000C57F3 /* TextPostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69A265980F1000C57F3 /* TextPostStruct.swift */; };
+		4C4DC69F265AD2A6000C57F3 /* NewsFeedPictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69E265AD2A6000C57F3 /* NewsFeedPictureTableViewCell.swift */; };
 		4C542A0425C60C3400CC8A4F /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */; };
 		4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */; };
 		4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A2125C64C6E00CC8A4F /* FriendTableViewCell.swift */; };
@@ -39,6 +40,11 @@
 		4C6D371526581654003499E1 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D371426581654003499E1 /* LikesTableViewCell.swift */; };
 		4C6F450E25FBF05E009CD6B0 /* GradientVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F450D25FBF05E009CD6B0 /* GradientVIew.swift */; };
 		4C708553261BCB1300BB17A5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C708552261BCB1300BB17A5 /* RealmSwift */; };
+		4C72453F265AF4F300C47EFD /* DataOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72453E265AF4F300C47EFD /* DataOperations.swift */; };
+		4C724541265AF5C800C47EFD /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C724540265AF5C800C47EFD /* AsyncOperation.swift */; };
+		4C724544265B159700C47EFD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C724543265B159700C47EFD /* Kingfisher */; };
+		4C724546265B17DD00C47EFD /* ViewController+KingFisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C724545265B17DD00C47EFD /* ViewController+KingFisher.swift */; };
+		4C724548265B1BC400C47EFD /* ObjectProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C724547265B1BC400C47EFD /* ObjectProvider.swift */; };
 		4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B417F25DAB78800894D81 /* DM+UIColor.swift */; };
 		4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418425DAC5C900894D81 /* UserStubFactory.swift */; };
 		4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418B25DAE1D600894D81 /* DMSearchBar.swift */; };
@@ -94,6 +100,7 @@
 		4C4DC69626586C42000C57F3 /* NewsFeedPhotoPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedPhotoPost.swift; sourceTree = "<group>"; };
 		4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedProfile.swift; sourceTree = "<group>"; };
 		4C4DC69A265980F1000C57F3 /* TextPostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPostStruct.swift; sourceTree = "<group>"; };
+		4C4DC69E265AD2A6000C57F3 /* NewsFeedPictureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedPictureTableViewCell.swift; sourceTree = "<group>"; };
 		4C542A0325C60C3400CC8A4F /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		4C542A0625C60F3400CC8A4F /* GroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
 		4C542A2125C64C6E00CC8A4F /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -112,6 +119,10 @@
 		4C6D371226581619003499E1 /* TextPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPostTableViewCell.swift; sourceTree = "<group>"; };
 		4C6D371426581654003499E1 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		4C6F450D25FBF05E009CD6B0 /* GradientVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientVIew.swift; sourceTree = "<group>"; };
+		4C72453E265AF4F300C47EFD /* DataOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOperations.swift; sourceTree = "<group>"; };
+		4C724540265AF5C800C47EFD /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		4C724545265B17DD00C47EFD /* ViewController+KingFisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+KingFisher.swift"; sourceTree = "<group>"; };
+		4C724547265B1BC400C47EFD /* ObjectProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectProvider.swift; sourceTree = "<group>"; };
 		4C7B417F25DAB78800894D81 /* DM+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+UIColor.swift"; sourceTree = "<group>"; };
 		4C7B418425DAC5C900894D81 /* UserStubFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStubFactory.swift; sourceTree = "<group>"; };
 		4C7B418B25DAE1D600894D81 /* DMSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMSearchBar.swift; sourceTree = "<group>"; };
@@ -152,6 +163,7 @@
 				4C0D3E2F2619808800621B81 /* AlamofireImage in Frameworks */,
 				4CB1F4482613E293001CA49A /* Alamofire in Frameworks */,
 				4C8D4C2A2611752A00497914 /* SwiftyJSON in Frameworks */,
+				4C724544265B159700C47EFD /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +199,7 @@
 		4C17A46925BDE2E8006D45E0 /* GeekBrainsTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				4C72453D265AF4E500C47EFD /* Operations */,
 				4C41C23526156CA70020FEE4 /* Protocols */,
 				4C3043C626141A0300B8BB27 /* Services */,
 				4CCAD5F4260AB2D100F589E1 /* Controllers */,
@@ -225,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */,
+				4C724547265B1BC400C47EFD /* ObjectProvider.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -241,6 +255,7 @@
 				4C6D3710265815C0003499E1 /* NewsHeaderTableViewCell.swift */,
 				4C6D371226581619003499E1 /* TextPostTableViewCell.swift */,
 				4C6D371426581654003499E1 /* LikesTableViewCell.swift */,
+				4C4DC69E265AD2A6000C57F3 /* NewsFeedPictureTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -260,10 +275,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4C72453D265AF4E500C47EFD /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				4C724540265AF5C800C47EFD /* AsyncOperation.swift */,
+				4C72453E265AF4F300C47EFD /* DataOperations.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		4C7B417E25DAB77800894D81 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				4C7B417F25DAB78800894D81 /* DM+UIColor.swift */,
+				4C724545265B17DD00C47EFD /* ViewController+KingFisher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,6 +398,7 @@
 				4CB1F4472613E293001CA49A /* Alamofire */,
 				4C0D3E2E2619808800621B81 /* AlamofireImage */,
 				4C708552261BCB1300BB17A5 /* RealmSwift */,
+				4C724543265B159700C47EFD /* Kingfisher */,
 			);
 			productName = GeekBrainsTestProject;
 			productReference = 4C17A46725BDE2E8006D45E0 /* GeekBrainsTestProject.app */;
@@ -428,6 +454,7 @@
 				4CB1F4462613E293001CA49A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4C0D3E2D2619808800621B81 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				4C708551261BCB1300BB17A5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				4C724542265B159700C47EFD /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
 			projectDirPath = "";
@@ -477,13 +504,16 @@
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
+				4C724546265B17DD00C47EFD /* ViewController+KingFisher.swift in Sources */,
 				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
 				4CA577A12626388D00446F39 /* DMLoadingView.swift in Sources */,
+				4C724541265AF5C800C47EFD /* AsyncOperation.swift in Sources */,
 				4C9CC6DC26191B620089B832 /* PhotoCommentViewController.swift in Sources */,
 				4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */,
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
+				4C72453F265AF4F300C47EFD /* DataOperations.swift in Sources */,
 				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C4DC69926597B99000C57F3 /* NewsFeedProfile.swift in Sources */,
 				4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */,
@@ -500,6 +530,7 @@
 				4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */,
 				4C39507C2650E887005CC644 /* KeychainService.swift in Sources */,
 				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
+				4C4DC69F265AD2A6000C57F3 /* NewsFeedPictureTableViewCell.swift in Sources */,
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C6D37002654CD11003499E1 /* NewsFeedPost.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
@@ -510,6 +541,7 @@
 				4CC84D4225E6F92800FD7949 /* MyCustomSegue.swift in Sources */,
 				4C7B419C25DC070100894D81 /* NewsFeedTableViewController.swift in Sources */,
 				4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */,
+				4C724548265B1BC400C47EFD /* ObjectProvider.swift in Sources */,
 				4CC84D4A25E6FF9700FD7949 /* NavigationTransitionPop.swift in Sources */,
 				4C6D3711265815C0003499E1 /* NewsHeaderTableViewCell.swift in Sources */,
 				4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */,
@@ -806,6 +838,14 @@
 				minimumVersion = 10.7.6;
 			};
 		};
+		4C724542265B159700C47EFD /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
 		4C8D4C282611752A00497914 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -834,6 +874,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C708551261BCB1300BB17A5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		4C724543265B159700C47EFD /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C724542265B159700C47EFD /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		4C8D4C292611752A00497914 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;

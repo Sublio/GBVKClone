@@ -7,28 +7,53 @@
 
 import UIKit
 import RealmSwift
+import Foundation
+import Kingfisher
 
 class GroupsTableViewController: UITableViewController {
 
+    private lazy var groups: Results<Group>? = {
+        try? Realm().objects(Group.self)
+    }()
+
     private var notificationToken: NotificationToken?
 
-    var nonFilteredGroups: [Group] = []
     let realmManager = RealmManager.shared
 
-    var filteredGroups: [Group] = []
-
-    let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
 
-    var isSearchBarEmpty: Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-
-    var isFiltering: Bool {
-        return  searchController.isActive && !isSearchBarEmpty
-    }
-
     let loadingView = DMLoadingView()
+
+    let operationQueue: OperationQueue = {
+       let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 4
+        queue.name = "com.groups.parsing"
+        queue.qualityOfService = .userInitiated
+        return queue
+    }()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let parameters = [
+            "access_token": Session.shared.token,
+            "extended": "true",
+            "fields": "name, photo_50",
+            "v": networkManager.vkApiVersion
+        ]
+        guard let url = URL(string: "https://api.vk.com/method/groups.get") else { return }
+        let downLoadOperation = LoadDataOperation(url: url, method: .get, params: parameters)
+        let parsingOperation = ParsingOperation<GroupResponse>()
+        parsingOperation.addDependency(downLoadOperation)
+        let realmSavingOperation = RealmSavingOperation<GroupResponse>()
+        realmSavingOperation.addDependency(parsingOperation)
+        operationQueue.addOperations([downLoadOperation, parsingOperation, realmSavingOperation], waitUntilFinished: false)
+        operationQueue.addBarrierBlock {
+            DispatchQueue.main.async {
+                self.loadingView.removeLoadingView()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,50 +62,13 @@ class GroupsTableViewController: UITableViewController {
         self.tableView.addSubview(calculatedLoadingView)
         self.title = "My Groups"
 
-        if realmManager.getResult(selectedType: Group.self) != nil {
-            self.nonFilteredGroups = self.realmManager.getArray(selectedType: Group.self)
-            self.tableView.reloadData()
-            self.loadingView.removeLoadingView()
-        } else {
-            // обновим базу групп при первой загрузке контроллера но покажем данные уже из базы
-            networkManager.getGroupsForCurrentUserViaAlamofire(completion: { [weak self] result in
-                switch result {
-                case let .failure(error):
-                    print(error)
-                case let .success(groups):
-                    guard let realmManager = self?.realmManager else { return }
-                    self?.loadingView.removeLoadingView()
-                    self?.realmManager.createGroupsDB(groups: groups)
-                    self?.nonFilteredGroups = realmManager.getArray(selectedType: Group.self).sorted { $0.name < $1.name }
-                    self?.tableView.reloadData()
-                    self?.loadingView.removeLoadingView()
-                }
-            })
-        }
         tableView.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "groupCellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Groups"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        navigationItem.hidesSearchBarWhenScrolling = false
 
-        guard let currentGroupsArray = self.realmManager.getObjects(selectedType: Group.self) else { return }
-        self.notificationToken = currentGroupsArray.observe({ (changes: RealmCollectionChange) in
-            switch changes {
-                case .initial:
-                    self.tableView.reloadData()
-            case  .update:
-                    self.nonFilteredGroups = self.realmManager.getArray(selectedType: Group.self)
-                    self.tableView.reloadData()
-                    self.loadingView.removeLoadingView()
-
-                case .error(let error):
-                    print(error)
-                }
-        })
+        notificationToken = groups?.observe { [weak self] _ in
+            self?.tableView.reloadData()
+        }
     }
 
     deinit {
@@ -94,38 +82,20 @@ class GroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        if isFiltering {
-            return filteredGroups.count
-        }
-        return nonFilteredGroups.count
+        return groups?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCellId", for: indexPath) as! GroupTableViewCell
 
-        if isFiltering {
-            let group = filteredGroups[indexPath.row]
-            groupCell.groupLabel.text = group.name
-            let groupAvatarUrl = group.photoStringUrl
-            networkManager.getData(from: groupAvatarUrl) {data, _, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async { [] in
-                    groupCell.groupAvatar.image = UIImage(data: data)
-                }
-            }
-        } else {
-            let group = nonFilteredGroups[indexPath.row]
-            groupCell.groupLabel.text = group.name
-            let groupAvatarUrl = group.photoStringUrl
-            networkManager.getData(from: groupAvatarUrl) {data, _, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async { [] in
-                    groupCell.groupAvatar.image = UIImage(data: data)
-                }
+        let group = groups?[indexPath.row]
+        groupCell.groupLabel.text = group?.name
+        if let url = group?.pictureUrlString {
+            self.downloadImage(with: url) { resultImage in
+                groupCell.groupAvatar.image = resultImage
             }
         }
-
+        groupCell.selectionStyle = .none
         return groupCell
     }
 
@@ -135,30 +105,5 @@ class GroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
-    }
-
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            nonFilteredGroups.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-
-    func filterContentForSearchText(_ searchText: String) {
-        filteredGroups =  nonFilteredGroups.filter {(group: Group) -> Bool in
-            return (group.name.lowercased().contains(searchText.lowercased()) )
-        }
-        tableView.reloadData()
-    }
-}
-
-extension GroupsTableViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
     }
 }
