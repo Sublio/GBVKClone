@@ -41,8 +41,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         if iSMeededToUpdatePhotos() {
             retrievePhotosForUserId(userId: selectedUser)
         } else {
-            let user = self.realmManager.getFriendInfoById(id: selectedUserId!)
-            self.photos = Array(user!.friendPhotos)
+            guard let user = self.realmManager.getFriendInfoById(id: selectedUser) else { return }
+            self.photos = Array(user.friendPhotos)
         }
     }
 
