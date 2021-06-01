@@ -33,11 +33,13 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     let activityView = UIActivityIndicatorView(style: .large)
 
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let cacheManager = CacheManager(container: self.collectionView)
         self.cacheManager = cacheManager
         guard let selectedUser = selectedUserId else { return }
+        
         if iSMeededToUpdatePhotos() {
             retrievePhotosForUserId(userId: selectedUser)
         } else {
@@ -141,9 +143,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor.black.cgColor
         let photo = photos[indexPath.row]
-        if let photo = UIImage(data: photo.picture) {
-            cell.photo.image = photo
-        }
+        let photoUrl = photo.photoStringUrlMedium
+        cell.photo.image = cacheManager?.photo(at: indexPath, byUrl: photoUrl)
         cell.spinner.stopAnimating()
         return cell
     }
