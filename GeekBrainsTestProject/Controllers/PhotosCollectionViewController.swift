@@ -24,7 +24,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
             }
         }
     }// This array is for populating PhotosCollectionViewController
-    
+
     var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
 
     private let reuseIdentifier = "CollectionCell"
@@ -33,13 +33,12 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     let activityView = UIActivityIndicatorView(style: .large)
 
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let cacheManager = CacheManager(container: self.collectionView)
         self.cacheManager = cacheManager
         guard let selectedUser = selectedUserId else { return }
-        
+
         if iSMeededToUpdatePhotos() {
             retrievePhotosForUserId(userId: selectedUser)
         } else {

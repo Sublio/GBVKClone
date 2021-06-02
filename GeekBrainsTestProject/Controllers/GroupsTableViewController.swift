@@ -21,8 +21,8 @@ class GroupsTableViewController: UITableViewController {
     let realmManager = RealmManager.shared
 
     let networkManager = NetworkManager.shared
-    
-    var cacheManager : CacheManager?
+
+    var cacheManager: CacheManager?
 
     let loadingView = DMLoadingView()
 
@@ -36,7 +36,7 @@ class GroupsTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         let cacheManager = CacheManager(container: self.tableView)
         self.cacheManager = cacheManager
 

@@ -14,9 +14,8 @@ class GroupSearchTableViewController: UITableViewController, UISearchResultsUpda
     var foundGroups: [SearchableGroup] = []
     let searchController = UISearchController(searchResultsController: nil)
     let networkManager = NetworkManager.shared
-    var cacheManager : CacheManager?
-    
-    
+    var cacheManager: CacheManager?
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let cacheManager = CacheManager(container: self.tableView)
