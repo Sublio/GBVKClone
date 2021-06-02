@@ -60,33 +60,36 @@ class RealmManager {
     }
 
     func deleteDatabase() {
-        let realm = try! Realm(configuration: configuration)
-        try! realm.write {
-            realm.deleteAll()
+        let realm = try? Realm(configuration: configuration)
+        try? realm?.write {
+            realm?.deleteAll()
         }
     }
 
     func delete<T: Object>(selectedType: T.Type) {
-        let realm = try! Realm(configuration: configuration)
-        try! realm.write {
-            let object = realm.objects(selectedType)
-            realm.delete(object)
+        let realm = try? Realm(configuration: configuration)
+        try? realm?.write {
+            if let object = realm?.objects(selectedType){
+                realm?.delete(object)
+            }
+            
         }
     }
 
     func delete<T: Object>(selectedType: T.Type, index: Int) {
-        let realm = try! Realm(configuration: configuration)
-        try! realm.write {
-            let object = realm.objects(selectedType)
-            realm.delete(object[index])
+        let realm = try? Realm(configuration: configuration)
+        try? realm?.write {
+            if let object = realm?.objects(selectedType){
+                realm?.delete(object[index])
+            }
         }
     }
 
     func add<T: Object>(_ selectedObject: T) {
-        let realm = try! Realm(configuration: configuration)
+        let realm = try? Realm(configuration: configuration)
         do {
-            try realm.write {
-                realm.add(selectedObject)
+            try realm?.write {
+                realm?.add(selectedObject)
             }
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -94,52 +97,66 @@ class RealmManager {
     }
 
     func getArray<T: Object>(selectedType: T.Type) -> [T] {
-        let realm = try! Realm(configuration: configuration)
-        let object = realm.objects(selectedType)
+        let realm = try? Realm(configuration: configuration)
         var array = [T]()
-        for data in object {
-            array.append(data)
+        if let object = realm?.objects(selectedType){
+            for data in object {
+                array.append(data)
+            }
         }
+       
         return array
     }
 
     func getObject<T: Object>(selectedType: T.Type, index: Int) -> T {
-        let realm = try! Realm(configuration: configuration)
-        let object = realm.objects(selectedType)
+        let realm = try? Realm(configuration: configuration)
         var array = [T]()
-        for data in object {
-            array.append(data)
+        if let object = realm?.objects(selectedType){
+            for data in object {
+                array.append(data)
+            }
         }
         return array[index]
     }
 
     func getObjects<T: Object>(selectedType: T.Type) ->Results<T>? {
-        let realm = try! Realm(configuration: configuration)
-        let objects = realm.objects(selectedType)
+        let realm = try? Realm(configuration: configuration)
+        let objects = realm?.objects(selectedType)
         return objects
     }
 
     func getFriendInfoById(id: Int) -> Friend? {
-        let realm = try! Realm()
-        return realm.object(ofType: Friend.self, forPrimaryKey: id)
+        let realm = try? Realm()
+        return realm?.object(ofType: Friend.self, forPrimaryKey: id)
     }
 
     func updatePhotosStorageForFriend(friendId: Int, photo: Photo) {
-        let realm = try! Realm()
-        let user = realm.object(ofType: Friend.self, forPrimaryKey: friendId)
-        try! realm.write({
-            user?.friendPhotos.append(photo)
-        })
+        let realm = try? Realm()
+        if let user = realm?.object(ofType: Friend.self, forPrimaryKey: friendId){
+            do{
+                try realm?.write({
+                    user.friendPhotos.append(photo)
+                })
+            }catch{
+                print (error)
+            }
+        }
     }
 
     // return Result tyle
-    func getResults<T: Object>(selectedType: T.Type) -> Results<T> {
-        let realm = try! Realm(configuration: configuration)
-        return realm.objects(selectedType)
+    func getResults<T: Object>(selectedType: T.Type) -> Results<T>? {
+        if let realm = try? Realm(configuration: configuration){
+            return realm.objects(selectedType)
+        }else {
+            return nil
+        }
     }
 
     func getResult<T: Object>(selectedType: T.Type) -> T? {
-        let realm = try! Realm(configuration: configuration)
-        return realm.objects(selectedType).first
+        if let realm = try? Realm(configuration: configuration){
+            return realm.objects(selectedType).first
+        }else {
+            return nil
+        }
     }
 }
