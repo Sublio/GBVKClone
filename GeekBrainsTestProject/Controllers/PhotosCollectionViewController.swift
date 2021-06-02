@@ -15,17 +15,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
     var cacheManager: CacheManager?
-    var photos: [Photo] = [] {
-        didSet {
-            self.photos.forEach { photo in
-                if let realPhoto = UIImage(data: photo.picture) {
-                    self.realPhotos.append(realPhoto)
-                }
-            }
-        }
-    }// This array is for populating PhotosCollectionViewController
+    var photos: [Photo] = [] // This array is for populating PhotosCollectionViewController
 
-    var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
 
     private let reuseIdentifier = "CollectionCell"
 
@@ -128,12 +119,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ManagePageViewController") as! ManagePageViewController
-        vc.photos = self.realPhotos
-        vc.currentIndex = indexPath.row
-        navigationController?.pushViewController(vc, animated: true)
-        self.realPhotos = []
+    
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
