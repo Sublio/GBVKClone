@@ -20,6 +20,7 @@ class FriendsTableViewController: UITableViewController {
 
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
+    var cacheManager: CacheManager?
 
     var notFilteredFriends: [Friend] = []
     var filteredFriends: [Friend] = []
@@ -57,6 +58,8 @@ class FriendsTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let cacheManager = CacheManager(container: self.tableView)
+        self.cacheManager = cacheManager
         UserDefaults.standard.setValue(true, forKey: "isLoggedIn")
         KeychainService.saveToken(service: "tokenStorage", data: Session.shared.token)
     }
@@ -130,24 +133,13 @@ class FriendsTableViewController: UITableViewController {
             let friend = filteredFriends[indexPath.row]
             cell.friendLabel.text = friend.name
             let avatarUrl = filteredFriends.filter {$0.name == friend.name}.first?.friendAvatar ?? ""
-            networkManager.getData(from: avatarUrl) {data, _, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async { [] in
-                    cell.roundedView.image = UIImage(data: data)
-                    self.loadingView.removeLoadingView()
-                }
-            }
+            cell.roundedView.image = cacheManager?.photo(at: indexPath, byUrl: avatarUrl)
         } else {
             let section = sections[indexPath.section]
             let userName = section.names[indexPath.row]
             cell.friendLabel.text = userName
             let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.friendAvatar ?? ""
-            networkManager.getData(from: avatarUrl) {data, _, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async { [] in
-                    cell.roundedView.image = UIImage(data: data)
-                }
-            }
+            cell.roundedView.image = cacheManager?.photo(at: indexPath, byUrl: avatarUrl)
         }
         return cell
     }

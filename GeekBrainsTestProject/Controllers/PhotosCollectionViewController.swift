@@ -14,16 +14,9 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
-    var photos: [Photo] = [] {
-        didSet {
-            self.photos.forEach { photo in
-                if let realPhoto = UIImage(data: photo.picture) {
-                    self.realPhotos.append(realPhoto)
-                }
-            }
-        }
-    }// This array is for populating PhotosCollectionViewController
-    var realPhotos: [UIImage] = [] // This collection is for passing over to PhotoCommentViewController
+    var cacheManager: CacheManager?
+    var photos: [Photo] = [] // This array is for populating PhotosCollectionViewController
+
 
     private let reuseIdentifier = "CollectionCell"
 
@@ -33,13 +26,15 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        let cacheManager = CacheManager(container: self.collectionView)
+        self.cacheManager = cacheManager
         guard let selectedUser = selectedUserId else { return }
+
         if iSMeededToUpdatePhotos() {
             retrievePhotosForUserId(userId: selectedUser)
         } else {
-            let user = self.realmManager.getFriendInfoById(id: selectedUserId!)
-            self.photos = Array(user!.friendPhotos)
+            guard let user = self.realmManager.getFriendInfoById(id: selectedUser) else { return }
+            self.photos = Array(user.friendPhotos)
         }
     }
 
@@ -124,12 +119,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ManagePageViewController") as! ManagePageViewController
-        vc.photos = self.realPhotos
-        vc.currentIndex = indexPath.row
-        navigationController?.pushViewController(vc, animated: true)
-        self.realPhotos = []
+    
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -138,9 +128,8 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor.black.cgColor
         let photo = photos[indexPath.row]
-        if let photo = UIImage(data: photo.picture) {
-            cell.photo.image = photo
-        }
+        let photoUrl = photo.photoStringUrlMedium
+        cell.photo.image = cacheManager?.photo(at: indexPath, byUrl: photoUrl)
         cell.spinner.stopAnimating()
         return cell
     }

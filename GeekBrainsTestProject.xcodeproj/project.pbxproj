@@ -13,9 +13,9 @@
 		4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46E25BDE2E8006D45E0 /* LoginViewController.swift */; };
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
-		4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */; };
 		4C39507C2650E887005CC644 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39507B2650E887005CC644 /* KeychainService.swift */; };
 		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
+		4C462039266036E200FC031E /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C462038266036E200FC031E /* CacheManager.swift */; };
 		4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4AA78A261589C3005EFA89 /* Photo.swift */; };
 		4C4DC69726586C42000C57F3 /* NewsFeedPhotoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69626586C42000C57F3 /* NewsFeedPhotoPost.swift */; };
 		4C4DC69926597B99000C57F3 /* NewsFeedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */; };
@@ -57,8 +57,6 @@
 		4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C936DBE25CE37080035DA46 /* LikeCustomView.swift */; };
 		4C94332A261289310015C6A3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C943329261289310015C6A3 /* NetworkManager.swift */; };
 		4C98550B260F15AC00087056 /* GeekBrainsTestProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98550A260F15AC00087056 /* GeekBrainsTestProjectUITests.swift */; };
-		4C9CC6D4261805F70089B832 /* ZoomFullScreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CC6D3261805F70089B832 /* ZoomFullScreenPhotoViewController.swift */; };
-		4C9CC6DC26191B620089B832 /* PhotoCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9CC6DB26191B620089B832 /* PhotoCommentViewController.swift */; };
 		4CA577A12626388D00446F39 /* DMLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A02626388D00446F39 /* DMLoadingView.swift */; };
 		4CA577A726287D2B00446F39 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A626287D2B00446F39 /* RealmManager.swift */; };
 		4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577AA262973C500446F39 /* SearchableGroup.swift */; };
@@ -94,9 +92,9 @@
 		4C17A47125BDE2E8006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePageViewController.swift; sourceTree = "<group>"; };
 		4C39507B2650E887005CC644 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewProtocol.swift; sourceTree = "<group>"; };
+		4C462038266036E200FC031E /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		4C4AA78A261589C3005EFA89 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		4C4DC69626586C42000C57F3 /* NewsFeedPhotoPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedPhotoPost.swift; sourceTree = "<group>"; };
 		4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedProfile.swift; sourceTree = "<group>"; };
@@ -137,8 +135,6 @@
 		4C985508260F15AC00087056 /* GeekBrainsTestProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeekBrainsTestProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C98550A260F15AC00087056 /* GeekBrainsTestProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeekBrainsTestProjectUITests.swift; sourceTree = "<group>"; };
 		4C98550C260F15AC00087056 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C9CC6D3261805F70089B832 /* ZoomFullScreenPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomFullScreenPhotoViewController.swift; sourceTree = "<group>"; };
-		4C9CC6DB26191B620089B832 /* PhotoCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCommentViewController.swift; sourceTree = "<group>"; };
 		4CA577A02626388D00446F39 /* DMLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMLoadingView.swift; sourceTree = "<group>"; };
 		4CA577A626287D2B00446F39 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		4CA577AA262973C500446F39 /* SearchableGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableGroup.swift; sourceTree = "<group>"; };
@@ -232,6 +228,7 @@
 				4CA577A626287D2B00446F39 /* RealmManager.swift */,
 				4C39507B2650E887005CC644 /* KeychainService.swift */,
 				4C6D36FD2654CB88003499E1 /* VKService.swift */,
+				4C462038266036E200FC031E /* CacheManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -372,9 +369,6 @@
 				4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */,
 				4C7B419B25DC070100894D81 /* NewsFeedTableViewController.swift */,
 				4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */,
-				4C9CC6D3261805F70089B832 /* ZoomFullScreenPhotoViewController.swift */,
-				4C9CC6DB26191B620089B832 /* PhotoCommentViewController.swift */,
-				4C2BDFFB2619312B00F01C9E /* ManagePageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -503,7 +497,7 @@
 				4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */,
 				4C7B419625DC015200894D81 /* GroupStubFactory.swift in Sources */,
 				4C6D36FE2654CB88003499E1 /* VKService.swift in Sources */,
-				4C2BDFFC2619312B00F01C9E /* ManagePageViewController.swift in Sources */,
+				4C462039266036E200FC031E /* CacheManager.swift in Sources */,
 				4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */,
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
@@ -514,7 +508,6 @@
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
 				4CA577A12626388D00446F39 /* DMLoadingView.swift in Sources */,
 				4C724541265AF5C800C47EFD /* AsyncOperation.swift in Sources */,
-				4C9CC6DC26191B620089B832 /* PhotoCommentViewController.swift in Sources */,
 				4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */,
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
 				4C72453F265AF4F300C47EFD /* DataOperations.swift in Sources */,
@@ -538,7 +531,6 @@
 				4C17A46D25BDE2E8006D45E0 /* SceneDelegate.swift in Sources */,
 				4C6D37002654CD11003499E1 /* NewsFeedPost.swift in Sources */,
 				4C542A2C25C65DFC00CC8A4F /* PhotosCollectionViewController.swift in Sources */,
-				4C9CC6D4261805F70089B832 /* ZoomFullScreenPhotoViewController.swift in Sources */,
 				4C4DC69726586C42000C57F3 /* NewsFeedPhotoPost.swift in Sources */,
 				4C6D371526581654003499E1 /* LikesTableViewCell.swift in Sources */,
 				4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */,

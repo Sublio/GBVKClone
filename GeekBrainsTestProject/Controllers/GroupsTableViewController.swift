@@ -22,6 +22,8 @@ class GroupsTableViewController: UITableViewController {
 
     let networkManager = NetworkManager.shared
 
+    var cacheManager: CacheManager?
+
     let loadingView = DMLoadingView()
 
     let operationQueue: OperationQueue = {
@@ -34,6 +36,9 @@ class GroupsTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        let cacheManager = CacheManager(container: self.tableView)
+        self.cacheManager = cacheManager
 
         let parameters = [
             "access_token": Session.shared.token,
@@ -91,9 +96,7 @@ class GroupsTableViewController: UITableViewController {
         let group = groups?[indexPath.row]
         groupCell.groupLabel.text = group?.name
         if let url = group?.pictureUrlString {
-            self.downloadImage(with: url) { resultImage in
-                groupCell.groupAvatar.image = resultImage
-            }
+            groupCell.groupAvatar.image = self.cacheManager?.photo(at: indexPath, byUrl: url)
         }
         groupCell.selectionStyle = .none
         return groupCell
