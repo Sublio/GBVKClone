@@ -17,7 +17,6 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     var cacheManager: CacheManager?
     var photos: [Photo] = [] // This array is for populating PhotosCollectionViewController
 
-
     private let reuseIdentifier = "CollectionCell"
 
     private var selectedUserId: Int?
@@ -119,7 +118,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
