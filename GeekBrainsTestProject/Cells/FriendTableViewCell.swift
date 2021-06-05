@@ -18,7 +18,6 @@ class FriendTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.backgroundColor = .white
     }
 
