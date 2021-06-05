@@ -10,7 +10,11 @@ import UIKit
 class GroupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var groupAvatar: RoundedView!
-    @IBOutlet weak var groupLabel: UILabel!
+    @IBOutlet weak var groupLabel: UILabel! {
+        didSet {
+            self.groupLabel.backgroundColor = .white
+        }
+    }
     private let avatarWidth: CGFloat = 30
     private let avatarHeight: CGFloat = 30
     private let offset: CGFloat = 12

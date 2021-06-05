@@ -10,7 +10,11 @@ import UIKit
 class FriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var roundedView: RoundedView!
-    @IBOutlet weak var friendLabel: UILabel!
+    @IBOutlet weak var friendLabel: UILabel! {
+        didSet {
+            friendLabel.backgroundColor = .white
+        }
+    }
 
     private let avatarWidth: CGFloat = 30
     private let avatarHeight: CGFloat = 30
