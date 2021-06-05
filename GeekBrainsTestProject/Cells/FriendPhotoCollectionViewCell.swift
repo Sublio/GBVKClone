@@ -27,7 +27,7 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.photo.frame = CGRect(x: contentView.bounds.minX, y: contentView.bounds.minY, width: contentView.frame.width, height: contentView.frame.height)
+        self.photo.frame = CGRect(x: (contentView.bounds.minX).rounded(), y: (contentView.bounds.minY).rounded(), width: (contentView.frame.width).rounded(), height: (contentView.frame.height).rounded())
     }
 
     override func awakeFromNib() {
