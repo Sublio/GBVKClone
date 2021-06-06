@@ -18,8 +18,6 @@ class GroupsTableViewController: UITableViewController {
 
     private var notificationToken: NotificationToken?
 
-    let realmManager = RealmManager.shared
-
     let networkManager = NetworkManager.shared
 
     var cacheManager: CacheManager?

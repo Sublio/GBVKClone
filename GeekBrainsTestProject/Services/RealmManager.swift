@@ -31,6 +31,16 @@ class RealmManager {
         }
     }
 
+    func save<T: Object>(
+        items: [T],
+        update: Realm.UpdatePolicy
+    ) throws {
+        let realm = try Realm(configuration: configuration)
+        try realm.write {
+            realm.add(items, update: update)
+        }
+    }
+
     func createGroupsDB(groups: [Group]) {
         for group in groups {
             do {

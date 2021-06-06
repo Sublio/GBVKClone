@@ -9,7 +9,7 @@ import UIKit
 
 class LikesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var likesCount: UILabel!{
+    @IBOutlet weak var likesCount: UILabel! {
         didSet {
             self.likesCount.backgroundColor = .white
         }

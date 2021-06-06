@@ -9,11 +9,6 @@ import UIKit
 import RealmSwift
 import PromiseKit
 
-struct Section {
-    let letter: String
-    let names: [String]
-}
-
 class FriendsTableViewController: UITableViewController {
 
     private var notificationToken: NotificationToken?
@@ -22,37 +17,11 @@ class FriendsTableViewController: UITableViewController {
     let networkManager = NetworkManager.shared
     var cacheManager: CacheManager?
 
-    var notFilteredFriends: [Friend] = []
-    var filteredFriends: [Friend] = []
-    var userNames: [String] {
-        notFilteredFriends.map {($0.name )}
-    }
-
+    let notFilteredFriends: Results<Friend>? =  RealmManager.shared.getObjects(selectedType: Friend.self)?.sorted(byKeyPath: "name", ascending: true)
     var signOutButton: UIBarButtonItem {
         let button = UIBarButtonItem(title: "SignOut", style: .plain, target: self, action: #selector(signOut))
         return button
     }
-
-    var userIds: [Int] {
-        notFilteredFriends.map {($0.id )}
-    }
-    var sections: [Section] {
-        let groupedDictionary = Dictionary(grouping: userNames, by: {String($0.prefix(1))})
-        let keys = groupedDictionary.keys.sorted()
-        return keys.map {Section(letter: $0, names: groupedDictionary[$0]!.sorted())}
-    }
-
-    let searchController = UISearchController(searchResultsController: nil)
-
-    var isSearchBarEmpty: Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-
-    var isFiltering: Bool {
-        return  searchController.isActive && !isSearchBarEmpty
-    }
-
-    let loadingView = DMLoadingView()
 
     weak var delegate: PhotosTableViewDelegateProtocol?
 
@@ -62,52 +31,34 @@ class FriendsTableViewController: UITableViewController {
         self.cacheManager = cacheManager
         UserDefaults.standard.setValue(true, forKey: "isLoggedIn")
         KeychainService.saveToken(service: "tokenStorage", data: Session.shared.token)
+        networkManager.getFriendsListViaAlamoFire(completion: { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(friends):
+                try? self.realmManager.save(items: friends, update: .modified)
+            }
+        })
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let navigationController = self.navigationController else { return }
         navigationItem.leftBarButtonItem = signOutButton
-        let calculatedLoadingView = loadingView.setLoadingScreen(for: self.tableView, navigationController: navigationController)
-        self.tableView.addSubview(calculatedLoadingView)
-        networkManager.getFriendListViaPromises()
-            .done(on: .main) { friends in
-                self.loadingView.removeLoadingView()
-                let friendsWithoutDeleted = friends.filter {
-                    !$0.name.isEmpty
-                }
-                self.realmManager.createFriendsDB(friends: friendsWithoutDeleted) // создаем базу из того что прилетело от api
-                self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self) // тут же получаем эту базу и ставим ее как data soource
-                self.tableView.reloadData()
-                self.loadingView.removeLoadingView()
-            }.catch { error in
-                print(error)
-            }
         tableView.register(UINib(nibName: "FriendTableViewCell", bundle: nil), forCellReuseIdentifier: "cellId")
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Friend"
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         self.tableView.reloadData()
-
-        guard let currentFriendsArray = self.realmManager.getObjects(selectedType: Friend.self) else { return }
-        self.notificationToken = currentFriendsArray.observe({ (changes: RealmCollectionChange) in
+        notificationToken = notFilteredFriends?.observe {[weak self] changes in
             switch changes {
             case .initial:
-                self.tableView.reloadData()
-            case  .update:
-                self.notFilteredFriends = self.realmManager.getArray(selectedType: Friend.self)
-                self.tableView.reloadData()
-                self.loadingView.removeLoadingView()
-
-            case .error(let error):
+                break
+            case .update:
+                self?.tableView.reloadData()
+            case let .error(error):
                 print(error)
             }
-        })
+        }
     }
 
     deinit {
@@ -117,30 +68,22 @@ class FriendsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredFriends.count
-        }
-        return sections[section].names.count
+        return notFilteredFriends?.count ?? 1
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-        isFiltering ? 1 : sections.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! FriendTableViewCell
-        if isFiltering {
-            let friend = filteredFriends[indexPath.row]
-            cell.friendLabel.text = friend.name
-            let avatarUrl = filteredFriends.filter {$0.name == friend.name}.first?.friendAvatar ?? ""
-            cell.roundedView.image = cacheManager?.photo(at: indexPath, byUrl: avatarUrl)
-        } else {
-            let section = sections[indexPath.section]
-            let userName = section.names[indexPath.row]
-            cell.friendLabel.text = userName
-            let avatarUrl = notFilteredFriends.filter {$0.name == userName}.first?.friendAvatar ?? ""
-            cell.roundedView.image = cacheManager?.photo(at: indexPath, byUrl: avatarUrl)
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? FriendTableViewCell else { return UITableViewCell() }
+        guard let friends = notFilteredFriends else { return UITableViewCell() }
+        let friend = friends[indexPath.row]
+        cell.configure(with: friend)
+//        if let photoUrl = friend.friendAvatar {
+//            cell.roundedView.image = self.cacheManager?.photo(at: indexPath, byUrl: photoUrl)
+//        }
+        cell.roundedView.image = self.cacheManager?.photo(at: indexPath, byUrl: friend.friendAvatar)
         return cell
     }
 
@@ -154,14 +97,8 @@ class FriendsTableViewController: UITableViewController {
         self.delegate = collectionView
         navigationController?.pushViewController(collectionView, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
-        if isFiltering {
-            let friend = filteredFriends[indexPath.row]
-            self.delegate?.didPickUserFromTableWithId(userId: friend.id )
-        } else {
-            let section = sections[indexPath.section]
-            let userName = section.names[indexPath.row]
-            let clickedID = self.getUserIdByName(userName: userName)
-            self.delegate?.didPickUserFromTableWithId(userId: clickedID ?? 0)
+        if let selectedFriend = notFilteredFriends?[indexPath.row] {
+            self.delegate?.didPickUserFromTableWithId(userId: selectedFriend.id)
         }
     }
 
@@ -169,47 +106,8 @@ class FriendsTableViewController: UITableViewController {
         return 50
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 30))
-        view.backgroundColor = UIColor.blueZero.withAlphaComponent(0.5)
-        let label = UILabel()
-        label.frame = CGRect(x: 5, y: 5, width: Int(view.frame.width)-10, height: Int(view.frame.height) - 10)
-        if isFiltering {
-            label.text = ""
-        } else {
-            label.text = sections[section].letter
-        }
-        view.addSubview(label)
-        return view
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
-    }
-
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return sections.map {$0.letter}
-    }
-
-    func getUserIdByName(userName: String) -> Int? {
-        var dict = [String: Int]()
-
-        for (name, id) in zip(self.userNames, self.userIds) {
-            dict[name] = id
-        }
-        return dict[userName]
-    }
-
-    func filterContentForSearchText(_ searchText: String) {
-        filteredFriends =  notFilteredFriends.filter {(friend: Friend) -> Bool in
-            return (friend.name.lowercased().contains(searchText.lowercased()) )
-        }
-        tableView.reloadData()
     }
 
     @objc func signOut() {
@@ -221,12 +119,5 @@ class FriendsTableViewController: UITableViewController {
         UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
         KeychainService.removeToken(service: "tokenStorage")
         view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension FriendsTableViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
     }
 }

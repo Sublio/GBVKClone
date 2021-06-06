@@ -24,7 +24,7 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
         likedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(likedView)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.photo.frame = CGRect(x: (contentView.bounds.minX).rounded(), y: (contentView.bounds.minY).rounded(), width: (contentView.frame.width).rounded(), height: (contentView.frame.height).rounded())
