@@ -9,10 +9,26 @@ import UIKit
 
 class LikesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var likesCount: UILabel!
-    @IBOutlet weak var commentsCount: UILabel!
-    @IBOutlet weak var reportsCount: UILabel!
-    @IBOutlet weak var viewsCount: UILabel!
+    @IBOutlet weak var likesCount: UILabel!{
+        didSet {
+            self.likesCount.backgroundColor = .white
+        }
+    }
+    @IBOutlet weak var commentsCount: UILabel! {
+        didSet {
+            self.commentsCount.backgroundColor = .white
+        }
+    }
+    @IBOutlet weak var reportsCount: UILabel! {
+        didSet {
+            self.reportsCount.backgroundColor = .white
+        }
+    }
+    @IBOutlet weak var viewsCount: UILabel! {
+        didSet {
+            self.viewsCount.backgroundColor = .white
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

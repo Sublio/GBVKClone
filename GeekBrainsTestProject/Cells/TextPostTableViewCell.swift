@@ -9,7 +9,11 @@ import UIKit
 
 class TextPostTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var textPost: UITextView!
+    @IBOutlet weak var textPost: UITextView! {
+        didSet {
+            self.textPost.backgroundColor = .white
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

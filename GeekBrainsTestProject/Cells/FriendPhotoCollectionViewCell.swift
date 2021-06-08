@@ -19,10 +19,15 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        likedView.frame = CGRect(x: contentView.bounds.maxX, y: contentView.bounds.maxY, width: 40, height: 10)
+        commonInit()
+        likedView.frame = CGRect(x: contentView.bounds.maxX-20, y: contentView.bounds.maxY, width: 40, height: 10)
         likedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(likedView)
-        commonInit()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.photo.frame = CGRect(x: (contentView.bounds.minX).rounded(), y: (contentView.bounds.minY).rounded(), width: (contentView.frame.width).rounded(), height: (contentView.frame.height).rounded())
     }
 
     override func awakeFromNib() {

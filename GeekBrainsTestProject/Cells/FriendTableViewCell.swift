@@ -10,16 +10,30 @@ import UIKit
 class FriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var roundedView: RoundedView!
-    @IBOutlet weak var friendLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        self.backgroundColor = .clear
+    @IBOutlet weak var friendLabel: UILabel! {
+        didSet {
+            friendLabel.backgroundColor = .white
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    private let avatarWidth: CGFloat = 30
+    private let avatarHeight: CGFloat = 30
+    private let offset: CGFloat = 12
 
-        // Configure the view for the selected state
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = .white
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let zeroYPointAvatar: CGFloat = (contentView.bounds.height/2) - avatarHeight / 2
+        let zeroXPointAvatar: CGFloat = offset
+        roundedView.frame = CGRect(x: zeroXPointAvatar, y: zeroYPointAvatar, width: avatarWidth, height: avatarHeight)
+        friendLabel.frame = CGRect(origin:
+                                    CGPoint(
+                                        x: roundedView.frame.maxX + offset,
+                                        y: (contentView.bounds.height/2) - avatarHeight / 3),
+                                   size: friendLabel.intrinsicContentSize)
     }
 }

@@ -10,7 +10,11 @@ import UIKit
 class NewsHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var headerAvatar: UIImageView!
-    @IBOutlet weak var headerAuthor: UILabel!
+    @IBOutlet weak var headerAuthor: UILabel! {
+        didSet {
+            self.headerAuthor.backgroundColor = .white
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
