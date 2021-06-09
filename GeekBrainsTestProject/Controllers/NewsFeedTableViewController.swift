@@ -11,16 +11,15 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         print("Prefetch batches")
     }
-    
 
     let vkService = VKService.shared
-    
+
     private var posts: NewsFeedPostObject? = nil {
         didSet {
             self.tableView.reloadData()
         }
     }
-    
+
     private var feedNextFromAnchor: String?
 
     override func viewDidLoad() {
@@ -33,7 +32,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         self.refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .blueZero
         refreshControl?.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
-        
+
         tableView.prefetchDataSource = self
     }
 
@@ -43,8 +42,8 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
             self.feedNextFromAnchor = nextFromAnchor
         }
     }
-    
-    @objc func refreshControlPulled(){
+
+    @objc func refreshControlPulled() {
         print("pull to refresh")
     }
 
