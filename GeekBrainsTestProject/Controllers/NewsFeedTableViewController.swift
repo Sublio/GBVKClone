@@ -7,9 +7,21 @@
 
 import UIKit
 
-class NewsFeedTableViewController: UITableViewController {
+class NewsFeedTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        print("Prefetch batches")
+    }
+    
 
     let vkService = VKService.shared
+    
+    private var posts: NewsFeedPostObject? = nil {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
+    private var feedNextFromAnchor: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,21 +30,29 @@ class NewsFeedTableViewController: UITableViewController {
         let gradientView = GradientView()
         self.tableView.backgroundView = gradientView
         updateUI()
+        self.refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = .blueZero
+        refreshControl?.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
+        
+        tableView.prefetchDataSource = self
     }
 
     private func updateUI() {
-
-        vkService.getNewsFeedTextPosts(returnCompletion: { result in
-            DispatchQueue.main.async {
-                print(result)
-            }
-        })
+        vkService.getNewsFeedTextPosts { postObjects, nextFromAnchor in
+            self.posts = postObjects
+            self.feedNextFromAnchor = nextFromAnchor
+        }
+    }
+    
+    @objc func refreshControlPulled(){
+        print("pull to refresh")
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        guard let posts = self.posts?.posts else { return 0}
+        return posts.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
