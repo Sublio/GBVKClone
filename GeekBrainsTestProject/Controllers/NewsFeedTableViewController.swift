@@ -92,7 +92,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         if indexPathRange.contains(indexPath.row) {
             return 180
         } else {
-            return 40
+            return 50
         }
     }
 }

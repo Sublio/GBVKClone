@@ -10,11 +10,9 @@ import UIKit
 class NewsHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var headerAvatar: UIImageView!
-    @IBOutlet weak var headerAuthor: UILabel! {
-        didSet {
-            self.headerAuthor.backgroundColor = .white
-        }
-    }
+    @IBOutlet weak var headerAuthor: UILabel!
+    @IBOutlet weak var datePostLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +25,9 @@ class NewsHeaderTableViewCell: UITableViewCell {
     }
 
     func configure(with post: NewsFeedPost) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        self.datePostLabel.text = dateFormatter.string(from: post.date)
         self.headerAvatar.image = UIImage(named: "face1")
         self.headerAuthor.text = "Test"
     }
