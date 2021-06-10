@@ -219,7 +219,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjL-Zc-UPC">
-                                            <rect key="frame" x="14" y="0.0" width="386" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <color key="textColor" systemColor="labelColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -227,10 +227,10 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="hjL-Zc-UPC" firstAttribute="centerX" secondItem="BXE-0X-aez" secondAttribute="centerX" id="LFy-7W-Ui3"/>
-                                        <constraint firstAttribute="bottom" secondItem="hjL-Zc-UPC" secondAttribute="bottom" id="TJM-XF-1Ce"/>
-                                        <constraint firstItem="hjL-Zc-UPC" firstAttribute="leading" secondItem="BXE-0X-aez" secondAttribute="leadingMargin" constant="-6" id="XLE-MA-mBk"/>
-                                        <constraint firstItem="hjL-Zc-UPC" firstAttribute="top" secondItem="BXE-0X-aez" secondAttribute="top" id="q0l-Gg-gQw"/>
+                                        <constraint firstItem="hjL-Zc-UPC" firstAttribute="centerX" secondItem="BXE-0X-aez" secondAttribute="centerX" id="0rz-Yg-8yL"/>
+                                        <constraint firstItem="hjL-Zc-UPC" firstAttribute="leading" secondItem="BXE-0X-aez" secondAttribute="leadingMargin" constant="-20" id="2sj-J2-sKU"/>
+                                        <constraint firstItem="hjL-Zc-UPC" firstAttribute="centerY" secondItem="BXE-0X-aez" secondAttribute="centerY" id="GHa-mY-Z0s"/>
+                                        <constraint firstItem="hjL-Zc-UPC" firstAttribute="top" secondItem="BXE-0X-aez" secondAttribute="topMargin" constant="-11" id="dZD-x0-WFW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

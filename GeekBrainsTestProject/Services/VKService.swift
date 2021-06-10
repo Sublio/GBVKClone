@@ -18,7 +18,7 @@ class VKService {
 
     typealias NextFromAnchor = String
 
-    func getNewsFeedTextPosts(startTime: Date? = nil, nextFrom: String? = nil, _ completion: @escaping (NewsFeedPostObject, NextFromAnchor) -> Void) {
+    func getNewsFeedTextPosts(startTime: Date? = nil, nextFrom: String? = nil, _ completion: @escaping ([NewsFeedPost], NextFromAnchor) -> Void) {
         let parsingGroup = DispatchGroup()
 
         let scheme = "https://"
@@ -27,7 +27,7 @@ class VKService {
         var parameters: Parameters = [
             "access_token": Session.shared.token,
             "filters": "post",
-            "count": 2,
+            "count": 20,
             "v": networkManager.vkApiVersion
         ]
         if let startTime = startTime {
@@ -44,7 +44,7 @@ class VKService {
             case .success(let data):
                 guard let data = data else { return }
                 var posts: [NewsFeedPost] = []
-                var profiles: [NewsFeedProfile] = []
+                // var profiles: [NewsFeedProfile] = []
                 let json = JSON(data)
                 let nextFromAnchor = json["response"]["next_from"].stringValue
 
@@ -54,15 +54,15 @@ class VKService {
                     posts = postJSONs.compactMap { NewsFeedPost(json: $0) }
                 }
 
-                DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
-                    guard let json = try? JSON(data: data) else { return }
-                    let newsFeedJsonProfiles = json["response"]["profiles"].arrayValue
-                    profiles = newsFeedJsonProfiles.compactMap { NewsFeedProfile(json: $0) }
-                }
+//                DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+//                    guard let json = try? JSON(data: data) else { return }
+//                    let newsFeedJsonProfiles = json["response"]["profiles"].arrayValue
+//                    profiles = newsFeedJsonProfiles.compactMap { NewsFeedProfile(json: $0) }
+//                }
 
                 parsingGroup.notify(queue: .main) {
-                    let postObject = NewsFeedPostObject(posts: posts, profiles: profiles)
-                    completion(postObject, nextFromAnchor )
+                    // let postObject = NewsFeedPostObject(posts: posts, profiles: profiles)
+                    completion(posts, nextFromAnchor )
                 }
             }
         }

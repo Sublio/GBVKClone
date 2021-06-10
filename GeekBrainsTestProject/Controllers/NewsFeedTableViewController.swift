@@ -14,7 +14,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
 
     let vkService = VKService.shared
 
-    private var posts: NewsFeedPostObject? = nil {
+    private var posts: [NewsFeedPost]? {
         didSet {
             self.tableView.reloadData()
         }
@@ -50,8 +50,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        guard let posts = self.posts?.posts else { return 0}
-        return posts.count
+        return posts?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,11 +62,14 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let post = self.posts?[indexPath.section] else { return TextPostTableViewCell()}
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! NewsHeaderTableViewCell
+            cell.configure(with: post)
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "textPostCell") as! TextPostTableViewCell
+            cell.configure(with: post)
             return cell
 
         } else if indexPath.row == 2 {
@@ -75,6 +77,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell") as! LikesTableViewCell
+            cell.configure(with: post)
             return cell
         }
     }

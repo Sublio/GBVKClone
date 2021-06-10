@@ -26,4 +26,9 @@ class NewsHeaderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configure(with post: NewsFeedPost) {
+        self.headerAvatar.image = UIImage(named: "face1")
+        self.headerAuthor.text = "Test"
+    }
+
 }

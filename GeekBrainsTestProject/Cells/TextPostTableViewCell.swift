@@ -26,4 +26,8 @@ class TextPostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configure(with post: NewsFeedPost) {
+        self.textPost.text = post.text
+    }
+
 }
