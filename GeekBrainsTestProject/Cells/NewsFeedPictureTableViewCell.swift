@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsFeedPictureTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imageVieew: UIImageView!
+    @IBOutlet weak var picture: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +22,13 @@ class NewsFeedPictureTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configure(with post: NewsFeedPost) {
+        guard let photoURL = URL(string: post.postPhotoURL) else { return }
+        self.picture.kf.setImage(with: photoURL)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        picture.image = nil
+    }
 }

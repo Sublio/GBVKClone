@@ -256,7 +256,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="185"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="france" translatesAutoresizingMaskIntoConstraints="NO" id="Mag-1x-gPL">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="france" translatesAutoresizingMaskIntoConstraints="NO" id="Mag-1x-gPL">
                                             <rect key="frame" x="10" y="0.0" width="394" height="185"/>
                                         </imageView>
                                     </subviews>
@@ -268,27 +268,27 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="imageVieew" destination="Mag-1x-gPL" id="Qh5-FK-m72"/>
+                                    <outlet property="picture" destination="Mag-1x-gPL" id="Qh5-FK-m72"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likesCell" id="kZH-I8-SdT" customClass="LikesTableViewCell" customModule="GeekBrainsTestProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="433.00000190734863" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="433.00000190734863" width="414" height="44.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kZH-I8-SdT" id="cWj-os-wsm">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wDY-5w-Z8i">
-                                            <rect key="frame" x="14" y="13" width="20" height="19"/>
+                                            <rect key="frame" x="14" y="12.999999999999996" width="20" height="19.333333333333329"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMd-cS-PnW">
-                                            <rect key="frame" x="48" y="14" width="16" height="16"/>
+                                            <rect key="frame" x="48" y="13.999999999999998" width="16" height="16.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5i-BB-h0s">
-                                            <rect key="frame" x="120" y="14" width="16" height="16"/>
+                                            <rect key="frame" x="120" y="13.999999999999998" width="16" height="16.333333333333329"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="wVM-q8-Yj6"/>
                                             </constraints>
@@ -297,31 +297,31 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowshape.turn.up.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3Zk-kJ-at3">
-                                            <rect key="frame" x="157.66666666666666" y="12.666666666666663" width="20" height="19"/>
+                                            <rect key="frame" x="157.66666666666666" y="12.666666666666664" width="20" height="19.333333333333336"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="g5r-xg-B4a"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="128" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJQ-JD-gBf">
-                                            <rect key="frame" x="192" y="13.666666666666666" width="22" height="16.666666666666671"/>
+                                            <rect key="frame" x="192" y="13.666666666666664" width="22" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="228" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsX-B1-fck">
-                                            <rect key="frame" x="370" y="13.666666666666666" width="24" height="16.666666666666671"/>
+                                            <rect key="frame" x="370" y="13.666666666666664" width="24" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="f1s-a7-H9W">
-                                            <rect key="frame" x="86" y="11.333333333333332" width="20" height="21.333333333333339"/>
+                                            <rect key="frame" x="86" y="11.33333333333333" width="20" height="21.666666666666654"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="rcY-IA-iLr"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7fd-qh-OPB">
-                                            <rect key="frame" x="330" y="13.333333333333334" width="26" height="18.000000000000004"/>
+                                            <rect key="frame" x="330" y="13.333333333333332" width="26" height="18.333333333333339"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>

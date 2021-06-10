@@ -74,6 +74,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
 
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell") as! NewsFeedPictureTableViewCell
+            cell.configure(with: post)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell") as! LikesTableViewCell

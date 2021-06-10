@@ -22,7 +22,7 @@ struct GroupContainer: Codable {
 }
 
 class Group: Object, Codable {
-    @objc dynamic var groupId: Int = 0
+    @objc dynamic var groupId: Int = -1
     @objc dynamic var name: String = ""
     @objc dynamic var pictureUrlString: String = ""
 
