@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendTableViewCell: UITableViewCell {
 
@@ -35,5 +36,9 @@ class FriendTableViewCell: UITableViewCell {
                                         x: roundedView.frame.maxX + offset,
                                         y: (contentView.bounds.height/2) - avatarHeight / 3),
                                    size: friendLabel.intrinsicContentSize)
+    }
+
+    public func configure(with friend: Friend) {
+        friendLabel.text = friend.name
     }
 }

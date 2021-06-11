@@ -17,6 +17,8 @@ class Friend: RealmSwift.Object {
 
     var friendPhotos = List<Photo>()
 
+    var photoUrl: URL? { URL(string: friendAvatar) }
+
     convenience init (json: SwiftyJSON.JSON) {
         self.init()
         let firstName = json["first_name"].string ?? ""
@@ -28,5 +30,18 @@ class Friend: RealmSwift.Object {
 
     override static func primaryKey() -> String? {
         "id"
+    }
+}
+
+struct FriendSection: Comparable {
+    let title: Character
+    let friends: [Friend]
+
+    static func < (lhs: FriendSection, rhs: FriendSection) -> Bool {
+        lhs.title < rhs.title
+    }
+
+    static func == (lhs: FriendSection, rhs: FriendSection) -> Bool {
+        lhs.title == rhs.title
     }
 }
