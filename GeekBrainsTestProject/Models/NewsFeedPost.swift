@@ -7,6 +7,7 @@
 
 import SwiftyJSON
 import Foundation
+import CoreGraphics
 
 class NewsFeedPost {
     var date: Date
@@ -20,6 +21,11 @@ class NewsFeedPost {
     var postPhotoURL = ""
     var photoWidth = 0
     var photoHeight = 0
+
+    var aspectRatio: CGFloat {
+        guard photoWidth != 0 else { return 0 }
+        return CGFloat(photoHeight) / CGFloat(photoWidth)
+    }
 
     init (json: SwiftyJSON.JSON) {
         self.date = Date(timeIntervalSince1970: TimeInterval(json["date"].doubleValue))

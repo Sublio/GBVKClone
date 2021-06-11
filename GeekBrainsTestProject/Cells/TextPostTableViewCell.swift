@@ -9,6 +9,9 @@ import UIKit
 
 class TextPostTableViewCell: UITableViewCell {
 
+    static let horizontalInset: CGFloat = 12
+    static let verticalInset: CGFloat = 8
+
     @IBOutlet weak var textPost: UITextView! {
         didSet {
             self.textPost.backgroundColor = .white
