@@ -87,10 +87,6 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0, 3:
@@ -110,6 +106,26 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         default:
             return UITableView.automaticDimension
         }
+    }
+
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0, 3:
+            return 60
+        case 2:
+            let aspectRatio = posts[indexPath.section].aspectRatio
+            return tableView.frame.width * aspectRatio
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard indexPath.row == 1 else { return }
+        let currentValue = openedTextCells[indexPath] ?? false
+        openedTextCells[indexPath] = !currentValue
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
     func getLabelSize(text: String, font: UIFont, availableWidth: CGFloat) -> CGSize {

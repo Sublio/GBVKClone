@@ -17,12 +17,12 @@ class NetworkManager {
 
     private init () {}
 
-    let vkApiVersion = "5.130"
+    let vkApiVersion = "5.126"
     let scheme = "https"
     let clientId = "7800566"
     // Wall + Friends + Offline Access
     // Ref - https://vk.com/dev/permissions
-    let scope = "73730"
+    let scope = 262150 + 8192
     let oauthHost = "oauth.vk.com"
     let apiHost = "api.vk.com"
     let display = "mobile"
@@ -36,7 +36,7 @@ class NetworkManager {
             URLQueryItem(name: "client_id", value: clientId),
             URLQueryItem(name: "display", value: display),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: scope),
+            URLQueryItem(name: "scope", value: "\(scope)"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: vkApiVersion)
         ]

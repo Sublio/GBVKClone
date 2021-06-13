@@ -13,7 +13,7 @@ import Kingfisher
 class GroupsTableViewController: UITableViewController {
 
     private lazy var groups: Results<Group>? = {
-        try? Realm().objects(Group.self)
+        return try? Realm().objects(Group.self).sorted(byKeyPath: "name", ascending: true)
     }()
 
     private var notificationToken: NotificationToken?
@@ -26,7 +26,7 @@ class GroupsTableViewController: UITableViewController {
 
     let operationQueue: OperationQueue = {
         let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 4
+        queue.maxConcurrentOperationCount = 5
         queue.name = "com.groups.parsing"
         queue.qualityOfService = .userInitiated
         return queue
@@ -41,7 +41,6 @@ class GroupsTableViewController: UITableViewController {
         let parameters = [
             "access_token": Session.shared.token,
             "extended": "true",
-            "fields": "name, photo_50",
             "v": networkManager.vkApiVersion
         ]
         guard let url = URL(string: "https://api.vk.com/method/groups.get") else { return }

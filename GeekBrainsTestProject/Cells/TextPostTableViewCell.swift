@@ -12,15 +12,16 @@ class TextPostTableViewCell: UITableViewCell {
     static let horizontalInset: CGFloat = 12
     static let verticalInset: CGFloat = 8
 
-    @IBOutlet weak var textPost: UITextView! {
-        didSet {
-            self.textPost.backgroundColor = .white
-        }
-    }
+    @IBOutlet weak var textPost: UITextView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.backgroundColor = .clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
