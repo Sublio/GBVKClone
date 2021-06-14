@@ -8,6 +8,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import RealmSwift
 
 class VKService {
 
@@ -44,7 +45,8 @@ class VKService {
             case .success(let data):
                 guard let data = data else { return }
                 var posts: [NewsFeedPost] = []
-                // var profiles: [NewsFeedProfile] = []
+                var profiles: [Friend] = []
+                var groups: [Group] = []
                 let json = JSON(data)
                 let nextFromAnchor = json["response"]["next_from"].stringValue
 
@@ -54,14 +56,21 @@ class VKService {
                     posts = postJSONs.compactMap { NewsFeedPost(json: $0) }
                 }
 
-//                DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
-//                    guard let json = try? JSON(data: data) else { return }
-//                    let newsFeedJsonProfiles = json["response"]["profiles"].arrayValue
-//                    profiles = newsFeedJsonProfiles.compactMap { NewsFeedProfile(json: $0) }
-//                }
+                DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                    guard let json = try? JSON(data: data) else { return }
+                    let groupsJSOn = json["response"]["groups"].arrayValue
+                    groups = groupsJSOn.compactMap { Group(from: $0) }
+                    try? RealmManager.shared.save(items: groups, update: .modified)
+                }
+
+                DispatchQueue.global().async(group: parsingGroup, qos: .userInitiated) {
+                    guard let json = try? JSON(data: data) else { return }
+                    let newsFeedJsonProfiles = json["response"]["profiles"].arrayValue
+                    profiles = newsFeedJsonProfiles.compactMap { Friend(json: $0) }
+                    try? RealmManager.shared.save(items: profiles, update: .modified)
+                }
 
                 parsingGroup.notify(queue: .main) {
-                    // let postObject = NewsFeedPostObject(posts: posts, profiles: profiles)
                     completion(posts, nextFromAnchor )
                 }
             }
