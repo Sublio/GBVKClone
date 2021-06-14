@@ -34,8 +34,8 @@ class NewsHeaderTableViewCell: UITableViewCell {
     func configure(with post: NewsFeedPost) {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .medium
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
         self.datePostLabel.text = dateFormatter.string(from: post.date)
-        self.headerAuthor.text = "Test"
 
         if post.postId < 0 {
             guard let group = try? realmManager.getObjects(selectedType: Group.self)?.filter("id == %@", -post.postId).first,

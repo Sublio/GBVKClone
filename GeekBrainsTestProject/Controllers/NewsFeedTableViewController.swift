@@ -48,7 +48,15 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     }
 
     @objc func refreshControlPulled() {
-        print("pull to refresh")
+        self.refreshControl?.beginRefreshing()
+        let mostFreshNewsDate = self.posts.first!.date + 2
+        vkService.getNewsFeedTextPosts(startTime: mostFreshNewsDate) { [weak self] posts, nextFromAnchor in
+            guard let self = self else { return }
+            self.refreshControl?.endRefreshing()
+            
+            guard posts.count > 0 else { return }
+            self.posts.insert(contentsOf: posts, at: 0)
+        }
     }
 
     // MARK: - Table view data source
