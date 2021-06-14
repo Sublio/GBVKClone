@@ -90,7 +90,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0, 3:
-            return 60
+            return 50
         case 1:
             let maximumCellHeight: CGFloat = 100
             let text = posts[indexPath.section].text

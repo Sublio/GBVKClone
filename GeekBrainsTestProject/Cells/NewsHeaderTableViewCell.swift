@@ -25,6 +25,11 @@ class NewsHeaderTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.headerAvatar.setRounded()
+    }
 
     func configure(with post: NewsFeedPost) {
         let dateFormatter = DateFormatter()
@@ -43,5 +48,14 @@ class NewsHeaderTableViewCell: UITableViewCell {
             self.headerAuthor.text = friend.name
             self.headerAvatar.kf.setImage(with: avatarURL)
         }
+    }
+}
+
+extension UIImageView {
+    
+    func setRounded() {
+        let radius = self.frame.width / 2
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
     }
 }

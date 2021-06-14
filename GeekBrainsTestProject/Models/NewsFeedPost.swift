@@ -31,7 +31,7 @@ class NewsFeedPost {
         self.date = Date(timeIntervalSince1970: TimeInterval(json["date"].doubleValue))
         self.type = json["type"].stringValue
         self.postId = json["source_id"].int ?? 0
-        self.comments = json["views"]["count"].int ?? 0
+        self.comments = json["comments"]["count"].int ?? 0
         self.likes = json["likes"]["count"].int ?? 0
         self.reposts = json["reposts"]["count"].int ?? 0
         self.views = json["views"]["count"].int ?? 0
