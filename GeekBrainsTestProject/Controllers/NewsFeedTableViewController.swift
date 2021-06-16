@@ -8,9 +8,6 @@
 import UIKit
 
 class NewsFeedTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        print("Prefetch batches")
-    }
 
     let vkService = VKService.shared
 
@@ -25,6 +22,9 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     }
 
     private var feedNextFromAnchor: String?
+    
+    private var nextFrom: String = ""
+    private var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,5 +143,26 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         let height = Double(rect.size.height)
         let size = CGSize(width: ceil(width), height: ceil(height))
         return size
+    }
+    
+    // MARK: - Prefetching Delegate
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let feedNextFromAnchor = self.feedNextFromAnchor,
+              let maxIndexPath = indexPaths.max(),
+              maxIndexPath.section >= (self.posts.count - 3),
+              !isLoading else { return }
+        isLoading = true
+        vkService.getNewsFeedTextPosts(nextFrom: feedNextFromAnchor) { [weak self] posts, nextFromAnchor in
+            guard let self = self else { return }
+            self.posts.append(contentsOf: posts)
+            self.isLoading = false
+            self.feedNextFromAnchor = nextFromAnchor
+        }
+        
+        print("Prefetch batches")
+    }
+    
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        print("Cancel prefetching")
     }
 }
