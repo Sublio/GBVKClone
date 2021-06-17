@@ -161,8 +161,4 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         
         print("Prefetch batches")
     }
-    
-    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        print("Cancel prefetching")
-    }
 }
