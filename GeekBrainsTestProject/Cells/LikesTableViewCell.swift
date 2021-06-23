@@ -9,26 +9,10 @@ import UIKit
 
 class LikesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var likesCount: UILabel! {
-        didSet {
-            self.likesCount.backgroundColor = .white
-        }
-    }
-    @IBOutlet weak var commentsCount: UILabel! {
-        didSet {
-            self.commentsCount.backgroundColor = .white
-        }
-    }
-    @IBOutlet weak var reportsCount: UILabel! {
-        didSet {
-            self.reportsCount.backgroundColor = .white
-        }
-    }
-    @IBOutlet weak var viewsCount: UILabel! {
-        didSet {
-            self.viewsCount.backgroundColor = .white
-        }
-    }
+    @IBOutlet weak var likesCount: UILabel!
+    @IBOutlet weak var commentsCount: UILabel!
+    @IBOutlet weak var reportsCount: UILabel!
+    @IBOutlet weak var viewsCount: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,8 +21,16 @@ class LikesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.selectionStyle = .none
 
         // Configure the view for the selected state
+    }
+
+    func configure(with post: NewsFeedPost) {
+        self.likesCount.text = String(post.likes)
+        self.commentsCount.text = String(post.comments)
+        self.reportsCount.text = String(post.reposts)
+        self.viewsCount.text = String(post.views)
     }
 
 }

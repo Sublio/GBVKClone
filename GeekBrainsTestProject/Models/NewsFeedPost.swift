@@ -6,28 +6,56 @@
 //
 
 import SwiftyJSON
-import RealmSwift
+import Foundation
+import CoreGraphics
 
-@objcMembers
-class NewsFeedPost: RealmSwift.Object {
-    dynamic var postId: Int = 0
-    dynamic var comments: Int = 0
-    dynamic var likes: Int = 0
-    dynamic var reposts: Int = 0
-    dynamic var views: Int = 0
-    dynamic var text: String = ""
+class NewsFeedPost {
+    var date: Date
+    var type: String
+    var postId: Int = 0
+    var comments: Int = 0
+    var likes: Int = 0
+    var reposts: Int = 0
+    var views: Int = 0
+    var text: String = ""
+    var postPhotoURL = ""
+    var photoWidth = 0
+    var photoHeight = 0
 
-    convenience init (json: SwiftyJSON.JSON) {
-        self.init()
-        self.postId = json["post_id"].int ?? 0
-        self.comments = json["views"]["count"].int ?? 0
+    var aspectRatio: CGFloat {
+        guard photoWidth != 0 else { return 0 }
+        return CGFloat(photoHeight) / CGFloat(photoWidth)
+    }
+
+    init (json: SwiftyJSON.JSON) {
+        self.date = Date(timeIntervalSince1970: TimeInterval(json["date"].doubleValue))
+        self.type = json["type"].stringValue
+        self.postId = json["source_id"].int ?? 0
+        self.comments = json["comments"]["count"].int ?? 0
         self.likes = json["likes"]["count"].int ?? 0
         self.reposts = json["reposts"]["count"].int ?? 0
         self.views = json["views"]["count"].int ?? 0
         self.text = json["text"].string ?? ""
-    }
 
-    override static func primaryKey() -> String? {
-        "postId"
+        if type == "post"{
+            let attach = json["attachments"][0]
+            switch attach["type"] {
+            case "photo":
+                let photoSizes = attach["photo"]["sizes"].arrayValue
+                guard let photoSizeX = photoSizes.last else { print("Error"); return}
+                self.postPhotoURL = photoSizeX["url"].stringValue
+                self.photoWidth = photoSizeX["width"].intValue
+                self.photoHeight = photoSizeX["height"].intValue
+            default:
+                self.postPhotoURL = ""
+            }
+        }
     }
+}
+
+enum NewsFeedCellType: Int {
+    case newsHeader
+    case textPost
+    case postPicture
+    case likes
 }

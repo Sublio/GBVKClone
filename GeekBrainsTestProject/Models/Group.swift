@@ -22,7 +22,7 @@ struct GroupContainer: Codable {
 }
 
 class Group: Object, Codable {
-    @objc dynamic var groupId: Int = 0
+    @objc dynamic var id: Int = -1
     @objc dynamic var name: String = ""
     @objc dynamic var pictureUrlString: String = ""
 
@@ -30,20 +30,27 @@ class Group: Object, Codable {
         self.init()
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        groupId = try container.decode(Int.self, forKey: .groupId)
+        id = try container.decode(Int.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         pictureUrlString = try container.decode(String.self, forKey: .pictureUrlString)
+    }
+
+    required convenience init(from json: JSON) {
+        self.init()
+        self.id = json["id"].intValue
+        self.name = json["name"].stringValue
+        self.pictureUrlString = json["photo_100"].stringValue
     }
 
     var pictureUrl: URL? { URL(string: pictureUrlString) }
 
     enum CodingKeys: String, CodingKey {
-        case groupId = "id"
+        case id = "id"
         case name
         case pictureUrlString = "photo_200"
     }
 
     override class func primaryKey() -> String? {
-        return "groupId"
+        return "id"
     }
 }

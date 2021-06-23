@@ -9,21 +9,30 @@ import UIKit
 
 class TextPostTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var textPost: UITextView! {
-        didSet {
-            self.textPost.backgroundColor = .white
-        }
-    }
+    static let horizontalInset: CGFloat = 12
+    static let verticalInset: CGFloat = 8
+
+    @IBOutlet weak var textPost: UITextView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.backgroundColor = .clear
+    }
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.selectionStyle = .none
 
         // Configure the view for the selected state
+    }
+
+    func configure(with post: NewsFeedPost) {
+        self.textPost.text = post.text
     }
 
 }

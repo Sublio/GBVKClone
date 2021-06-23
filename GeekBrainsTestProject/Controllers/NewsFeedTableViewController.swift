@@ -8,20 +8,23 @@
 import UIKit
 
 class NewsFeedTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        print("Prefetch batches")
-    }
-    
 
     let vkService = VKService.shared
-    
-    private var posts: NewsFeedPostObject? = nil {
+
+    private let textFont = UIFont.systemFont(ofSize: 14)
+
+    private var openedTextCells: [IndexPath: Bool] = [:]
+
+    private var posts: [NewsFeedPost] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
-    
+
     private var feedNextFromAnchor: String?
+    
+    private var nextFrom: String = ""
+    private var isLoading: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +36,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         self.refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .blueZero
         refreshControl?.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
-        
+
         tableView.prefetchDataSource = self
     }
 
@@ -43,15 +46,22 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
             self.feedNextFromAnchor = nextFromAnchor
         }
     }
-    
-    @objc func refreshControlPulled(){
-        print("pull to refresh")
+
+    @objc func refreshControlPulled() {
+        self.refreshControl?.beginRefreshing()
+        let mostFreshNewsDate = self.posts.first!.date + 2
+        vkService.getNewsFeedTextPosts(startTime: mostFreshNewsDate) { [weak self] posts, nextFromAnchor in
+            guard let self = self else { return }
+            self.refreshControl?.endRefreshing()
+            
+            guard posts.count > 0 else { return }
+            self.posts.insert(contentsOf: posts, at: 0)
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        guard let posts = self.posts?.posts else { return 0}
         return posts.count
     }
 
@@ -64,33 +74,91 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        let post = self.posts[indexPath.section]
+        if indexPath.row == NewsFeedCellType.newsHeader.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! NewsHeaderTableViewCell
+            cell.configure(with: post)
             return cell
-        } else if indexPath.row == 1 {
+        } else if indexPath.row == NewsFeedCellType.textPost.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "textPostCell") as! TextPostTableViewCell
+            cell.configure(with: post)
             return cell
 
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == NewsFeedCellType.postPicture.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell") as! NewsFeedPictureTableViewCell
+            cell.configure(with: post)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell") as! LikesTableViewCell
+            cell.configure(with: post)
             return cell
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0, 3:
+            return 50
+        case 1:
+            let maximumCellHeight: CGFloat = 100
+            let text = posts[indexPath.section].text
+            guard !text.isEmpty else { return 0 }
+            let availableWidth = tableView.frame.width - 2 * TextPostTableViewCell.horizontalInset
+            let desiredLabelHeight = self.getLabelSize(text: text, font: textFont, availableWidth: availableWidth).height + 2 * TextPostTableViewCell.verticalInset
+
+            let isOpened = openedTextCells[indexPath] ?? false
+            return isOpened ? desiredLabelHeight : min(maximumCellHeight, desiredLabelHeight)
+        case 2:
+            let aspectRatio = posts[indexPath.section].aspectRatio
+            return tableView.frame.width * aspectRatio
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0, 3:
+            return 60
+        case 2:
+            let aspectRatio = posts[indexPath.section].aspectRatio
+            return tableView.frame.width * aspectRatio
+        default:
+            return UITableView.automaticDimension
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard indexPath.row == 1 else { return }
+        let currentValue = openedTextCells[indexPath] ?? false
+        openedTextCells[indexPath] = !currentValue
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let indexPathRange = 1...2
-
-        if indexPathRange.contains(indexPath.row) {
-            return 180
-        } else {
-            return 40
+    func getLabelSize(text: String, font: UIFont, availableWidth: CGFloat) -> CGSize {
+        let textBlock = CGSize(width: availableWidth, height: CGFloat.greatestFiniteMagnitude)
+        let rect = text.boundingRect(with: textBlock, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        let width = Double(rect.size.width)
+        let height = Double(rect.size.height)
+        let size = CGSize(width: ceil(width), height: ceil(height))
+        return size
+    }
+    
+    // MARK: - Prefetching Delegate
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let feedNextFromAnchor = self.feedNextFromAnchor,
+              let maxIndexPath = indexPaths.max(),
+              maxIndexPath.section >= (self.posts.count - 3),
+              !isLoading else { return }
+        isLoading = true
+        vkService.getNewsFeedTextPosts(nextFrom: feedNextFromAnchor) { [weak self] posts, nextFromAnchor in
+            guard let self = self else { return }
+            self.posts.append(contentsOf: posts)
+            self.isLoading = false
+            self.feedNextFromAnchor = nextFromAnchor
         }
+        
+        print("Prefetch batches")
     }
 }
