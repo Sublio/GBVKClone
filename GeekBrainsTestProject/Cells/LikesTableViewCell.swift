@@ -21,16 +21,9 @@ class LikesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.selectionStyle = .none
 
         // Configure the view for the selected state
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.likesCount.text = ""
-        self.commentsCount.text = ""
-        self.reportsCount.text = ""
-        self.viewsCount.text = ""
     }
 
     func configure(with post: NewsFeedPost) {

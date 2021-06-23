@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class NewsHeaderTableViewCell: UITableViewCell {
 
@@ -14,6 +15,12 @@ class NewsHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var datePostLabel: UILabel!
 
     let realmManager = RealmManager.shared
+    let dateFormatter:DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        formatter.dateFormat = "E, d MMM yyyy HH:mm"
+        return formatter
+    }()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +29,7 @@ class NewsHeaderTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.selectionStyle = .none
 
         // Configure the view for the selected state
     }
@@ -32,10 +40,8 @@ class NewsHeaderTableViewCell: UITableViewCell {
     }
 
     func configure(with post: NewsFeedPost) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .medium
-        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
-        self.datePostLabel.text = dateFormatter.string(from: post.date)
+       
+        self.datePostLabel.text = self.dateFormatter.string(from: post.date)
 
         if post.postId < 0 {
             guard let group = try? realmManager.getObjects(selectedType: Group.self)?.filter("id == %@", -post.postId).first,

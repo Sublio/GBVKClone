@@ -52,3 +52,10 @@ class NewsFeedPost {
         }
     }
 }
+
+enum NewsFeedCellType: Int {
+    case newsHeader
+    case textPost
+    case postPicture
+    case likes
+}

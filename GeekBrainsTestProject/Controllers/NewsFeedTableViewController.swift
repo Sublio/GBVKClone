@@ -75,16 +75,16 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = self.posts[indexPath.section]
-        if indexPath.row == 0 {
+        if indexPath.row == NewsFeedCellType.newsHeader.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! NewsHeaderTableViewCell
             cell.configure(with: post)
             return cell
-        } else if indexPath.row == 1 {
+        } else if indexPath.row == NewsFeedCellType.textPost.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "textPostCell") as! TextPostTableViewCell
             cell.configure(with: post)
             return cell
 
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == NewsFeedCellType.postPicture.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell") as! NewsFeedPictureTableViewCell
             cell.configure(with: post)
             return cell
