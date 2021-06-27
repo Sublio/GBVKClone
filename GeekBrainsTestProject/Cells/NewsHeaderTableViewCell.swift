@@ -47,11 +47,13 @@ class NewsHeaderTableViewCell: UITableViewCell {
             guard let group = try? realmManager.getObjects(selectedType: Group.self)?.filter("id == %@", -post.postId).first,
                   let avatarURL = URL(string: group.pictureUrlString) else { return }
             self.headerAuthor.text = group.name
+            self.headerAvatar.kf.indicatorType = .activity
             self.headerAvatar.kf.setImage(with: avatarURL)
         } else {
             guard let friend = try? realmManager.getObjects(selectedType: Friend.self)?.filter("id == %@", post.postId).first,
                   let avatarURL = URL(string: friend.friendAvatar) else { return }
             self.headerAuthor.text = friend.name
+            self.headerAvatar.kf.indicatorType = .activity
             self.headerAvatar.kf.setImage(with: avatarURL)
         }
     }

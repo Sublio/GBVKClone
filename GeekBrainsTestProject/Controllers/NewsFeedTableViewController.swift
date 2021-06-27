@@ -100,14 +100,11 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         case 0, 3:
             return 50
         case 1:
-            let maximumCellHeight: CGFloat = 100
-            let text = posts[indexPath.section].text
-            guard !text.isEmpty else { return 0 }
-            let availableWidth = tableView.frame.width - 2 * TextPostTableViewCell.horizontalInset
-            let desiredLabelHeight = self.getLabelSize(text: text, font: textFont, availableWidth: availableWidth).height + 2 * TextPostTableViewCell.verticalInset
-
-            let isOpened = openedTextCells[indexPath] ?? false
-            return isOpened ? desiredLabelHeight : min(maximumCellHeight, desiredLabelHeight)
+            if posts[indexPath.section].text.isEmpty {
+                return 0
+            }else {
+                return UITableView.automaticDimension
+            }
         case 2:
             let aspectRatio = posts[indexPath.section].aspectRatio
             return tableView.frame.width * aspectRatio
@@ -145,6 +142,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         return size
     }
     
+    
     // MARK: - Prefetching Delegate
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard let feedNextFromAnchor = self.feedNextFromAnchor,
@@ -162,3 +160,4 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         print("Prefetch batches")
     }
 }
+
