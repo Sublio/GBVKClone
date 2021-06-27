@@ -22,7 +22,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     }
 
     private var feedNextFromAnchor: String?
-    
+
     private var nextFrom: String = ""
     private var isLoading: Bool = false
 
@@ -50,10 +50,10 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
     @objc func refreshControlPulled() {
         self.refreshControl?.beginRefreshing()
         let mostFreshNewsDate = self.posts.first!.date + 2
-        vkService.getNewsFeedTextPosts(startTime: mostFreshNewsDate) { [weak self] posts, nextFromAnchor in
+        vkService.getNewsFeedTextPosts(startTime: mostFreshNewsDate) { [weak self] posts, _ in
             guard let self = self else { return }
             self.refreshControl?.endRefreshing()
-            
+
             guard posts.count > 0 else { return }
             self.posts.insert(contentsOf: posts, at: 0)
         }
@@ -102,7 +102,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         case 1:
             if posts[indexPath.section].text.isEmpty {
                 return 0
-            }else {
+            } else {
                 return UITableView.automaticDimension
             }
         case 2:
@@ -141,8 +141,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         let size = CGSize(width: ceil(width), height: ceil(height))
         return size
     }
-    
-    
+
     // MARK: - Prefetching Delegate
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         guard let feedNextFromAnchor = self.feedNextFromAnchor,
@@ -156,8 +155,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
             self.isLoading = false
             self.feedNextFromAnchor = nextFromAnchor
         }
-        
+
         print("Prefetch batches")
     }
 }
-

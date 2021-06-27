@@ -15,7 +15,7 @@ class NewsHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var datePostLabel: UILabel!
 
     let realmManager = RealmManager.shared
-    let dateFormatter:DateFormatter = {
+    let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.timeStyle = .medium
         formatter.dateFormat = "E, d MMM yyyy HH:mm"
@@ -33,14 +33,14 @@ class NewsHeaderTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.headerAvatar.setRounded()
     }
 
     func configure(with post: NewsFeedPost) {
-       
+
         self.datePostLabel.text = self.dateFormatter.string(from: post.date)
 
         if post.postId < 0 {
@@ -60,7 +60,7 @@ class NewsHeaderTableViewCell: UITableViewCell {
 }
 
 extension UIImageView {
-    
+
     func setRounded() {
         let radius = self.frame.width / 2
         self.layer.cornerRadius = radius

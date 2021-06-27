@@ -33,7 +33,7 @@ class TextPostTableViewCell: UITableViewCell {
         self.postText.numberOfLines = 0
         let maximumLabelSize: CGSize = CGSize(width: 280, height: 9999)
         let expectedLabelSize: CGSize = self.postText.sizeThatFits(maximumLabelSize)
-        var newFrame:CGRect = self.postText.frame
+        var newFrame: CGRect = self.postText.frame
         newFrame.size.height = expectedLabelSize.height
         self.postText.frame = newFrame
     }
