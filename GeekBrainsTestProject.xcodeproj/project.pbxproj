@@ -33,6 +33,8 @@
 		4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */; };
 		4C542A3A25C8B5B400CC8A4F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A3925C8B5B400CC8A4F /* Friend.swift */; };
 		4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C542A3D25C8B5BE00CC8A4F /* Group.swift */; };
+		4C5D1EE5268922A60030E7C2 /* PhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D1EE4268922A60030E7C2 /* PhotosController.swift */; };
+		4C5D1EE8268933590030E7C2 /* PhotoCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D1EE7268933590030E7C2 /* PhotoCellNode.swift */; };
 		4C6D36FE2654CB88003499E1 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D36FD2654CB88003499E1 /* VKService.swift */; };
 		4C6D37002654CD11003499E1 /* NewsFeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D36FF2654CD11003499E1 /* NewsFeedPost.swift */; };
 		4C6D3711265815C0003499E1 /* NewsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D3710265815C0003499E1 /* NewsHeaderTableViewCell.swift */; };
@@ -112,6 +114,8 @@
 		4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchTableViewController.swift; sourceTree = "<group>"; };
 		4C542A3925C8B5B400CC8A4F /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		4C542A3D25C8B5BE00CC8A4F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		4C5D1EE4268922A60030E7C2 /* PhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosController.swift; sourceTree = "<group>"; };
+		4C5D1EE7268933590030E7C2 /* PhotoCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellNode.swift; sourceTree = "<group>"; };
 		4C6D36FD2654CB88003499E1 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
 		4C6D36FF2654CD11003499E1 /* NewsFeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedPost.swift; sourceTree = "<group>"; };
 		4C6D3710265815C0003499E1 /* NewsHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 		4C17A46925BDE2E8006D45E0 /* GeekBrainsTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				4C5D1EE6268931830030E7C2 /* ASControllers */,
 				4C72453D265AF4E500C47EFD /* Operations */,
 				4C41C23526156CA70020FEE4 /* Protocols */,
 				4C3043C626141A0300B8BB27 /* Services */,
@@ -290,6 +295,15 @@
 				4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4C5D1EE6268931830030E7C2 /* ASControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D1EE4268922A60030E7C2 /* PhotosController.swift */,
+				4C5D1EE7268933590030E7C2 /* PhotoCellNode.swift */,
+			);
+			path = ASControllers;
 			sourceTree = "<group>";
 		};
 		4C72453D265AF4E500C47EFD /* Operations */ = {
@@ -616,6 +630,7 @@
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
+				4C5D1EE5268922A60030E7C2 /* PhotosController.swift in Sources */,
 				4C724546265B17DD00C47EFD /* ViewController+KingFisher.swift in Sources */,
 				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
@@ -647,6 +662,7 @@
 				4C4DC69726586C42000C57F3 /* NewsFeedPhotoPost.swift in Sources */,
 				4C6D371526581654003499E1 /* LikesTableViewCell.swift in Sources */,
 				4C7C089225E2F93D00FEAFAA /* CloudLoadingView.swift in Sources */,
+				4C5D1EE8268933590030E7C2 /* PhotoCellNode.swift in Sources */,
 				4CC84D4225E6F92800FD7949 /* MyCustomSegue.swift in Sources */,
 				4C7B419C25DC070100894D81 /* NewsFeedTableViewController.swift in Sources */,
 				4C542A3625C8B42500CC8A4F /* GroupSearchTableViewController.swift in Sources */,

@@ -6,21 +6,16 @@
 //
 
 import UIKit
-import RealmSwift
 import Kingfisher
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
 
-    private var notificationToken: NotificationToken?
-
-    let realmManager = RealmManager.shared
     let networkManager = NetworkManager.shared
-    var cacheManager: CacheManager?
     var photos: [Photo] = [] {
         didSet {
             self.collectionView.reloadData()
         }
-    } // This array is for populating PhotosCollectionViewController
+    }
 
     private let reuseIdentifier = "CollectionCell"
 

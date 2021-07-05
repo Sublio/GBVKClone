@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AsyncDisplayKit
 
 class FriendPhotoCollectionViewCell: UICollectionViewCell {
 
@@ -32,8 +33,8 @@ class FriendPhotoCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = .white
         self.photo.contentMode = .scaleAspectFill
     }
-    
-    func configure(with photo: Photo){
+
+    func configure(with photo: Photo) {
         guard let url = URL(string: photo.sizes.last?.url ?? "") else { return }
         self.photo.kf.indicatorType = .activity
         self.photo.kf.setImage(with: url)
