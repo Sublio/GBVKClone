@@ -10,12 +10,14 @@ import SwiftyJSON
 
 class Photo {
 
-    dynamic var id: Int = 0
-    dynamic var sizes: [PhotoSize] = []
+    var id: Int = 0
+    var sizes: [PhotoSize] = []
+    var album_id: Int = 0
 
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id = json["id"].intValue
+        self.album_id = json["album_id"].intValue
         self.sizes = json["sizes"].arrayValue.compactMap { PhotoSize($0)}
     }
 

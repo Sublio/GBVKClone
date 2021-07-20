@@ -10,6 +10,8 @@ import Foundation
 class Session {
     static let shared = Session()
 
+    let networkManager = NetworkManager.shared
+
     private init () {}
 
     var token: String = ""

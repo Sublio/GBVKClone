@@ -16,21 +16,6 @@ class RealmManager {
 
     let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
 
-    func createFriendsDB(friends: [Friend]) {
-
-        for friend in friends {
-            do {
-                let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-                let realm = try Realm(configuration: configuration)
-                try realm.write({
-                    realm.add(friend, update: .all)
-                })
-            } catch {
-                print(error)
-            }
-        }
-    }
-
     func save<T: Object>(
         items: [T],
         update: Realm.UpdatePolicy
@@ -38,20 +23,6 @@ class RealmManager {
         let realm = try Realm(configuration: configuration)
         try realm.write {
             realm.add(items, update: update)
-        }
-    }
-
-    func createGroupsDB(groups: [Group]) {
-        for group in groups {
-            do {
-                let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-                let realm = try Realm(configuration: configuration)
-                try realm.write({
-                    realm.add(group, update: .all)
-                })
-            } catch {
-                print(error)
-            }
         }
     }
 

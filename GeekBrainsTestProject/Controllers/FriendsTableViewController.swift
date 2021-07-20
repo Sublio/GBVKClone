@@ -112,15 +112,4 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
     }
-
-    @objc func signOut() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateInitialViewController() else { return }
-        view.window?.rootViewController = vc
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
-        UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
-        KeychainService.removeToken(service: "tokenStorage")
-        view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-    }
 }

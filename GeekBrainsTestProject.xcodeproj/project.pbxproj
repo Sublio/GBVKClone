@@ -42,10 +42,10 @@
 		4C6D371526581654003499E1 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D371426581654003499E1 /* LikesTableViewCell.swift */; };
 		4C6F450E25FBF05E009CD6B0 /* GradientVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F450D25FBF05E009CD6B0 /* GradientVIew.swift */; };
 		4C708553261BCB1300BB17A5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C708552261BCB1300BB17A5 /* RealmSwift */; };
+		4C70BFD72695084000479CD6 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C70BFD62695084000479CD6 /* PhotoAlbum.swift */; };
 		4C72453F265AF4F300C47EFD /* DataOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72453E265AF4F300C47EFD /* DataOperations.swift */; };
 		4C724541265AF5C800C47EFD /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C724540265AF5C800C47EFD /* AsyncOperation.swift */; };
 		4C724544265B159700C47EFD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4C724543265B159700C47EFD /* Kingfisher */; };
-		4C724546265B17DD00C47EFD /* ViewController+KingFisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C724545265B17DD00C47EFD /* ViewController+KingFisher.swift */; };
 		4C724548265B1BC400C47EFD /* ObjectProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C724547265B1BC400C47EFD /* ObjectProvider.swift */; };
 		4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B417F25DAB78800894D81 /* DM+UIColor.swift */; };
 		4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7B418425DAC5C900894D81 /* UserStubFactory.swift */; };
@@ -65,6 +65,7 @@
 		4CAB76FB2603FE0000092073 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB76FA2603FE0000092073 /* Session.swift */; };
 		4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */; };
 		4CB1F4482613E293001CA49A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB1F4472613E293001CA49A /* Alamofire */; };
+		4CC0FC8626A10827007547EA /* UIViewController+SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */; };
 		4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */; };
 		4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */; };
 		4CC84D3E25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */; };
@@ -122,9 +123,9 @@
 		4C6D371226581619003499E1 /* TextPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPostTableViewCell.swift; sourceTree = "<group>"; };
 		4C6D371426581654003499E1 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		4C6F450D25FBF05E009CD6B0 /* GradientVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientVIew.swift; sourceTree = "<group>"; };
+		4C70BFD62695084000479CD6 /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C72453E265AF4F300C47EFD /* DataOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOperations.swift; sourceTree = "<group>"; };
 		4C724540265AF5C800C47EFD /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
-		4C724545265B17DD00C47EFD /* ViewController+KingFisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+KingFisher.swift"; sourceTree = "<group>"; };
 		4C724547265B1BC400C47EFD /* ObjectProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectProvider.swift; sourceTree = "<group>"; };
 		4C7B417F25DAB78800894D81 /* DM+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DM+UIColor.swift"; sourceTree = "<group>"; };
 		4C7B418425DAC5C900894D81 /* UserStubFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStubFactory.swift; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 		4CA577AA262973C500446F39 /* SearchableGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableGroup.swift; sourceTree = "<group>"; };
 		4CAB76FA2603FE0000092073 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
+		4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SignOut.swift"; sourceTree = "<group>"; };
 		4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionPresent.swift; sourceTree = "<group>"; };
 		4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDelegate.swift; sourceTree = "<group>"; };
 		4CC84D3D25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDIsmiss.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				4CA577AA262973C500446F39 /* SearchableGroup.swift */,
 				4C6D36FF2654CD11003499E1 /* NewsFeedPost.swift */,
 				4C4DC69826597B99000C57F3 /* NewsFeedProfile.swift */,
+				4C70BFD62695084000479CD6 /* PhotoAlbum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -319,7 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				4C7B417F25DAB78800894D81 /* DM+UIColor.swift */,
-				4C724545265B17DD00C47EFD /* ViewController+KingFisher.swift */,
+				4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				4C708551261BCB1300BB17A5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				4C724542265B159700C47EFD /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4CD6DD3C265DA7FD00137F25 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				4CC0FC8726A7935F007547EA /* XCRemoteSwiftPackageReference "periphery" */,
 			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
 			projectDirPath = "";
@@ -631,9 +635,9 @@
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
 				4C5D1EE5268922A60030E7C2 /* PhotosController.swift in Sources */,
-				4C724546265B17DD00C47EFD /* ViewController+KingFisher.swift in Sources */,
 				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
+				4C70BFD72695084000479CD6 /* PhotoAlbum.swift in Sources */,
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
 				4CA577A12626388D00446F39 /* DMLoadingView.swift in Sources */,
 				4C724541265AF5C800C47EFD /* AsyncOperation.swift in Sources */,
@@ -672,6 +676,7 @@
 				4C936DBF25CE37080035DA46 /* LikeCustomView.swift in Sources */,
 				4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */,
 				4C542A3A25C8B5B400CC8A4F /* Friend.swift in Sources */,
+				4CC0FC8626A10827007547EA /* UIViewController+SignOut.swift in Sources */,
 				4CC84D3E25E6DC1C00FD7949 /* MyTransitionDIsmiss.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -989,6 +994,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.4.1;
+			};
+		};
+		4CC0FC8726A7935F007547EA /* XCRemoteSwiftPackageReference "periphery" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/peripheryapp/periphery";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
 			};
 		};
 		4CD6DD3C265DA7FD00137F25 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {

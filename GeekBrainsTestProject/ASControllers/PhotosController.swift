@@ -15,7 +15,20 @@ class ASPhotosController: ASDKViewController<ASCollectionNode>, PhotosTableViewD
     let reuseIdentifier = "asyncNodeCell"
     let flowLayout: UICollectionViewLayout
 
-    var photos = [Photo]()
+    var photos = [Photo]() {
+        didSet {
+            print(self.photos.debugDescription)
+        }
+    }
+    var albums = [PhotoAlbum]() {
+        didSet {
+//            for album in self.albums {
+//                print(album.title)
+//            }
+            print(self.albums.debugDescription)
+        }
+    }
+
     let networkManager = NetworkManager.shared
     private var selectedUserId: Int?
 
@@ -48,6 +61,15 @@ class ASPhotosController: ASDKViewController<ASCollectionNode>, PhotosTableViewD
                 case let .success(photos):
                     self?.photos = photos
                     self?.collectionNode.reloadData()
+                }
+            }
+
+            networkManager.getPhotoAlbumsForUserId(user_id: userId) { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(albums):
+                    self?.albums = albums
                 }
             }
         }

@@ -33,7 +33,6 @@ class Friend: RealmSwift.Object {
 
 struct FriendSection: Comparable {
     let title: Character
-    let friends: [Friend]
 
     static func < (lhs: FriendSection, rhs: FriendSection) -> Bool {
         lhs.title < rhs.title
