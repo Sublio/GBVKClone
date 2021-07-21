@@ -1,5 +1,4 @@
 # TODO
-0. Logout if token is expired
 1. General refactoring in huge Controllers 
 2. Finish Feed controller.
 3. Migrate  to KingFisher
