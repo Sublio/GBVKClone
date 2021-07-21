@@ -93,7 +93,10 @@ class FriendsTableViewController: UITableViewController {
         collectionViewFlowLayout.scrollDirection = .vertical
         collectionViewFlowLayout.minimumLineSpacing = 2
         collectionViewFlowLayout.minimumInteritemSpacing = 2
-        let collectionView = PhotosCollectionViewController(collectionViewLayout: collectionViewFlowLayout)
+        let collectionView = ASPhotosController()
+        // let collectionView = PhotosCollectionViewController(collectionViewLayout: collectionViewFlowLayout)
+        collectionView.modalTransitionStyle = .crossDissolve
+        collectionView.modalPresentationStyle = .overFullScreen
         self.delegate = collectionView
         navigationController?.pushViewController(collectionView, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -108,16 +111,5 @@ class FriendsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
-    }
-
-    @objc func signOut() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateInitialViewController() else { return }
-        view.window?.rootViewController = vc
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
-        UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
-        KeychainService.removeToken(service: "tokenStorage")
-        view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }

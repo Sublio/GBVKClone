@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites name='GeekBrainsTestProjectUITests.xctest' tests='2' failures='1'>
-  <testsuite name='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' tests='2' failures='1'>
-    <testcase classname='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' name='testExample' time='7.887'/>
-    <testcase classname='GeekBrainsTestProjectUITests.GeekBrainsTestProjectUITests' name='testVkButtonIsPresent'>
-      <failure message='XCTAssertTrue failed'>GeekBrainsTestProjectUITests/GeekBrainsTestProjectUITests.swift:37</failure>
-    </testcase>
-  </testsuite>
-</testsuites>

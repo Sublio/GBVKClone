@@ -22,7 +22,8 @@ class NetworkManager {
     let clientId = "7800566"
     // Wall + Friends + Offline Access
     // Ref - https://vk.com/dev/permissions
-    let scope = 262150 + 8192
+    // let scope = 262150 + 8192
+    let scope = 65536 + 262150 + 8192
     let oauthHost = "oauth.vk.com"
     let apiHost = "api.vk.com"
     let display = "mobile"
@@ -47,6 +48,7 @@ class NetworkManager {
         return nil
 
     }
+
     func getPhotosForUserId(user_id: Int, completion: @escaping (Swift.Result<[Photo], Error>) -> Void) {
         let scheme = "https://"
         let host = self.apiHost
@@ -55,12 +57,34 @@ class NetworkManager {
             "access_token": Session.shared.token,
             "owner_id": user_id,
             "album_id": "wall",
-            "count": 20,
+            // "count": 20,
             "v": vkApiVersion
         ]
 
         AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
-            var results: [Photo] = []
+            switch response.result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let data):
+                 guard let data = data,
+                      let json = try? JSON(data: data) else { return }
+                let itemsJSON = json["response"]["items"].arrayValue
+                let photos = itemsJSON.compactMap({Photo(json: $0)})
+                completion(.success(photos))
+            }
+        }
+    }
+
+    func getPhotoAlbumsForUserId(user_id: Int, completion: @escaping (Swift.Result<[PhotoAlbum], Error>) -> Void) {
+        let scheme = "https://"
+        let host = self.apiHost
+        let path = "/method/photos.getAlbums"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "owner_id": user_id,
+            "v": vkApiVersion
+        ]
+        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
             switch response.result {
             case .failure(let error):
                 completion(.failure(error))
@@ -68,13 +92,8 @@ class NetworkManager {
                 guard let data = data,
                       let json = try? JSON(data: data) else { return }
                 let itemsJSON = json["response"]["items"].arrayValue
-                for item in itemsJSON {
-                    let pictureSizesArray = item["sizes"].arrayValue
-                    guard let mediumPictureSize = pictureSizesArray.last else { return }// largest size from array of sizes
-                    let photo = Photo(json: mediumPictureSize)
-                    results.append(photo)
-                }
-                completion(.success(results))
+                let photoAlbums = itemsJSON.compactMap({PhotoAlbum(json: $0)})
+                completion(.success(photoAlbums))
             }
         }
     }
@@ -105,33 +124,6 @@ class NetworkManager {
             }
         }
 
-    }
-
-    func getGroupsForCurrentUserViaAlamofire(completion: @escaping (Swift.Result<[Group], Error>) -> Void) {
-
-        let scheme = "https://"
-        let host = self.apiHost
-        let path = "/method/groups.get"
-        let parameters: Parameters = [
-            "access_token": Session.shared.token,
-            "extended": "true",
-            "fields": "name, photo_50",
-            "v": vkApiVersion
-        ]
-
-        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
-            switch response.result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let data):
-                guard let data = data,
-                      let json = try? JSON(data: data) else { return }
-                let groupJSON = json["response"]["items"].arrayValue
-                let groups = groupJSON.map { Group(value: $0) }
-
-                completion(.success(groups))
-            }
-        }
     }
 
     func getFriendsListViaAlamoFire(completion: @escaping (Swift.Result<[Friend], Error>) -> Void) {
@@ -187,70 +179,6 @@ class NetworkManager {
                     }
                 }
             }
-        }
-    }
-
-    func getNewsFeedPostViaAlamofire(count: Int, completion: @escaping(Swift.Result<Data, Error>) -> Void) {
-        let scheme = "https://"
-        let host = self.apiHost
-        let path = "/method/newsfeed.get"
-        let parameters: Parameters = [
-            "access_token": Session.shared.token,
-            "filters": "post",
-            "count": count,
-            "v": vkApiVersion
-        ]
-
-        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
-            switch response.result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let data):
-                guard let data = data else { return }
-                completion(.success(data))
-            }
-        }
-    }
-
-    func getNewsFeedPhotoPostViaAlamofire(count: Int, completion: @escaping(Swift.Result<[NewsFeedPhotoPost], Error>) -> Void) {
-        let scheme = "https://"
-        let host = self.apiHost
-        let path = "/method/newsfeed.get"
-        let parameters: Parameters = [
-            "access_token": Session.shared.token,
-            "filters": "photo",
-            "count": count,
-            "v": vkApiVersion
-        ]
-
-        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
-            switch response.result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let data):
-                guard let data = data,
-                      let json = try? JSON(data: data) else { return }
-                let newsFeedJSONresponse = json["response"]["items"].arrayValue
-                // TODO: There is still a problem with getting avatar and author for particular posts
-                let posts = newsFeedJSONresponse.map { NewsFeedPhotoPost(json: $0) }
-                completion(.success(posts))
-            }
-        }
-    }
-
-    func getData(from urlString: String, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-
-    func getDataFrom(photoURl: String) -> Data? {
-        do {
-            guard let url = URL(string: photoURl) else { return nil}
-            let imageData = try Data(contentsOf: url as URL)
-            return imageData
-        } catch {
-            print("Unable to load data: \(error)")
-            return nil
         }
     }
 }

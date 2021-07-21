@@ -20,10 +20,6 @@ class CacheManager {
         self.container = Table(table: container)
     }
 
-    init(container: UICollectionView) {
-        self.container = Collection(collection: container)
-    }
-
     private static let pathName: String = {
         let pathName = "images"
         guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return pathName }
@@ -104,17 +100,6 @@ extension CacheManager {
 
         init (table: UITableView) {
             self.table = table
-        }
-    }
-
-    private class Collection: DataReloadable {
-        func reloadRow(atIndexpath indexPath: IndexPath) {
-            collection.reloadItems(at: [indexPath])
-        }
-
-        let collection: UICollectionView
-        init(collection: UICollectionView) {
-            self.collection = collection
         }
     }
 }

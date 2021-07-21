@@ -26,6 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         loginTextField.delegate = self
         passwordTextField.delegate = self
+        self.modalPresentationStyle = .automatic
         animateTextFields()
         animateSubmitButton()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)

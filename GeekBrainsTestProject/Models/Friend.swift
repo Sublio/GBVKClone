@@ -15,8 +15,6 @@ class Friend: RealmSwift.Object {
     dynamic var id: Int = 0
     dynamic var friendAvatar: String = ""
 
-    var friendPhotos = List<Photo>()
-
     var photoUrl: URL? { URL(string: friendAvatar) }
 
     convenience init (json: SwiftyJSON.JSON) {
@@ -35,7 +33,6 @@ class Friend: RealmSwift.Object {
 
 struct FriendSection: Comparable {
     let title: Character
-    let friends: [Friend]
 
     static func < (lhs: FriendSection, rhs: FriendSection) -> Bool {
         lhs.title < rhs.title
