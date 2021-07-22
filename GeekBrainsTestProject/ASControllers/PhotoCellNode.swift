@@ -16,9 +16,14 @@ class PhotoCellNode: ASCellNode, ASNetworkImageNodeDelegate {
     required init(with imageUrl: URL) {
         super.init()
         networkImageNode.contentMode = .scaleAspectFill
+        networkImageNode.backgroundColor = .gray
+        networkImageNode.layer.masksToBounds = true
+        networkImageNode.layer.borderWidth = 1
+        networkImageNode.layer.borderColor = UIColor.black.cgColor
         self.addSubnode(networkImageNode)
         networkImageNode.url = imageUrl
-        self.automaticallyManagesSubnodes = true
+        self.automaticallyManagesSubnodes = false
+        self.networkImageNode.delegate = self
     }
 
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -39,9 +44,12 @@ class PhotoCellNode: ASCellNode, ASNetworkImageNodeDelegate {
 
     func imageNode(_ imageNode: ASNetworkImageNode, didLoad image: UIImage) {
         if let activityIndicator = self.activityIndicator {
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-            self.activityIndicator = nil
+            
+            DispatchQueue.main.async {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                self.activityIndicator = nil
+            }
         }
         self.setNeedsLayout()
     }
@@ -49,16 +57,21 @@ class PhotoCellNode: ASCellNode, ASNetworkImageNodeDelegate {
     func imageNodeDidStartFetchingData(_ imageNode: ASNetworkImageNode) {
         self.activityIndicator = setupActivityIndicator(bounds: imageNode.style.preferredSize)
         if let indicator = self.activityIndicator {
-            imageNode.view.addSubview(indicator)
-            indicator.startAnimating()
+            DispatchQueue.main.async {
+                imageNode.view.addSubview(indicator)
+                indicator.startAnimating()
+            }
         }
     }
 
     func imageNodeDidFailToLoadImage(fromCache imageNode: ASNetworkImageNode) {
         if let activityIndicator = self.activityIndicator {
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-            self.activityIndicator = nil
+            DispatchQueue.main.async {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                self.activityIndicator = nil
+            }
+           
         }
         self.setNeedsLayout()
     }

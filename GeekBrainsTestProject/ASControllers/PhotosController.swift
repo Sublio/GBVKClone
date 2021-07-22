@@ -9,8 +9,8 @@ import UIKit
 import AsyncDisplayKit
 import Kingfisher
 
-class ASPhotosController: ASDKViewController<ASCollectionNode>, PhotosTableViewDelegateProtocol, ASCollectionDelegate, ASCollectionDataSource {
-
+class ASPhotosController: ASDKViewController<ASCollectionNode>,ASCollectionDelegate, ASCollectionDataSource {
+    
     var collectionNode: ASCollectionNode
     let reuseIdentifier = "asyncNodeCell"
     let flowLayout: UICollectionViewLayout
