@@ -503,7 +503,6 @@
 				4C708551261BCB1300BB17A5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				4C724542265B159700C47EFD /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4CD6DD3C265DA7FD00137F25 /* XCRemoteSwiftPackageReference "PromiseKit" */,
-				4CC0FC8726A7935F007547EA /* XCRemoteSwiftPackageReference "periphery" */,
 			);
 			productRefGroup = 4C17A46825BDE2E8006D45E0 /* Products */;
 			projectDirPath = "";
@@ -994,14 +993,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.4.1;
-			};
-		};
-		4CC0FC8726A7935F007547EA /* XCRemoteSwiftPackageReference "periphery" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/peripheryapp/periphery";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.1;
 			};
 		};
 		4CD6DD3C265DA7FD00137F25 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
