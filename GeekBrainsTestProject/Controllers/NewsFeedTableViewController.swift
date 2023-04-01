@@ -78,15 +78,18 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
         if indexPath.row == NewsFeedCellType.newsHeader.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! NewsHeaderTableViewCell
             cell.configure(with: post)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: -1, right: 0)
+            cell.layoutMargins = UIEdgeInsets.zero
             return cell
         } else if indexPath.row == NewsFeedCellType.textPost.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "textPostCell") as! TextPostTableViewCell
             cell.configure(with: post)
             return cell
-
         } else if indexPath.row == NewsFeedCellType.postPicture.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell") as! NewsFeedPictureTableViewCell
             cell.configure(with: post)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: -1, right: 0)
+            cell.layoutMargins = UIEdgeInsets.zero
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell") as! LikesTableViewCell
@@ -94,6 +97,7 @@ class NewsFeedTableViewController: UITableViewController, UITableViewDataSourceP
             return cell
         }
     }
+
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
