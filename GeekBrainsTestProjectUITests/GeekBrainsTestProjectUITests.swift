@@ -34,9 +34,11 @@ class GeekBrainsTestProjectUITests: XCTestCase {
 
     func testVkButtonIsPresent() {
         let app = XCUIApplication()
+        app.launchEnvironment["resetUserDefaults"] = "true"
+        app.terminate()
+        app.launch()
         XCTAssertTrue(app.buttons["vk logo icon"].exists)
         XCTAssertTrue(app.buttons["vk logo icon"].isHittable)
         XCTAssertTrue(app.buttons["vk logo icon"].isEnabled)
     }
-
 }

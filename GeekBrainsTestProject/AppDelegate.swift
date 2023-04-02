@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = .blueZero
+        if ProcessInfo.processInfo.environment["resetUserDefaults"] == "true" {
+               UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        }
         let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.systemGray
         pageControl.currentPageIndicatorTintColor = UIColor.systemPurple
