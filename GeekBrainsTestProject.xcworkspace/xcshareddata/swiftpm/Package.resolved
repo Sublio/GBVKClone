@@ -1,160 +1,68 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "AEXML",
-        "repositoryURL": "https://github.com/tadija/AEXML",
-        "state": {
-          "branch": null,
-          "revision": "8623e73b193386909566a9ca20203e33a09af142",
-          "version": "4.5.0"
-        }
-      },
-      {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
-        "state": {
-          "branch": null,
-          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
-          "version": "5.4.3"
-        }
-      },
-      {
-        "package": "AlamofireImage",
-        "repositoryURL": "https://github.com/Alamofire/AlamofireImage.git",
-        "state": {
-          "branch": null,
-          "revision": "98cbb00ce0ec5fc8e52a5b50a6bfc08d3e5aee10",
-          "version": "4.2.0"
-        }
-      },
-      {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher",
-        "state": {
-          "branch": null,
-          "revision": "44450a8f564d7c0165f736ba2250649ff8d3e556",
-          "version": "6.3.0"
-        }
-      },
-      {
-        "package": "PathKit",
-        "repositoryURL": "https://github.com/kylef/PathKit",
-        "state": {
-          "branch": null,
-          "revision": "73f8e9dca9b7a3078cb79128217dc8f2e585a511",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "Periphery",
-        "repositoryURL": "https://github.com/peripheryapp/periphery",
-        "state": {
-          "branch": null,
-          "revision": "0150580ab76b0b9ad8369bee1c9425b47569c153",
-          "version": "2.7.1"
-        }
-      },
-      {
-        "package": "PromiseKit",
-        "repositoryURL": "https://github.com/mxcl/PromiseKit",
-        "state": {
-          "branch": null,
-          "revision": "d2f7ba14bcdc45e18f4f60ad9df883fb9055f081",
-          "version": "6.15.3"
-        }
-      },
-      {
-        "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-cocoa.git",
-        "state": {
-          "branch": null,
-          "revision": "cef59658a3e447bf6994e20af6ec408633963d52",
-          "version": "10.11.0"
-        }
-      },
-      {
-        "package": "RealmDatabase",
-        "repositoryURL": "https://github.com/realm/realm-core",
-        "state": {
-          "branch": null,
-          "revision": "71db56caba8f8ef0398eedfffb82a908cb94ccec",
-          "version": "11.1.1"
-        }
-      },
-      {
-        "package": "Spectre",
-        "repositoryURL": "https://github.com/kylef/Spectre.git",
-        "state": {
-          "branch": null,
-          "revision": "f79d4ecbf8bc4e1579fbd86c3e1d652fb6876c53",
-          "version": "0.9.2"
-        }
-      },
-      {
-        "package": "swift-argument-parser",
-        "repositoryURL": "https://github.com/apple/swift-argument-parser",
-        "state": {
-          "branch": null,
-          "revision": "9564d61b08a5335ae0a36f789a7d71493eacadfc",
-          "version": "0.3.2"
-        }
-      },
-      {
-        "package": "SwiftIndexStore",
-        "repositoryURL": "https://github.com/kateinoigakukun/swift-indexstore",
-        "state": {
-          "branch": null,
-          "revision": "5ab719380249264ed96c9b6d49d5b6a96aa4e7b1",
-          "version": "0.1.4"
-        }
-      },
-      {
-        "package": "SwiftSyntax",
-        "repositoryURL": "https://github.com/apple/swift-syntax",
-        "state": {
-          "branch": null,
-          "revision": "2fff9fc25cdc059379b6bd309377cfab45d8520c",
-          "version": "0.50400.0"
-        }
-      },
-      {
-        "package": "swift-system",
-        "repositoryURL": "https://github.com/apple/swift-system",
-        "state": {
-          "branch": null,
-          "revision": "2bc160bfe34d843ae5ff47168080add24dfd7eac",
-          "version": "0.0.2"
-        }
-      },
-      {
-        "package": "SwiftyJSON",
-        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
-        "state": {
-          "branch": null,
-          "revision": "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
-          "version": "5.0.1"
-        }
-      },
-      {
-        "package": "XcodeProj",
-        "repositoryURL": "https://github.com/tuist/xcodeproj",
-        "state": {
-          "branch": null,
-          "revision": "45e349e1c4e4da1a85a7b9392b737acde2e2f2a8",
-          "version": "7.23.0"
-        }
-      },
-      {
-        "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams",
-        "state": {
-          "branch": null,
-          "revision": "9ff1cc9327586db4e0c8f46f064b6a82ec1566fa",
-          "version": "4.0.6"
-        }
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
+        "version" : "5.6.4"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "alamofireimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/AlamofireImage.git",
+      "state" : {
+        "revision" : "98cbb00ce0ec5fc8e52a5b50a6bfc08d3e5aee10",
+        "version" : "4.2.0"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "d06df9adf50ed8cde5786d935836a5f445f780ba",
+        "version" : "6.3.1"
+      }
+    },
+    {
+      "identity" : "promisekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/PromiseKit",
+      "state" : {
+        "revision" : "00afea5360bf1c02ac83209c2c8991f73b5a4e7d",
+        "version" : "6.16.1"
+      }
+    },
+    {
+      "identity" : "realm-cocoa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-cocoa.git",
+      "state" : {
+        "revision" : "71bddc82c4fe3dd6488739ff8b7e99f69183a614",
+        "version" : "10.38.0"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core",
+      "state" : {
+        "revision" : "e56380f05793998dfea0d87a34b68fdba475961c",
+        "version" : "13.9.0"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",
+      "state" : {
+        "revision" : "b3dcd7dbd0d488e1a7077cb33b00f2083e382f07",
+        "version" : "5.0.1"
+      }
+    }
+  ],
+  "version" : 2
 }

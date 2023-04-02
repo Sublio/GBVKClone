@@ -80,9 +80,6 @@ class FriendsTableViewController: UITableViewController {
         guard let friends = notFilteredFriends else { return UITableViewCell() }
         let friend = friends[indexPath.row]
         cell.configure(with: friend)
-//        if let photoUrl = friend.friendAvatar {
-//            cell.roundedView.image = self.cacheManager?.photo(at: indexPath, byUrl: photoUrl)
-//        }
         cell.roundedView.image = self.cacheManager?.photo(at: indexPath, byUrl: friend.friendAvatar)
         return cell
     }
