@@ -60,6 +60,7 @@
 		4C94332A261289310015C6A3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C943329261289310015C6A3 /* NetworkManager.swift */; };
 		4C98550B260F15AC00087056 /* GeekBrainsTestProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C98550A260F15AC00087056 /* GeekBrainsTestProjectUITests.swift */; };
 		4CA2258429D9E69C007700E7 /* GroupFilterOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2258329D9E69C007700E7 /* GroupFilterOperations.swift */; };
+		4CA2258629DA03EF007700E7 /* CustomBottomRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2258529DA03EF007700E7 /* CustomBottomRoundedView.swift */; };
 		4CA577A12626388D00446F39 /* DMLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A02626388D00446F39 /* DMLoadingView.swift */; };
 		4CA577A726287D2B00446F39 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A626287D2B00446F39 /* RealmManager.swift */; };
 		4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577AA262973C500446F39 /* SearchableGroup.swift */; };
@@ -142,6 +143,7 @@
 		4C98550A260F15AC00087056 /* GeekBrainsTestProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeekBrainsTestProjectUITests.swift; sourceTree = "<group>"; };
 		4C98550C260F15AC00087056 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CA2258329D9E69C007700E7 /* GroupFilterOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFilterOperations.swift; sourceTree = "<group>"; };
+		4CA2258529DA03EF007700E7 /* CustomBottomRoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomRoundedView.swift; sourceTree = "<group>"; };
 		4CA577A02626388D00446F39 /* DMLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMLoadingView.swift; sourceTree = "<group>"; };
 		4CA577A626287D2B00446F39 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		4CA577AA262973C500446F39 /* SearchableGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableGroup.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				4C7C089125E2F93D00FEAFAA /* CloudLoadingView.swift */,
 				4C6F450D25FBF05E009CD6B0 /* GradientVIew.swift */,
 				4CA577A02626388D00446F39 /* DMLoadingView.swift */,
+				4CA2258529DA03EF007700E7 /* CustomBottomRoundedView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */,
 				4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */,
 				4C7B419625DC015200894D81 /* GroupStubFactory.swift in Sources */,
+				4CA2258629DA03EF007700E7 /* CustomBottomRoundedView.swift in Sources */,
 				4C6D36FE2654CB88003499E1 /* VKService.swift in Sources */,
 				4C462039266036E200FC031E /* CacheManager.swift in Sources */,
 				4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */,
