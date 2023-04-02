@@ -26,4 +26,22 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+    
+    convenience init(hex: String, alpha: CGFloat = 1.0) {
+            let hexString: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let scanner = Scanner(string: hexString)
+            
+            if hexString.hasPrefix("#") {
+                scanner.currentIndex = hexString.index(after: hexString.startIndex)
+            }
+            
+            var color: UInt64 = 0
+            scanner.scanHexInt64(&color)
+            
+            let red = CGFloat((color & 0xFF0000) >> 16) / 255.0
+            let green = CGFloat((color & 0x00FF00) >> 8) / 255.0
+            let blue = CGFloat(color & 0x0000FF) / 255.0
+            
+            self.init(red: red, green: green, blue: blue, alpha: alpha)
+        }
 }

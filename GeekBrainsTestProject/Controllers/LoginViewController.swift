@@ -17,21 +17,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
 
+    @IBOutlet var loginLabel: LoginLabel!
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let gradientView = GradientView(frame: self.view.bounds)
-        self.view.insertSubview(gradientView, at: 0)
+        self.configureBackgroundLayers()
+        addLoginLabel()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginTextField.delegate = self
-        passwordTextField.delegate = self
-        self.modalPresentationStyle = .automatic
-        animateTextFields()
-        animateSubmitButton()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        // showCloudAnimation(withInterval: 10.0)
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {
@@ -111,6 +105,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + interval) { [] in
             cloud.removeFromSuperview()
         }
+    }
+    
+    func configureBackgroundLayers(){
+        self.view.backgroundColor = .white
+        let layer0 = Layer0()
+        let layer1 = Layer1()
+        self.view.layer.compositingFilter = "darkenBlendMode"
+        layer0.bounds = self.view.bounds
+        layer0.position = self.view.center
+        self.view.layer.addSublayer(layer0)
+        layer1.bounds = self.view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
+        layer1.position = self.view.center
+        self.view.layer.addSublayer(layer1)
+    }
+    
+    func addLoginLabel(){
+        let loginLabel = LoginLabel()
+        loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(loginLabel)
+
+        NSLayoutConstraint.activate([
+            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 142),
+            loginLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -420),
+            loginLabel.heightAnchor.constraint(equalToConstant: 38),
+            loginLabel.widthAnchor.constraint(equalToConstant: 109)
+        ])
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
