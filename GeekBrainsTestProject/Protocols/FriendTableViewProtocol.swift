@@ -9,5 +9,7 @@ import Foundation
 import UIKit
 
 protocol PhotosTableViewDelegateProtocol: AnyObject {
-    func didPickUserFromTableWithId(userId: Int)
+    
+   //func didPickUserFromTableWithId(userId: Int)
+    func didPickUserFromTableView(user: Friend)
 }

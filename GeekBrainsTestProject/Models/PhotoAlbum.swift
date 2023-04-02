@@ -12,18 +12,12 @@ class PhotoAlbum {
 
     var id: Int = 0
     var title: String = ""
+    var owner_id: Int = 0
 
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id = json["id"].intValue
         self.title = json["title"].stringValue
+        self.owner_id = json["owner_id"].intValue
     }
-}
-
-enum PhotoAlbumTypeSystem {
-    // case album_wall = -7
-    // case album_profile = -6
-    case album_wall
-    case album_profile
-    case album_saved
 }

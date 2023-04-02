@@ -62,6 +62,8 @@
 		4CA577A12626388D00446F39 /* DMLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A02626388D00446F39 /* DMLoadingView.swift */; };
 		4CA577A726287D2B00446F39 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577A626287D2B00446F39 /* RealmManager.swift */; };
 		4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA577AA262973C500446F39 /* SearchableGroup.swift */; };
+		4CAAD3A326A8CA6E00E07EB1 /* ASCALbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAD3A226A8CA6E00E07EB1 /* ASCALbumController.swift */; };
+		4CAAD3A726A8E56E00E07EB1 /* InlineAlbumPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAAD3A626A8E56E00E07EB1 /* InlineAlbumPhotosViewController.swift */; };
 		4CAB76FB2603FE0000092073 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB76FA2603FE0000092073 /* Session.swift */; };
 		4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */; };
 		4CB1F4482613E293001CA49A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB1F4472613E293001CA49A /* Alamofire */; };
@@ -143,6 +145,8 @@
 		4CA577A02626388D00446F39 /* DMLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMLoadingView.swift; sourceTree = "<group>"; };
 		4CA577A626287D2B00446F39 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		4CA577AA262973C500446F39 /* SearchableGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableGroup.swift; sourceTree = "<group>"; };
+		4CAAD3A226A8CA6E00E07EB1 /* ASCALbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCALbumController.swift; sourceTree = "<group>"; };
+		4CAAD3A626A8E56E00E07EB1 /* InlineAlbumPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineAlbumPhotosViewController.swift; sourceTree = "<group>"; };
 		4CAB76FA2603FE0000092073 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SignOut.swift"; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 			children = (
 				4C5D1EE4268922A60030E7C2 /* PhotosController.swift */,
 				4C5D1EE7268933590030E7C2 /* PhotoCellNode.swift */,
+				4CAAD3A226A8CA6E00E07EB1 /* ASCALbumController.swift */,
+				4CAAD3A626A8E56E00E07EB1 /* InlineAlbumPhotosViewController.swift */,
 			);
 			path = ASControllers;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 				4C542A3025C8A85200CC8A4F /* GroupTableViewCell.swift in Sources */,
 				4C7B419625DC015200894D81 /* GroupStubFactory.swift in Sources */,
 				4C6D36FE2654CB88003499E1 /* VKService.swift in Sources */,
+				4CAAD3A726A8E56E00E07EB1 /* InlineAlbumPhotosViewController.swift in Sources */,
 				4C462039266036E200FC031E /* CacheManager.swift in Sources */,
 				4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */,
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
@@ -642,6 +649,7 @@
 				4C724541265AF5C800C47EFD /* AsyncOperation.swift in Sources */,
 				4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */,
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
+				4CAAD3A326A8CA6E00E07EB1 /* ASCALbumController.swift in Sources */,
 				4C72453F265AF4F300C47EFD /* DataOperations.swift in Sources */,
 				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C4DC69926597B99000C57F3 /* NewsFeedProfile.swift in Sources */,

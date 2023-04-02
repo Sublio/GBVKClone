@@ -9,6 +9,10 @@ import UIKit
 import Kingfisher
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
+    func didPickUserFromTableView(user: Friend) {
+        print("Hello")
+    }
+    
 
     let networkManager = NetworkManager.shared
     var photos: [Photo] = [] {

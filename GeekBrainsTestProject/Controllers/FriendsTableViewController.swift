@@ -90,7 +90,8 @@ class FriendsTableViewController: UITableViewController {
         collectionViewFlowLayout.scrollDirection = .vertical
         collectionViewFlowLayout.minimumLineSpacing = 2
         collectionViewFlowLayout.minimumInteritemSpacing = 2
-        let collectionView = ASPhotosController()
+        let collectionView = ASCAlbumViewController()
+        //let collectionView = ASPhotosController()
         // let collectionView = PhotosCollectionViewController(collectionViewLayout: collectionViewFlowLayout)
         collectionView.modalTransitionStyle = .crossDissolve
         collectionView.modalPresentationStyle = .overFullScreen
@@ -98,7 +99,8 @@ class FriendsTableViewController: UITableViewController {
         navigationController?.pushViewController(collectionView, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
         if let selectedFriend = notFilteredFriends?[indexPath.row] {
-            self.delegate?.didPickUserFromTableWithId(userId: selectedFriend.id)
+            //self.delegate?.didPickUserFromTableWithId!(userId: selectedFriend.id)
+            self.delegate?.didPickUserFromTableView(user: selectedFriend)
         }
     }
 

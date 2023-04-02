@@ -181,4 +181,35 @@ class NetworkManager {
             }
         }
     }
+    
+    func getPhotosFrom(albumID: String, ownerID: String, completion: @escaping (Swift.Result<[Photo], Error>) -> Void) {
+
+        let scheme = "https://"
+        let host = self.apiHost
+        let path = "/method/photos.get"
+        let parameters: Parameters = [
+            "access_token": Session.shared.token,
+            "owner_id": ownerID,
+            "album_id": albumID,
+            "extended": true,
+            "rev": true,
+            "v": vkApiVersion
+        ]
+        
+        AF.request(scheme + host + path, method: .get, parameters: parameters).response { response in
+            switch response.result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let data):
+                guard let data = data,
+                      let json = try? JSON(data: data) else { return }
+                let photosJSON = json["response"]["items"].arrayValue
+                let photos = photosJSON.map { Photo(json: $0) }
+
+                completion(.success(photos))
+            }
+        }
+
+
+    }
 }
