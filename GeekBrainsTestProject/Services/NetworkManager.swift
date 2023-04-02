@@ -17,7 +17,7 @@ class NetworkManager {
 
     private init () {}
 
-    let vkApiVersion = "5.126"
+    let vkApiVersion = "5.131"
     let scheme = "https"
     let clientId = "7800566"
     // Wall + Friends + Offline Access

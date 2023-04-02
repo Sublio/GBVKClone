@@ -47,15 +47,21 @@ class GroupsTableViewController: UITableViewController {
         let downLoadOperation = LoadDataOperation(url: url, method: .get, params: parameters)
         let parsingOperation = ParsingOperation<GroupResponse>()
         parsingOperation.addDependency(downLoadOperation)
+
+        let filterGroupsOperation = FilterGroupsOperation()
+        filterGroupsOperation.addDependency(parsingOperation)
+
         let realmSavingOperation = RealmSavingOperation<GroupResponse>()
         realmSavingOperation.addDependency(parsingOperation)
-        operationQueue.addOperations([downLoadOperation, parsingOperation, realmSavingOperation], waitUntilFinished: false)
+
+        operationQueue.addOperations([downLoadOperation, parsingOperation, filterGroupsOperation, realmSavingOperation], waitUntilFinished: false)
         operationQueue.addBarrierBlock {
             DispatchQueue.main.async {
                 self.loadingView.removeLoadingView()
             }
         }
     }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

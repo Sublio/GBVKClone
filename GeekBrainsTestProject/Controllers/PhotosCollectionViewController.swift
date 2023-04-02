@@ -10,7 +10,7 @@ import Kingfisher
 
 class PhotosCollectionViewController: UICollectionViewController, PhotosTableViewDelegateProtocol {
     func didPickUserFromTableView(user: Friend) {
-        print("Hello")
+        self.selectedUserId = user.id
     }
     
 
