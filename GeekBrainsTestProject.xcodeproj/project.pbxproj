@@ -70,6 +70,8 @@
 		4CBCFFC029DA12B90070F83E /* Layer0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFBF29DA12B90070F83E /* Layer0.swift */; };
 		4CBCFFC229DA137A0070F83E /* Layer1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC129DA137A0070F83E /* Layer1.swift */; };
 		4CBCFFC429DA1C060070F83E /* LoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC329DA1C060070F83E /* LoginLabel.swift */; };
+		4CBCFFC629DB5CBE0070F83E /* LoginPassLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC529DB5CBE0070F83E /* LoginPassLabel.swift */; };
+		4CBCFFC829DB61C60070F83E /* CustomLoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC729DB61C60070F83E /* CustomLoginTextField.swift */; };
 		4CC0FC8626A10827007547EA /* UIViewController+SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */; };
 		4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */; };
 		4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */; };
@@ -155,6 +157,8 @@
 		4CBCFFBF29DA12B90070F83E /* Layer0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer0.swift; sourceTree = "<group>"; };
 		4CBCFFC129DA137A0070F83E /* Layer1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer1.swift; sourceTree = "<group>"; };
 		4CBCFFC329DA1C060070F83E /* LoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLabel.swift; sourceTree = "<group>"; };
+		4CBCFFC529DB5CBE0070F83E /* LoginPassLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPassLabel.swift; sourceTree = "<group>"; };
+		4CBCFFC729DB61C60070F83E /* CustomLoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginTextField.swift; sourceTree = "<group>"; };
 		4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SignOut.swift"; sourceTree = "<group>"; };
 		4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionPresent.swift; sourceTree = "<group>"; };
 		4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDelegate.swift; sourceTree = "<group>"; };
@@ -359,6 +363,8 @@
 				4CA577A02626388D00446F39 /* DMLoadingView.swift */,
 				4CA2258529DA03EF007700E7 /* CustomBottomRoundedView.swift */,
 				4CBCFFC329DA1C060070F83E /* LoginLabel.swift */,
+				4CBCFFC529DB5CBE0070F83E /* LoginPassLabel.swift */,
+				4CBCFFC729DB61C60070F83E /* CustomLoginTextField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -659,6 +665,7 @@
 				4CBCFFC229DA137A0070F83E /* Layer1.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4CBCFFC029DA12B90070F83E /* Layer0.swift in Sources */,
+				4CBCFFC829DB61C60070F83E /* CustomLoginTextField.swift in Sources */,
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
 				4C5D1EE5268922A60030E7C2 /* PhotosController.swift in Sources */,
 				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
@@ -669,6 +676,7 @@
 				4C724541265AF5C800C47EFD /* AsyncOperation.swift in Sources */,
 				4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */,
 				4C936DBA25CE15C30035DA46 /* RoundedView.swift in Sources */,
+				4CBCFFC629DB5CBE0070F83E /* LoginPassLabel.swift in Sources */,
 				4C72453F265AF4F300C47EFD /* DataOperations.swift in Sources */,
 				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C4DC69926597B99000C57F3 /* NewsFeedProfile.swift in Sources */,

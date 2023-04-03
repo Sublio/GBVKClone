@@ -11,17 +11,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     private var testLogin = ""
     private var testPassword = ""
-    private var bottomButtonConstains = NSLayoutConstraint()
+    private var bottomButtonConstrains = NSLayoutConstraint()
 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
 
-    @IBOutlet var loginLabel: LoginLabel!
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.configureBackgroundLayers()
-        addLoginLabel()
+        let loginLabel = LoginLabel(parentView: view)
+        let logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel)
+        let loginTextField = CustomLoginTextField(parentView: view, placeholder: "")
+        
     }
     
     override func viewDidLoad() {
@@ -119,26 +121,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         layer1.position = self.view.center
         self.view.layer.addSublayer(layer1)
     }
-    
-    func addLoginLabel(){
-        let loginLabel = LoginLabel()
-        loginLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(loginLabel)
-
-        NSLayoutConstraint.activate([
-            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 142),
-            loginLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -420),
-            loginLabel.heightAnchor.constraint(equalToConstant: 38),
-            loginLabel.widthAnchor.constraint(equalToConstant: 109)
-        ])
-    }
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
 
             UIView.animate(withDuration: 0.3) {
-                self.bottomButtonConstains.constant -= keyboardSize.height + 20
+                self.bottomButtonConstrains.constant -= keyboardSize.height + 20
                 self.view.layoutIfNeeded()
             }
         }
@@ -146,7 +134,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) {
-            self.bottomButtonConstains.constant = -70
+            self.bottomButtonConstrains.constant = -70
             self.view.layoutIfNeeded()
         }
     }
