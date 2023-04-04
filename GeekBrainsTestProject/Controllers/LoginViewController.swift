@@ -21,8 +21,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         self.configureBackgroundLayers()
         let loginLabel = LoginLabel(parentView: view)
-        let logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel)
+        let logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel, text: "User Name")
         let loginTextField = CustomLoginTextField(parentView: view, placeholder: "")
+        let passLabel = LoginPassLabel(parentView: view, aboveView: view, text: "Password", width: 165, height: 31,topAnchorConstant: 100)
         
     }
     
