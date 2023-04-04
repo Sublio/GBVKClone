@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginPassLabel: UILabel {
-    init(parentView: UIView, aboveView: UIView) {
+    init(parentView: UIView, aboveView: UIView, width: CGFloat = 165, height: CGFloat = 31, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat = 12) {
         super.init(frame: .zero)
         setupLabel()
 
@@ -16,11 +16,10 @@ class LoginPassLabel: UILabel {
         self.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-//            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
-            self.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: 73),
-            self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: 12),
-            self.heightAnchor.constraint(equalToConstant: 31),
-            self.widthAnchor.constraint(equalToConstant: 192)
+            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: centerXOffset),
+            self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
+            self.heightAnchor.constraint(equalToConstant: height),
+            self.widthAnchor.constraint(equalToConstant: width)
         ])
     }
     

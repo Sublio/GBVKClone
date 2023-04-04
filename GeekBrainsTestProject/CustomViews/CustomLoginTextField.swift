@@ -17,8 +17,7 @@ class CustomLoginTextField: UITextField {
         self.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-//            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
-            self.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: 73),
+            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
             self.topAnchor.constraint(equalTo: parentView.topAnchor, constant: 223), // Adjust this constant as needed
             self.widthAnchor.constraint(equalToConstant: 165),
             self.heightAnchor.constraint(equalToConstant: 26)
