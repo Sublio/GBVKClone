@@ -9,9 +9,9 @@ import UIKit
 
 class CustomLoginTextField: UITextField {
     
-    init(parentView: UIView, aboveView: UIView, placeholder: String, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat = 223, widthAnchorConstant: CGFloat = 165, heightAnchorConstant: CGFloat = 30) {
+    init(parentView: UIView, aboveView: UIView, placeholder: String, isPasswordField: Bool = false, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat = 223, widthAnchorConstant: CGFloat = 165, heightAnchorConstant: CGFloat = 30) {
         super.init(frame: .zero)
-        setupTextField(placeholder: placeholder)
+        setupTextField(placeholder: placeholder, isPasswordField: isPasswordField)
 
         parentView.addSubview(self)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -26,10 +26,10 @@ class CustomLoginTextField: UITextField {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupTextField(placeholder: "")
+        setupTextField(placeholder: "", isPasswordField: false)
     }
     
-    private func setupTextField(placeholder: String) {
+    private func setupTextField(placeholder: String, isPasswordField: Bool) {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.borderStyle = .roundedRect
         self.font = UIFont.systemFont(ofSize: 16)
@@ -40,5 +40,6 @@ class CustomLoginTextField: UITextField {
         self.clearButtonMode = .whileEditing
         self.layer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         self.layer.cornerRadius = 6
+        self.isSecureTextEntry = isPasswordField
     }
 }
