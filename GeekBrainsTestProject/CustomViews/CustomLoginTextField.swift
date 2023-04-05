@@ -9,7 +9,7 @@ import UIKit
 
 class CustomLoginTextField: UITextField {
     
-    init(parentView: UIView, placeholder: String) {
+    init(parentView: UIView, aboveView: UIView, placeholder: String, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat = 223, widthAnchorConstant: CGFloat = 165, heightAnchorConstant: CGFloat = 30) {
         super.init(frame: .zero)
         setupTextField(placeholder: placeholder)
 
@@ -17,10 +17,10 @@ class CustomLoginTextField: UITextField {
         self.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
-            self.topAnchor.constraint(equalTo: parentView.topAnchor, constant: 223), // Adjust this constant as needed
-            self.widthAnchor.constraint(equalToConstant: 165),
-            self.heightAnchor.constraint(equalToConstant: 26)
+            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: centerXOffset),
+            self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
+            self.widthAnchor.constraint(equalToConstant: widthAnchorConstant),
+            self.heightAnchor.constraint(equalToConstant: heightAnchorConstant)
         ])
     }
 
