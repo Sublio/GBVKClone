@@ -25,6 +25,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let loginTextField = CustomLoginTextField(parentView: view, aboveView: logPassLabel, placeholder: "",topAnchorConstant: 0)
         let passLabel = LoginPassLabel(parentView: view, aboveView: loginTextField, text: "Password", width: 165, height: 31,topAnchorConstant: 1)
         let passTextField = CustomLoginTextField(parentView: view,aboveView: passLabel, placeholder: "", isPasswordField: true, topAnchorConstant: 0)
+        let forgotPassButton = CustomForgotPasswordButton(parentView: view,aboveView: passTextField, topAnchorConstant: 0)
+        let loginButton = LoginSignupButton(parentView: view, aboveView: forgotPassButton, title: "LOG IN", topAnchorConstant: 0)
         
     }
     

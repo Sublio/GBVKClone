@@ -72,6 +72,8 @@
 		4CBCFFC429DA1C060070F83E /* LoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC329DA1C060070F83E /* LoginLabel.swift */; };
 		4CBCFFC629DB5CBE0070F83E /* LoginPassLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC529DB5CBE0070F83E /* LoginPassLabel.swift */; };
 		4CBCFFC829DB61C60070F83E /* CustomLoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC729DB61C60070F83E /* CustomLoginTextField.swift */; };
+		4CBCFFCA29DE1DBC0070F83E /* ForgotPasswordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC929DE1DBC0070F83E /* ForgotPasswordButton.swift */; };
+		4CBCFFCC29DE20300070F83E /* LoginSignupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFCB29DE20300070F83E /* LoginSignupButton.swift */; };
 		4CC0FC8626A10827007547EA /* UIViewController+SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */; };
 		4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */; };
 		4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */; };
@@ -159,6 +161,8 @@
 		4CBCFFC329DA1C060070F83E /* LoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLabel.swift; sourceTree = "<group>"; };
 		4CBCFFC529DB5CBE0070F83E /* LoginPassLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPassLabel.swift; sourceTree = "<group>"; };
 		4CBCFFC729DB61C60070F83E /* CustomLoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoginTextField.swift; sourceTree = "<group>"; };
+		4CBCFFC929DE1DBC0070F83E /* ForgotPasswordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordButton.swift; sourceTree = "<group>"; };
+		4CBCFFCB29DE20300070F83E /* LoginSignupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupButton.swift; sourceTree = "<group>"; };
 		4CC0FC8526A10827007547EA /* UIViewController+SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SignOut.swift"; sourceTree = "<group>"; };
 		4CC84D3425E6CB8400FD7949 /* MyTransitionPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionPresent.swift; sourceTree = "<group>"; };
 		4CC84D3925E6DAE100FD7949 /* MyTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTransitionDelegate.swift; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 				4CBCFFC329DA1C060070F83E /* LoginLabel.swift */,
 				4CBCFFC529DB5CBE0070F83E /* LoginPassLabel.swift */,
 				4CBCFFC729DB61C60070F83E /* CustomLoginTextField.swift */,
+				4CBCFFC929DE1DBC0070F83E /* ForgotPasswordButton.swift */,
+				4CBCFFCB29DE20300070F83E /* LoginSignupButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -669,6 +675,7 @@
 				4C7B418525DAC5C900894D81 /* UserStubFactory.swift in Sources */,
 				4C5D1EE5268922A60030E7C2 /* PhotosController.swift in Sources */,
 				4CC84D4725E6FF8300FD7949 /* NavigationTransitionPush.swift in Sources */,
+				4CBCFFCA29DE1DBC0070F83E /* ForgotPasswordButton.swift in Sources */,
 				4C542A3E25C8B5BE00CC8A4F /* Group.swift in Sources */,
 				4C70BFD72695084000479CD6 /* PhotoAlbum.swift in Sources */,
 				4C542A2825C65C9200CC8A4F /* FriendPhotoCollectionViewCell.swift in Sources */,
@@ -692,6 +699,7 @@
 				4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */,
 				4C7B418C25DAE1D600894D81 /* DMSearchBar.swift in Sources */,
 				4C4AA78B261589C3005EFA89 /* Photo.swift in Sources */,
+				4CBCFFCC29DE20300070F83E /* LoginSignupButton.swift in Sources */,
 				4C39507C2650E887005CC644 /* KeychainService.swift in Sources */,
 				4CC84D3A25E6DAE100FD7949 /* MyTransitionDelegate.swift in Sources */,
 				4C4DC69F265AD2A6000C57F3 /* NewsFeedPictureTableViewCell.swift in Sources */,
