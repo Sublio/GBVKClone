@@ -23,7 +23,6 @@ class LoginLabel: UILabel {
             self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
             
             self.topAnchor.constraint(equalTo: parentView.topAnchor, constant: 142),
-//            self.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: -420)
         ])
     }
     
@@ -39,7 +38,7 @@ class LoginLabel: UILabel {
         self.font = UIFont(name: "Roboto-Regular", size: 18)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.14
-        self.textAlignment = .center
+        paragraphStyle.alignment = .center
         self.attributedText = NSMutableAttributedString(string: "LOG IN ", attributes: [NSAttributedString.Key.kern: 3.96, NSAttributedString.Key.paragraphStyle: paragraphStyle])
     }
 }

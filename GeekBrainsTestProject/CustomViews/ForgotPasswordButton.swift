@@ -1,15 +1,8 @@
-//
-//  CustomForgotPasswordButton.swift
-//  GeekBrainsTestProject
-//
-//  Created by Your Name on 04.04.2023.
-//
-
 import UIKit
 
 class CustomForgotPasswordButton: UIButton {
     
-    init(parentView: UIView, aboveView: UIView, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat, widthAnchorConstant: CGFloat = 165, heightAnchorConstant: CGFloat = 31) {
+    init(parentView: UIView, aboveView: UIView, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat, widthAnchorConstant: CGFloat = 175, heightAnchorConstant: CGFloat = 31, topInset: CGFloat = 0, bottomInset: CGFloat = 0) {
         super.init(frame: .zero)
         setupButton()
 
@@ -18,9 +11,9 @@ class CustomForgotPasswordButton: UIButton {
 
         NSLayoutConstraint.activate([
             self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: centerXOffset),
-            self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
+            self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant + topInset),
             self.widthAnchor.constraint(equalToConstant: widthAnchorConstant),
-            self.heightAnchor.constraint(equalToConstant: heightAnchorConstant)
+            self.heightAnchor.constraint(equalToConstant: heightAnchorConstant + topInset + bottomInset)
         ])
     }
     

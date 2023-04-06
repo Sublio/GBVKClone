@@ -9,7 +9,7 @@ import UIKit
 
 class CustomLoginTextField: UITextField {
     
-    init(parentView: UIView, aboveView: UIView, placeholder: String, isPasswordField: Bool = false, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat = 223, widthAnchorConstant: CGFloat = 165, heightAnchorConstant: CGFloat = 30) {
+    init(parentView: UIView, aboveView: UIView, placeholder: String, isPasswordField: Bool = false, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat = 223, widthAnchorConstant: CGFloat = 200, heightAnchorConstant: CGFloat = 30) {
         super.init(frame: .zero)
         setupTextField(placeholder: placeholder, isPasswordField: isPasswordField)
 
