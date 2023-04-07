@@ -28,8 +28,8 @@ class CustomForgotPasswordButton: UIButton {
         self.titleLabel?.font = UIFont(name: "Roboto-Light", size: 11)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.06
-        // Line height: 15 pt
-        self.titleLabel?.textAlignment = .center
-        self.setAttributedTitle(NSMutableAttributedString(string: "forget your password?", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle]), for: .normal)
+        paragraphStyle.alignment = .center
+        self.setAttributedTitle(NSMutableAttributedString(string: "Forget your password?", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle]), for: .normal)
     }
 }
+

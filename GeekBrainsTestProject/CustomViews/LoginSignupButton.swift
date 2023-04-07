@@ -2,19 +2,19 @@ import UIKit
 
 class LoginSignupButton: UIButton {
     
-    init(parentView: UIView, aboveView: UIView, title: String, width: CGFloat = 119, height: CGFloat = 36, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat, widthAnchorConstant: CGFloat = 119, heightAnchorConstant: CGFloat = 36) {
-            super.init(frame: .zero)
-            setupButton(title: title)
+    init(parentView: UIView, aboveView: UIView, title: String, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat, widthAnchorConstant: CGFloat = 119, heightAnchorConstant: CGFloat = 36) {
+        super.init(frame: .zero)
+        setupButton(title: title)
 
-            parentView.addSubview(self)
-            self.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(self)
+        self.translatesAutoresizingMaskIntoConstraints = false
 
-            NSLayoutConstraint.activate([
-                self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: centerXOffset),
-                self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
-                self.widthAnchor.constraint(equalToConstant: widthAnchorConstant),
-                self.heightAnchor.constraint(equalToConstant: heightAnchorConstant)
-            ])
+        NSLayoutConstraint.activate([
+            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: centerXOffset),
+            self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
+            self.widthAnchor.constraint(equalToConstant: widthAnchorConstant),
+            self.heightAnchor.constraint(equalToConstant: heightAnchorConstant)
+        ])
     }
     
     required init?(coder: NSCoder) {
@@ -42,12 +42,13 @@ class LoginSignupButton: UIButton {
     }
     
     private func applyCornerRadius() {
-            let maskLayer = CAShapeLayer()
-            maskLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: 9).cgPath
-            self.layer.mask = maskLayer
-        }
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: 9).cgPath
+        self.layer.mask = maskLayer
+    }
         
     private func setupButton(title: String) {
         self.setTitle(title, for: .normal)
-        }
+    }
 }
+

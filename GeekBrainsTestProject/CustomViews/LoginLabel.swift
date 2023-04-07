@@ -16,9 +16,12 @@ class LoginLabel: UILabel {
         parentView.addSubview(self)
         self.translatesAutoresizingMaskIntoConstraints = false
 
+        let labelWidth: CGFloat = 109
+        let labelHeight: CGFloat = 38
+        
         NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: 109),
-            self.heightAnchor.constraint(equalToConstant: 38),
+            self.widthAnchor.constraint(equalToConstant: labelWidth),
+            self.heightAnchor.constraint(equalToConstant: labelHeight),
             
             self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
             
@@ -32,7 +35,6 @@ class LoginLabel: UILabel {
     }
     
     private func setupLabel() {
-        self.frame = CGRect(x: 0, y: 0, width: 109, height: 38)
         self.backgroundColor = .clear
         self.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         self.font = UIFont(name: "Roboto-Regular", size: 18)

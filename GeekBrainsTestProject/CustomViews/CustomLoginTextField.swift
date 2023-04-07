@@ -30,7 +30,6 @@ class CustomLoginTextField: UITextField {
     }
     
     private func setupTextField(placeholder: String, isPasswordField: Bool) {
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.borderStyle = .roundedRect
         self.font = UIFont.systemFont(ofSize: 16)
         self.placeholder = placeholder
@@ -43,3 +42,4 @@ class CustomLoginTextField: UITextField {
         self.isSecureTextEntry = isPasswordField
     }
 }
+

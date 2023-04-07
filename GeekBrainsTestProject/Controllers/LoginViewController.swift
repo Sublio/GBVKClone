@@ -30,13 +30,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private func setUpUI(){
         self.configureBackgroundLayers()
         let loginLabel = LoginLabel(parentView: view)
-        let logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel, text: "User Name", textAllignment: .left)
+        let logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel, text: "User Name", textAlignment: .left)
         let loginTextField = CustomLoginTextField(parentView: view, aboveView: logPassLabel, placeholder: "",topAnchorConstant: 0)
-        let passLabel = LoginPassLabel(parentView: view, aboveView: loginTextField, text: "Password", width: 165, height: 31,topAnchorConstant: 1, textAllignment: .left)
+        let passLabel = LoginPassLabel(parentView: view, aboveView: loginTextField, text: "Password", width: 165, height: 31,topAnchorConstant: 1, textAlignment: .left)
         let passTextField = CustomLoginTextField(parentView: view,aboveView: passLabel, placeholder: "", isPasswordField: true, topAnchorConstant: 0)
         let forgotPassButton = CustomForgotPasswordButton(parentView: view,aboveView: passTextField, topAnchorConstant: 0, topInset: 2, bottomInset: 2)
         let loginButton = LoginSignupButton(parentView: view, aboveView: forgotPassButton, title: "LOG IN", topAnchorConstant: 0)
-        let orLabel = LoginPassLabel(parentView: view, aboveView: loginButton, text: "OR", topAnchorConstant: 0, textAllignment: .center)
+        let orLabel = LoginPassLabel(parentView: view, aboveView: loginButton, text: "OR", topAnchorConstant: 0, textAlignment: .center)
         let signUpButton = LoginSignupButton(parentView: view, aboveView: orLabel, title: "SIGN UP", topAnchorConstant: 0)
     }
 
