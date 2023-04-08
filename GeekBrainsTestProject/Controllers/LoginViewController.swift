@@ -8,14 +8,17 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
-    private var testLogin = ""
-    private var testPassword = ""
     private var bottomButtonConstrains = NSLayoutConstraint()
-
-    @IBOutlet weak var loginTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
+    
+    private var loginLabel: LoginLabel!
+    private var logPassLabel: LoginPassLabel!
+    private var loginTextField: CustomLoginTextField!
+    private var passLabel: LoginPassLabel!
+    private var passTextField: CustomLoginTextField!
+    private var forgotPassButton: CustomForgotPasswordButton!
+    private var loginButton: LoginSignupButton!
+    private var orLabel: LoginPassLabel!
+    private var signUpButton: LoginSignupButton!
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -29,50 +32,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private func setUpUI(){
         self.configureBackgroundLayers()
-        let loginLabel = LoginLabel(parentView: view)
-        let logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel, text: "User Name", textAlignment: .left)
-        let loginTextField = CustomLoginTextField(parentView: view, aboveView: logPassLabel, placeholder: "",topAnchorConstant: 0)
-        let passLabel = LoginPassLabel(parentView: view, aboveView: loginTextField, text: "Password", width: 165, height: 31,topAnchorConstant: 1, textAlignment: .left)
-        let passTextField = CustomLoginTextField(parentView: view,aboveView: passLabel, placeholder: "", isPasswordField: true, topAnchorConstant: 0)
-        let forgotPassButton = CustomForgotPasswordButton(parentView: view,aboveView: passTextField, topAnchorConstant: 0, topInset: 2, bottomInset: 2)
-        let loginButton = LoginSignupButton(parentView: view, aboveView: forgotPassButton, title: "LOG IN", topAnchorConstant: 0)
-        let orLabel = LoginPassLabel(parentView: view, aboveView: loginButton, text: "OR", topAnchorConstant: 0, textAlignment: .center)
-        let signUpButton = LoginSignupButton(parentView: view, aboveView: orLabel, title: "SIGN UP", topAnchorConstant: 0)
-    }
-
-    @IBAction func onLoginPressed(_ sender: Any) {
-        if loginTextField.text == testLogin && passwordTextField.text == testPassword {
-            return
-        } else {
-
-            let alert = UIAlertController(title: "Error", message: "Wrong login or password", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(alertAction)
-            present(alert, animated: true, completion: nil)
-        }
-    }
-
-    func animateTextFields() {
-        let offset = view.bounds.width
-        loginTextField.transform = CGAffineTransform(translationX: -offset, y: 0)
-        passwordTextField.transform =  CGAffineTransform(translationX: offset, y: 0)
-
-        UIView.animate(withDuration: 1, delay: 1, options: .curveEaseInOut, animations: {
-            self.loginTextField.transform = .identity
-            self.passwordTextField.transform = .identity
-        }, completion: nil)
-    }
-
-    func animateSubmitButton() {
-        let animation = CASpringAnimation(keyPath: "transform.scale")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.stiffness = 200
-        animation.mass =   2
-        animation.duration = 2
-        animation.beginTime = CACurrentMediaTime() + 1
-        animation.fillMode = .backwards
-        self.loginButton.layer.add(animation, forKey: nil)
+        loginLabel = LoginLabel(parentView: view)
+        logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel, text: "User Name", textAlignment: .left)
+        loginTextField = CustomLoginTextField(parentView: view, aboveView: logPassLabel, placeholder: "",topAnchorConstant: 0)
+        passLabel = LoginPassLabel(parentView: view, aboveView: loginTextField, text: "Password", width: 165, height: 31,topAnchorConstant: 1, textAlignment: .left)
+        passTextField = CustomLoginTextField(parentView: view,aboveView: passLabel, placeholder: "", isPasswordField: true, topAnchorConstant: 0)
+        forgotPassButton = CustomForgotPasswordButton(parentView: view,aboveView: passTextField, topAnchorConstant: 0, topInset: 2, bottomInset: 2)
+        loginButton = LoginSignupButton(parentView: view, aboveView: forgotPassButton, title: "LOG IN", topAnchorConstant: 0)
+        orLabel = LoginPassLabel(parentView: view, aboveView: loginButton, text: "OR", topAnchorConstant: 0, textAlignment: .center)
+        signUpButton = LoginSignupButton(parentView: view, aboveView: orLabel, title: "SIGN UP", topAnchorConstant: 0)
     }
 
     func showLoadingIndicator(withInterval interval: Double) {

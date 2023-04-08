@@ -9,12 +9,26 @@ class LoginPassLabel: UILabel {
         parentView.addSubview(self)
         self.translatesAutoresizingMaskIntoConstraints = false
 
-        NSLayoutConstraint.activate([
-            self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: centerXOffset),
-            self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
-            self.heightAnchor.constraint(equalToConstant: height),
-            self.widthAnchor.constraint(equalToConstant: width)
-        ])
+        setupConstraints(parentView: parentView, aboveView: aboveView, text: text, width: width, height: height, centerXOffset: centerXOffset, topAnchorConstant: topAnchorConstant)
+    }
+
+    private func setupConstraints(parentView: UIView, aboveView: UIView, text: String, width: CGFloat, height: CGFloat, centerXOffset: CGFloat, topAnchorConstant: CGFloat) {
+        if text == "Password" {
+            NSLayoutConstraint.activate([
+                self.leftAnchor.constraint(equalTo: aboveView.leftAnchor),
+                self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
+                self.heightAnchor.constraint(equalToConstant: height),
+                self.widthAnchor.constraint(equalToConstant: width)
+            ])
+
+        } else {
+            NSLayoutConstraint.activate([
+                self.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: centerXOffset),
+                self.topAnchor.constraint(equalTo: aboveView.bottomAnchor, constant: topAnchorConstant),
+                self.heightAnchor.constraint(equalToConstant: height),
+                self.widthAnchor.constraint(equalToConstant: width)
+            ])
+        }
     }
     
     required init?(coder: NSCoder) {
