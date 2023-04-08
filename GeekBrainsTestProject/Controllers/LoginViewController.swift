@@ -27,6 +27,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginButtonTapped))
+        loginButton.addGestureRecognizer(tapGestureRecognizer)
     }
     
     
@@ -126,6 +128,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier != nil {
             showLoadingIndicator(withInterval: 3)
+        }
+    }
+    
+    @objc func loginButtonTapped() {
+        // Create and configure the activity indicator
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
+
+        // Add constraints for the activity indicator
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+
+        // Create a UIView for the grey background
+        let greyBackgroundView = UIView(frame: view.bounds)
+        greyBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.4)
+        greyBackgroundView.alpha = 0
+        view.insertSubview(greyBackgroundView, belowSubview: activityIndicator)
+
+        // Animate the grey background appearing
+        UIView.animate(withDuration: 0.25) {
+            greyBackgroundView.alpha = 1
+        }
+
+        // Start the activity indicator with a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            activityIndicator.startAnimating()
+        }
+
+        // Stop the activity indicator and remove the grey background after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            greyBackgroundView.removeFromSuperview()
         }
     }
 }
