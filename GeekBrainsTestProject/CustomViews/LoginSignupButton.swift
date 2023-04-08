@@ -5,6 +5,7 @@ class LoginSignupButton: UIButton {
     init(parentView: UIView, aboveView: UIView, title: String, centerXOffset: CGFloat = 0, topAnchorConstant: CGFloat, widthAnchorConstant: CGFloat = 119, heightAnchorConstant: CGFloat = 36) {
         super.init(frame: .zero)
         setupButton(title: title)
+        addGestureRecognizer()
 
         parentView.addSubview(self)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +50,16 @@ class LoginSignupButton: UIButton {
         
     private func setupButton(title: String) {
         self.setTitle(title, for: .normal)
+    }
+    
+    private func addGestureRecognizer() {
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
+            self.addGestureRecognizer(tapGestureRecognizer)
+        }
+        
+    @objc private func buttonTapped() {
+        print("Button tapped")
+        // Add your custom action here
     }
 }
 
