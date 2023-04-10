@@ -67,6 +67,7 @@
 		4CAB76FB2603FE0000092073 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB76FA2603FE0000092073 /* Session.swift */; };
 		4CB0AE7425E9B2FB00B5E144 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */; };
 		4CB1F4482613E293001CA49A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4CB1F4472613E293001CA49A /* Alamofire */; };
+		4CB7193229E4B04300920E1A /* AlertControllerSingletonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7193129E4B04300920E1A /* AlertControllerSingletonService.swift */; };
 		4CBCFFC029DA12B90070F83E /* Layer0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFBF29DA12B90070F83E /* Layer0.swift */; };
 		4CBCFFC229DA137A0070F83E /* Layer1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC129DA137A0070F83E /* Layer1.swift */; };
 		4CBCFFC429DA1C060070F83E /* LoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBCFFC329DA1C060070F83E /* LoginLabel.swift */; };
@@ -156,6 +157,7 @@
 		4CA577AA262973C500446F39 /* SearchableGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableGroup.swift; sourceTree = "<group>"; };
 		4CAB76FA2603FE0000092073 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		4CB0AE7325E9B2FB00B5E144 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
+		4CB7193129E4B04300920E1A /* AlertControllerSingletonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerSingletonService.swift; sourceTree = "<group>"; };
 		4CBCFFBF29DA12B90070F83E /* Layer0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer0.swift; sourceTree = "<group>"; };
 		4CBCFFC129DA137A0070F83E /* Layer1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer1.swift; sourceTree = "<group>"; };
 		4CBCFFC329DA1C060070F83E /* LoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLabel.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				4C39507B2650E887005CC644 /* KeychainService.swift */,
 				4C6D36FD2654CB88003499E1 /* VKService.swift */,
 				4C462038266036E200FC031E /* CacheManager.swift */,
+				4CB7193129E4B04300920E1A /* AlertControllerSingletonService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				4CA2258429D9E69C007700E7 /* GroupFilterOperations.swift in Sources */,
 				4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */,
 				4CA577A726287D2B00446F39 /* RealmManager.swift in Sources */,
+				4CB7193229E4B04300920E1A /* AlertControllerSingletonService.swift in Sources */,
 				4C17A46B25BDE2E8006D45E0 /* AppDelegate.swift in Sources */,
 				4C6F450E25FBF05E009CD6B0 /* GradientVIew.swift in Sources */,
 				4C542A2325C64C6E00CC8A4F /* FriendTableViewCell.swift in Sources */,

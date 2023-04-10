@@ -20,9 +20,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private var orLabel: LoginPassLabel!
     private var signUpButton: LoginSignupButton!
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,8 +128,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func checkLoginPassFields(){
+        if loginTextField.text == "" || passTextField.text == ""{
+            AlertManager.shared.showAlert(title: "Email and/or password cannot be empty", message: "Please check your login and password", viewController: self)
+        }
+    }
+    
     @objc func loginButtonTapped() {
         // Create and configure the activity indicator
+        checkLoginPassFields()
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .white
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
