@@ -19,6 +19,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private var loginButton: LoginSignupButton!
     private var orLabel: LoginPassLabel!
     private var signUpButton: LoginSignupButton!
+    
+    private var activityIndicator: UIActivityIndicatorView?
+    private var greyBackgroundView: UIView?
 
     
     override func viewDidLoad() {
@@ -130,13 +133,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func checkLoginPassFields(){
         if loginTextField.text == "" || passTextField.text == ""{
-            AlertManager.shared.showAlert(title: "Email and/or password cannot be empty", message: "Please check your login and password", viewController: self)
+            AlertManager.shared.showAlert(title: "Email and/or password cannot be empty", message: "Please check your login and password", viewController: self) {
+                    self.removeActivityIndicator()
+                }
         }
     }
     
     @objc func loginButtonTapped() {
-        // Create and configure the activity indicator
         checkLoginPassFields()
+        showActivityIndicator()
+    }
+
+    func showActivityIndicator() {
+        // Create and configure the activity indicator
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .white
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -159,16 +168,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             greyBackgroundView.alpha = 1
         }
 
-        // Start the activity indicator with a delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            activityIndicator.startAnimating()
-        }
+        // Start the activity indicator
+        activityIndicator.startAnimating()
 
-        // Stop the activity indicator and remove the grey background after a delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-            greyBackgroundView.removeFromSuperview()
-        }
+        // Save the activity indicator and grey background views to properties for later removal
+        self.activityIndicator = activityIndicator
+        self.greyBackgroundView = greyBackgroundView
+    }
+    
+    func removeActivityIndicator() {
+        // Stop the activity indicator and remove the grey background
+        self.activityIndicator?.stopAnimating()
+        self.activityIndicator?.removeFromSuperview()
+        self.activityIndicator = nil
+        self.greyBackgroundView?.removeFromSuperview()
+        self.greyBackgroundView = nil
     }
 }
