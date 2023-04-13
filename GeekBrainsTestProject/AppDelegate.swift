@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import VK_ios_sdk
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = .blueZero
-        VKSdk.processOpen(url, fromApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String)
         if ProcessInfo.processInfo.environment["resetUserDefaults"] == "true" {
                UserDefaults.standard.set(false, forKey: "isLoggedIn")
         }
