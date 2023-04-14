@@ -6,8 +6,41 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, VKSdkDelegate, VKSdkUIDelegate {
+    func vkSdkShouldPresent(_ controller: UIViewController!) {
+        // Present VK login screen
+        present(controller, animated: true, completion: nil)
+    }
+
+    func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
+        // Display captcha view
+        let captchaViewController = VKCaptchaViewController.captchaControllerWithError(captchaError)
+        captchaViewController?.present(in: self)
+    }
+    
+    func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
+        if result.token != nil {
+            // Access token obtained successfully
+            let accessToken = result.token.accessToken
+            print("Access token: \(String(describing: accessToken))")
+        } else if result.error != nil {
+            // Authorization failed with error
+            let error = result.error.localizedDescription
+            print("Authorization failed with error: \(error)")
+            self.removeActivityIndicator()
+        }
+
+    }
+    
+    func vkSdkUserAuthorizationFailed() {
+        // User cancelled authorization or something went wrong
+        print("User authorization failed")
+        self.removeActivityIndicator()
+
+    }
+    
     private var bottomButtonConstrains = NSLayoutConstraint()
     
     private var loginLabel: LoginLabel!
@@ -22,6 +55,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private var activityIndicator: UIActivityIndicatorView?
     private var greyBackgroundView: UIView?
+    
+    private var vkSdk: VKSdk!
 
     
     override func viewDidLoad() {
@@ -29,8 +64,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         setUpUI()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginButtonTapped))
         loginButton.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Initialize VK SDK with your app ID
+        VKSdk.initialize(withAppId: AppConfig.vkAppId)
+                
+        // Set VK SDK delegate
+        VKSdk.instance().register(self)
+        VKSdk.instance()?.uiDelegate = self
     }
-    
     
     private func setUpUI(){
         self.configureBackgroundLayers()
@@ -140,9 +181,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func loginButtonTapped() {
-        checkLoginPassFields()
+//        checkLoginPassFields()
         showActivityIndicator()
+        VKSdk.authorize([VK_PER_PHOTOS, VK_PER_FRIENDS, VK_PER_OFFLINE, VK_PER_GROUPS])
     }
+
+
 
     func showActivityIndicator() {
         // Create and configure the activity indicator
