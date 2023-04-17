@@ -49,6 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+
     func loadBaseController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let window = self.window else { return }

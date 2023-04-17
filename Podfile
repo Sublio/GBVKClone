@@ -6,7 +6,6 @@ target 'GeekBrainsTestProject' do
   use_frameworks!
 
   pod "Texture"
-  pod 'VK-ios-sdk'
 
   target 'GeekBrainsTestProjectUITests' do
     # Pods for testing

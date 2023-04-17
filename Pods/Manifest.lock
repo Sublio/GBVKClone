@@ -34,11 +34,9 @@ PODS:
     - Texture/Core
   - Texture/Video (3.1.0):
     - Texture/Core
-  - VK-ios-sdk (1.6.4)
 
 DEPENDENCIES:
   - Texture
-  - VK-ios-sdk
 
 SPEC REPOS:
   trunk:
@@ -46,15 +44,13 @@ SPEC REPOS:
     - PINOperation
     - PINRemoteImage
     - Texture
-    - VK-ios-sdk
 
 SPEC CHECKSUMS:
   PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
   PINOperation: daa34d4aa1d8449089be7d405b9d974abc4724c6
   PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   Texture: 2e8ab2519452515f7f5a520f5a8f7e0a413abfa3
-  VK-ios-sdk: 21091f214d271a74b3a3313ec62d1c4da98ce00f
 
-PODFILE CHECKSUM: a6b6226124d55c5162eccf0be1e03865f8d129fb
+PODFILE CHECKSUM: ed61fde870cb4810cab6e7aaa34a38493a0dde5d
 
 COCOAPODS: 1.12.0
