@@ -6,6 +6,7 @@ target 'GeekBrainsTestProject' do
   use_frameworks!
 
   pod "Texture"
+  pod 'SwiftyVK'
 
   target 'GeekBrainsTestProjectUITests' do
     # Pods for testing

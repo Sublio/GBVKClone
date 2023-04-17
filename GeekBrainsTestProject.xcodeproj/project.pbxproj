@@ -86,6 +86,7 @@
 		4CC84D4D25E6FFAD00FD7949 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */; };
 		4CCAD5F2260A8F5E00F589E1 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */; };
 		4CD6DD3E265DA7FD00137F25 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4CD6DD3D265DA7FD00137F25 /* PromiseKit */; };
+		4CFA836C29EDFA4900DB10EE /* VKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFA836B29EDFA4900DB10EE /* VKDelegate.swift */; };
 		78EABA8E7D1271FFDCFC98B3 /* Pods_GeekBrainsTestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCE70EA62DA81F8EC446653 /* Pods_GeekBrainsTestProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +180,7 @@
 		4CC84D4C25E6FFAD00FD7949 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		4CDB818B2616EA6A006DF760 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		4CFA836B29EDFA4900DB10EE /* VKDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKDelegate.swift; sourceTree = "<group>"; };
 		4F9A25A1E4BB89FD16B455B4 /* Pods-GeekBrainsTestProject-GeekBrainsTestProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeekBrainsTestProject-GeekBrainsTestProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-GeekBrainsTestProject-GeekBrainsTestProjectUITests/Pods-GeekBrainsTestProject-GeekBrainsTestProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B54EC3E41AA05A06D982FC4F /* Pods-GeekBrainsTestProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeekBrainsTestProject.release.xcconfig"; path = "Target Support Files/Pods-GeekBrainsTestProject/Pods-GeekBrainsTestProject.release.xcconfig"; sourceTree = "<group>"; };
 		CCCE70EA62DA81F8EC446653 /* Pods_GeekBrainsTestProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeekBrainsTestProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,6 +273,7 @@
 				4C6D36FD2654CB88003499E1 /* VKService.swift */,
 				4C462038266036E200FC031E /* CacheManager.swift */,
 				4CB7193129E4B04300920E1A /* AlertControllerSingletonService.swift */,
+				4CFA836B29EDFA4900DB10EE /* VKDelegate.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				4CA577AB262973C500446F39 /* SearchableGroup.swift in Sources */,
 				4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */,
 				4CBCFFC229DA137A0070F83E /* Layer1.swift in Sources */,
+				4CFA836C29EDFA4900DB10EE /* VKDelegate.swift in Sources */,
 				4C542A0725C60F3400CC8A4F /* GroupsTableViewController.swift in Sources */,
 				4CBCFFC029DA12B90070F83E /* Layer0.swift in Sources */,
 				4CBCFFC829DB61C60070F83E /* CustomLoginTextField.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyVK
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -23,6 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private var activityIndicator: UIActivityIndicatorView?
     private var greyBackgroundView: UIView?
+    let VKDelegate = VKDelegateExample()
     
 
     
@@ -31,6 +33,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         setUpUI()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginButtonTapped))
         loginButton.addGestureRecognizer(tapGestureRecognizer)
+        VK.setUp(appId: AppConfig.vkAppId, delegate: VKDelegate)
+    }
+    
+    deinit{
+        VK.release()
     }
     
     private func setUpUI(){
@@ -141,8 +148,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func loginButtonTapped() {
-//        checkLoginPassFields()
+        //checkLoginPassFields()
         showActivityIndicator()
+        VK.sessions.default.logIn(
+              onSuccess: { _ in
+                // Start working with SwiftyVK session here
+                  print("Hello")
+              },
+              onError: { _ in
+                // Handle an error if something went wrong
+                  print("Error")
+              }
+          )
     }
 
 

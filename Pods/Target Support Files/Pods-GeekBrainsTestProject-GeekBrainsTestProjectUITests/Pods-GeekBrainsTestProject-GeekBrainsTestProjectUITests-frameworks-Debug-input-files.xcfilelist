@@ -2,4 +2,5 @@ ${PODS_ROOT}/Target Support Files/Pods-GeekBrainsTestProject-GeekBrainsTestProje
 ${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework
 ${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework
 ${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework
+${BUILT_PRODUCTS_DIR}/SwiftyVK/SwiftyVK.framework
 ${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework
