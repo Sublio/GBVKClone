@@ -8,6 +8,6 @@
 import Foundation
 
 struct AppConfig {
-    static let vkAppId = "51615159"
+    static let vkAppId = "7800566"
 }
 

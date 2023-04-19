@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageControl.pageIndicatorTintColor = UIColor.systemGray
         pageControl.currentPageIndicatorTintColor = UIColor.systemPurple
         if Session.shared.token.isEmpty { Session.shared.setTokenSessionFromKeychains()}
+
 //        let realm = RealmManager.shared
 //        realm.deleteDatabase()
 //        print(Realm.Configuration.defaultConfiguration.fileURL!)

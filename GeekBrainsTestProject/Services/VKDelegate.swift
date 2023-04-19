@@ -24,7 +24,7 @@ class VKDelegateExample: SwiftyVKDelegate {
       // Called when SwiftyVK wants to present UI (e.g. webView or captcha)
       // Should display given view controller from current top view controller
     if let rootController = UIApplication.shared.keyWindow?.rootViewController {
-                        rootController.present(viewController, animated: true)
+                    rootController.present(viewController, animated: true)
         }
     }
 

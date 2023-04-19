@@ -24,6 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private var activityIndicator: UIActivityIndicatorView?
     private var greyBackgroundView: UIView?
+    
     let VKDelegate = VKDelegateExample()
     
 
@@ -33,12 +34,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         setUpUI()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginButtonTapped))
         loginButton.addGestureRecognizer(tapGestureRecognizer)
-        VK.setUp(appId: AppConfig.vkAppId, delegate: VKDelegate)
+        VK.setUp(appId: AppConfig.vkAppId, delegate: self.VKDelegate)
     }
     
-    deinit{
-        VK.release()
-    }
     
     private func setUpUI(){
         self.configureBackgroundLayers()
@@ -151,16 +149,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //checkLoginPassFields()
         showActivityIndicator()
         VK.sessions.default.logIn(
-              onSuccess: { _ in
+              onSuccess: { response in
                 // Start working with SwiftyVK session here
-                  print("Hello")
+                  print(response)
+                  if let token = VK.sessions.default.accessToken{
+                      Session.shared.token = token.get()!
+                  }
+                  print(Session.shared.token)
+                  DispatchQueue.main.async {
+                      let friendVC = FriendsTableViewController()
+                      if let navigationController = self.navigationController {
+                          // Push the friendVC onto the navigation stack if the current view controller is embedded in a navigation controller
+                          navigationController.pushViewController(friendVC, animated: true)
+                      } else {
+                          // Otherwise, present the friendVC modally
+                          self.present(friendVC, animated: true)
+                      }
+                  }
               },
-              onError: { _ in
-                // Handle an error if something went wrong
-                  print("Error")
-              }
-          )
-    }
+              onError: { error in
+                  if case VKError.authorizationCancelled = error {
+                      // If the error is authorizationCancelled, simply return without showing the alert
+                      DispatchQueue.main.async {
+                          self.removeActivityIndicator()
+                      }
+                    return
+                  }
+                  // Otherwise, show the error alert
+                  DispatchQueue.main.async {
+                      AlertManager.shared.showAlert(title: "Login Error", message: error.localizedDescription, viewController: self)
+                      self.removeActivityIndicator()
+            }
+        }
+    )
+}
 
 
 
