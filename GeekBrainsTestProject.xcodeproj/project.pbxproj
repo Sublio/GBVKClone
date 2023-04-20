@@ -14,6 +14,7 @@
 		4C17A46F25BDE2E8006D45E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17A46E25BDE2E8006D45E0 /* LoginViewController.swift */; };
 		4C17A47225BDE2E8006D45E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47025BDE2E8006D45E0 /* Main.storyboard */; };
 		4C17A47725BDE2E9006D45E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C17A47525BDE2E9006D45E0 /* LaunchScreen.storyboard */; };
+		4C32FB3B29F1FC990047641F /* CustomTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C32FB3A29F1FC990047641F /* CustomTabBarControllerViewController.swift */; };
 		4C39507C2650E887005CC644 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C39507B2650E887005CC644 /* KeychainService.swift */; };
 		4C41C23226156C860020FEE4 /* FriendTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */; };
 		4C462039266036E200FC031E /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C462038266036E200FC031E /* CacheManager.swift */; };
@@ -110,6 +111,7 @@
 		4C17A47125BDE2E8006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C17A47625BDE2E9006D45E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C17A47825BDE2E9006D45E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C32FB3A29F1FC990047641F /* CustomTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		4C39507B2650E887005CC644 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		4C41C23126156C860020FEE4 /* FriendTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewProtocol.swift; sourceTree = "<group>"; };
 		4C462038266036E200FC031E /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				4C542A3525C8B42500CC8A4F /* GroupSearchTableViewController.swift */,
 				4C7B419B25DC070100894D81 /* NewsFeedTableViewController.swift */,
 				4CCAD5F1260A8F5E00F589E1 /* VKLoginViewController.swift */,
+				4C32FB3A29F1FC990047641F /* CustomTabBarControllerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				4C72453F265AF4F300C47EFD /* DataOperations.swift in Sources */,
 				4CC84D3525E6CB8400FD7949 /* MyTransitionPresent.swift in Sources */,
 				4C4DC69926597B99000C57F3 /* NewsFeedProfile.swift in Sources */,
+				4C32FB3B29F1FC990047641F /* CustomTabBarControllerViewController.swift in Sources */,
 				4CA2258429D9E69C007700E7 /* GroupFilterOperations.swift in Sources */,
 				4C7B418025DAB78800894D81 /* DM+UIColor.swift in Sources */,
 				4CA577A726287D2B00446F39 /* RealmManager.swift in Sources */,

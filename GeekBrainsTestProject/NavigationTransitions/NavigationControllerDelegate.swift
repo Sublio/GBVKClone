@@ -13,6 +13,7 @@ class CustomNavigationController: UINavigationController, UINavigationController
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationBar.barTintColor = UIColor(red: 0.925, green: 0.815, blue: 0.815, alpha: 1)
         // delegate = self
         // turn this delegate on if you wanna get your own custom navigation transitions
         // Now it is default transitions everywhere
