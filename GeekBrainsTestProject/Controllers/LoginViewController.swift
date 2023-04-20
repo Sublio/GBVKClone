@@ -157,15 +157,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                   }
                   print(Session.shared.token)
                   DispatchQueue.main.async {
-                      let friendVC = FriendsTableViewController()
-                      if let navigationController = self.navigationController {
-                          // Push the friendVC onto the navigation stack if the current view controller is embedded in a navigation controller
-                          navigationController.pushViewController(friendVC, animated: true)
-                      } else {
-                          // Otherwise, present the friendVC modally
-                          self.present(friendVC, animated: true)
-                      }
-                  }
+                      self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)                  }
               },
               onError: { error in
                   if case VKError.authorizationCancelled = error {

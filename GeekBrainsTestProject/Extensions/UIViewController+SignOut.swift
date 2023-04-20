@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyVK
 
 extension UIViewController {
     @objc func signOut() {
@@ -16,6 +17,7 @@ extension UIViewController {
         self.present(vc, animated: true)
         UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
         KeychainService.removeToken(service: "tokenStorage")
+        VK.sessions.default.logOut()
         view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }
