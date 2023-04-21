@@ -67,7 +67,6 @@ class FriendsTableViewController: UITableViewController {
                 print(error)
             }
         }
-        print("Hello")
     }
 
     deinit {
