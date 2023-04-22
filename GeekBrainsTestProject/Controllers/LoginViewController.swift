@@ -34,7 +34,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         setUpUI()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginButtonTapped))
         loginButton.addGestureRecognizer(tapGestureRecognizer)
-        VK.setUp(appId: AppConfig.vkAppId, delegate: self.VKDelegate)
+        if VK.needToSetUp {
+            // Set up SwiftyVK
+            VK.setUp(appId: AppConfig.vkAppId, delegate: self.VKDelegate)
+        }
     }
     
     
@@ -160,6 +163,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                       self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)                  }
               },
               onError: { error in
+                  print(error.localizedDescription)
                   if case VKError.authorizationCancelled = error {
                       // If the error is authorizationCancelled, simply return without showing the alert
                       DispatchQueue.main.async {
