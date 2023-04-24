@@ -134,14 +134,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != nil {
-            showLoadingIndicator(withInterval: 3)
-        }
-        print(segue.destination)
-        print(segue.identifier)
-    }
         
     @objc func loginButtonTapped() {
         showActivityIndicator()
@@ -151,28 +143,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             VK.sessions.default.logIn(
                 onSuccess: { response in
                     // Start working with SwiftyVK session here
-                    print(response)
                     if let token = VK.sessions.default.accessToken {
                         Session.shared.token = token.get()!
                     }
-                    print(Session.shared.token)
                     DispatchQueue.main.async {
+                        self.removeActivityIndicator()
                         self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)
                     }
                 },
                 onError: { error in
                     print(error.localizedDescription)
-                    if case VKError.authorizationCancelled = error {
-                        // If the error is authorizationCancelled, simply return without showing the alert
+
+                    switch error {
+                    case .authorizationCancelled, .authorizationDenied:
+                        // If the error is authorizationCancelled or authorizationDenied, simply return without showing the alert
                         DispatchQueue.main.async {
                             self.removeActivityIndicator()
                         }
                         return
-                    }
-                    // Otherwise, show the error alert
-                    DispatchQueue.main.async {
-                        AlertManager.shared.showAlert(title: "Login Error", message: error.localizedDescription, viewController: self)
-                        self.removeActivityIndicator()
+                    default:
+                        // Otherwise, show the error alert
+                        DispatchQueue.main.async {
+                            AlertManager.shared.showAlert(title: "Login Error", message: error.localizedDescription, viewController: self)
+                            self.removeActivityIndicator()
+                        }
                     }
                 }
             )

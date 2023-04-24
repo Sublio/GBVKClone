@@ -51,5 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         VK.handle(url: url, sourceApplication: app)
         return true
     }
+    
+    func showLoginViewController() {
+        let loginViewController = LoginViewController()
+        let navigationController = UINavigationController(rootViewController: loginViewController)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+    }
 
 }

@@ -20,6 +20,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZYD-TQ-2ix"/>
                     <connections>
                         <segue destination="j0V-tr-GRH" kind="show" identifier="fromNewLoginToFriends" id="UYb-uG-Sd0"/>
                     </connections>

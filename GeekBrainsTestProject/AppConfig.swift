@@ -10,5 +10,6 @@ import Foundation
 struct AppConfig {
     static let vkAppId = "7800566"
     static let segueName = "fromNewLoginToFriends"
+    static let segueToLoginVC = "fromTabBarToLoginVC"
 }
 

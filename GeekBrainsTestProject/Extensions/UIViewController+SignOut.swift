@@ -15,14 +15,18 @@ extension UIViewController {
         if VK.sessions.default.state != .destroyed {
             VK.sessions.default.logOut()
         }
-        resetToInitialViewController()
-    }
-    
-    func resetToInitialViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateInitialViewController() as? LoginViewController else { return }
-        view.window?.rootViewController = vc
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+
+        // Find the top-most presented view controller
+        var topViewController = UIApplication.shared.keyWindow?.rootViewController
+        while let presentedViewController = topViewController?.presentedViewController {
+            topViewController = presentedViewController
+        }
+
+        // Dismiss any presented view controllers
+        topViewController?.dismiss(animated: true) {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.showLoginViewController()
+            }
+        }
     }
 }
