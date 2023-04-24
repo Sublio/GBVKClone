@@ -12,7 +12,7 @@ import SwiftyVK
 class VKDelegateExample: SwiftyVKDelegate {
     
     let appId = AppConfig.vkAppId
-    let scopes: Scopes = [.offline,.friends,.wall,.photos]
+    let scopes: Scopes = [.friends,.wall,.photos]
 
     func vkNeedsScopes(for sessionId: String) -> Scopes {
       // Called when SwiftyVK attempts to get access to user account
@@ -31,18 +31,24 @@ class VKDelegateExample: SwiftyVKDelegate {
     func vkTokenCreated(for sessionId: String, info: [String : String]) {
       // Called when user grants access and SwiftyVK gets new session token
       // Can be used to run SwiftyVK requests and save session data
+        guard let token = info["access_token"] else { fatalError("Couldn't receive token") }
+        Session.shared.token = token
         print("token created in session \(sessionId) with info \(info)")
+        
     }
 
     func vkTokenUpdated(for sessionId: String, info: [String : String]) {
       // Called when existing session token has expired and successfully refreshed
       // You don't need to do anything special here
+        guard let token = info["access_token"] else { return }
+        Session.shared.token = token
         print("token updated in session \(sessionId) with info \(info)")
     }
 
     func vkTokenRemoved(for sessionId: String) {
       // Called when user was logged out
       // Use this method to cancel all SwiftyVK requests and remove session data
+        Session.shared.token = ""
         print("token removed in session \(sessionId)")
     }
 }

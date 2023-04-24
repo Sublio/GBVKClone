@@ -38,6 +38,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             // Set up SwiftyVK
             VK.setUp(appId: AppConfig.vkAppId, delegate: self.VKDelegate)
         }
+        
     }
     
     
@@ -138,47 +139,50 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier != nil {
             showLoadingIndicator(withInterval: 3)
         }
+        print(segue.destination)
+        print(segue.identifier)
     }
-    
-    func checkLoginPassFields(){
-        if loginTextField.text == "" || passTextField.text == ""{
-            AlertManager.shared.showAlert(title: "Email and/or password cannot be empty", message: "Please check your login and password", viewController: self) {
-                    self.removeActivityIndicator()
-                }
-        }
-    }
-    
+        
     @objc func loginButtonTapped() {
-        //checkLoginPassFields()
         showActivityIndicator()
-        VK.sessions.default.logIn(
-              onSuccess: { response in
-                // Start working with SwiftyVK session here
-                  print(response)
-                  if let token = VK.sessions.default.accessToken{
-                      Session.shared.token = token.get()!
-                  }
-                  print(Session.shared.token)
-                  DispatchQueue.main.async {
-                      self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)                  }
-              },
-              onError: { error in
-                  print(error.localizedDescription)
-                  if case VKError.authorizationCancelled = error {
-                      // If the error is authorizationCancelled, simply return without showing the alert
-                      DispatchQueue.main.async {
-                          self.removeActivityIndicator()
-                      }
-                    return
-                  }
-                  // Otherwise, show the error alert
-                  DispatchQueue.main.async {
-                      AlertManager.shared.showAlert(title: "Login Error", message: error.localizedDescription, viewController: self)
-                      self.removeActivityIndicator()
-            }
+
+        // Check if Session is already authorized
+        if VK.sessions.default.state != .authorized {
+            VK.sessions.default.logIn(
+                onSuccess: { response in
+                    // Start working with SwiftyVK session here
+                    print(response)
+                    if let token = VK.sessions.default.accessToken {
+                        Session.shared.token = token.get()!
+                    }
+                    print(Session.shared.token)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)
+                    }
+                },
+                onError: { error in
+                    print(error.localizedDescription)
+                    if case VKError.authorizationCancelled = error {
+                        // If the error is authorizationCancelled, simply return without showing the alert
+                        DispatchQueue.main.async {
+                            self.removeActivityIndicator()
+                        }
+                        return
+                    }
+                    // Otherwise, show the error alert
+                    DispatchQueue.main.async {
+                        AlertManager.shared.showAlert(title: "Login Error", message: error.localizedDescription, viewController: self)
+                        self.removeActivityIndicator()
+                    }
+                }
+            )
+        } else {
+            // If there's already a token and session is authorised, skip the login process and perform the segue
+            self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)
+            self.removeActivityIndicator()
         }
-    )
-}
+    }
+
 
 
 

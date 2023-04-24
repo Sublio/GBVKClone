@@ -12,19 +12,17 @@ extension UIViewController {
     @objc func signOut() {
         UserDefaults.standard.setValue(false, forKey: "isLoggedIn")
         KeychainService.removeToken(service: "tokenStorage")
-        VK.sessions.default.logOut()
-        let loginViewController = LoginViewController()
-        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-           let window = scene.windows.first(where: { $0.isKeyWindow }) {
-            // Set the new root view controller
-            window.rootViewController = loginViewController
-
-            // Animate the transition
-            UIView.transition(with: window,
-                              duration: 0.3,
-                              options: .transitionCrossDissolve,
-                              animations: nil,
-                              completion: nil)
+        if VK.sessions.default.state != .destroyed {
+            VK.sessions.default.logOut()
         }
+        resetToInitialViewController()
+    }
+    
+    func resetToInitialViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() as? LoginViewController else { return }
+        view.window?.rootViewController = vc
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }

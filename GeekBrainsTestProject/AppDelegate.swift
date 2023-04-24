@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let realm = RealmManager.shared
 //        realm.deleteDatabase()
 //        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
         return true
     }
 
