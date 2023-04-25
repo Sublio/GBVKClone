@@ -8,42 +8,51 @@
 import UIKit
 
 class DMLoadingView: UIView {
-    // Loading view section props
-    let loadingView = UIView()
-    let spinningView = UIActivityIndicatorView()
-    let loadingLabel = UILabel()
-    // End of loading view section props
+    private let spinningView = UIActivityIndicatorView()
+    private let loadingLabel = UILabel()
 
-    func setLoadingScreen(for tableView: UITableView, navigationController: UINavigationController) -> UIView {
-        // Sets the view which contains the loading text and the spinner
-        let width: CGFloat = 120
-        let height: CGFloat = 30
-        let tabBarHeight =  CGFloat(49.0)
-        let x = (tableView.frame.width / 2) - (width / 2)
-        let y = (tableView.frame.height / 2) - (height / 2) - ((navigationController.navigationBar.frame.height))
-        let finalY = y - tabBarHeight
-        loadingView.frame = CGRect(x: x, y: finalY, width: width, height: height)
+    func setLoadingScreen(for view: UIView, navigationController: UINavigationController) -> UIView {
+            let loadingView = UIView()
 
-        // Sets loading text
-        loadingLabel.textColor = .gray
-        loadingLabel.textAlignment = .center
-        loadingLabel.text = "Loading..."
-        loadingLabel.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
+            // Calculate dimensions and positions
+            let width: CGFloat = 120
+            let height: CGFloat = 30
+            let tabBarHeight = CGFloat(49.0)
+            let x = (view.frame.width / 2) - (width / 2)
+            let y = (view.frame.height / 2) - (height / 2) - navigationController.navigationBar.frame.height
+            let finalY = y - tabBarHeight
+            loadingView.frame = CGRect(x: x, y: finalY, width: width, height: height)
 
-        // Sets spinner
-        spinningView.style = .medium
-        spinningView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        spinningView.startAnimating()
+            // Configure loading label
+            configureLoadingLabel()
 
-        // Adds text and spinner to the view
-        loadingView.addSubview(spinningView)
-        loadingView.addSubview(loadingLabel)
-        return loadingView
-    }
+            // Configure spinner
+            configureSpinningView()
 
-    func removeLoadingView() {
-        self.spinningView.stopAnimating()
-        self.spinningView.isHidden = true
-        self.loadingLabel.isHidden = true
-    }
+            // Add text and spinner to the view
+            loadingView.addSubview(spinningView)
+            loadingView.addSubview(loadingLabel)
+
+            return loadingView
+        }
+
+        func removeLoadingView() {
+            spinningView.stopAnimating()
+            spinningView.isHidden = true
+            loadingLabel.isHidden = true
+        }
+
+        private func configureLoadingLabel() {
+            loadingLabel.textColor = .gray
+            loadingLabel.textAlignment = .center
+            loadingLabel.text = "Loading..."
+            loadingLabel.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
+        }
+
+        private func configureSpinningView() {
+            spinningView.style = .medium
+            spinningView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            spinningView.startAnimating()
+        }
 }
+

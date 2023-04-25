@@ -20,6 +20,7 @@ import UIKit
     }
 
     func refreshImage() {
+        self.backgroundColor = .clear
         if let imageLayer = imageLayer, let image = image {
             imageLayer.contents = image.cgImage
         }

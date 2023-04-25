@@ -25,8 +25,10 @@ class GradientView: UIView {
         guard let theLayer = self.layer as? CAGradientLayer else {
             return
         }
+        let startColor = UIColor.init(hex:  "7CDCD6",alpha: 1)
+        let finishColor = UIColor.init(hex: "ECD0D0" ,alpha: 1)
 
-        theLayer.colors = [UIColor.blueZero.cgColor, UIColor.white.cgColor]
+        theLayer.colors = [startColor.cgColor, finishColor.cgColor]
         theLayer.locations = [0.0, 0.5]
         theLayer.startPoint = .init(x: 1, y: 0)
         theLayer.endPoint   = .init(x: 0, y: 1)

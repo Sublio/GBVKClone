@@ -13,7 +13,7 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var roundedView: RoundedView!
     @IBOutlet weak var friendLabel: UILabel! {
         didSet {
-            friendLabel.backgroundColor = .white
+            friendLabel.backgroundColor = .clear
         }
     }
 
@@ -23,7 +23,7 @@ class FriendTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
     }
 
     override func layoutSubviews() {

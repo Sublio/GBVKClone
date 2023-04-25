@@ -6,67 +6,53 @@
 //
 
 import UIKit
+import SwiftyVK
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    
+    private var bottomButtonConstrains = NSLayoutConstraint()
+    
+    private var loginLabel: LoginLabel!
+    private var logPassLabel: LoginPassLabel!
+    private var loginTextField: CustomLoginTextField!
+    private var passLabel: LoginPassLabel!
+    private var passTextField: CustomLoginTextField!
+    private var forgotPassButton: CustomForgotPasswordButton!
+    private var loginButton: LoginSignupButton!
+    private var orLabel: LoginPassLabel!
+    private var signUpButton: LoginSignupButton!
+    
+    private var activityIndicator: UIActivityIndicatorView?
+    private var greyBackgroundView: UIView?
+    
+    let VKDelegate = VKDelegateExample()
+    
 
-    private var testLogin = ""
-    private var testPassword = ""
-    private var bottomButtonConstains = NSLayoutConstraint()
-
-    @IBOutlet weak var loginTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let gradientView = GradientView(frame: self.view.bounds)
-        self.view.insertSubview(gradientView, at: 0)
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginTextField.delegate = self
-        passwordTextField.delegate = self
-        self.modalPresentationStyle = .automatic
-        animateTextFields()
-        animateSubmitButton()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        // showCloudAnimation(withInterval: 10.0)
-    }
-
-    @IBAction func onLoginPressed(_ sender: Any) {
-        if loginTextField.text == testLogin && passwordTextField.text == testPassword {
-            return
-        } else {
-
-            let alert = UIAlertController(title: "Error", message: "Wrong login or password", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(alertAction)
-            present(alert, animated: true, completion: nil)
+        setUpUI()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginButtonTapped))
+        loginButton.addGestureRecognizer(tapGestureRecognizer)
+        if VK.needToSetUp {
+            // Set up SwiftyVK
+            VK.setUp(appId: AppConfig.vkAppId, delegate: self.VKDelegate)
         }
+        
     }
-
-    func animateTextFields() {
-        let offset = view.bounds.width
-        loginTextField.transform = CGAffineTransform(translationX: -offset, y: 0)
-        passwordTextField.transform =  CGAffineTransform(translationX: offset, y: 0)
-
-        UIView.animate(withDuration: 1, delay: 1, options: .curveEaseInOut, animations: {
-            self.loginTextField.transform = .identity
-            self.passwordTextField.transform = .identity
-        }, completion: nil)
-    }
-
-    func animateSubmitButton() {
-        let animation = CASpringAnimation(keyPath: "transform.scale")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.stiffness = 200
-        animation.mass =   2
-        animation.duration = 2
-        animation.beginTime = CACurrentMediaTime() + 1
-        animation.fillMode = .backwards
-        self.loginButton.layer.add(animation, forKey: nil)
+    
+    
+    private func setUpUI(){
+        self.configureBackgroundLayers()
+        loginLabel = LoginLabel(parentView: view)
+        logPassLabel = LoginPassLabel(parentView: view,aboveView: loginLabel, text: "User Name", textAlignment: .left)
+        loginTextField = CustomLoginTextField(parentView: view, aboveView: logPassLabel, placeholder: "",topAnchorConstant: 0)
+        passLabel = LoginPassLabel(parentView: view, aboveView: loginTextField, text: "Password", width: 165, height: 31,topAnchorConstant: 1, textAlignment: .left)
+        passTextField = CustomLoginTextField(parentView: view,aboveView: passLabel, placeholder: "", isPasswordField: true, topAnchorConstant: 0)
+        forgotPassButton = CustomForgotPasswordButton(parentView: view,aboveView: passTextField, topAnchorConstant: 0, topInset: 2, bottomInset: 2)
+        loginButton = LoginSignupButton(parentView: view, aboveView: forgotPassButton, title: "LOG IN", topAnchorConstant: 0)
+        orLabel = LoginPassLabel(parentView: view, aboveView: loginButton, text: "OR", topAnchorConstant: 0, textAlignment: .center)
+        signUpButton = LoginSignupButton(parentView: view, aboveView: orLabel, title: "SIGN UP", topAnchorConstant: 0)
     }
 
     func showLoadingIndicator(withInterval interval: Double) {
@@ -112,12 +98,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             cloud.removeFromSuperview()
         }
     }
+    
+    func configureBackgroundLayers(){
+        self.view.backgroundColor = .white
+        let layer0 = Layer0()
+        let layer1 = Layer1()
+        self.view.layer.compositingFilter = "darkenBlendMode"
+        layer0.bounds = self.view.bounds
+        layer0.position = self.view.center
+        self.view.layer.addSublayer(layer0)
+        layer1.bounds = self.view.bounds.insetBy(dx: -0.5*view.bounds.size.width, dy: -0.5*view.bounds.size.height)
+        layer1.position = self.view.center
+        self.view.layer.addSublayer(layer1)
+    }
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
 
             UIView.animate(withDuration: 0.3) {
-                self.bottomButtonConstains.constant -= keyboardSize.height + 20
+                self.bottomButtonConstrains.constant -= keyboardSize.height + 20
                 self.view.layoutIfNeeded()
             }
         }
@@ -125,7 +124,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) {
-            self.bottomButtonConstains.constant = -70
+            self.bottomButtonConstrains.constant = -70
             self.view.layoutIfNeeded()
         }
     }
@@ -135,10 +134,90 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+        
+    @objc func loginButtonTapped() {
+        showActivityIndicator()
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != nil {
-            showLoadingIndicator(withInterval: 3)
+        // Check if Session is already authorized
+        if VK.sessions.default.state != .authorized {
+            VK.sessions.default.logIn(
+                onSuccess: { response in
+                    // Start working with SwiftyVK session here
+                    if let token = VK.sessions.default.accessToken {
+                        Session.shared.token = token.get()!
+                    }
+                    DispatchQueue.main.async {
+                        self.removeActivityIndicator()
+                        self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)
+                    }
+                },
+                onError: { error in
+                    print(error.localizedDescription)
+
+                    switch error {
+                    case .authorizationCancelled, .authorizationDenied:
+                        // If the error is authorizationCancelled or authorizationDenied, simply return without showing the alert
+                        DispatchQueue.main.async {
+                            self.removeActivityIndicator()
+                        }
+                        return
+                    default:
+                        // Otherwise, show the error alert
+                        DispatchQueue.main.async {
+                            AlertManager.shared.showAlert(title: "Login Error", message: error.localizedDescription, viewController: self)
+                            self.removeActivityIndicator()
+                        }
+                    }
+                }
+            )
+        } else {
+            // If there's already a token and session is authorised, skip the login process and perform the segue
+            self.performSegue(withIdentifier: AppConfig.segueName, sender: nil)
+            self.removeActivityIndicator()
         }
+    }
+
+
+
+
+    func showActivityIndicator() {
+        // Create and configure the activity indicator
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
+
+        // Add constraints for the activity indicator
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+
+        // Create a UIView for the grey background
+        let greyBackgroundView = UIView(frame: view.bounds)
+        greyBackgroundView.backgroundColor = UIColor(white: 0, alpha: 0.4)
+        greyBackgroundView.alpha = 0
+        view.insertSubview(greyBackgroundView, belowSubview: activityIndicator)
+
+        // Animate the grey background appearing
+        UIView.animate(withDuration: 0.25) {
+            greyBackgroundView.alpha = 1
+        }
+
+        // Start the activity indicator
+        activityIndicator.startAnimating()
+
+        // Save the activity indicator and grey background views to properties for later removal
+        self.activityIndicator = activityIndicator
+        self.greyBackgroundView = greyBackgroundView
+    }
+    
+    func removeActivityIndicator() {
+        // Stop the activity indicator and remove the grey background
+        self.activityIndicator?.stopAnimating()
+        self.activityIndicator?.removeFromSuperview()
+        self.activityIndicator = nil
+        self.greyBackgroundView?.removeFromSuperview()
+        self.greyBackgroundView = nil
     }
 }

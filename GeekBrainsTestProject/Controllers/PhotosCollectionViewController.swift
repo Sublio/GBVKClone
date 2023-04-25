@@ -48,7 +48,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosTableVie
         self.title = "Photos"
         let gradientView = GradientView()
         self.collectionView.backgroundView = gradientView
-        self.edgesForExtendedLayout = []
+        self.extendedLayoutIncludesOpaqueBars = true
         self.collectionView.delegate = self
     }
 
